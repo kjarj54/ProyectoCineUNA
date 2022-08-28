@@ -6,8 +6,10 @@
 package cr.ac.una.cineuna.util;
 
 
-import cr.ac.una.canchauna.App;
-import cr.ac.una.canchauna.controller.Controller;
+
+
+import cr.ac.una.cineuna.App;
+import cr.ac.una.cineuna.controller.Controller;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
