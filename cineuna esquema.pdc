@@ -1,0 +1,13 @@
+-- Create the user 
+create user CineUNA
+  identified by una
+  default tablespace USERS
+  temporary tablespace TEMP
+  profile DEFAULT;
+-- Grant/Revoke role privileges 
+grant connect to CineUNA;
+grant dba to CineUNA;
+grant resource to CineUNA;
+-- Grant/Revoke system privileges 
+grant unlimited tablespace to CineUNA;
+grant create session to CineUNA;
