@@ -4,10 +4,16 @@
     <groupId>cr.ac.una</groupId>
     <artifactId>CineUNA</artifactId>
     <version>1.0</version>
+    
+    <organization>
+        <name>UNA</name>
+    </organization>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <mainClass>cr.ac.una.cineuna.App</mainClass>
     </properties>
     <dependencies>
         <dependency>
