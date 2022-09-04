@@ -1,12 +1,13 @@
-D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\service\service.java
-D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\FlowController.java
-D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Respuesta.java
-D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Formato.java
-D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\App.java
-D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\Controller.java
-D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\model\model.java
-D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Mensaje.java
-D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\BindingUtils.java
-D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\EntityManagerHelper.java
-D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\AppContext.java
-D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\module-info.java
+C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\LoginViewController.java
+C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Mensaje.java
+C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\App.java
+C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\EntityManagerHelper.java
+C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Formato.java
+C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\module-info.java
+C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Respuesta.java
+C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\service\service.java
+C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\AppContext.java
+C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\BindingUtils.java
+C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\model\model.java
+C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\Controller.java
+C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\FlowController.java
