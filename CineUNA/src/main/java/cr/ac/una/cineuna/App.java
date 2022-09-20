@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.scene.image.Image;
 
 /**
  * JavaFX App
@@ -20,6 +21,8 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         FlowController.getInstance().InitializeFlow(stage, null);
         //stage.setTitle("UNA CINE");
+        stage.getIcons().add(new Image("cr/ac/una/cineuna/resources/icono-pantalla.png"));
+        stage.setTitle("UNA CINE");
         FlowController.getInstance().goViewInWindow("LoginView");
     }
 

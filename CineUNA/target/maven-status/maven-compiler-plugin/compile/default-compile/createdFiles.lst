@@ -1,4 +1,5 @@
 cr\ac\una\cineuna\util\FlowController.class
+cr\ac\una\cineuna\controller\UsuariosViewController.class
 cr\ac\una\cineuna\util\Mensaje.class
 cr\ac\una\cineuna\controller\Controller.class
 cr\ac\una\cineuna\model\model.class
