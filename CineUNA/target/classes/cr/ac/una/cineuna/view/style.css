@@ -1,0 +1,67 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 20 sep. 2022, 12:11:46
+    Author     : Emanuel
+*/
+
+
+#PantallaInicio{
+    -fx-background-image: url("../resources/cinee.jpg");
+    -fx-background-position:100% 100%;  
+    -fx-background-size:cover;
+}
+#imagen1{
+    -fx-background-image: url("../resources/icono-user.png");
+    -fx-background-position:100% 100%;  
+    -fx-background-size:cover;
+}
+#imagen2{
+    -fx-background-image: url("../resources/icono-clave.png");
+    -fx-background-position:100% 100%;  
+    -fx-background-size:cover;
+}
+
+JFXTextField, JFXPasswordField, JFXComboBox{
+    
+    -fx-background-color: #333333;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+    -fx-text-fill: white; 
+    -fx-prompt-text-fill: white;
+    -fx-font-family: Trebuchet MS;
+    -fx-font-size: 14px;
+    
+}
+
+JFXTextField, JFXPasswordField, JFXComboBox:focused{
+    
+    -fx-focus-color: white;
+    -fx-prompt-text-fill: white;
+    -fx-highlight-fill:  white;
+}
+
+JFXButton{
+    -fx-background-color: 
+        linear-gradient(#00cc99, #009999);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 15px; 
+    -fx-border-radius: 5px;
+    -fx-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+    -fx-display: inline-block;
+    -fx-height: 30px;
+    -fx-line-height: 30px;
+    -fx-outline: 0;
+    -fx-overflow: hidden;
+    -fx-pointer-events: auto;
+    -fx-position: relative;
+    -fx-text-align: center;
+    -fx-touch-action: manipulation;
+    -fx-user-select: none;
+    -fx-vertical-align: top;
+    -fx-white-space: nowrap;
+    -fx-width: 100%;
+    -fx-z-index: 9;
+    -fx-border: 0;
+}
