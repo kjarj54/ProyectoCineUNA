@@ -13,6 +13,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-position:100% 100%;  
     -fx-background-size:cover;
 }
+#FondoUsuarios{
+    -fx-background-image: url("../resources/movie.jpg");
+    -fx-background-position:100% 100%;  
+    -fx-background-size:cover;
+}
 #imagen1{
     -fx-background-image: url("../resources/icono-user.png");
     -fx-background-position:100% 100%;  

@@ -10,23 +10,20 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
  * @author Emanuel
  */
-public class UsuariosViewController extends Controller implements Initializable {
+public class PrincipalViewController extends Controller implements Initializable {
 
     @FXML
-    private AnchorPane FondoUsuarios;
+    private JFXButton btnUsuarios;
     @FXML
-    private JFXButton btnRegistarar;
+    private JFXButton btnPeliculas;
     @FXML
-    private JFXButton btnLimpiar;
-    @FXML
-    private JFXButton btnSalir;
+    private JFXButton btnSalas;
 
     /**
      * Initializes the controller class.
@@ -42,15 +39,15 @@ public class UsuariosViewController extends Controller implements Initializable 
     }
 
     @FXML
-    private void OnActionbtnRegistarar(ActionEvent event) {
+    private void OnActionbtnUsuarios(ActionEvent event) {
     }
 
     @FXML
-    private void OnActionbtnLimpiar(ActionEvent event) {
+    private void OnActionbtnPeliculas(ActionEvent event) {
     }
 
     @FXML
-    private void OnActionbtnSalir(ActionEvent event) {
+    private void OnActionbtnSalas(ActionEvent event) {
     }
     
 }
