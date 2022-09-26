@@ -7,6 +7,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : Emanuel
 */
 
+/******************************* FONDOS DE PANTALLAS ******************************************/
 
 #PantallaInicio{
     -fx-background-image: url("../resources/cinee.jpg");
@@ -29,6 +30,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-size:cover;
 }
 
+/*******************************************************************************
+*                                                                              *
+* Etiquetas   BOTONES                                                          *
+*                                                                              *
+*******************************************************************************/
+
 JFXTextField, JFXPasswordField, JFXComboBox{
     
     -fx-background-color: #333333;
@@ -45,6 +52,30 @@ JFXTextField, JFXPasswordField, JFXComboBox:focused{
     -fx-focus-color: white;
     -fx-prompt-text-fill: white;
     -fx-highlight-fill:  white;
+}
+
+#btnUsuarios, #btnPeliculas, #btnSalas{
+    -fx-background-color: 
+        linear-gradient(#ff6600, #ff9933);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px; 
+    -fx-border-radius: 5px;
+    -fx-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+    -fx-display: inline-block;
+    -fx-height: 15px;
+    -fx-line-height: 15px;
+    -fx-outline: 0;
+    -fx-overflow: hidden;
+    -fx-pointer-events: auto;
+    -fx-position: relative;
+    -fx-text-align: center;
+    -fx-touch-action: manipulation;
+    -fx-user-select: none;
+    -fx-vertical-align: top;
+    -fx-white-space: nowrap;
+    -fx-width: 100%;
+    -fx-z-index: 9;
+    -fx-border: 0;
 }
 
 JFXButton{
