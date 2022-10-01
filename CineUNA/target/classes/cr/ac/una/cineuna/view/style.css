@@ -19,6 +19,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-position:100% 100%;  
     -fx-background-size:cover;
 }
+#Fondo{
+    -fx-background-image: url("../resources/fondito.jpg");
+    -fx-background-position:100% 100%;  
+    -fx-background-size:cover;
+}
 #imagen1{
     -fx-background-image: url("../resources/icono-user.png");
     -fx-background-position:100% 100%;  
@@ -54,7 +59,7 @@ JFXTextField, JFXPasswordField, JFXComboBox:focused{
     -fx-highlight-fill:  white;
 }
 
-#btnUsuarios, #btnPeliculas, #btnSalas{
+#btnUsuarios, #btnPeliculas, #btnSalas, #btnCerrar{
     -fx-background-color: 
         linear-gradient(#ff6600, #ff9933);
     -fx-text-fill: #ffffff;

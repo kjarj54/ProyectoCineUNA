@@ -5,11 +5,13 @@
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
+import cr.ac.una.cineuna.util.FlowController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -24,6 +26,8 @@ public class PrincipalViewController extends Controller implements Initializable
     private JFXButton btnPeliculas;
     @FXML
     private JFXButton btnSalas;
+    @FXML
+    private JFXButton btnCerrar;
 
     /**
      * Initializes the controller class.
@@ -40,14 +44,25 @@ public class PrincipalViewController extends Controller implements Initializable
 
     @FXML
     private void OnActionbtnUsuarios(ActionEvent event) {
+        FlowController.getInstance().goView("MantUsuariosView");
     }
 
     @FXML
     private void OnActionbtnPeliculas(ActionEvent event) {
+    FlowController.getInstance().goView("MantPeliculasView");
     }
 
     @FXML
     private void OnActionbtnSalas(ActionEvent event) {
+        FlowController.getInstance().goView("MantSalasView");
+    }
+
+    @FXML
+    private void OnActionbtnCerrar(ActionEvent event) {
+        
+        FlowController.getInstance().initialize();
+        FlowController.getInstance().goViewInWindow("LoginView");
+        ((Stage) btnCerrar.getScene().getWindow()).close();
     }
     
 }

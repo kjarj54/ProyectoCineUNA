@@ -8,28 +8,34 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="510.0" prefWidth="850.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.PrincipalViewController">
+<BorderPane fx:id="Fondo" prefHeight="510.0" prefWidth="850.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.PrincipalViewController">
    <center>
-      <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0">
+      <VBox>
          <children>
-            <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-         </children></AnchorPane>
+            <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0">
+               <children>
+                  <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
    </center>
    <left>
-      <VBox alignment="CENTER" prefHeight="460.0" prefWidth="214.0" spacing="50.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="460.0" prefWidth="214.0" spacing="40.0" BorderPane.alignment="CENTER">
          <children>
             <JFXButton fx:id="btnUsuarios" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnUsuarios" text="Mantenimiento Usuarios" />
             <JFXButton fx:id="btnPeliculas" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnPeliculas" text="Mantenimiento de Peliculas " />
             <JFXButton fx:id="btnSalas" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnSalas" text="Mantenimiento de Salas" />
+            <JFXButton fx:id="btnCerrar" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnCerrar" text="Cerrar Sesión" />
          </children>
       </VBox>
    </left>
    <top>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Bienvenido Administrador CINEUNA">
+            <Label text="Bienvenido Administrador CINEUNA" textFill="WHITE">
                <font>
-                  <Font name="Californian FB" size="24.0" />
+                  <Font name="Californian FB Bold" size="24.0" />
                </font>
             </Label>
          </children>

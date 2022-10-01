@@ -49,6 +49,8 @@ public class LoginViewController extends Controller implements Initializable {
 
     @FXML
     private void OnActionbtnIngresar(ActionEvent event) {
+        FlowController.getInstance().goViewInWindow("PrincipalView");
+        getStage().close();
     }
 
     @FXML
