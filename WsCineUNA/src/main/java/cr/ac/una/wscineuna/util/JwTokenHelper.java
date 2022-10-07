@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package cr.ac.una.wscineuna.util;
-/*
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -14,10 +14,10 @@ import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-*/
+
 
 public class JwTokenHelper {
-/*
+
     private static JwTokenHelper jwTokenHelper = null;
     private static final long EXPIRATION_LIMIT = 1;
     private static final String AUTHENTICATION_SCHEME = "Bearer ";
@@ -56,5 +56,5 @@ public class JwTokenHelper {
         long expMilliSeconds = TimeUnit.MINUTES.toMillis(EXPIRATION_LIMIT);
         return new Date(currentTimeInMillis + expMilliSeconds);
     }
-*/
+
 }
