@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="PantallaInicio" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.LoginViewController">
    <children>
-      <VBox alignment="CENTER" layoutX="398.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+      <VBox alignment="CENTER" layoutX="100.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="50.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0" spacing="10.0">
                <children>
@@ -21,7 +21,7 @@
                      <image>
                         <Image url="@../resources/icono-user.png" />
                      </image></ImageView>
-                  <JFXTextField labelFloat="true" prefHeight="26.0" prefWidth="317.0" promptText="USUARIO" />
+                  <JFXTextField fx:id="txtUsuarios" labelFloat="true" prefHeight="26.0" prefWidth="317.0" promptText="USUARIO" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0" spacing="10.0">
@@ -30,12 +30,12 @@
                      <image>
                         <Image url="@../resources/icono-clave.png" />
                      </image></ImageView>
-                  <JFXPasswordField labelFloat="true" prefHeight="26.0" prefWidth="317.0" promptText="CLAVE" />
+                  <JFXPasswordField fx:id="txtClave" labelFloat="true" prefHeight="26.0" prefWidth="317.0" promptText="CLAVE" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <HBox alignment="CENTER" layoutX="107.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="107.0" prefHeight="50.0" prefWidth="600.0" AnchorPane.bottomAnchor="350.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label text="Usuarios CINE UNA" textFill="WHITE">
                <font>
@@ -44,11 +44,16 @@
             </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="131.0" layoutY="322.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0">
+      <HBox alignment="CENTER" layoutX="131.0" layoutY="325.0" prefHeight="75.0" prefWidth="600.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="325.0">
          <children>
-            <JFXButton fx:id="btnIngresar" onAction="#OnActionbtnIngresar" text="Ingresar" />
-            <JFXButton fx:id="btnResgistrarse" onAction="#OnActionbtnResgistrarse" text="Registrarse" />
-            <JFXButton fx:id="btnRecuperar" onAction="#OnActionbtnRecuperar" text="Recuperar Contraseña" />
+            <JFXButton fx:id="btnIngresar" onAction="#OnActionbtnIngresar" prefHeight="50.0" prefWidth="100.0" text="Ingresar" />
+            <JFXButton fx:id="btnResgistrarse" onAction="#OnActionbtnResgistrarse" prefHeight="50.0" prefWidth="100.0" text="Registrarse" />
+            <JFXButton fx:id="btnRecuperar" onAction="#OnActionbtnRecuperar" prefHeight="50.0" text="Recuperar Contraseña" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="250.0" prefHeight="75.0" prefWidth="600.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
+         <children>
+            <JFXButton fx:id="btnAuto" onAction="#OnActionbtnAuto" prefHeight="50.0" prefWidth="130.0" text="Autoregistrarse" />
          </children>
       </HBox>
    </children>

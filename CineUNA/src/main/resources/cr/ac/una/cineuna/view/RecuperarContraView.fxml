@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.RecuperarContraViewController">
+   <children>
+      <HBox alignment="CENTER" layoutX="189.0" layoutY="14.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="350.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label text="Recuperar Contraseña">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" layoutX="250.0" layoutY="83.0" prefHeight="200.0" prefWidth="100.0" spacing="50.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Label text="Digite el correo para recuperar contraseña" />
+            <JFXTextField fx:id="txtCorreo" alignment="CENTER" labelFloat="true" promptText="Coreo Electronico" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutX="200.0" layoutY="317.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0">
+         <children>
+            <JFXButton fx:id="btnRecuperar" onAction="#OnActionbtnRecuperar" prefHeight="50.0" prefWidth="150.0" text="Recuperar" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
