@@ -47,7 +47,7 @@
             <version>18.3</version>
         </dependency>
         
-       <dependency>
+        <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
             <version>3.0.1</version>
@@ -78,7 +78,6 @@
                 <configuration>
                     <release>11</release>
                 </configuration>
-                
             </plugin>
             <plugin>
                 <groupId>org.openjfx</groupId>
