@@ -5,6 +5,8 @@
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import cr.ac.una.cineuna.util.FlowController;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,6 +35,12 @@ public class LoginViewController extends Controller implements Initializable {
     private JFXButton btnResgistrarse;
     @FXML
     private JFXButton btnRecuperar;
+    @FXML
+    private JFXTextField txtUsuarios;
+    @FXML
+    private JFXPasswordField txtClave;
+    @FXML
+    private JFXButton btnAuto;
 
     /**
      * Initializes the controller class.
@@ -60,6 +68,11 @@ public class LoginViewController extends Controller implements Initializable {
 
     @FXML
     private void OnActionbtnRecuperar(ActionEvent event) {
+        FlowController.getInstance().goViewInWindow("RecuperarContraView");
+    }
+
+    @FXML
+    private void OnActionbtnAuto(ActionEvent event) {
     }
     
 }

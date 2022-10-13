@@ -24,10 +24,10 @@
          <children>
             <VBox prefHeight="300.0" prefWidth="325.0" spacing="20.0">
                <children>
-                  <JFXTextField labelFloat="true" promptText="Nombre" />
-                  <JFXTextField labelFloat="true" promptText="Apellidos" />
-                  <JFXTextField labelFloat="true" promptText="Usuario" />
-                  <JFXTextField labelFloat="true" promptText="Contraseña" />
+                  <JFXTextField fx:id="txtNombre" labelFloat="true" promptText="Nombre" />
+                  <JFXTextField fx:id="txtApellidos" labelFloat="true" promptText="Apellidos" />
+                  <JFXTextField fx:id="txtUsuario" labelFloat="true" promptText="Usuario" />
+                  <JFXTextField fx:id="txtContrasena" labelFloat="true" promptText="Contraseña" />
                </children>
                <HBox.margin>
                   <Insets left="5.0" />
@@ -35,8 +35,8 @@
             </VBox>
             <VBox prefHeight="300.0" prefWidth="325.0" spacing="20.0">
                <children>
-                  <JFXTextField labelFloat="true" promptText="Correo Electronico" />
-                  <JFXTextField labelFloat="true" promptText="Idioma" />
+                  <JFXTextField fx:id="txtCorreo" labelFloat="true" promptText="Correo Electronico" />
+                  <JFXTextField fx:id="txtIdioma" labelFloat="true" promptText="Idioma" />
                </children>
             </VBox>
          </children>
