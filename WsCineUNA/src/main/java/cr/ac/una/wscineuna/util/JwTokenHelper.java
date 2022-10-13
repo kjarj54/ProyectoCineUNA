@@ -15,11 +15,11 @@ import java.security.Key;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-
 public class JwTokenHelper {
 
     private static JwTokenHelper jwTokenHelper = null;
     private static final long EXPIRATION_LIMIT = 1;
+    private static final long EXPIRATION_RENEWAL_LIMIT = 5;
     private static final String AUTHENTICATION_SCHEME = "Bearer ";
     private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
@@ -38,7 +38,15 @@ public class JwTokenHelper {
                 .builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(getExpirationDate())
+                .setExpiration(getExpirationDate(false))
+                .claim("rnt", AUTHENTICATION_SCHEME + Jwts.builder()
+                        .setSubject(username)
+                        .setIssuedAt(new Date())
+                        .setExpiration(getExpirationDate(true))
+                        .claim("rnw", true)
+                        .signWith(key)
+                        .compact()
+                )
                 .signWith(key)
                 .compact();
     }
@@ -51,9 +59,12 @@ public class JwTokenHelper {
                 .getBody();
     }
 
-    private Date getExpirationDate() {
+    private Date getExpirationDate(boolean renewal) {
         long currentTimeInMillis = System.currentTimeMillis();
         long expMilliSeconds = TimeUnit.MINUTES.toMillis(EXPIRATION_LIMIT);
+        if(renewal){
+            expMilliSeconds = TimeUnit.MINUTES.toMillis(EXPIRATION_RENEWAL_LIMIT);
+        }
         return new Date(currentTimeInMillis + expMilliSeconds);
     }
 

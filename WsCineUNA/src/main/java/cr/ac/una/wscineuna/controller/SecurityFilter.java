@@ -5,6 +5,8 @@
  */
 package cr.ac.una.wscineuna.controller;
 
+import cr.ac.una.wscineuna.util.JwTokenHelper;
+import cr.ac.una.wscineuna.util.Secure;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
@@ -18,12 +20,9 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
-import cr.ac.una.wscineuna.util.JwTokenHelper;
-import cr.ac.una.wscineuna.util.Secure;
 import java.lang.reflect.Method;
 import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.Context;
-
 
 @Provider
 @Secure
@@ -31,9 +30,10 @@ import javax.ws.rs.core.Context;
 public class SecurityFilter implements ContainerRequestFilter {
 
     private static final String AUTHORIZATION_SERVICE_PATH = "getUsuario";//TODO
+    private static final String RENEWAL_SERVICE_PATH = "renovarToken";
     private final JwTokenHelper jwTokenHelper = JwTokenHelper.getInstance();
     private static final String AUTHENTICATION_SCHEME = "Bearer ";
-    
+
     @Context
     private ResourceInfo resourceInfo;
 
@@ -65,8 +65,13 @@ public class SecurityFilter implements ContainerRequestFilter {
             // Validate the token
             try {
                 Claims claims = jwTokenHelper.claimKey(token);
+                if (method.getName().equals(RENEWAL_SERVICE_PATH)) {
+                    if (!(boolean) claims.getOrDefault("rnw", false)) {
+                        abortWithUnauthorized(request, "Invalid Autorization");
+                    }
+                }
                 final SecurityContext currentSecurityContext = request.getSecurityContext();
-                /*request.setSecurityContext(new SecurityContext() {
+                request.setSecurityContext(new SecurityContext() {
 
                     @Override
                     public Principal getUserPrincipal() {
@@ -87,7 +92,7 @@ public class SecurityFilter implements ContainerRequestFilter {
                     public String getAuthenticationScheme() {
                         return AUTHENTICATION_SCHEME;
                     }
-                });*/
+                });
             } catch (ExpiredJwtException | MalformedJwtException e) {
                 if (e instanceof ExpiredJwtException) {
                     abortWithUnauthorized(request, "Authorization is expired");
@@ -115,11 +120,10 @@ public class SecurityFilter implements ContainerRequestFilter {
         // Abort the filter chain with a 401 status code response
         // The WWW-Authenticate header is sent along with the response
         requestContext.abortWith(
-                Response.status(Response.Status.UNAUTHORIZED.getStatusCode(),message)
+                Response.status(Response.Status.UNAUTHORIZED.getStatusCode(), message)
                         .header(HttpHeaders.WWW_AUTHENTICATE,
                                 message)
                         .build());
     }
-
 
 }
