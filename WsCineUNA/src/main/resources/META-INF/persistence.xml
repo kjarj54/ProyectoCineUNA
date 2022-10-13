@@ -3,12 +3,12 @@
     <!-- Define Persistence Unit -->
     <persistence-unit name="WsCineUNAPU">
         <jta-data-source>jdbc/Cine</jta-data-source>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties>
-      <property name="eclipselink.logging.level.sql" value="FINE"/>
-      <property name="eclipselink.logging.parameters" value="true"/>
-      <property name="eclipselink.logging.logger" value="JavaLogger"/>
-      <property name="eclipselink.logging.level" value="FINE"/>
-    </properties>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+            <property name="eclipselink.logging.logger" value="JavaLogger"/>
+            <property name="eclipselink.logging.level" value="FINE"/>
+        </properties>
     </persistence-unit>
 </persistence>
