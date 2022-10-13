@@ -32,6 +32,7 @@ public class FlowController {
     private static Stage mainStage;
     private static ResourceBundle idioma;
     private static HashMap<String, FXMLLoader> loaders = new HashMap<>();
+    private static Controller controller;
 
     private FlowController() {
     }
@@ -195,6 +196,10 @@ public class FlowController {
         stage.centerOnScreen();
         stage.showAndWait();
 
+    }
+    
+    public void goLogInWindowModal(Boolean resizable) {
+        goViewInWindowModal("LoginView", this.controller.getStage(), resizable);
     }
 
     public Controller getController(String viewName) {
