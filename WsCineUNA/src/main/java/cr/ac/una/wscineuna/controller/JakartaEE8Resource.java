@@ -1,4 +1,4 @@
-package cr.ac.una.wscineuna.resources;
+package cr.ac.una.wscineuna.controller;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
