@@ -5,10 +5,15 @@ module cr.ac.una.cineuna {
     requires java.base;
     requires javafx.web;
     requires com.jfoenix;
+    requires jakarta.ws.rs;
+    requires jakarta.xml.bind;
+    requires java.sql;
+    requires jakarta.json;
+
     
     opens cr.ac.una.cineuna to javafx.fxml, com.jfoenix;
     opens cr.ac.una.cineuna.controller to javafx.fxml,javafx.web,com.jfoenix,java.base;
-    opens cr.ac.una.cineuna.util to javafx.fxml,com.jfoenix; 
+    opens cr.ac.una.cineuna.util to java.base,javafx.fxml,com.jfoenix; 
     
     
     
