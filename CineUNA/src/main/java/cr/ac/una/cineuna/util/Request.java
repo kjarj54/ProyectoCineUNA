@@ -216,7 +216,7 @@ public class Request {
             payload = getPayloadToken(payload.getString("rnt"));
             if (payload != null && payload.getJsonNumber("exp").longValue() > System.currentTimeMillis() / 1000) {
                 //EmpleadoService empleadoService = new EmpleadoService(); Cambiar esto
-                /*Respuesta respuesta =  ;//empleadoService.renovarToken();
+                /*Respuesta respuesta = empleadoService.renovarToken();
                 if (respuesta.getEstado()) {
                     AppContext.getInstance().set("Token", respuesta.getResultado("Token").toString());
                     MultivaluedMap<String, Object> headers = new MultivaluedHashMap<>();
