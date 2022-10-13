@@ -14,11 +14,7 @@ module cr.ac.una.cineuna {
     opens cr.ac.una.cineuna to javafx.fxml, com.jfoenix;
     opens cr.ac.una.cineuna.controller to javafx.fxml,javafx.web,com.jfoenix,java.base;
     opens cr.ac.una.cineuna.util to java.base,javafx.fxml,com.jfoenix; 
-    
-    
-    
-
-    
+     
     exports cr.ac.una.cineuna;
     exports cr.ac.una.cineuna.controller;
     exports cr.ac.una.cineuna.util;

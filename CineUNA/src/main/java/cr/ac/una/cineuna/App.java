@@ -20,7 +20,6 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FlowController.getInstance().InitializeFlow(stage, null);
-        //stage.setTitle("UNA CINE");
         stage.getIcons().add(new Image("cr/ac/una/cineuna/resources/icono-pantalla.png"));
         stage.setTitle("UNA CINE");
         FlowController.getInstance().goViewInWindow("LoginView");
