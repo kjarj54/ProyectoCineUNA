@@ -4,7 +4,7 @@
  */
 package cr.ac.una.wscineuna.controller;
 
-import cr.ac.una.wscineuna.service.ProPeliculasService;
+import cr.ac.una.wscineuna.service.ProAsientosService;
 import javax.ejb.EJB;
 import javax.ws.rs.Path;
 
@@ -12,8 +12,8 @@ import javax.ws.rs.Path;
  *
  * @author kevin
  */
-@Path("/ProPeliculasController")
-public class ProPeliculasController {
+@Path("/ProAsientosController")
+public class ProAsientosController {
     @EJB
-    ProPeliculasService proPeliculasService;
+    ProAsientosService proAsientosService;
 }

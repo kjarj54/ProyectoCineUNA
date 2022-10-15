@@ -4,10 +4,16 @@
  */
 package cr.ac.una.wscineuna.controller;
 
+import cr.ac.una.wscineuna.service.ProSalasService;
+import javax.ejb.EJB;
+import javax.ws.rs.Path;
+
 /**
  *
  * @author kevin
  */
+@Path("/ProSalasController")
 public class ProSalasController {
-    
+    @EJB
+    ProSalasService proSalasService;
 }
