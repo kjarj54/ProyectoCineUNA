@@ -1,16 +1,26 @@
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\LoginViewController.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Mensaje.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\App.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\UsuariosViewController.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\EntityManagerHelper.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Formato.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\module-info.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Respuesta.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\PrincipalViewController.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\service\service.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\AppContext.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\PrincipalUsuariosViewController.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\BindingUtils.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\model\model.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\Controller.java
-C:\Users\Emanuel\Documents\GitHub\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\FlowController.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\AppContext.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\BindingUtils.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\model\ProPeliculasDto.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\model\ProTandasDto.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Respuesta.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\model\ProAsientosDto.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\MantUsuariosViewController.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\FlowController.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Request.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\MantSalasViewController.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\App.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\MantPeliculasViewController.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\model\ProClientesDto.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\module-info.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\UsuariosViewController.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\model\ProSalasDto.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\model\ProReservacionDto.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Formato.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\DragResizer.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\RecuperarContraViewController.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\PrincipalViewController.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\LoginViewController.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\PrincipalUsuariosViewController.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\service\service.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\Controller.java
+C:\Users\BiblioPZ UNA\Desktop\progra\gitCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Mensaje.java

@@ -10,7 +10,6 @@ module cr.ac.una.cineuna {
     requires java.sql;
     requires jakarta.json;
     requires javafx.media;
-
     
     opens cr.ac.una.cineuna to javafx.fxml, com.jfoenix;
     opens cr.ac.una.cineuna.controller to javafx.fxml,javafx.web,com.jfoenix,java.base;

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
@@ -13,8 +10,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -26,28 +24,27 @@ public class LoginViewController extends Controller implements Initializable {
     @FXML
     private AnchorPane PantallaInicio;
     @FXML
-    private ImageView imagen1;
-    @FXML
-    private ImageView imagen2;
-    @FXML
     private JFXButton btnIngresar;
-    @FXML
-    private JFXButton btnResgistrarse;
-    @FXML
-    private JFXButton btnRecuperar;
     @FXML
     private JFXTextField txtUsuarios;
     @FXML
     private JFXPasswordField txtClave;
     @FXML
     private JFXButton btnAuto;
+    @FXML
+    private JFXButton btnRegistrar;
+    @FXML
+    private VBox VBoxContainer;
+    
+    private Hyperlink linkRecuperarClave;
+    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
 
     @Override
@@ -56,23 +53,24 @@ public class LoginViewController extends Controller implements Initializable {
     }
 
     @FXML
-    private void OnActionbtnIngresar(ActionEvent event) {
+    private void onActionBtnAuto(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void onActionBtnIngresar(ActionEvent event) {
         FlowController.getInstance().goViewInWindow("PrincipalView");
         getStage().close();
     }
 
     @FXML
-    private void OnActionbtnResgistrarse(ActionEvent event) {
+    private void onActionBtnRegistrar(ActionEvent event) {
         FlowController.getInstance().goViewInWindow("UsuariosView");
     }
 
     @FXML
-    private void OnActionbtnRecuperar(ActionEvent event) {
+    private void onActionLinkRecuperarClave(ActionEvent event) {
         FlowController.getInstance().goViewInWindow("RecuperarContraView");
-    }
-
-    @FXML
-    private void OnActionbtnAuto(ActionEvent event) {
     }
     
 }
