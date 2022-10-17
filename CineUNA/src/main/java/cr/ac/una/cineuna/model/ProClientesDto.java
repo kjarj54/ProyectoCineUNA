@@ -14,15 +14,16 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class ProClientesDto {
 
-    private SimpleStringProperty cliId;
-    private SimpleStringProperty cliUsuario;
-    private SimpleStringProperty cliNombre;
-    private SimpleStringProperty cliPApellido;
-    private SimpleStringProperty cliCorreo;
-    private SimpleBooleanProperty cliIdioma;
-    private SimpleBooleanProperty cliEstado;
-    private SimpleBooleanProperty cliAdmin;
-    private SimpleStringProperty cliSApellido;
+    public SimpleStringProperty cliId;
+    public SimpleStringProperty cliUsuario;
+    public SimpleStringProperty cliNombre;
+    public SimpleStringProperty cliPApellido;
+    public SimpleStringProperty cliCorreo;
+    public SimpleBooleanProperty cliIdioma;
+    public SimpleBooleanProperty cliEstado;
+    public SimpleBooleanProperty cliAdmin;
+    public SimpleStringProperty cliSApellido;
+    public SimpleStringProperty cliClave;
     private Boolean modificado;
     private String token;
 
@@ -30,6 +31,7 @@ public class ProClientesDto {
         this.modificado = false;
         this.cliId = new SimpleStringProperty();
         this.cliUsuario = new SimpleStringProperty();
+        this.cliClave = new SimpleStringProperty();
         this.cliNombre = new SimpleStringProperty();
         this.cliPApellido = new SimpleStringProperty();
         this.cliCorreo = new SimpleStringProperty();
@@ -131,4 +133,11 @@ public class ProClientesDto {
         this.token = token;
     }
 
+    public String getCliClave() {
+        return cliClave.get();
+    }
+
+    public void setCliClave(String cliClave) {
+        this.cliClave.set(cliClave);
+    }
 }

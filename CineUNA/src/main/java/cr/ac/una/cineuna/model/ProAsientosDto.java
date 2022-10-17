@@ -14,10 +14,10 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class ProAsientosDto {
 
-    private SimpleStringProperty asiId;
-    private ObjectProperty<Byte[]> asiImg;
-    private SimpleStringProperty asiNombre;
-    private SimpleStringProperty asiCantidad;
+    public SimpleStringProperty asiId;
+    public ObjectProperty<Byte[]> asiImg;
+    public SimpleStringProperty asiNombre;
+    public SimpleStringProperty asiCantidad;
     private Boolean asiModificado;
 
     public ProAsientosDto() {

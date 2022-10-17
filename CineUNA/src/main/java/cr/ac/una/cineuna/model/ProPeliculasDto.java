@@ -15,12 +15,12 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class ProPeliculasDto {
 
-    private SimpleStringProperty pelId;
-    private SimpleStringProperty pelNombre;
-    private SimpleStringProperty pelSynopsis;
-    private SimpleStringProperty pelLink;
-    private ObjectProperty<Byte[]> pelImagen;
-    private ObjectProperty<String> pelEstado;
+    public SimpleStringProperty pelId;
+    public SimpleStringProperty pelNombre;
+    public SimpleStringProperty pelSynopsis;
+    public SimpleStringProperty pelLink;
+    public ObjectProperty<Byte[]> pelImagen;
+    public ObjectProperty<String> pelEstado;
     private Boolean modificado;
 
     public ProPeliculasDto() {

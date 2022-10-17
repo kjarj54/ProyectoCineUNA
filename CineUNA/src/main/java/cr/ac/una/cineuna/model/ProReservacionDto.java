@@ -16,9 +16,9 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class ProReservacionDto {
     
-    private SimpleStringProperty resId;
-    private ObjectProperty<LocalDate> resFecha;
-    private ObjectProperty<Timestamp> resHora;
+    public SimpleStringProperty resId;
+    public ObjectProperty<LocalDate> resFecha;
+    public ObjectProperty<Timestamp> resHora;
     private Boolean modificado;
     
     public ProReservacionDto() {

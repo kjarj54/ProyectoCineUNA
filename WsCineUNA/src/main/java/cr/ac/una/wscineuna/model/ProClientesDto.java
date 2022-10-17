@@ -21,6 +21,7 @@ public class ProClientesDto {
     private String cliEstado;
     private String cliAdmin;
     private String cliSApellido;
+    private String cliClave;
     private Boolean modificado;
     private String token;
     private LocalDateTime fecha;
@@ -41,6 +42,7 @@ public class ProClientesDto {
         this.cliEstado = null;
         this.cliAdmin = null;
         this.cliSApellido = null;
+        this.cliClave = null
     }*/
     public Long getCliId() {
         return cliId;
@@ -128,6 +130,14 @@ public class ProClientesDto {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getCliClave() {
+        return cliClave;
+    }
+
+    public void setCliClave(String cliClave) {
+        this.cliClave = cliClave;
     }
 
 }

@@ -17,15 +17,15 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class ProSalasDto {
 
-    private SimpleStringProperty salId;
-    private SimpleStringProperty salNombre;
-    private SimpleBooleanProperty salEstado;
-    private SimpleStringProperty salCosto;
-    private ObjectProperty<Timestamp> salHoraInicio;
-    private ObjectProperty<Timestamp> salHoraFinal;
-    private ObjectProperty<LocalDate> salFechaInicio;
-    private ObjectProperty<LocalDate> salFechaFinal;
-    private ObjectProperty<Byte[]> salImgFondo;
+    public SimpleStringProperty salId;
+    public SimpleStringProperty salNombre;
+    public SimpleBooleanProperty salEstado;
+    public SimpleStringProperty salCosto;
+    public ObjectProperty<Timestamp> salHoraInicio;
+    public ObjectProperty<Timestamp> salHoraFinal;
+    public ObjectProperty<LocalDate> salFechaInicio;
+    public ObjectProperty<LocalDate> salFechaFinal;
+    public ObjectProperty<Byte[]> salImgFondo;
     private Boolean modificado;
 
     public ProSalasDto() {

@@ -24,16 +24,32 @@ public class ProClientesService {
             Map<String, Object> parametros = new HashMap<>();
             parametros.put("usuario", usuario);
             parametros.put("clave", clave);
-            Request request = new Request("/ProClientesController/usuario", "/{usuario}/{clave}", parametros);
+            Request request = new Request("ProClientesController/usuario", "/{usuario}/{clave}", parametros);
             request.getToken();
             if (request.isError()) {
                 return new Respuesta(false, request.getError(), "");
             }
             ProClientesDto proClienteDto = (ProClientesDto) request.readEntity(ProClientesDto.class);
-            return new Respuesta(true, "", "", "Empleado", proClienteDto);
+            return new Respuesta(true, "", "", "Cliente", proClienteDto);
         } catch (Exception ex) {
             Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Error obteniendo el usuario [" + usuario + "]", ex);
             return new Respuesta(false, "Error obteniendo el usuario.", "getUsuario " + ex.getMessage());
+        }
+    }
+    
+    public Respuesta guardarCliente(ProClientesDto proClientesDto) {
+        try {
+            //TODO
+            Request request = new Request("ProClientesController/guardarCliente");
+            request.post(proClientesDto);
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+            ProClientesDto proClientes = (ProClientesDto) request.readEntity(ProClientesDto.class);
+            return new Respuesta(true, "", "", "Cliente", proClientes);
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Error guardando el empleado.", ex);
+            return new Respuesta(false, "Error guardando el empleado.", "guardarEmpleado " + ex.getMessage());
         }
     }
     

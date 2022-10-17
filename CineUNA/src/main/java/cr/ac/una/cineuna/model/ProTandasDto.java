@@ -12,8 +12,8 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class ProTandasDto {
 
-    private SimpleStringProperty tanId;
-    private SimpleStringProperty tanNombre;
+    public SimpleStringProperty tanId;
+    public SimpleStringProperty tanNombre;
     private Boolean modificado;
 
     public ProTandasDto() {
