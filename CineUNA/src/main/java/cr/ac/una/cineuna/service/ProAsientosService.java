@@ -8,6 +8,6 @@ package cr.ac.una.cineuna.service;
  *
  * @author kevin
  */
-public class service {
+public class ProAsientosService {
     
 }
