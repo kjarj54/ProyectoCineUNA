@@ -28,6 +28,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -88,11 +89,17 @@ public class MantUsuTableViewController extends Controller implements Initializa
                 btnFiltrar.fire();
             }
         };
+
+        Callback<TableColumn<ProClientesDto, Boolean>, TableCell<ProClientesDto, Boolean>> boolenaCellFactory = new Callback<TableColumn<ProClientesDto, Boolean>, TableCell<ProClientesDto, Boolean>>() {
+            @Override
+            public TableCell<ProClientesDto, Boolean> call(TableColumn<ProClientesDto, Boolean> p) {
+                return new CheckBoxCell();
+            }
+        };
         
-        //tbcAdmin.setCellFactory((TableColumn.CellDataFeatures<ProClientesDto, Boolean> p) -> new SimpleBooleanProperty());
-        
+        tbcAdmin.setCellFactory(boolenaCellFactory);
         //Anyade el checkbox a la columna
-        tbcAdmin.setCellFactory((TableColumn<ProClientesDto, Boolean> p)-> new CheckBoxCell());
+        tbcAdmin.setCellFactory((TableColumn<ProClientesDto, Boolean> p) -> new CheckBoxCell());
     }
 
     @Override
@@ -116,8 +123,8 @@ public class MantUsuTableViewController extends Controller implements Initializa
 
         CheckBoxCell() {
             cellCheckBox.setPrefWidth(500);
-            cellCheckBox.getStyleClass().add("jfx-btnimg-tbveliminar");           
-            
+            cellCheckBox.getStyleClass().add("jfx-btnimg-tbveliminar");
+
         }
 
         @Override
