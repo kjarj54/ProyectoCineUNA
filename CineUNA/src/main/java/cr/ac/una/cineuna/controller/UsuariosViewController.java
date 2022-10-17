@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import cr.ac.una.cineuna.model.ProClientesDto;
 import cr.ac.una.cineuna.service.ProClientesService;
+import cr.ac.una.cineuna.util.BindingUtils;
 import cr.ac.una.cineuna.util.Formato;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
@@ -26,6 +27,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -53,17 +56,24 @@ public class UsuariosViewController extends Controller implements Initializable 
     private JFXTextField txtContrasena;
     @FXML
     private JFXTextField txtCorreo;
-    @FXML
-    private JFXTextField txtIdioma;
 
     List<Node> requeridos = new ArrayList<>();
     ProClientesDto proClientesDto;
+    @FXML
+    private RadioButton rdbEspañol;
+    @FXML
+    private ToggleGroup tggIdioma;
+    @FXML
+    private RadioButton rdbEnglish;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        rdbEnglish.setUserData("I");
+        rdbEspañol.setUserData("E");
         txtNombre.setTextFormatter(Formato.getInstance().letrasFormat(30));
         txtApellidos.setTextFormatter(Formato.getInstance().letrasFormat(30));
         txtUsuario.setTextFormatter(Formato.getInstance().maxLengthFormat(20));
@@ -71,21 +81,19 @@ public class UsuariosViewController extends Controller implements Initializable 
         txtCorreo.setTextFormatter(Formato.getInstance().maxLengthFormat(100));
         proClientesDto = new ProClientesDto();
         nuevoCliente();
-        indicarRequeridos();      
-    }    
+        indicarRequeridos();
+    }
 
     @Override
     public void initialize() {
-        
+
     }
-    
-    public void indicarRequeridos(){
+
+    public void indicarRequeridos() {
         requeridos.clear();
-        requeridos.addAll(Arrays.asList( txtNombre,txtApellidos,txtContrasena,txtCorreo,txtUsuario));
+        requeridos.addAll(Arrays.asList(txtNombre, txtApellidos, txtContrasena, txtCorreo, txtUsuario));
     }
-    
-    
-    
+
     public String validarRequeridos() {
         Boolean validos = true;
         String invalidos = "";
@@ -126,30 +134,32 @@ public class UsuariosViewController extends Controller implements Initializable 
             return "Campos requeridos o con problemas de formato [" + invalidos + "].";
         }
     }
-    
-    public void bindClientes(Boolean nuevo){
+
+    public void bindClientes(Boolean nuevo) {
         txtNombre.textProperty().bindBidirectional(proClientesDto.cliNombre);
         txtApellidos.textProperty().bindBidirectional(proClientesDto.cliPApellido);
         txtContrasena.textProperty().bindBidirectional(proClientesDto.cliClave);
         txtCorreo.textProperty().bindBidirectional(proClientesDto.cliCorreo);
         txtUsuario.textProperty().bindBidirectional(proClientesDto.cliUsuario);
+        BindingUtils.bindToggleGroupToProperty(tggIdioma, proClientesDto.cliIdioma);
     }
 
-    public void unbindClientes(){
+    public void unbindClientes() {
         txtNombre.textProperty().unbindBidirectional(proClientesDto.cliNombre);
         txtApellidos.textProperty().unbindBidirectional(proClientesDto.cliPApellido);
         txtContrasena.textProperty().unbindBidirectional(proClientesDto.cliClave);
         txtCorreo.textProperty().unbindBidirectional(proClientesDto.cliCorreo);
         txtUsuario.textProperty().unbindBidirectional(proClientesDto.cliUsuario);
+        BindingUtils.unbindToggleGroupToProperty(tggIdioma, proClientesDto.cliIdioma);
     }
-    
-    public void nuevoCliente(){
+
+    public void nuevoCliente() {
         unbindClientes();
         proClientesDto = new ProClientesDto();
         bindClientes(true);
-           
+
     }
-    
+
     @FXML
     private void OnActionbtnRegistarar(ActionEvent event) {
         try {
@@ -177,7 +187,6 @@ public class UsuariosViewController extends Controller implements Initializable 
 
     @FXML
     private void OnActionbtnLimpiar(ActionEvent event) {
-        txtApellidos.clear();txtContrasena.clear();txtCorreo.clear();txtIdioma.clear();txtNombre.clear();txtUsuario.clear();
         if (new Mensaje().showConfirmation("Limpiar usuario", getStage(), "¿Esta seguro que desea limpiar el registro?")) {
             nuevoCliente();
         }
@@ -187,5 +196,5 @@ public class UsuariosViewController extends Controller implements Initializable 
     private void OnActionbtnSalir(ActionEvent event) {
         getStage().close();
     }
-    
+
 }

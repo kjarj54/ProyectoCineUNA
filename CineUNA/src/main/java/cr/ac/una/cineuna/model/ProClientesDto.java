@@ -5,7 +5,9 @@
 package cr.ac.una.cineuna.model;
 
 import java.time.LocalDateTime;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -19,7 +21,7 @@ public class ProClientesDto {
     public SimpleStringProperty cliNombre;
     public SimpleStringProperty cliPApellido;
     public SimpleStringProperty cliCorreo;
-    public SimpleBooleanProperty cliIdioma;
+    public ObjectProperty<String> cliIdioma;
     public SimpleBooleanProperty cliEstado;
     public SimpleBooleanProperty cliAdmin;
     public SimpleStringProperty cliSApellido;
@@ -35,7 +37,7 @@ public class ProClientesDto {
         this.cliNombre = new SimpleStringProperty();
         this.cliPApellido = new SimpleStringProperty();
         this.cliCorreo = new SimpleStringProperty();
-        this.cliIdioma = new SimpleBooleanProperty(false);
+        this.cliIdioma = new SimpleObjectProperty();
         this.cliEstado = new SimpleBooleanProperty(false);
         this.cliAdmin = new SimpleBooleanProperty(false);
         this.cliSApellido = new SimpleStringProperty();
@@ -86,11 +88,11 @@ public class ProClientesDto {
     }
 
     public String getCliIdioma() {
-        return cliIdioma.getValue() ? "E" : "I";
+        return cliIdioma.get();
     }
 
     public void setCliIdioma(String cliIdioma) {
-        this.cliIdioma.setValue(cliIdioma.equalsIgnoreCase("E"));
+        this.cliIdioma.set(cliIdioma);
     }
 
     public String getCliEstado() {
