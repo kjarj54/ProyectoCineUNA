@@ -31,19 +31,20 @@ public class ProClientesDto {
         this.fecha = LocalDateTime.now();
     }
 
-    /*public ProClientesDto(ProClientes proClientes) {
+    public ProClientesDto(ProClientes proClientes) {
         this();
-        this.cliId = null;
-        this.cliUsuario = null;
-        this.cliNombre = null;
-        this.cliPApellido = null;
-        this.cliCorreo = null;
-        this.cliIdioma = null;
-        this.cliEstado = null;
-        this.cliAdmin = null;
-        this.cliSApellido = null;
-        this.cliClave = null
-    }*/
+        this.cliId = proClientes.getCliId();
+        this.cliUsuario = proClientes.getCliUsuario();
+        this.cliNombre = proClientes.getCliNombre();
+        this.cliPApellido = proClientes.getCliPapellido();
+        this.cliCorreo = proClientes.getCliCorreo();
+        this.cliIdioma = proClientes.getCliIdioma();
+        this.cliEstado = proClientes.getCliEstado();
+        this.cliAdmin = proClientes.getCliAdmin();
+        this.cliSApellido = proClientes.getCliSapellido();
+        this.cliClave = proClientes.getCliClave();
+    }
+    
     public Long getCliId() {
         return cliId;
     }

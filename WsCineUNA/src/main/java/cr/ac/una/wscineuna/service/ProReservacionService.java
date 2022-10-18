@@ -4,8 +4,11 @@
  */
 package cr.ac.una.wscineuna.service;
 
+import java.util.logging.Logger;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -14,5 +17,8 @@ import javax.ejb.Stateless;
 @Stateless
 @LocalBean
 public class ProReservacionService {
+    private static final Logger LOG = Logger.getLogger(ProReservacionService.class.getName());
     
+    @PersistenceContext(unitName = "WsCineUNAPU")
+    private EntityManager em;
 }
