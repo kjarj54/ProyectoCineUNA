@@ -9,8 +9,11 @@ import cr.ac.una.wscineuna.model.ProClientes;
 import cr.ac.una.wscineuna.model.ProClientesDto;
 import cr.ac.una.wscineuna.util.CodigoRespuesta;
 import cr.ac.una.wscineuna.util.Respuesta;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -50,7 +53,81 @@ public class ProClientesService {
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el usuario.", "validarUsuario " + ex.getMessage());
         }
     }
-    
-    
-    
+
+    public Respuesta getCliente(Long id) {
+        try {
+            Query qryActividad = em.createNamedQuery("ProClientes.findByCliId", ProClientes.class);
+            qryActividad.setParameter("cliId", id);
+
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProCliente", new ProClientesDto((ProClientes) qryActividad.getSingleResult()));
+
+        } catch (NoResultException ex) {
+            return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existe un usuario con las credenciales ingresadas.", "validarUsuario NoResultException");
+        } catch (NonUniqueResultException ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el usuario.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el usuario.", "validarUsuario NonUniqueResultException");
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el usuario.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el usuario.", "validarUsuario " + ex.getMessage());
+        }
+    }
+
+    public Respuesta guardarCliente(ProClientesDto proClientesDto) {
+        try {
+            ProClientes proClientes;
+            if (proClientesDto.getCliId() != null && proClientesDto.getCliId() > 0) {
+                proClientes = em.find(ProClientes.class, proClientesDto.getCliId());
+                if (proClientes == null) {
+                    return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encrontró el cliente a modificar.", "guardarCliente NoResultException");
+                }
+                proClientes.actualizarCliente(proClientesDto);
+                proClientes = em.merge(proClientes);
+            } else {
+                proClientes = new ProClientes(proClientesDto);
+                em.persist(proClientes);
+            }
+            em.flush();
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Cliente", new ProClientesDto(proClientes));
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al guardar el cliente.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al guardar el cliente.", "guardarCliente " + ex.getMessage());
+        }
+    }
+
+    public Respuesta getClientes(String id, String usuario, String nombre, String estado, String admin) {
+        try {
+            Query qryEmpleado = em.createNamedQuery("ProClientes.findAll", ProClientes.class);
+            List<ProClientes> clientes = qryEmpleado.getResultList();
+
+            if (!id.equals("%")) {
+                clientes.stream().filter((p) -> p.getCliId().equals(Long.getLong(id))).collect(Collectors.toList());
+            }
+            if (!usuario.equals("%")) {
+                clientes.stream().filter((p) -> p.getCliUsuario().contains(usuario)).collect(Collectors.toList());
+            }
+            if (!nombre.equals("%")) {
+                clientes.stream().filter((p) -> p.getCliNombre().contains(nombre)).collect(Collectors.toList());
+            }
+            if (!estado.equals("%")) {
+                clientes.stream().filter((p) -> p.getCliEstado().contains(estado)).collect(Collectors.toList());
+            }
+            if (!admin.equals("%")) {
+                clientes.stream().filter((p) -> p.getCliAdmin().contains(admin)).collect(Collectors.toList());
+            }
+
+            List<ProClientesDto> clientesDto = new ArrayList<>();
+            for (ProClientes cliente : clientes) {
+                clientesDto.add(new ProClientesDto(cliente));
+            }
+
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProClientes", clientesDto);
+
+        } catch (NoResultException ex) {
+            return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen clientes con los criterios ingresados.", "getClientes NoResultException");
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el cliente.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el cliente.", "getCliente " + ex.getMessage());
+        }
+    }
+
 }
