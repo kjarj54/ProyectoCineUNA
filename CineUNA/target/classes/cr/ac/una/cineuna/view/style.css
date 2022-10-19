@@ -6,19 +6,27 @@
     -fx-background-position:100% 100%;  
     -fx-background-size:cover;
 }
+
 #FondoUsuarios{
     -fx-background-image: url("../resources/movie.jpg");
     -fx-background-position:100% 100%;  
     -fx-background-size:cover;
 }
+
 #Fondo{
     -fx-background-image: url("../resources/fondito.jpg");
     -fx-background-position:100% 100%;  
     -fx-background-size:cover;
 }
 
+#PantallaRecuperar{
+    -fx-background-image: url("../resources/pregunta.jpg");
+    -fx-background-position:100% 100%;  
+    -fx-background-size:cover;
+}
+
 #VBoxContainer{
-    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-background-color: rgba(0, 0, 0, 0.3);
 }
 
 /******************************* ESTILOS DE TEXTO POR CLASE ******************************************/
@@ -64,13 +72,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
 }
 
-#txtUsuarios:focused{
-    -fx-focus-color: white;
-    -fx-prompt-text-fill: white;
-    -fx-highlight-fill:  white;
-}
-
-#txtClave{
+#txtClave {
     -fx-max-width:300;
     -fx-background-color: #333333;
     -fx-text-fill: white; 
@@ -86,10 +88,19 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
 }
 
-#txtClave:focused{
-    -fx-focus-color: white;
+#txtCorreo{
+    -fx-max-width:300;
+    -fx-background-color: #333333;
+    -fx-text-fill: white; 
     -fx-prompt-text-fill: white;
-    -fx-highlight-fill:  white;
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;
+    -fx-background-size:38;
+    -fx-font-size: 16;
+    -fx-background-radius: 20 20 20 20;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
 }
 
 #linkRecuperarClave{
@@ -98,6 +109,24 @@
     -fx-alignment: center;
     -fx-font-weight: bold;
     -fx-effect: dropshadow(three-pass-box, rgba(80, 100, 120, 0.8), 10, 0.8, 0, 5);
+}
+
+#txtUsuarios:focused{
+    -fx-focus-color: white;
+    -fx-prompt-text-fill: white;
+    -fx-highlight-fill:  white;
+}
+#txtClave:focused{
+    -fx-focus-color: white;
+    -fx-prompt-text-fill: white;
+    -fx-highlight-fill:  white;
+} 
+
+#txtCorreo:focused{
+    -fx-focus-color: white;
+    -fx-prompt-text-fill: white;
+    -fx-highlight-fill:  white;
+    -fx-label-color:BLACK;
 }
 
 #linkRecuperarClave:hover{
@@ -157,13 +186,18 @@ JFXButton{
         linear-gradient(#eb9605, #ffbf00);
 }
 
-#btnAuto{
+#btnAuto, #btnRecuperar{
     -fx-background-color: 
         linear-gradient(#57a0d3, #73c2fb);
 }
 
-#btnIngresar{
+#btnIngresar, #btnRecuperar{
     -fx-background-color: 
         linear-gradient( #f9812a, #ef820e);
+}
+
+#btnAtras, #btnLimpiar{
+    -fx-background-color: 
+        linear-gradient(#be1d00, #ff5400);
 }
 

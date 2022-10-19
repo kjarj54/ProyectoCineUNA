@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
@@ -11,6 +8,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -23,6 +22,12 @@ public class RecuperarContraViewController extends Controller implements Initial
     private JFXButton btnRecuperar;
     @FXML
     private JFXTextField txtCorreo;
+    @FXML
+    private AnchorPane PantallaRecuperar;
+    @FXML
+    private VBox VBoxContainer;
+    @FXML
+    private JFXButton btnAtras;
 
     /**
      * Initializes the controller class.
@@ -39,6 +44,11 @@ public class RecuperarContraViewController extends Controller implements Initial
 
     @FXML
     private void OnActionbtnRecuperar(ActionEvent event) {
+    }
+    
+    @FXML
+    private void onActionBtnAtras(ActionEvent event) {
+        getStage().close();
     }
     
 }

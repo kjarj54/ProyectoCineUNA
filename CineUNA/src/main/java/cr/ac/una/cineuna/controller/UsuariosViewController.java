@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
@@ -41,8 +38,6 @@ public class UsuariosViewController extends Controller implements Initializable 
     @FXML
     private AnchorPane FondoUsuarios;
     @FXML
-    private JFXButton btnRegistarar;
-    @FXML
     private JFXButton btnLimpiar;
     @FXML
     private JFXButton btnSalir;
@@ -65,6 +60,8 @@ public class UsuariosViewController extends Controller implements Initializable 
     private ToggleGroup tggIdioma;
     @FXML
     private RadioButton rdbEnglish;
+    @FXML
+    private JFXButton btnRegistrar;
 
     /**
      * Initializes the controller class.
@@ -161,7 +158,7 @@ public class UsuariosViewController extends Controller implements Initializable 
     }
 
     @FXML
-    private void OnActionbtnRegistarar(ActionEvent event) {
+    private void onActionBtnRegistrar(ActionEvent event) {
         try {
             String invalidos = validarRequeridos();
             if (!invalidos.isEmpty()) {
@@ -186,15 +183,15 @@ public class UsuariosViewController extends Controller implements Initializable 
     }
 
     @FXML
-    private void OnActionbtnLimpiar(ActionEvent event) {
+    private void onActionBtnLimpiar(ActionEvent event) {
         if (new Mensaje().showConfirmation("Limpiar usuario", getStage(), "¿Esta seguro que desea limpiar el registro?")) {
             nuevoCliente();
-        }
+          }
     }
 
     @FXML
-    private void OnActionbtnSalir(ActionEvent event) {
+    private void onActionBtnSalir(ActionEvent event) {
         getStage().close();
     }
-
 }
+
