@@ -111,24 +111,6 @@
     -fx-effect: dropshadow(three-pass-box, rgba(80, 100, 120, 0.8), 10, 0.8, 0, 5);
 }
 
-#txtUsuarios:focused{
-    -fx-focus-color: white;
-    -fx-prompt-text-fill: white;
-    -fx-highlight-fill:  white;
-}
-#txtClave:focused{
-    -fx-focus-color: white;
-    -fx-prompt-text-fill: white;
-    -fx-highlight-fill:  white;
-} 
-
-#txtCorreo:focused{
-    -fx-focus-color: white;
-    -fx-prompt-text-fill: white;
-    -fx-highlight-fill:  white;
-    -fx-label-color:BLACK;
-}
-
 #linkRecuperarClave:hover{
     -fx-text-fill: #f9812a; 
 }
@@ -186,17 +168,17 @@ JFXButton{
         linear-gradient(#eb9605, #ffbf00);
 }
 
-#btnAuto, #btnRecuperar{
+#btnAuto, #btnLimpiar{
     -fx-background-color: 
         linear-gradient(#57a0d3, #73c2fb);
 }
 
-#btnIngresar, #btnRecuperar{
+#btnIngresar {
     -fx-background-color: 
         linear-gradient( #f9812a, #ef820e);
 }
 
-#btnAtras, #btnLimpiar{
+#btnAtras, #btnSalir{
     -fx-background-color: 
         linear-gradient(#be1d00, #ff5400);
 }
