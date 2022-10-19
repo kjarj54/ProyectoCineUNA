@@ -9,6 +9,7 @@ import cr.ac.una.wscineuna.model.ProClientes;
 import cr.ac.una.wscineuna.model.ProClientesDto;
 import cr.ac.una.wscineuna.util.CodigoRespuesta;
 import cr.ac.una.wscineuna.util.Respuesta;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -96,8 +97,8 @@ public class ProClientesService {
 
     public Respuesta getClientes(String id, String usuario, String nombre, String estado, String admin) {
         try {
-            Query qryEmpleado = em.createNamedQuery("ProClientes.findAll", ProClientes.class);
-            List<ProClientes> clientes = qryEmpleado.getResultList();
+            Query qryClientes = em.createNamedQuery("ProClientes.findAll", ProClientes.class);
+            List<ProClientes> clientes = qryClientes.getResultList();
 
             if (!id.equals("%")) {
                 clientes.stream().filter((p) -> p.getCliId().equals(Long.getLong(id))).collect(Collectors.toList());
@@ -129,5 +130,30 @@ public class ProClientesService {
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el cliente.", "getCliente " + ex.getMessage());
         }
     }
+    
+    
+    public Respuesta eliminarCliente(Long id) {
+        try {
+            ProClientes clientes;
+            if (id != null && id > 0) {
+                clientes = em.find(ProClientes.class, id);
+                if (clientes == null) {
+                    return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encrontró el cliente a eliminar.", "eliminarCliento NoResultException");
+                }
+                em.remove(clientes);
+            } else {
+                return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "Debe cargar el cliente a eliminar.", "eliminarCliente NoResultException");
+            }
+            em.flush();
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "");
+        } catch (Exception ex) {
+            if (ex.getCause() != null && ex.getCause().getCause().getClass() == SQLIntegrityConstraintViolationException.class) {
+                return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "No se puede eliminar el cliente porque tiene relaciones con otros registros.", "eliminarCliente " + ex.getMessage());
+            }
+            LOG.log(Level.SEVERE, "Ocurrio un error al guardar el cliente.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al eliminar el cliente.", "eliminarCliente " + ex.getMessage());
+        }
+    }
+    
 
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -104,6 +105,22 @@ public class ProClientesController {
         } catch (Exception ex) {
             Logger.getLogger(ProClientesController.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error obteniendo Clientes").build();
+        }
+    }
+
+    @DELETE
+    @Path("/clientes/{id}")
+    public Response eliminarCliente(@PathParam("id") Long id) {
+        try {
+            Respuesta res = proClientesService.eliminarCliente(id);
+            if (!res.getEstado()) {
+                return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
+            }
+            return Response.ok().build();
+
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesController.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error eliminando Cliente").build();
         }
     }
 
