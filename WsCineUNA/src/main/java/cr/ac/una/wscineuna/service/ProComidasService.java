@@ -14,5 +14,8 @@ import javax.ejb.Stateless;
 @Stateless
 @LocalBean
 public class ProComidasService {
+    private static final Logger LOG = Logger.getLogger(ProTandasService.class.getName());
     
+    @PersistenceContext(unitName = "WsCineUNAPU")
+    private EntityManager em;
 }
