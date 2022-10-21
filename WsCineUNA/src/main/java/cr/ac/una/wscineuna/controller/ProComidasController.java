@@ -32,7 +32,7 @@ public class ProComidasController {
     ProComidasService proComidasService;
     
     @POST
-    @Path("/comida")
+    @Path("/guardarComida")
     public Response guardarComida(ProComidasDto proComidasDto) {
         try {
             Respuesta res = proComidasService.guardarComida(proComidasDto);
@@ -83,7 +83,7 @@ public class ProComidasController {
     }
 
     @DELETE
-    @Path("/eliminarComidas/{id}")
+    @Path("/eliminarComida/{id}")
     public Response eliminarPelicula(@PathParam("id") Long id) {
         try {
             Respuesta res = proComidasService.eliminarComida(id);

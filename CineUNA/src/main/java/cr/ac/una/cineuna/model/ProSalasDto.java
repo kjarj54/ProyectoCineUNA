@@ -20,11 +20,6 @@ public class ProSalasDto {
     public SimpleStringProperty salId;
     public SimpleStringProperty salNombre;
     public SimpleBooleanProperty salEstado;
-    public SimpleStringProperty salCosto;
-    public ObjectProperty<Timestamp> salHoraInicio;
-    public ObjectProperty<Timestamp> salHoraFinal;
-    public ObjectProperty<LocalDate> salFechaInicio;
-    public ObjectProperty<LocalDate> salFechaFinal;
     public ObjectProperty<Byte[]> salImgFondo;
     private Boolean modificado;
 
@@ -33,11 +28,6 @@ public class ProSalasDto {
         this.salId = new SimpleStringProperty();
         this.salNombre = new SimpleStringProperty();
         this.salEstado = new SimpleBooleanProperty(false);
-        this.salCosto = new SimpleStringProperty();
-        this.salHoraInicio = new SimpleObjectProperty();
-        this.salHoraFinal = new SimpleObjectProperty();
-        this.salFechaInicio = new SimpleObjectProperty();
-        this.salFechaFinal = new SimpleObjectProperty();
         this.salImgFondo = new SimpleObjectProperty();
     }
 
@@ -67,50 +57,6 @@ public class ProSalasDto {
 
     public void setSalEstado(String salEstado) {
         this.salEstado.setValue(salEstado.equalsIgnoreCase("A"));
-    }
-
-    public Long getSalCosto() {
-        if (salCosto.get() != null && !salCosto.get().isEmpty()) {
-            return Long.valueOf(salCosto.get());
-        } else {
-            return null;
-        }
-    }
-
-    public void setSalCosto(Long salCosto) {
-        this.salCosto.set(salCosto.toString());
-    }
-
-    public Timestamp getSalHoraInicio() {
-        return salHoraInicio.get();
-    }
-
-    public void setSalHoraInicio(Timestamp salHoraInicio) {
-        this.salHoraInicio.set(salHoraInicio);
-    }
-
-    public Timestamp getSalHoraFinal() {
-        return salHoraFinal.get();
-    }
-
-    public void setSalHoraFinal(Timestamp salHoraFinal) {
-        this.salHoraFinal.set(salHoraFinal);
-    }
-
-    public LocalDate getSalFechaInicio() {
-        return salFechaInicio.get();
-    }
-
-    public void setSalFechaInicio(LocalDate salFechaInicio) {
-        this.salFechaInicio.set(salFechaInicio);
-    }
-
-    public LocalDate getSalFechaFinal() {
-        return salFechaFinal.get();
-    }
-
-    public void setSalFechaFinal(LocalDate salFechaFinal) {
-        this.salFechaFinal.set(salFechaFinal);
     }
 
     public Byte[] getSalImgFondo() {

@@ -16,11 +16,6 @@ public class ProSalasDto {
     private Long salId;
     private String salNombre;
     private String salEstado;
-    private Long salCosto;
-    private Timestamp salHoraInicio;
-    private Timestamp salHoraFinal;
-    private LocalDate salFechaInicio;
-    private LocalDate salFechaFinal;
     private Byte[] salImgFondo;
     private Boolean modificado;
 
@@ -62,46 +57,6 @@ public class ProSalasDto {
 
     public void setSalEstado(String salEstado) {
         this.salEstado = salEstado;
-    }
-
-    public Long getSalCosto() {
-        return salCosto;
-    }
-
-    public void setSalCosto(Long salCosto) {
-        this.salCosto = salCosto;
-    }
-
-    public Timestamp getSalHoraInicio() {
-        return salHoraInicio;
-    }
-
-    public void setSalHoraInicio(Timestamp salHoraInicio) {
-        this.salHoraInicio = salHoraInicio;
-    }
-
-    public Timestamp getSalHoraFinal() {
-        return salHoraFinal;
-    }
-
-    public void setSalHoraFinal(Timestamp salHoraFinal) {
-        this.salHoraFinal = salHoraFinal;
-    }
-
-    public LocalDate getSalFechaInicio() {
-        return salFechaInicio;
-    }
-
-    public void setSalFechaInicio(LocalDate salFechaInicio) {
-        this.salFechaInicio = salFechaInicio;
-    }
-
-    public LocalDate getSalFechaFinal() {
-        return salFechaFinal;
-    }
-
-    public void setSalFechaFinal(LocalDate salFechaFinal) {
-        this.salFechaFinal = salFechaFinal;
     }
 
     public Byte[] getSalImgFondo() {

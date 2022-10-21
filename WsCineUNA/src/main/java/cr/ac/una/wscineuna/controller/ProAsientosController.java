@@ -90,7 +90,7 @@ public class ProAsientosController {
     }
 
     @DELETE
-    @Path("/asientos/{id}")
+    @Path("/eliminarAsientos/{id}")
     public Response eliminarAsiento(@PathParam("id") Long id) {
         try {
             Respuesta res = proAsientosService.eliminarAsiento(id);

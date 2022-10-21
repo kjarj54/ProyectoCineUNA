@@ -38,7 +38,7 @@ public class ProSalasController {
     }
     
     @POST
-    @Path("/sala")
+    @Path("/guardarSala")
     public Response guardarSala(ProSalasDto proSalasDto) {
         try {
             Respuesta res = proSalasService.guardarSala(proSalasDto);
@@ -89,7 +89,7 @@ public class ProSalasController {
     }
 
     @DELETE
-    @Path("/salas/{id}")
+    @Path("/eliminarSalas/{id}")
     public Response eliminarSalas(@PathParam("id") Long id) {
         try {
             Respuesta res = proSalasService.eliminarSala(id);

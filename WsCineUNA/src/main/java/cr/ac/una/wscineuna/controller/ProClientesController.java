@@ -109,7 +109,7 @@ public class ProClientesController {
     }
 
     @DELETE
-    @Path("/eliminarcliente/{id}")
+    @Path("/eliminarCliente/{id}")
     public Response eliminarCliente(@PathParam("id") Long id) {
         try {
             Respuesta res = proClientesService.eliminarCliente(id);

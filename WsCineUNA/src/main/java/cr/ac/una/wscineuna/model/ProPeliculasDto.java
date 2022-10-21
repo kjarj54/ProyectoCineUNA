@@ -15,7 +15,7 @@ public class ProPeliculasDto {
     private Long pelId;
     private String pelNombre;
     private String pelSynopsis;
-    private URL pelLink;
+    private String pelLink;
     private Byte[] pelImagen;
     private String pelEstado;
     private Boolean modificado;
@@ -57,11 +57,11 @@ public class ProPeliculasDto {
         this.pelSynopsis = pelSynopsis;
     }
 
-    public URL getPelLink() {
+    public String getPelLink() {
         return pelLink;
     }
 
-    public void setPelLink(URL pelLink) {
+    public void setPelLink(String pelLink) {
         this.pelLink = pelLink;
     }
 

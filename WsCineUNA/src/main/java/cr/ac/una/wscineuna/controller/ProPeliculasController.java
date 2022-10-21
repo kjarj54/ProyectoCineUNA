@@ -38,7 +38,7 @@ public class ProPeliculasController {
     }
     
     @POST
-    @Path("/pelicula")
+    @Path("/guardarPelicula")
     public Response guardarPelicula(ProPeliculasDto proPeliculasDto) {
         try {
             Respuesta res = proPeliculasService.guardarPelicula(proPeliculasDto);
@@ -89,7 +89,7 @@ public class ProPeliculasController {
     }
 
     @DELETE
-    @Path("/peliculas/{id}")
+    @Path("/eliminarPelicula/{id}")
     public Response eliminarPelicula(@PathParam("id") Long id) {
         try {
             Respuesta res = proPeliculasService.eliminarPelicula(id);
