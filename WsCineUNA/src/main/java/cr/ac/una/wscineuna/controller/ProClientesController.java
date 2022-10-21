@@ -41,7 +41,7 @@ public class ProClientesController {
     }
 
     @POST
-    @Path("/cliente")
+    @Path("/guaradarCliente")
     public Response guardarCliente(ProClientesDto proClientesDto) {
         try {
             Respuesta res = proClientesService.guardarCliente(proClientesDto);
@@ -109,7 +109,7 @@ public class ProClientesController {
     }
 
     @DELETE
-    @Path("/clientes/{id}")
+    @Path("/eliminarcliente/{id}")
     public Response eliminarCliente(@PathParam("id") Long id) {
         try {
             Respuesta res = proClientesService.eliminarCliente(id);

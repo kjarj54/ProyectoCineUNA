@@ -43,11 +43,11 @@ public class ProSalasService {
         } catch (NoResultException ex) {
             return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existe una sala con las credenciales ingresadas.", "validarSala NoResultException");
         } catch (NonUniqueResultException ex) {
-            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el asiento.", ex);
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar la sala.", ex);
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar la sala.", "validarSala NonUniqueResultException");
         } catch (Exception ex) {
-            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el asiento.", ex);
-            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el asiento.", "validarAsiento " + ex.getMessage());
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar la sala.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar la sala.", "validarSala " + ex.getMessage());
         }
     }
 

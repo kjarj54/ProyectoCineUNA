@@ -39,7 +39,7 @@ public class ProAsientosController {
     }
 
     @POST
-    @Path("/asiento")
+    @Path("/guardarAsiento")
     public Response guardarAsiento(ProAsientosDto proAsientosDto) {
         try {
             Respuesta res = proAsientosService.guardarAsiento(proAsientosDto);

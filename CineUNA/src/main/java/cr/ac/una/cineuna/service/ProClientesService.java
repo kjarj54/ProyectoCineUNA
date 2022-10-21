@@ -30,10 +30,26 @@ public class ProClientesService {
                 return new Respuesta(false, request.getError(), "");
             }
             ProClientesDto proClienteDto = (ProClientesDto) request.readEntity(ProClientesDto.class);
-            return new Respuesta(true, "", "", "Cliente", proClienteDto);
+            return new Respuesta(true, "", "", "ProCliente", proClienteDto);
         } catch (Exception ex) {
             Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Error obteniendo el usuario [" + usuario + "]", ex);
             return new Respuesta(false, "Error obteniendo el usuario.", "getUsuario " + ex.getMessage());
+        }
+    }
+    
+    public Respuesta eliminarCliente(Long id) {
+        try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("id", id);
+            Request request = new Request("ProClientesController/eliminarcliente", "/{id}", parametros);
+            request.delete();
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+            return new Respuesta(true, "", "");
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Ocurrio un error al eliminar el cliente.", ex);
+            return new Respuesta(false, "Ocurrio un error al eliminar el cliente.", "eliminarCliente " + ex.getMessage());
         }
     }
     

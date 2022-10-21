@@ -38,8 +38,8 @@ public class ProSalasController {
     }
     
     @POST
-    @Path("/pelicula")
-    public Response guardarPelicula(ProSalasDto proSalasDto) {
+    @Path("/sala")
+    public Response guardarSala(ProSalasDto proSalasDto) {
         try {
             Respuesta res = proSalasService.guardarSala(proSalasDto);
             if (!res.getEstado()) {
@@ -54,8 +54,8 @@ public class ProSalasController {
 
     @GET
     @Secure
-    @Path("/pelicula/{id}")
-    public Response getPelicula(@PathParam("id") Long id) {
+    @Path("/sala/{id}")
+    public Response getSala(@PathParam("id") Long id) {
         try {
             Respuesta res = proSalasService.getSala(id);
             if (!res.getEstado()) {
@@ -73,8 +73,8 @@ public class ProSalasController {
 
     @GET
     @Secure
-    @Path("/peliculas/")
-    public Response getPeliculas() {
+    @Path("/salas/")
+    public Response getSalas() {
         try {
             Respuesta res = proSalasService.getSalas();
             if (!res.getEstado()) {
@@ -89,8 +89,8 @@ public class ProSalasController {
     }
 
     @DELETE
-    @Path("/peliculas/{id}")
-    public Response eliminarPelicula(@PathParam("id") Long id) {
+    @Path("/salas/{id}")
+    public Response eliminarSalas(@PathParam("id") Long id) {
         try {
             Respuesta res = proSalasService.eliminarSala(id);
             if (!res.getEstado()) {
