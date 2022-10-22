@@ -22,7 +22,7 @@ CREATE TABLE cineuna.PRO_CLIENTES(
   cli_idioma Varchar2(1 ) DEFAULT ON NULL 'E' NOT NULL,
   cli_estado Varchar2(1 ) DEFAULT 'I' NOT NULL,
   cli_admin Varchar2(1 ) DEFAULT 'N' NOT NULL,
-  cli_sapellido Varchar2(10 ) DEFAULT ON NULL No Tiene,
+  cli_sapellido Varchar2(10 ) ,
   cli_version Number DEFAULT ON NULL 1 NOT NULL,
   CONSTRAINT PRO_CLIENTES_CK01 CHECK (cli_admin in ('S','N')),
   CONSTRAINT PRO_CLIENTES_CK02 CHECK (cli_estado in ('A', 'I'))
