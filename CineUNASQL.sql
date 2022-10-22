@@ -110,7 +110,7 @@ CREATE TABLE cineuna.PRO_SALAS(
   sal_imgfondo Blob NOT NULL,
   sal_version Number DEFAULT 1 NOT NULL,
   cli_id Number,
-  CONSTRAINT PRO_SALAS_CK01 CHECK (pel_estado in ('A','I'))
+  CONSTRAINT PRO_SALAS_CK01 CHECK (sal_estado in ('A','I'))
 )
 ;
 
