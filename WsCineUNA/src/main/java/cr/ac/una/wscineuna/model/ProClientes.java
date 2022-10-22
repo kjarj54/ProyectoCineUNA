@@ -7,14 +7,17 @@ package cr.ac.una.wscineuna.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.QueryHint;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -27,7 +30,7 @@ import javax.validation.constraints.Size;
  * @author kevin
  */
 @Entity
-@Table(name = "PRO_CLIENTES")
+@Table(name = "PRO_CLIENTES",schema = "CINEUNA")
 @NamedQueries({
     @NamedQuery(name = "ProClientes.findAll", query = "SELECT p FROM ProClientes p"),
     @NamedQuery(name = "ProClientes.findByCliId", query = "SELECT p FROM ProClientes p WHERE p.cliId = :cliId"),
@@ -39,8 +42,8 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "ProClientes.findByCliIdioma", query = "SELECT p FROM ProClientes p WHERE p.cliIdioma = :cliIdioma"),
     @NamedQuery(name = "ProClientes.findByCliEstado", query = "SELECT p FROM ProClientes p WHERE p.cliEstado = :cliEstado"),
     @NamedQuery(name = "ProClientes.findByCliAdmin", query = "SELECT p FROM ProClientes p WHERE p.cliAdmin = :cliAdmin"),
-    @NamedQuery(name = "ProClientes.findByCliSapellido", query = "SELECT p FROM ProClientes p WHERE p.cliSapellido = :cliSapellido"),
     @NamedQuery(name = "ProClientes.findByUsuClave", query = "SELECT p FROM ProClientes p WHERE p.cliUsuario = :cliUsuario and p.cliClave = :cliClave", hints = @QueryHint(name = "eclipselink.refresh", value = "true")),
+    @NamedQuery(name = "ProClientes.findByCliSapellido", query = "SELECT p FROM ProClientes p WHERE p.cliSapellido = :cliSapellido"),
     @NamedQuery(name = "ProClientes.findByCliVersion", query = "SELECT p FROM ProClientes p WHERE p.cliVersion = :cliVersion")})
 public class ProClientes implements Serializable {
 
@@ -79,9 +82,14 @@ public class ProClientes implements Serializable {
     @Column(name = "CLI_SAPELLIDO")
     private String cliSapellido;
     @Version
-    @Basic(optional = false)
     @Column(name = "CLI_VERSION")
     private Long cliVersion;
+    @OneToMany(mappedBy = "cliId", fetch = FetchType.LAZY)
+    private List<ProSalas> proSalasList;
+    @OneToMany(mappedBy = "cliId", fetch = FetchType.LAZY)
+    private List<ProReservacion> proReservacionList;
+    @OneToMany(mappedBy = "cliId", fetch = FetchType.LAZY)
+    private List<ProFacturas> proFacturasList;
 
     public ProClientes() {
     }
@@ -101,12 +109,12 @@ public class ProClientes implements Serializable {
         this.cliEstado = cliEstado;
         this.cliAdmin = cliAdmin;
     }
-    
+
     public ProClientes(ProClientesDto proClientesDto) {
         this.cliId = proClientesDto.getCliId();
         actualizarCliente(proClientesDto);
     }
-    
+
     public void actualizarCliente(ProClientesDto proClientesDto) {
         this.cliId = proClientesDto.getCliId();
         this.cliUsuario = proClientesDto.getCliUsuario();
@@ -207,6 +215,30 @@ public class ProClientes implements Serializable {
         this.cliVersion = cliVersion;
     }
 
+    public List<ProSalas> getProSalasList() {
+        return proSalasList;
+    }
+
+    public void setProSalasList(List<ProSalas> proSalasList) {
+        this.proSalasList = proSalasList;
+    }
+
+    public List<ProReservacion> getProReservacionList() {
+        return proReservacionList;
+    }
+
+    public void setProReservacionList(List<ProReservacion> proReservacionList) {
+        this.proReservacionList = proReservacionList;
+    }
+
+    public List<ProFacturas> getProFacturasList() {
+        return proFacturasList;
+    }
+
+    public void setProFacturasList(List<ProFacturas> proFacturasList) {
+        this.proFacturasList = proFacturasList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -231,5 +263,5 @@ public class ProClientes implements Serializable {
     public String toString() {
         return "cr.ac.una.wscineuna.model.ProClientes[ cliId=" + cliId + " ]";
     }
-    
+
 }
