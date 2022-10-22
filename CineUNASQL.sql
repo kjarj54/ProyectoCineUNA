@@ -298,116 +298,132 @@ ALTER TABLE cineuna.PRO_FACTURAS ADD CONSTRAINT PRO_FACTURAS_PK PRIMARY KEY (fac
 ;
 
 -- Trigger for sequence PRO_CLIENTES_SEQ01 for column cli_id in table cineuna.PRO_CLIENTES ---------
-CREATE OR REPLACE TRIGGER cineuna.ts_PRO_CLIENTES_PRO_CLIENTES_SEQ01 BEFORE INSERT
+CREATE OR REPLACE TRIGGER cineuna.PRO_CLIENTES_TGR01 BEFORE INSERT
 ON cineuna.PRO_CLIENTES FOR EACH ROW
 BEGIN
-  :new.cli_id := PRO_CLIENTES_SEQ01.nextval;
+  if:new.cli_id is null or :new.cli_id <=0 then 
+	:new.cli_id := PRO_CLIENTES_SEQ01.nextval;
+  end if;
 END;
-;
-CREATE OR REPLACE TRIGGER cineuna.tsu_PRO_CLIENTES_PRO_CLIENTES_SEQ01 AFTER UPDATE OF cli_id
+/
+CREATE OR REPLACE TRIGGER cineuna.PRO_CLIENTES_TGR02 AFTER UPDATE OF cli_id
 ON cineuna.PRO_CLIENTES FOR EACH ROW
 BEGIN
   RAISE_APPLICATION_ERROR(-20010,'Cannot update column cli_id in table cineuna.PRO_CLIENTES as it uses sequence.');
 END;
-;
+/
 
 -- Trigger for sequence PRO_PELICULAS_SEQ01 for column pel_id in table cineuna.PRO_PELICULAS ---------
-CREATE OR REPLACE TRIGGER cineuna.ts_PRO_PELICULAS_PRO_PELICULAS_SEQ01 BEFORE INSERT
+CREATE OR REPLACE TRIGGER cineuna.PRO_PELICULAS_TGR01 BEFORE INSERT
 ON cineuna.PRO_PELICULAS FOR EACH ROW
 BEGIN
-  :new.pel_id := PRO_PELICULAS_SEQ01.nextval;
+  if:new.pel_id is null or :new.pel_id <=0 then 
+	:new.pel_id := PRO_PELICULAS_SEQ01.nextval;
+  end if;
 END;
-;
-CREATE OR REPLACE TRIGGER cineuna.tsu_PRO_PELICULAS_PRO_PELICULAS_SEQ01 AFTER UPDATE OF pel_id
+/
+CREATE OR REPLACE TRIGGER cineuna.PRO_PELICULAS_TGR02 AFTER UPDATE OF pel_id
 ON cineuna.PRO_PELICULAS FOR EACH ROW
 BEGIN
   RAISE_APPLICATION_ERROR(-20010,'Cannot update column pel_id in table cineuna.PRO_PELICULAS as it uses sequence.');
 END;
-;
+/
 
 -- Trigger for sequence PRO_SALAS_SEQ01 for column sal_id in table cineuna.PRO_SALAS ---------
-CREATE OR REPLACE TRIGGER cineuna.ts_PRO_SALAS_PRO_SALAS_SEQ01 BEFORE INSERT
+CREATE OR REPLACE TRIGGER cineuna.PRO_SALAS_TGR01 BEFORE INSERT
 ON cineuna.PRO_SALAS FOR EACH ROW
 BEGIN
-  :new.sal_id := PRO_SALAS_SEQ01.nextval;
+  if:new.sal_id is null or :new.sal_id <=0 then 
+	:new.sal_id := PRO_SALAS_SEQ01.nextval;
+  end if;
 END;
-;
-CREATE OR REPLACE TRIGGER cineuna.tsu_PRO_SALAS_PRO_SALAS_SEQ01 AFTER UPDATE OF sal_id
+/
+CREATE OR REPLACE TRIGGER cineuna.PRO_SALAS_TGR02 AFTER UPDATE OF sal_id
 ON cineuna.PRO_SALAS FOR EACH ROW
 BEGIN
   RAISE_APPLICATION_ERROR(-20010,'Cannot update column sal_id in table cineuna.PRO_SALAS as it uses sequence.');
 END;
-;
+/
 
 -- Trigger for sequence PRO_ASIENTOS_SEQ01 for column asi_id in table cineuna.PRO_ASIENTOS ---------
-CREATE OR REPLACE TRIGGER cineuna.ts_PRO_ASIENTOS_PRO_ASIENTOS_SEQ01 BEFORE INSERT
+CREATE OR REPLACE TRIGGER cineuna.PRO_ASIENTOS_TGR01 BEFORE INSERT
 ON cineuna.PRO_ASIENTOS FOR EACH ROW
 BEGIN
-  :new.asi_id := PRO_ASIENTOS_SEQ01.nextval;
+  if:new.asi_id is null or :new.asi_id <=0 then 
+	:new.asi_id := PRO_ASIENTOS_SEQ01.nextval;
+  end if;
 END;
-;
-CREATE OR REPLACE TRIGGER cineuna.tsu_PRO_ASIENTOS_PRO_ASIENTOS_SEQ01 AFTER UPDATE OF asi_id
+/
+CREATE OR REPLACE TRIGGER cineuna.PRO_ASIENTOS_TGR02 AFTER UPDATE OF asi_id
 ON cineuna.PRO_ASIENTOS FOR EACH ROW
 BEGIN
   RAISE_APPLICATION_ERROR(-20010,'Cannot update column asi_id in table cineuna.PRO_ASIENTOS as it uses sequence.');
 END;
-;
+/
 
 -- Trigger for sequence PRO_RESERVACION_SEQ01 for column res_id in table cineuna.PRO_RESERVACION ---------
-CREATE OR REPLACE TRIGGER cineuna.ts_PRO_RESERVACION_PRO_RESERVACION_SEQ01 BEFORE INSERT
+CREATE OR REPLACE TRIGGER cineuna.PRO_RESERVACION_TGR01 BEFORE INSERT
 ON cineuna.PRO_RESERVACION FOR EACH ROW
 BEGIN
-  :new.res_id := PRO_RESERVACION_SEQ01.nextval;
+  if:new.res_id is null or :new.res_id <=0 then 
+	:new.res_id := PRO_RESERVACION_SEQ01.nextval;
+  end if;
 END;
-;
-CREATE OR REPLACE TRIGGER cineuna.tsu_PRO_RESERVACION_PRO_RESERVACION_SEQ01 AFTER UPDATE OF res_id
+/
+CREATE OR REPLACE TRIGGER cineuna.PRO_RESERVACION_TGR02 AFTER UPDATE OF res_id
 ON cineuna.PRO_RESERVACION FOR EACH ROW
 BEGIN
   RAISE_APPLICATION_ERROR(-20010,'Cannot update column res_id in table cineuna.PRO_RESERVACION as it uses sequence.');
 END;
-;
+/
 
 -- Trigger for sequence PRO_TANDAS_SEQ01 for column tan_id in table cineuna.PRO_TANDAS ---------
-CREATE OR REPLACE TRIGGER cineuna.ts_PRO_TANDAS_PRO_TANDAS_SEQ01 BEFORE INSERT
+CREATE OR REPLACE TRIGGER cineuna.PRO_TANDAS_TGR01 BEFORE INSERT
 ON cineuna.PRO_TANDAS FOR EACH ROW
 BEGIN
-  :new.tan_id := PRO_TANDAS_SEQ01.nextval;
+  if:new.tan_id is null or :new.tan_id <=0 then 
+	:new.tan_id := PRO_TANDAS_SEQ01.nextval;
+  end if;
 END;
-;
-CREATE OR REPLACE TRIGGER cineuna.tsu_PRO_TANDAS_PRO_TANDAS_SEQ01 AFTER UPDATE OF tan_id
+/
+CREATE OR REPLACE TRIGGER cineuna.PRO_TANDAS_TGR02 AFTER UPDATE OF tan_id
 ON cineuna.PRO_TANDAS FOR EACH ROW
 BEGIN
   RAISE_APPLICATION_ERROR(-20010,'Cannot update column tan_id in table cineuna.PRO_TANDAS as it uses sequence.');
 END;
-;
+/
 
 -- Trigger for sequence PRO_COMIDAS_SEQ01 for column com_id in table cineuna.PRO_COMIDAS ---------
-CREATE OR REPLACE TRIGGER cineuna.ts_PRO_COMIDAS_PRO_COMIDAS_SEQ01 BEFORE INSERT
+CREATE OR REPLACE TRIGGER cineuna.PRO_COMIDAS_TGR01 BEFORE INSERT
 ON cineuna.PRO_COMIDAS FOR EACH ROW
 BEGIN
-  :new.com_id := PRO_COMIDAS_SEQ01.nextval;
+  :if:new.com_id is null or :new.com_id <=0 then 
+	:new.com_id := PRO_COMIDAS_SEQ01.nextval;
+  end if;
 END;
-;
-CREATE OR REPLACE TRIGGER cineuna.tsu_PRO_COMIDAS_PRO_COMIDAS_SEQ01 AFTER UPDATE OF com_id
+/
+CREATE OR REPLACE TRIGGER cineuna.PRO_COMIDAS_TGR02 AFTER UPDATE OF com_id
 ON cineuna.PRO_COMIDAS FOR EACH ROW
 BEGIN
   RAISE_APPLICATION_ERROR(-20010,'Cannot update column com_id in table cineuna.PRO_COMIDAS as it uses sequence.');
 END;
-;
+/
 
 -- Trigger for sequence PRO_FACTURAS_SEQ01 for column fac_id in table cineuna.PRO_FACTURAS ---------
-CREATE OR REPLACE TRIGGER cineuna.ts_PRO_FACTURAS_PRO_FACTURAS_SEQ01 BEFORE INSERT
+CREATE OR REPLACE TRIGGER cineuna.PRO_FACTURAS_TGR01 BEFORE INSERT
 ON cineuna.PRO_FACTURAS FOR EACH ROW
 BEGIN
+  :if:new.fac_id is null or :new.fac_id <= 0 then 
   :new.fac_id := PRO_FACTURAS_SEQ01.nextval;
+  end if;
 END;
-;
-CREATE OR REPLACE TRIGGER cineuna.tsu_PRO_FACTURAS_PRO_FACTURAS_SEQ01 AFTER UPDATE OF fac_id
+/
+CREATE OR REPLACE TRIGGER cineuna.PRO_FACTURAS_TGR02 AFTER UPDATE OF fac_id
 ON cineuna.PRO_FACTURAS FOR EACH ROW
 BEGIN
   RAISE_APPLICATION_ERROR(-20010,'Cannot update column fac_id in table cineuna.PRO_FACTURAS as it uses sequence.');
 END;
-;
+/
 
 
 -- Create foreign keys (relationships) section ------------------------------------------------- 
