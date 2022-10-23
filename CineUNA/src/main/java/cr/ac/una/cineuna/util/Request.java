@@ -6,6 +6,7 @@
 package cr.ac.una.cineuna.util;
 
 
+import cr.ac.una.cineuna.service.ProClientesService;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
@@ -215,15 +216,15 @@ public class Request {
         } else {
             payload = getPayloadToken(payload.getString("rnt"));
             if (payload != null && payload.getJsonNumber("exp").longValue() > System.currentTimeMillis() / 1000) {
-                //EmpleadoService empleadoService = new EmpleadoService(); Cambiar esto
-                /*Respuesta respuesta = empleadoService.renovarToken();
+                ProClientesService proClientesService = new ProClientesService();
+                Respuesta respuesta = proClientesService.renovarToken();
                 if (respuesta.getEstado()) {
                     AppContext.getInstance().set("Token", respuesta.getResultado("Token").toString());
                     MultivaluedMap<String, Object> headers = new MultivaluedHashMap<>();
                     headers.add("Authorization", respuesta.getResultado("Token").toString());
                     setHeader(headers);
                     return true;
-                }*/
+                }
             }
             response = Response.status(401, "El token a expirado.").build();
             return false;

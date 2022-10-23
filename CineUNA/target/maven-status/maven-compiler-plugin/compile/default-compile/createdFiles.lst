@@ -1,12 +1,17 @@
 cr\ac\una\cineuna\util\Request.class
+cr\ac\una\cineuna\service\ProComidasService.class
 cr\ac\una\cineuna\service\ProPeliculasService.class
+cr\ac\una\cineuna\model\ProComidasDto.class
 cr\ac\una\cineuna\model\ProTandasDto.class
 cr\ac\una\cineuna\util\DragResizer$2.class
+cr\ac\una\cineuna\controller\MantUsuTableViewController$CheckBoxCell.class
 cr\ac\una\cineuna\util\BindingUtils.class
 cr\ac\una\cineuna\util\DragResizer$5.class
+cr\ac\una\cineuna\controller\ComidasClienteViewController.class
 cr\ac\una\cineuna\controller\PrincipalUsuariosViewController.class
 cr\ac\una\cineuna\util\Request$1$1.class
 cr\ac\una\cineuna\util\DragResizer$3.class
+cr\ac\una\cineuna\controller\ComidasAdminViewController.class
 cr\ac\una\cineuna\model\ProPeliculasDto.class
 cr\ac\una\cineuna\controller\MantUsuariosViewController.class
 cr\ac\una\cineuna\controller\MantPeliculasViewController.class
@@ -35,7 +40,9 @@ cr\ac\una\cineuna\model\ProSalasDto.class
 cr\ac\una\cineuna\util\Mensaje.class
 cr\ac\una\cineuna\App.class
 cr\ac\una\cineuna\model\ProReservacionDto.class
+cr\ac\una\cineuna\controller\MantUsuTableViewController.class
 cr\ac\una\cineuna\util\AppContext.class
 cr\ac\una\cineuna\util\DragResizer$1.class
+cr\ac\una\cineuna\controller\MantUsuTableViewController$1.class
 cr\ac\una\cineuna\service\ProSalasService.class
 cr\ac\una\cineuna\util\DragResizer$4.class

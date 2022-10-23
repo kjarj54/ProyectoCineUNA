@@ -69,4 +69,20 @@ public class ProClientesService {
         }
     }
     
+    
+    public Respuesta renovarToken() {
+        try {
+            Request request = new Request("ProClientesController/renovar");
+            request.getRenewal();
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+            String token = (String) request.readEntity(String.class);
+            return new Respuesta(true, "", "", "Token", token);
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Error obteniendo el token", ex);
+            return new Respuesta(false, "Error renovando el token.", "renovarToken " + ex.getMessage());
+        }
+    }
+    
 }
