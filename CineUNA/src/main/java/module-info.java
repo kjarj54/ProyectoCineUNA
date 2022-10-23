@@ -13,8 +13,8 @@ module cr.ac.una.cineuna {
     requires jasperreports;
     
     opens cr.ac.una.cineuna to javafx.fxml, com.jfoenix;
-    opens cr.ac.una.cineuna.controller to javafx.fxml,javafx.web,com.jfoenix,java.base,jasperreports;
-    opens cr.ac.una.cineuna.util to java.base,javafx.fxml,com.jfoenix,javafx.media; 
+    opens cr.ac.una.cineuna.controller to javafx.fxml,javafx.web,com.jfoenix,java.base,jasperreports,jakarta.json;
+    opens cr.ac.una.cineuna.util to java.base,javafx.fxml,com.jfoenix,javafx.media,jakarta.json; 
      
     exports cr.ac.una.cineuna;
     exports cr.ac.una.cineuna.controller;

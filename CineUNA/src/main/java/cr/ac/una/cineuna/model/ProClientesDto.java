@@ -4,7 +4,6 @@
  */
 package cr.ac.una.cineuna.model;
 
-import java.time.LocalDateTime;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -60,7 +59,7 @@ public class ProClientesDto {
     }
 
     public void setCliUsuario(String cliUsuario) {
-        this.cliUsuario.set(cliUsuario);
+        this.cliUsuario.set(cliUsuario); ;
     }
 
     public String getCliNombre() {

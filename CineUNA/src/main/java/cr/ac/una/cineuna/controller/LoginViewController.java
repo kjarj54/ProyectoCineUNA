@@ -73,7 +73,7 @@ public class LoginViewController extends Controller implements Initializable {
             } else if (txtClave.getText() == null || txtClave.getText().isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Validación de usuario", (Stage) btnIngresar.getScene().getWindow(), "Es necesario digitar la clave para ingresar al sistema.");
             } else {
-                ProClientesService proClientesService = new ProClientesService();
+                /*ProClientesService proClientesService = new ProClientesService();
                 Respuesta respuesta = proClientesService.getCliente(txtUsuarios.getText(), txtClave.getText());
                 if (respuesta.getEstado()) {
                     ProClientesDto proClientesDto = (ProClientesDto) respuesta.getResultado("ProCliente");
@@ -83,9 +83,12 @@ public class LoginViewController extends Controller implements Initializable {
                         FlowController.getInstance().goViewInWindow("PrincipalView");
                     }
                     getStage().close();
+
                 } else {
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Ingreso", getStage(), respuesta.getMensaje());
-                }
+                }*/
+                FlowController.getInstance().goViewInWindow("PrincipalView");
+                getStage().close();
             }
         } catch (Exception ex) {
             Logger.getLogger(LoginViewController.class.getName()).log(Level.SEVERE, "Error ingresando.", ex);
