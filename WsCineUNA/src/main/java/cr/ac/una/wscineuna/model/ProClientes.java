@@ -116,7 +116,6 @@ public class ProClientes implements Serializable {
     }
 
     public void actualizarCliente(ProClientesDto proClientesDto) {
-        this.cliId = proClientesDto.getCliId();
         this.cliUsuario = proClientesDto.getCliUsuario();
         this.cliClave = proClientesDto.getCliClave();
         this.cliNombre = proClientesDto.getCliNombre();

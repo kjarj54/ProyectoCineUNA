@@ -5,6 +5,7 @@
 package cr.ac.una.wscineuna.model;
 
 import java.net.URL;
+import java.time.LocalDate;
 
 /**
  *
@@ -17,6 +18,7 @@ public class ProPeliculasDto {
     private String pelSynopsis;
     private String pelLink;
     private Byte[] pelImagen;
+    private LocalDate pelFechaestreno;
     private String pelEstado;
     private Boolean modificado;
 
@@ -24,15 +26,15 @@ public class ProPeliculasDto {
         this.modificado = false;
     }
 
-    /*public ProPeliculasDto(ProPeliculas proPeliculas) {
+    public ProPeliculasDto(ProPeliculas proPeliculas) {
         this();
-        this.pelId = null;
-        this.pelNombre = null;
-        this.pelSynopsis = null;
-        this.pelLink = null;
-        this.pelImagen = null;
-        this.pelEstado = null;
-    }*/
+        this.pelId = proPeliculas.getPelId();
+        this.pelNombre = proPeliculas.getPelNombre();
+        this.pelSynopsis = proPeliculas.getPelSynopsis();
+        this.pelLink = proPeliculas.getPelLink();
+        this.pelImagen = (Byte[]) proPeliculas.getPelImagen();
+        this.pelEstado = proPeliculas.getPelEstado();
+    }
     public Long getPelId() {
         return pelId;
     }
@@ -80,5 +82,23 @@ public class ProPeliculasDto {
     public void setPelEstado(String pelEstado) {
         this.pelEstado = pelEstado;
     }
+
+    public LocalDate getPelFechaestreno() {
+        return pelFechaestreno;
+    }
+
+    public void setPelFechaestreno(LocalDate pelFechaestreno) {
+        this.pelFechaestreno = pelFechaestreno;
+    }
+
+    public Boolean getModificado() {
+        return modificado;
+    }
+
+    public void setModificado(Boolean modificado) {
+        this.modificado = modificado;
+    }
+    
+    
 
 }

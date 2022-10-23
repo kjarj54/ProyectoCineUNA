@@ -4,6 +4,7 @@
  */
 package cr.ac.una.wscineuna.service;
 
+import cr.ac.una.wscineuna.model.ProSalas;
 import cr.ac.una.wscineuna.model.ProSalasDto;
 import cr.ac.una.wscineuna.util.CodigoRespuesta;
 import cr.ac.una.wscineuna.util.Respuesta;
@@ -34,12 +35,11 @@ public class ProSalasService {
     
     public Respuesta getSala(Long id) {
         try {
-            /*Query qryActividad = em.createNamedQuery("ProSalas.findBySalId", ProSalas.class);
+            Query qryActividad = em.createNamedQuery("ProSalas.findBySalId", ProSalas.class);
             qryActividad.setParameter("salId", id);
 
             return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProSalas", new ProSalasDto((ProSalas) qryActividad.getSingleResult()));
-             */
-            return null;
+
         } catch (NoResultException ex) {
             return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existe una sala con las credenciales ingresadas.", "validarSala NoResultException");
         } catch (NonUniqueResultException ex) {
@@ -53,7 +53,7 @@ public class ProSalasService {
 
     public Respuesta guardarSala(ProSalasDto proSalasDto) {
         try {
-            /*
+
             ProSalas proSalas;
             if (proSalasDto.getSalId() != null && proSalasDto.getSalId() > 0) {
                 proSalas = em.find(ProSalas.class, proSalasDto.getSalId());
@@ -63,13 +63,12 @@ public class ProSalasService {
                 proSalas.actualizarSala(proSalasDto);
                 proSalas = em.merge(proSalas);
             } else {
-                proSalas = new ProPeliculas(proSalasDto);
+                proSalas = new ProSalas(proSalasDto);
                 em.persist(proSalas);
             }
             em.flush();
             return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Sala", new ProSalasDto(proSalas));
-             */
-            return null;
+            
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "Ocurrio un error al guardar la sala.", ex);
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al guardar la sala.", "guardarSala" + ex.getMessage());
@@ -78,18 +77,17 @@ public class ProSalasService {
 
     public Respuesta getSalas() {
         try {
-            /*
+            
             Query qrySalas = em.createNamedQuery("ProSalas.findAll", ProSalas.class);
             List<ProSalas> salas = qrySalas.getResultList();
 
 
             List<ProSalasDto> salasDto = new ArrayList<>();
             for (ProSalas sala : salas) {
-                salasDto.add(new ProAsientosDto(sala));
+                salasDto.add(new ProSalasDto(sala));
             }
 
-            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProSalas", salasDto);*/
-            return null;
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProSalas", salasDto);
         } catch (NoResultException ex) {
             return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen salas con los criterios ingresados.", "getSalas NoResultException");
         } catch (Exception ex) {
@@ -100,7 +98,7 @@ public class ProSalasService {
 
     public Respuesta eliminarSala(Long id) {
         try {
-            /*
+            
             ProSalas salas;
             if (id != null && id > 0) {
                 salas = em.find(ProSalas.class, id);
@@ -111,7 +109,7 @@ public class ProSalasService {
             } else {
                 return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "Debe cargar la sala a eliminar.", "eliminarSala NoResultException");
             }
-            em.flush();*/
+            em.flush();
             return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "");
         } catch (Exception ex) {
             if (ex.getCause() != null && ex.getCause().getCause().getClass() == SQLIntegrityConstraintViolationException.class) {

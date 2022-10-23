@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -20,6 +22,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -41,29 +44,24 @@ public class ProSalas implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "PRO_SALAS_SAL_ID_GENERATOR", sequenceName = "CINEUNA.PRO_SALAS_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRO_SALAS_SAL_ID_GENERATOR")
     @Basic(optional = false)
-    @NotNull
     @Column(name = "SAL_ID")
-    private BigDecimal salId;
+    private Long salId;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
     @Column(name = "SAL_NOMBRE")
     private String salNombre;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 1)
     @Column(name = "SAL_ESTADO")
     private String salEstado;
     @Basic(optional = false)
-    @NotNull
     @Lob
     @Column(name = "SAL_IMGFONDO")
     private Serializable salImgfondo;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "SAL_VERSION")
-    private BigInteger salVersion;
+    private Long salVersion;
     @ManyToMany(mappedBy = "proSalasList", fetch = FetchType.LAZY)
     private List<ProPeliculas> proPeliculasList;
     @OneToMany(mappedBy = "salId", fetch = FetchType.LAZY)
@@ -75,23 +73,33 @@ public class ProSalas implements Serializable {
     public ProSalas() {
     }
 
-    public ProSalas(BigDecimal salId) {
+    public ProSalas(Long salId) {
         this.salId = salId;
     }
 
-    public ProSalas(BigDecimal salId, String salNombre, String salEstado, Serializable salImgfondo, BigInteger salVersion) {
+    public ProSalas(Long salId, String salNombre, String salEstado, Serializable salImgfondo) {
         this.salId = salId;
         this.salNombre = salNombre;
         this.salEstado = salEstado;
         this.salImgfondo = salImgfondo;
-        this.salVersion = salVersion;
+    }
+    
+    public ProSalas(ProSalasDto proSalasDto){
+        this.salId = proSalasDto.getSalId();
+        actualizarSala(proSalasDto);
+    }
+    
+    public void actualizarSala(ProSalasDto proSalasDto){
+        this.salEstado = proSalasDto.getSalEstado();
+        this.salImgfondo= proSalasDto.getSalImgFondo();
+        this.salNombre = proSalasDto.getSalNombre();
     }
 
-    public BigDecimal getSalId() {
+    public Long getSalId() {
         return salId;
     }
 
-    public void setSalId(BigDecimal salId) {
+    public void setSalId(Long salId) {
         this.salId = salId;
     }
 
@@ -119,11 +127,11 @@ public class ProSalas implements Serializable {
         this.salImgfondo = salImgfondo;
     }
 
-    public BigInteger getSalVersion() {
+    public Long getSalVersion() {
         return salVersion;
     }
 
-    public void setSalVersion(BigInteger salVersion) {
+    public void setSalVersion(Long salVersion) {
         this.salVersion = salVersion;
     }
 

@@ -24,6 +24,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -47,27 +48,22 @@ public class ProAsientos implements Serializable {
     @SequenceGenerator(name = "PRO_ASIENTOS_ASI_ID_GENERATOR", sequenceName = "CINEUNA.PRO_ASIENTOS_SEQ01", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRO_ASIENTOS_ASI_ID_GENERATOR")
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ASI_ID")
-    private BigDecimal asiId;
+    private Long asiId;
     @Basic(optional = false)
-    @NotNull
     @Lob
     @Column(name = "ASI_IMG")
     private Serializable asiImg;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 4)
     @Column(name = "ASI_NOMBRE")
     private String asiNombre;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ASI_CANTIDAD")
-    private BigInteger asiCantidad;
+    private Long asiCantidad;
     @Basic(optional = false)
-    @NotNull
+    @Version
     @Column(name = "ASI_VERSION")
-    private BigInteger asiVersion;
+    private Long asiVersion;
     @JoinTable(name = "PRO_TANDASASIENTOS", joinColumns = {
         @JoinColumn(name = "ASI_ID", referencedColumnName = "ASI_ID")}, inverseJoinColumns = {
         @JoinColumn(name = "TAN_ID", referencedColumnName = "TAN_ID")})
@@ -80,23 +76,33 @@ public class ProAsientos implements Serializable {
     public ProAsientos() {
     }
 
-    public ProAsientos(BigDecimal asiId) {
+    public ProAsientos(Long asiId) {
         this.asiId = asiId;
     }
 
-    public ProAsientos(BigDecimal asiId, Serializable asiImg, String asiNombre, BigInteger asiCantidad, BigInteger asiVersion) {
+    public ProAsientos(Long asiId, Serializable asiImg, String asiNombre, Long asiCantidad) {
         this.asiId = asiId;
         this.asiImg = asiImg;
         this.asiNombre = asiNombre;
         this.asiCantidad = asiCantidad;
-        this.asiVersion = asiVersion;
+    }
+    
+    public ProAsientos(ProAsientosDto proAsientosDto){
+        this.asiId = proAsientosDto.getAsiId();
+        actualizarAsiento(proAsientosDto);
+    }
+    
+    public void actualizarAsiento(ProAsientosDto proAsientosDto){
+        this.asiCantidad = proAsientosDto.getAsiCantidad();
+        this.asiImg = proAsientosDto.getAsiImg();
+        this.asiNombre = proAsientosDto.getAsiNombre();
     }
 
-    public BigDecimal getAsiId() {
+    public Long getAsiId() {
         return asiId;
     }
 
-    public void setAsiId(BigDecimal asiId) {
+    public void setAsiId(Long asiId) {
         this.asiId = asiId;
     }
 
@@ -116,19 +122,19 @@ public class ProAsientos implements Serializable {
         this.asiNombre = asiNombre;
     }
 
-    public BigInteger getAsiCantidad() {
+    public Long getAsiCantidad() {
         return asiCantidad;
     }
 
-    public void setAsiCantidad(BigInteger asiCantidad) {
+    public void setAsiCantidad(Long asiCantidad) {
         this.asiCantidad = asiCantidad;
     }
 
-    public BigInteger getAsiVersion() {
+    public Long getAsiVersion() {
         return asiVersion;
     }
 
-    public void setAsiVersion(BigInteger asiVersion) {
+    public void setAsiVersion(Long asiVersion) {
         this.asiVersion = asiVersion;
     }
 

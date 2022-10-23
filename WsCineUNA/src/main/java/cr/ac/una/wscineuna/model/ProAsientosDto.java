@@ -20,14 +20,15 @@ public class ProAsientosDto {
         this.asiModificado = false;
     }
 
-    /*
+    
     public ProAsientosDto(ProAsientos proAsientos) {
         this();
-        this.asiId = null;
-        this.asiImg = null;
-        this.asiNombre = null;
-        this.asiCantidad = null;
-    }*/
+        this.asiId = proAsientos.getAsiId();
+        this.asiImg = (Byte[]) proAsientos.getAsiImg();
+        this.asiNombre = proAsientos.getAsiNombre();
+        this.asiCantidad = proAsientos.getAsiCantidad();
+    }
+    
     public Long getAsiId() {
         return asiId;
     }

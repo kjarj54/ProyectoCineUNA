@@ -20,15 +20,13 @@ public class ProComidasDto {
         this.modificado = false;
     }
 
-    /*public ProComidasDto(ProComidas proComidas) {
-        this.comId = null;
-        this.comNombre = null;
-        this.comPrecio = null;
-        this.comDescripcion = null;
-    }*/
+    public ProComidasDto(ProComidas proComidas) {
+        this.comId = proComidas.getComId();
+        this.comNombre = proComidas.getComNombre();
+        this.comPrecio = proComidas.getComPrecio();
+        this.comDescripcion = proComidas.getComDescripcion();
+    }
 
-    
-    
     public Long getComId() {
         return comId;
     }
@@ -68,6 +66,5 @@ public class ProComidasDto {
     public void setModificado(Boolean modificado) {
         this.modificado = modificado;
     }
-    
-    
+
 }

@@ -15,19 +15,19 @@ public class ProReservacionDto {
 
     private Long resId;
     private LocalDate resFecha;
-    private Timestamp resHora;
+    private Long resTotal;
     private Boolean modificado;
 
     public ProReservacionDto() {
         this.modificado = false;
     }
 
-    /*public ProReservacionDto(ProReservacion proReservacion) {
+    public ProReservacionDto(ProReservacion proReservacion) {
         this();
-        this.resId = null;
-        this.resFecha = null;
-        this.resHora = null;
-    }*/
+        this.resId = proReservacion.getResId();
+        this.resFecha = proReservacion.getResFecha();
+        this.resTotal = proReservacion.getResTotal();
+    }
     public Long getResId() {
         return resId;
     }
@@ -44,12 +44,12 @@ public class ProReservacionDto {
         this.resFecha = resFecha;
     }
 
-    public Timestamp getResHora() {
-        return resHora;
+    public Long getResTotal() {
+        return resTotal;
     }
 
-    public void setResHora(Timestamp resHora) {
-        this.resHora = resHora;
+    public void setResTotal(Long resTotal) {
+        this.resTotal = resTotal;
     }
 
     public Boolean getModificado() {

@@ -12,11 +12,15 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -39,48 +43,54 @@ public class ProComidas implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @NotNull
+    @SequenceGenerator(name = "PRO_COMIDAS_COM_ID_GENERATOR", sequenceName = "CINEUNA.PRO_COMIDAS_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRO_COMIDAS_COM_ID_GENERATOR")
     @Column(name = "COM_ID")
-    private BigDecimal comId;
+    private Long comId;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
     @Column(name = "COM_NOMBRE")
     private String comNombre;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
     @Column(name = "COM_PRECIO")
-    private String comPrecio;
-    @Size(max = 30)
+    private Long comPrecio;
     @Column(name = "COM_DESCRIPCION")
     private String comDescripcion;
     @Basic(optional = false)
-    @NotNull
+    @Version
     @Column(name = "COM_VERSION")
-    private BigInteger comVersion;
+    private Long comVersion;
     @ManyToMany(mappedBy = "proComidasList", fetch = FetchType.LAZY)
     private List<ProFacturas> proFacturasList;
 
     public ProComidas() {
     }
 
-    public ProComidas(BigDecimal comId) {
+    public ProComidas(Long comId) {
         this.comId = comId;
     }
 
-    public ProComidas(BigDecimal comId, String comNombre, String comPrecio, BigInteger comVersion) {
+    public ProComidas(Long comId, String comNombre, Long comPrecio) {
         this.comId = comId;
         this.comNombre = comNombre;
         this.comPrecio = comPrecio;
-        this.comVersion = comVersion;
+    }
+    
+    public ProComidas(ProComidasDto proComidasDto){
+        this.comId = proComidasDto.getComId();
+        actualizarComida(proComidasDto);
+    }
+    
+    public void actualizarComida(ProComidasDto proComidasDto){
+        this.comDescripcion = proComidasDto.getComDescripcion();
+        this.comNombre = proComidasDto.getComNombre();
+        this.comPrecio = proComidasDto.getComPrecio();
     }
 
-    public BigDecimal getComId() {
+    public Long getComId() {
         return comId;
     }
 
-    public void setComId(BigDecimal comId) {
+    public void setComId(Long comId) {
         this.comId = comId;
     }
 
@@ -92,11 +102,11 @@ public class ProComidas implements Serializable {
         this.comNombre = comNombre;
     }
 
-    public String getComPrecio() {
+    public Long getComPrecio() {
         return comPrecio;
     }
 
-    public void setComPrecio(String comPrecio) {
+    public void setComPrecio(Long comPrecio) {
         this.comPrecio = comPrecio;
     }
 
@@ -108,11 +118,11 @@ public class ProComidas implements Serializable {
         this.comDescripcion = comDescripcion;
     }
 
-    public BigInteger getComVersion() {
+    public Long getComVersion() {
         return comVersion;
     }
 
-    public void setComVersion(BigInteger comVersion) {
+    public void setComVersion(Long comVersion) {
         this.comVersion = comVersion;
     }
 

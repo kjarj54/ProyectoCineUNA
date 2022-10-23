@@ -5,14 +5,14 @@
 package cr.ac.una.wscineuna.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -21,18 +21,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.Version;
 
 /**
  *
  * @author kevin
  */
 @Entity
-@Table(name = "PRO_PELICULAS",schema = "CINEUNA")
+@Table(name = "PRO_PELICULAS", schema = "CINEUNA")
 @NamedQueries({
     @NamedQuery(name = "ProPeliculas.findAll", query = "SELECT p FROM ProPeliculas p"),
     @NamedQuery(name = "ProPeliculas.findByPelId", query = "SELECT p FROM ProPeliculas p WHERE p.pelId = :pelId"),
@@ -48,41 +46,32 @@ public class ProPeliculas implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @NotNull
+    @SequenceGenerator(name = "PRO_PELICULAS_PEL_ID_GENERATOR", sequenceName = "CINEUNA.PRO_PELICULAS_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRO_PELICULAS_PEL_ID_GENERATOR")
     @Column(name = "PEL_ID")
-    private BigDecimal pelId;
+    private Long pelId;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
     @Column(name = "PEL_NOMBRE")
     private String pelNombre;
-    @Size(max = 30)
     @Column(name = "PEL_SYNOPSIS")
     private String pelSynopsis;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
     @Column(name = "PEL_LINK")
     private String pelLink;
     @Basic(optional = false)
-    @NotNull
     @Lob
     @Column(name = "PEL_IMAGEN")
     private Serializable pelImagen;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "PEL_FECHAESTRENO")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date pelFechaestreno;
+    private LocalDate pelFechaestreno;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 1)
     @Column(name = "PEL_ESTADO")
     private String pelEstado;
     @Basic(optional = false)
-    @NotNull
+    @Version
     @Column(name = "PEL_VERSION")
-    private BigInteger pelVersion;
+    private Long pelVersion;
     @JoinTable(name = "PRO_SALASPELICULAS", joinColumns = {
         @JoinColumn(name = "PEL_ID", referencedColumnName = "PEL_ID")}, inverseJoinColumns = {
         @JoinColumn(name = "SAL_ID", referencedColumnName = "SAL_ID")})
@@ -94,25 +83,38 @@ public class ProPeliculas implements Serializable {
     public ProPeliculas() {
     }
 
-    public ProPeliculas(BigDecimal pelId) {
+    public ProPeliculas(Long pelId) {
         this.pelId = pelId;
     }
 
-    public ProPeliculas(BigDecimal pelId, String pelNombre, String pelLink, Serializable pelImagen, Date pelFechaestreno, String pelEstado, BigInteger pelVersion) {
+    public ProPeliculas(Long pelId, String pelNombre, String pelLink, Serializable pelImagen, LocalDate pelFechaestreno, String pelEstado) {
         this.pelId = pelId;
         this.pelNombre = pelNombre;
         this.pelLink = pelLink;
         this.pelImagen = pelImagen;
         this.pelFechaestreno = pelFechaestreno;
         this.pelEstado = pelEstado;
-        this.pelVersion = pelVersion;
+    }
+    
+    public ProPeliculas(ProPeliculasDto proPeliculasDto){
+        this.pelId = proPeliculasDto.getPelId();
+        
+    }
+    
+    public void actualizarPelicula(ProPeliculasDto proPeliculasDto){
+        this.pelEstado = proPeliculasDto.getPelEstado();
+        this.pelFechaestreno = proPeliculasDto.getPelFechaestreno();
+        this.pelImagen = proPeliculasDto.getPelImagen();
+        this.pelLink = proPeliculasDto.getPelLink();
+        this.pelNombre = proPeliculasDto.getPelNombre();
+        this.pelSynopsis = proPeliculasDto.getPelSynopsis();
     }
 
-    public BigDecimal getPelId() {
+    public Long getPelId() {
         return pelId;
     }
 
-    public void setPelId(BigDecimal pelId) {
+    public void setPelId(Long pelId) {
         this.pelId = pelId;
     }
 
@@ -148,11 +150,11 @@ public class ProPeliculas implements Serializable {
         this.pelImagen = pelImagen;
     }
 
-    public Date getPelFechaestreno() {
+    public LocalDate getPelFechaestreno() {
         return pelFechaestreno;
     }
 
-    public void setPelFechaestreno(Date pelFechaestreno) {
+    public void setPelFechaestreno(LocalDate pelFechaestreno) {
         this.pelFechaestreno = pelFechaestreno;
     }
 
@@ -164,11 +166,11 @@ public class ProPeliculas implements Serializable {
         this.pelEstado = pelEstado;
     }
 
-    public BigInteger getPelVersion() {
+    public Long getPelVersion() {
         return pelVersion;
     }
 
-    public void setPelVersion(BigInteger pelVersion) {
+    public void setPelVersion(Long pelVersion) {
         this.pelVersion = pelVersion;
     }
 
@@ -212,5 +214,5 @@ public class ProPeliculas implements Serializable {
     public String toString() {
         return "cr.ac.una.wscineuna.model.ProPeliculas[ pelId=" + pelId + " ]";
     }
-    
+
 }

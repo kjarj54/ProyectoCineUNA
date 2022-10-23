@@ -7,23 +7,25 @@ package cr.ac.una.wscineuna.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.security.Timestamp;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.Version;
 
 /**
  *
@@ -45,38 +47,30 @@ public class ProTandas implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "PRO_TANDAS_TAN_ID_GENERATOR", sequenceName = "CINEUNA.PRO_TANDAS_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRO_TANDAS_TAN_ID_GENERATOR")
     @Basic(optional = false)
-    @NotNull
     @Column(name = "TAN_ID")
-    private BigDecimal tanId;
+    private Long tanId;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
     @Column(name = "TAN_NOMBRE")
     private String tanNombre;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "TAN_HORAINICIO")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date tanHorainicio;
+    private Timestamp tanHorainicio;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "TAN_HORAFINAL")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date tanHorafinal;
+    private Timestamp tanHorafinal;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "TAN_FECHA")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date tanFecha;
+    private LocalDate tanFecha;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "TAN_PRECIO")
-    private BigInteger tanPrecio;
+    private Long tanPrecio;
     @Basic(optional = false)
-    @NotNull
+    @Version
     @Column(name = "TAN_VERSION")
-    private BigInteger tanVersion;
+    private Long tanVersion;
     @ManyToMany(mappedBy = "proTandasList", fetch = FetchType.LAZY)
     private List<ProAsientos> proAsientosList;
     @JoinColumn(name = "PEL_ID", referencedColumnName = "PEL_ID")
@@ -89,25 +83,37 @@ public class ProTandas implements Serializable {
     public ProTandas() {
     }
 
-    public ProTandas(BigDecimal tanId) {
+    public ProTandas(Long tanId) {
         this.tanId = tanId;
     }
 
-    public ProTandas(BigDecimal tanId, String tanNombre, Date tanHorainicio, Date tanHorafinal, Date tanFecha, BigInteger tanPrecio, BigInteger tanVersion) {
+    public ProTandas(Long tanId, String tanNombre, Timestamp tanHorainicio, Timestamp tanHorafinal, LocalDate tanFecha, Long tanPrecio) {
         this.tanId = tanId;
         this.tanNombre = tanNombre;
         this.tanHorainicio = tanHorainicio;
         this.tanHorafinal = tanHorafinal;
         this.tanFecha = tanFecha;
         this.tanPrecio = tanPrecio;
-        this.tanVersion = tanVersion;
+    }
+    
+    public ProTandas(ProTandasDto proTandasDto){
+        this.tanId = proTandasDto.getTanId();
+        actualizarTanda(proTandasDto);
     }
 
-    public BigDecimal getTanId() {
+    public void actualizarTanda(ProTandasDto proTandasDto){
+        this.tanFecha = proTandasDto.getTanFecha();
+        this.tanHorafinal  = proTandasDto.getTanHorafinal();
+        this.tanHorainicio = proTandasDto.getTanHorainico();
+        this.tanNombre = proTandasDto.getTanNombre();
+        this.tanPrecio = proTandasDto.getTanPrecio();
+    }
+    
+    public Long getTanId() {
         return tanId;
     }
 
-    public void setTanId(BigDecimal tanId) {
+    public void setTanId(Long tanId) {
         this.tanId = tanId;
     }
 
@@ -119,43 +125,43 @@ public class ProTandas implements Serializable {
         this.tanNombre = tanNombre;
     }
 
-    public Date getTanHorainicio() {
+    public Timestamp getTanHorainicio() {
         return tanHorainicio;
     }
 
-    public void setTanHorainicio(Date tanHorainicio) {
+    public void setTanHorainicio(Timestamp tanHorainicio) {
         this.tanHorainicio = tanHorainicio;
     }
 
-    public Date getTanHorafinal() {
+    public Timestamp getTanHorafinal() {
         return tanHorafinal;
     }
 
-    public void setTanHorafinal(Date tanHorafinal) {
+    public void setTanHorafinal(Timestamp tanHorafinal) {
         this.tanHorafinal = tanHorafinal;
     }
 
-    public Date getTanFecha() {
+    public LocalDate getTanFecha() {
         return tanFecha;
     }
 
-    public void setTanFecha(Date tanFecha) {
+    public void setTanFecha(LocalDate tanFecha) {
         this.tanFecha = tanFecha;
     }
 
-    public BigInteger getTanPrecio() {
+    public Long getTanPrecio() {
         return tanPrecio;
     }
 
-    public void setTanPrecio(BigInteger tanPrecio) {
+    public void setTanPrecio(Long tanPrecio) {
         this.tanPrecio = tanPrecio;
     }
 
-    public BigInteger getTanVersion() {
+    public Long getTanVersion() {
         return tanVersion;
     }
 
-    public void setTanVersion(BigInteger tanVersion) {
+    public void setTanVersion(Long tanVersion) {
         this.tanVersion = tanVersion;
     }
 

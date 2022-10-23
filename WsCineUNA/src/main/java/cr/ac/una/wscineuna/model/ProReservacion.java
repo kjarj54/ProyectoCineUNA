@@ -7,21 +7,26 @@ package cr.ac.una.wscineuna.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -41,23 +46,21 @@ public class ProReservacion implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "PRO_RESERVACION_RES_ID_GENERATOR", sequenceName = "CINEUNA.PRO_RESERVACION_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRO_RESERVACION_RES_ID_GENERATOR")
     @Basic(optional = false)
-    @NotNull
     @Column(name = "RES_ID")
-    private BigDecimal resId;
+    private Long resId;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "RES_FECHA")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date resFecha;
+    private LocalDate resFecha;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "RES_TOTAL")
-    private BigInteger resTotal;
+    private Long resTotal;
     @Basic(optional = false)
-    @NotNull
+    @Version
     @Column(name = "RES_VERSION")
-    private BigInteger resVersion;
+    private Long resVersion;
     @JoinColumn(name = "CLI_ID", referencedColumnName = "CLI_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private ProClientes cliId;
@@ -67,46 +70,58 @@ public class ProReservacion implements Serializable {
     public ProReservacion() {
     }
 
-    public ProReservacion(BigDecimal resId) {
+    public ProReservacion(Long resId) {
         this.resId = resId;
     }
 
-    public ProReservacion(BigDecimal resId, Date resFecha, BigInteger resTotal, BigInteger resVersion) {
+    public ProReservacion(Long resId, LocalDate resFecha, Long resTotal, Long resVersion) {
         this.resId = resId;
         this.resFecha = resFecha;
         this.resTotal = resTotal;
         this.resVersion = resVersion;
     }
+    
+    public ProReservacion(ProReservacionDto proReservacionDto){
+       this.resId = proReservacionDto.getResId();
+       actualizarReservacion(proReservacionDto);
+    }
+    
+    
+    public void actualizarReservacion(ProReservacionDto proReservacionDto){
+        this.resFecha = proReservacionDto.getResFecha();
+        this.resTotal= proReservacionDto.getResTotal();
+    }
+    
 
-    public BigDecimal getResId() {
+    public Long getResId() {
         return resId;
     }
 
-    public void setResId(BigDecimal resId) {
+    public void setResId(Long resId) {
         this.resId = resId;
     }
 
-    public Date getResFecha() {
+    public LocalDate getResFecha() {
         return resFecha;
     }
 
-    public void setResFecha(Date resFecha) {
+    public void setResFecha(LocalDate resFecha) {
         this.resFecha = resFecha;
     }
 
-    public BigInteger getResTotal() {
+    public Long getResTotal() {
         return resTotal;
     }
 
-    public void setResTotal(BigInteger resTotal) {
+    public void setResTotal(Long resTotal) {
         this.resTotal = resTotal;
     }
 
-    public BigInteger getResVersion() {
+    public Long getResVersion() {
         return resVersion;
     }
 
-    public void setResVersion(BigInteger resVersion) {
+    public void setResVersion(Long resVersion) {
         this.resVersion = resVersion;
     }
 

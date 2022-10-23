@@ -23,18 +23,13 @@ public class ProSalasDto {
         this.modificado = false;
     }
 
-    /*public ProSalasDto(ProSalas proSalas) {
+    public ProSalasDto(ProSalas proSalas) {
         this();
-        this.salId = salId;
-        this.salNombre = salNombre;
-        this.salEstado = salEstado;
-        this.salCosto = salCosto;
-        this.salHoraInicio = salHoraInicio;
-        this.salHoraFinal = salHoraFinal;
-        this.salFechaInicio = salFechaInicio;
-        this.salFechaFinal = salFechaFinal;
-        this.salImgFondo = salImgFondo;
-    }*/
+        this.salId = proSalas.getSalId();
+        this.salNombre = proSalas.getSalNombre();
+        this.salEstado = proSalas.getSalEstado();
+        this.salImgFondo = (Byte[]) proSalas.getSalImgfondo();
+    }
     public Long getSalId() {
         return salId;
     }

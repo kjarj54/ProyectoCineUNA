@@ -356,7 +356,7 @@ ALTER TABLE PRO_TANDASASIENTOS ADD CONSTRAINT PRO_TANDASASIENTOS_PK PRIMARY KEY 
 CREATE TABLE PRO_COMIDAS(
   com_id Number NOT NULL,
   com_nombre Varchar2(30 ) NOT NULL,
-  com_precio Varchar2(30 ) NOT NULL,
+  com_precio Number NOT NULL,
   com_descripcion Varchar2(30 ),
   com_version Number DEFAULT 1 NOT NULL
 )

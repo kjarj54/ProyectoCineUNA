@@ -21,4 +21,7 @@ public class ProTandasService {
     
     @PersistenceContext(unitName = "WsCineUNAPU")
     private EntityManager em;
+    
+    
+    
 }
