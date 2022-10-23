@@ -49,7 +49,7 @@ public class ProComidasController {
     @GET
     @Secure
     @Path("/comida/{id}")
-    public Response getPelicula(@PathParam("id") Long id) {
+    public Response getComida(@PathParam("id") Long id) {
         try {
             Respuesta res = proComidasService.getComida(id);
             if (!res.getEstado()) {
@@ -68,7 +68,7 @@ public class ProComidasController {
     @GET
     @Secure
     @Path("/comidas/")
-    public Response getPeliculas() {
+    public Response getComidas() {
         try {
             Respuesta res = proComidasService.getComidas();
             if (!res.getEstado()) {
@@ -84,7 +84,7 @@ public class ProComidasController {
 
     @DELETE
     @Path("/eliminarComida/{id}")
-    public Response eliminarPelicula(@PathParam("id") Long id) {
+    public Response eliminarComida(@PathParam("id") Long id) {
         try {
             Respuesta res = proComidasService.eliminarComida(id);
             if (!res.getEstado()) {
