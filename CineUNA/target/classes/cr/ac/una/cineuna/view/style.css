@@ -118,7 +118,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
 }
 
-#txtNombre{
+#txtNombre,#txtPrecio,#txtDescripcion{
     -fx-max-width:300;
     -fx-background-color: #333333;
     -fx-text-fill: white; 
@@ -256,6 +256,10 @@ JFXButton{
 #btnAtras, #btnSalir{
     -fx-background-color: 
         linear-gradient(#be1d00, #ff5400);
+}
+
+#btnPagar,#btnAgregar{
+    -fx-background-color:linear-gradient(#33ff33,#0C9038);
 }
 
 #btnAtras:hover, #btnSalir:hover{

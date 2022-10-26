@@ -4,9 +4,15 @@
  */
 package cr.ac.una.cineuna.controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 /**
  * FXML Controller class
@@ -14,6 +20,27 @@ import javafx.fxml.Initializable;
  * @author kevin
  */
 public class ComidasAdminViewController extends Controller implements Initializable {
+
+    @FXML
+    private JFXTextField txtNombre;
+    @FXML
+    private JFXTextField txtPrecio;
+    @FXML
+    private JFXTextArea txtDescripcion;
+    @FXML
+    private JFXButton btnAgregar;
+    @FXML
+    private TableView<?> tbvComidas;
+    @FXML
+    private TableColumn<?, ?> tbcNombre;
+    @FXML
+    private TableColumn<?, ?> tbcDescripcion;
+    @FXML
+    private TableColumn<?, ?> tbcPrecio;
+    @FXML
+    private TableColumn<?, ?> tbcEliminar;
+    @FXML
+    private JFXButton btnAtras;
 
     /**
      * Initializes the controller class.
