@@ -185,6 +185,12 @@ public class FlowController {
         return getLoader(viewName).getController();
     }
 
+    
+    
+    public void limpiarLoader(String view) {
+        this.loaders.remove(view);
+    }
+    
     public static void setIdioma(ResourceBundle idioma) {
         FlowController.idioma = idioma;
     }
