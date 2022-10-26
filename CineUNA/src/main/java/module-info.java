@@ -19,4 +19,5 @@ module cr.ac.una.cineuna {
     exports cr.ac.una.cineuna;
     exports cr.ac.una.cineuna.controller;
     exports cr.ac.una.cineuna.util;
+    exports cr.ac.una.cineuna.model;
 }
