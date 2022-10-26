@@ -44,11 +44,7 @@ public class UsuariosViewController extends Controller implements Initializable 
     @FXML
     private JFXTextField txtNombre;
     @FXML
-    private JFXTextField txtApellidos;
-    @FXML
     private JFXTextField txtUsuario;
-    @FXML
-    private JFXTextField txtContrasena;
     @FXML
     private JFXTextField txtCorreo;
 
@@ -62,6 +58,12 @@ public class UsuariosViewController extends Controller implements Initializable 
     private RadioButton rdbEnglish;
     @FXML
     private JFXButton btnRegistrar;
+    @FXML
+    private JFXTextField txtPApellido;
+    @FXML
+    private JFXTextField txtSApellido;
+    @FXML
+    private JFXPasswordField txtClave;
 
     /**
      * Initializes the controller class.
@@ -72,9 +74,10 @@ public class UsuariosViewController extends Controller implements Initializable 
         rdbEnglish.setUserData("I");
         rdbEspañol.setUserData("E");
         txtNombre.setTextFormatter(Formato.getInstance().letrasFormat(30));
-        txtApellidos.setTextFormatter(Formato.getInstance().letrasFormat(30));
+        txtPApellido.setTextFormatter(Formato.getInstance().letrasFormat(30));
+        txtSApellido.setTextFormatter(Formato.getInstance().letrasFormat(30));
         txtUsuario.setTextFormatter(Formato.getInstance().maxLengthFormat(20));
-        txtContrasena.setTextFormatter(Formato.getInstance().maxLengthFormat(30));
+        txtClave.setTextFormatter(Formato.getInstance().maxLengthFormat(30));
         txtCorreo.setTextFormatter(Formato.getInstance().maxLengthFormat(100));
         proClientesDto = new ProClientesDto();
         nuevoCliente();
@@ -88,7 +91,7 @@ public class UsuariosViewController extends Controller implements Initializable 
 
     public void indicarRequeridos() {
         requeridos.clear();
-        requeridos.addAll(Arrays.asList(txtNombre, txtApellidos, txtContrasena, txtCorreo, txtUsuario));
+        requeridos.addAll(Arrays.asList(txtNombre, txtPApellido, txtClave, txtCorreo, txtUsuario));
     }
 
     public String validarRequeridos() {
@@ -134,8 +137,9 @@ public class UsuariosViewController extends Controller implements Initializable 
 
     public void bindClientes(Boolean nuevo) {
         txtNombre.textProperty().bindBidirectional(proClientesDto.cliNombre);
-        txtApellidos.textProperty().bindBidirectional(proClientesDto.cliPApellido);
-        txtContrasena.textProperty().bindBidirectional(proClientesDto.cliClave);
+        txtPApellido.textProperty().bindBidirectional(proClientesDto.cliPApellido);
+        txtSApellido.textProperty().bindBidirectional(proClientesDto.cliSApellido);
+        txtClave.textProperty().bindBidirectional(proClientesDto.cliClave);
         txtCorreo.textProperty().bindBidirectional(proClientesDto.cliCorreo);
         txtUsuario.textProperty().bindBidirectional(proClientesDto.cliUsuario);
         BindingUtils.bindToggleGroupToProperty(tggIdioma, proClientesDto.cliIdioma);
@@ -143,8 +147,9 @@ public class UsuariosViewController extends Controller implements Initializable 
 
     public void unbindClientes() {
         txtNombre.textProperty().unbindBidirectional(proClientesDto.cliNombre);
-        txtApellidos.textProperty().unbindBidirectional(proClientesDto.cliPApellido);
-        txtContrasena.textProperty().unbindBidirectional(proClientesDto.cliClave);
+        txtPApellido.textProperty().unbindBidirectional(proClientesDto.cliPApellido);
+        txtSApellido.textProperty().unbindBidirectional(proClientesDto.cliSApellido);
+        txtClave.textProperty().unbindBidirectional(proClientesDto.cliClave);
         txtCorreo.textProperty().unbindBidirectional(proClientesDto.cliCorreo);
         txtUsuario.textProperty().unbindBidirectional(proClientesDto.cliUsuario);
         BindingUtils.unbindToggleGroupToProperty(tggIdioma, proClientesDto.cliIdioma);
@@ -154,7 +159,6 @@ public class UsuariosViewController extends Controller implements Initializable 
         unbindClientes();
         proClientesDto = new ProClientesDto();
         bindClientes(true);
-
     }
 
     @FXML

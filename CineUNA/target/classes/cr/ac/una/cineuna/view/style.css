@@ -103,6 +103,67 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
 }
 
+#txtUsuario{
+    -fx-max-width:300;
+    -fx-background-color: #333333;
+    -fx-text-fill: white; 
+    -fx-prompt-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;
+    -fx-background-size:38;
+    -fx-font-size: 16;
+    -fx-background-radius: 20 20 20 20;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
+}
+
+#txtNombre{
+    -fx-max-width:300;
+    -fx-background-color: #333333;
+    -fx-text-fill: white; 
+    -fx-prompt-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;
+    -fx-background-size:38;
+    -fx-font-size: 16;
+    -fx-background-radius: 20 20 20 20;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
+}
+
+
+#txtPApellido{
+    -fx-max-width:300;
+    -fx-background-color: #333333;
+    -fx-text-fill: white; 
+    -fx-prompt-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;
+    -fx-background-size:38;
+    -fx-font-size: 16;
+    -fx-background-radius: 20 20 20 20;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
+}
+
+#txtSApellido{
+    -fx-max-width:300;
+    -fx-background-color: #333333;
+    -fx-text-fill: white; 
+    -fx-prompt-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;
+    -fx-background-size:38;
+    -fx-font-size: 16;
+    -fx-background-radius: 20 20 20 20;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
+}
+
 #linkRecuperarClave{
     -fx-text-fill: #FFD02A; 
     -fx-background-radius: 20 20 20 20;

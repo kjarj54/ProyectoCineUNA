@@ -41,7 +41,7 @@ public class ProClientesController {
     }
 
     @POST
-    @Path("/guaradarCliente")
+    @Path("/guardarCliente")
     public Response guardarCliente(ProClientesDto proClientesDto) {
         try {
             Respuesta res = proClientesService.guardarCliente(proClientesDto);
