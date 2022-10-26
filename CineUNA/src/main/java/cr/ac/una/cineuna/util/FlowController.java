@@ -5,9 +5,6 @@
  */
 package cr.ac.una.cineuna.util;
 
-
-
-
 import cr.ac.una.cineuna.App;
 import cr.ac.una.cineuna.controller.Controller;
 import java.io.IOException;
@@ -24,7 +21,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
 
 public class FlowController {
 
@@ -81,35 +77,20 @@ public class FlowController {
                 }
             }
         }
+        if (!name.equals("LoginView")) {
+            this.controller = loader.getController();
+        }
         return loader;
     }
 
     public void goMain() {
         try {
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/LoginView.fxml"), this.idioma)));
+            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("/cr/ac/una/cineuna/view/LoginView.fxml"), this.idioma)));
             this.mainStage.show();
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
         }
     }
-    
-    /*public void goMain1() {
-        try {
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/CargandoView.fxml"), this.idioma)));
-            this.mainStage.show();
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
-        }
-    }
-    
-    public void goMain2() {
-        try {
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/menuPrincipal.fxml"), this.idioma)));
-            this.mainStage.show();
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
-        }
-    }*/
 
     public void goView(String viewName) {
         goView(viewName, "Center", null);
@@ -159,20 +140,22 @@ public class FlowController {
         Controller controller = loader.getController();
         controller.initialize();
         Stage stage = new Stage();
-        stage.getIcons().add(new Image("cr/ac/una/cineuna/resources/icono-pantalla.png"));
+        stage.getIcons().add(new Image(App.class.getResourceAsStream("/cr/ac/una/cineuna/resources/icono-pantalla.png")));
         stage.setTitle("UNA CINE");
         stage.setOnHidden((WindowEvent event) -> {
             controller.getStage().getScene().setRoot(new Pane());
             controller.setStage(null);
         });
-        mainStage=stage;
-        controller.setStage(stage); 
+        controller.setStage(stage);
         Parent root = loader.getRoot();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
-
+    }
+    
+    public void goLogInWindowModal(Boolean resizable) {
+        goViewInWindowModal("LoginView", this.controller.getStage(), resizable);
     }
 
     public void goViewInWindowModal(String viewName, Stage parentStage, Boolean resizable) {
@@ -180,8 +163,8 @@ public class FlowController {
         Controller controller = loader.getController();
         controller.initialize();
         Stage stage = new Stage();
-        stage.getIcons().add(new Image("cr/ac/una/canchauna/resources/icono2.png"));
-        stage.setTitle("UNA CANCHA");
+        stage.getIcons().add(new Image(App.class.getResourceAsStream("/cr/ac/una/canchauna/resources/icono2.png")));
+        stage.setTitle("UNA CINE");
         stage.setResizable(resizable);
         stage.setOnHidden((WindowEvent event) -> {
             controller.getStage().getScene().setRoot(new Pane());
@@ -197,17 +180,9 @@ public class FlowController {
         stage.showAndWait();
 
     }
-    
-    public void goLogInWindowModal(Boolean resizable) {
-        goViewInWindowModal("LoginView", this.controller.getStage(), resizable);
-    }
 
     public Controller getController(String viewName) {
         return getLoader(viewName).getController();
-    }
-    
-    public void limpiarLoader(String view) {
-        this.loaders.remove(view);
     }
 
     public static void setIdioma(ResourceBundle idioma) {
