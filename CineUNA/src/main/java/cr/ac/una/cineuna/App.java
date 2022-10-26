@@ -2,8 +2,6 @@ package cr.ac.una.cineuna;
 
 import cr.ac.una.cineuna.util.FlowController;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -18,7 +16,7 @@ public class App extends Application {
     private static Scene scene;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException {       
         FlowController.getInstance().InitializeFlow(stage, null);
         stage.getIcons().add(new Image(App.class.getResourceAsStream("/cr/ac/una/cineuna/resources/icono-pantalla.png")));
         stage.setTitle("UNA CINE");
