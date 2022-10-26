@@ -80,15 +80,18 @@ public class LoginViewController extends Controller implements Initializable {
                     AppContext.getInstance().set("Usuario", proClientesDto);
                     AppContext.getInstance().set("Token", proClientesDto.getToken());
                     if (getStage().getOwner() == null) {
-                        FlowController.getInstance().goViewInWindow("PrincipalView");
+                        if(proClientesDto.getCliAdmin() == "S"){
+                           FlowController.getInstance().goMain(); 
+                        }else{
+                           FlowController.getInstance().goMainCliente();
+                        }
+                        
                     }
                     getStage().close();
 
                 } else {
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Ingreso", getStage(), respuesta.getMensaje());
                 }
-//                FlowController.getInstance().goViewInWindow("PrincipalView");
-//                getStage().close();
             }
         } catch (Exception ex) {
             Logger.getLogger(LoginViewController.class.getName()).log(Level.SEVERE, "Error ingresando.", ex);
