@@ -36,6 +36,19 @@
 .jfx-password-field .input-line{-fx-pref-height: 0px;}
 .jfx-password-field .input-focused-line{-fx-pref-height: 0px;}
 
+.jfx-text-field, .jfx-password-field{
+    -fx-max-width:300;
+    -fx-background-color: #444444;
+    -fx-text-fill: white; 
+    -fx-prompt-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20 20 20 20;
+    -fx-font-size: 16;
+    -fx-focus-color:white;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
+}
+
 .h1{
     -fx-font-family: 'Roboto', sans-serif;
     -fx-text-fill: #ffffff;
@@ -57,111 +70,19 @@
 /******************************* ESTILOS DE TEXTO POR ID ******************************************/
 
 #txtUsuarios{
-    -fx-max-width:300;
-    -fx-background-color: #333333;
-    -fx-text-fill: white; 
     -fx-background-image: url("../resources/icono-user.png");
-    -fx-prompt-text-fill: white;
-    -fx-font-weight: bold;
     -fx-background-repeat: no-repeat;
     -fx-background-position: left center;
     -fx-background-size:38;
-    -fx-font-size: 16;
     -fx-background-radius: 20 20 20 20;
-    -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
 }
 
 #txtClave {
-    -fx-max-width:300;
-    -fx-background-color: #333333;
-    -fx-text-fill: white; 
     -fx-background-image: url("../resources/icono-clave.png");
-    -fx-prompt-text-fill: white;
-    -fx-font-weight: bold;
     -fx-background-repeat: no-repeat;
     -fx-background-position: left center;
     -fx-background-size:38;
-    -fx-font-size: 16;
     -fx-background-radius: 20 20 20 20;
-    -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
-}
-
-#txtCorreo{
-    -fx-max-width:300;
-    -fx-background-color: #333333;
-    -fx-text-fill: white; 
-    -fx-prompt-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: left center;
-    -fx-background-size:38;
-    -fx-font-size: 16;
-    -fx-background-radius: 20 20 20 20;
-    -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
-}
-
-#txtUsuario{
-    -fx-max-width:300;
-    -fx-background-color: #333333;
-    -fx-text-fill: white; 
-    -fx-prompt-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: left center;
-    -fx-background-size:38;
-    -fx-font-size: 16;
-    -fx-background-radius: 20 20 20 20;
-    -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
-}
-
-#txtNombre,#txtPrecio,#txtDescripcion{
-    -fx-max-width:300;
-    -fx-background-color: #333333;
-    -fx-text-fill: white; 
-    -fx-prompt-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: left center;
-    -fx-background-size:38;
-    -fx-font-size: 16;
-    -fx-background-radius: 20 20 20 20;
-    -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
-}
-
-
-#txtPApellido{
-    -fx-max-width:300;
-    -fx-background-color: #333333;
-    -fx-text-fill: white; 
-    -fx-prompt-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: left center;
-    -fx-background-size:38;
-    -fx-font-size: 16;
-    -fx-background-radius: 20 20 20 20;
-    -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
-}
-
-#txtSApellido{
-    -fx-max-width:300;
-    -fx-background-color: #333333;
-    -fx-text-fill: white; 
-    -fx-prompt-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: left center;
-    -fx-background-size:38;
-    -fx-font-size: 16;
-    -fx-background-radius: 20 20 20 20;
-    -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
 }
 
 #linkRecuperarClave{
@@ -179,6 +100,8 @@
 /******************************* BOTONES GENERAL ******************************************/
 
 JFXButton{
+    -fx-background-color: 
+        linear-gradient(#203354, #1c2e4a);
     -fx-min-width:210;
     -fx-min-height:50;
     -fx-pref-width:220;
@@ -258,12 +181,17 @@ JFXButton{
         linear-gradient(#be1d00, #ff5400);
 }
 
-#btnPagar,#btnAgregar{
-    -fx-background-color:linear-gradient(#33ff33,#0C9038);
-}
-
 #btnAtras:hover, #btnSalir:hover{
     -fx-background-color: 
         linear-gradient(#BE3A00, #FF4C00);
 }
 
+#btnPagar,#btnAgregar, #btnCerrar{
+    -fx-background-color:
+        linear-gradient(#242526,#3a3b3c);
+}
+
+#btnPagar:hover,#btnAgregar:hover, #btnCerrar:hover{
+    -fx-background-color:
+        linear-gradient(#18191a,#3a3b3c);
+}

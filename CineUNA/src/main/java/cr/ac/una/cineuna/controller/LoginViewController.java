@@ -67,7 +67,6 @@ public class LoginViewController extends Controller implements Initializable {
     @FXML
     private void onActionBtnIngresar(ActionEvent event) {
         try {
-
             if (txtUsuarios.getText() == null || txtUsuarios.getText().isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Validación de usuario", (Stage) btnIngresar.getScene().getWindow(), "Es necesario digitar un usuario para ingresar al sistema.");
             } else if (txtClave.getText() == null || txtClave.getText().isEmpty()) {

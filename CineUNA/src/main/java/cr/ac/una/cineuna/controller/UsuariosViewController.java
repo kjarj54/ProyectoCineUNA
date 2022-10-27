@@ -63,7 +63,7 @@ public class UsuariosViewController extends Controller implements Initializable 
     @FXML
     private JFXTextField txtSApellido;
     @FXML
-    private JFXPasswordField txtClave;
+    private JFXPasswordField txtContra;
 
     /**
      * Initializes the controller class.
@@ -77,7 +77,7 @@ public class UsuariosViewController extends Controller implements Initializable 
         txtPApellido.setTextFormatter(Formato.getInstance().letrasFormat(30));
         txtSApellido.setTextFormatter(Formato.getInstance().letrasFormat(30));
         txtUsuario.setTextFormatter(Formato.getInstance().maxLengthFormat(20));
-        txtClave.setTextFormatter(Formato.getInstance().maxLengthFormat(30));
+        txtContra.setTextFormatter(Formato.getInstance().maxLengthFormat(30));
         txtCorreo.setTextFormatter(Formato.getInstance().maxLengthFormat(100));
         proClientesDto = new ProClientesDto();
         nuevoCliente();
@@ -91,7 +91,7 @@ public class UsuariosViewController extends Controller implements Initializable 
 
     public void indicarRequeridos() {
         requeridos.clear();
-        requeridos.addAll(Arrays.asList(txtNombre, txtPApellido, txtClave, txtCorreo, txtUsuario));
+        requeridos.addAll(Arrays.asList(txtNombre, txtPApellido, txtContra, txtCorreo, txtUsuario));
     }
 
     public String validarRequeridos() {
@@ -139,7 +139,7 @@ public class UsuariosViewController extends Controller implements Initializable 
         txtNombre.textProperty().bindBidirectional(proClientesDto.cliNombre);
         txtPApellido.textProperty().bindBidirectional(proClientesDto.cliPApellido);
         txtSApellido.textProperty().bindBidirectional(proClientesDto.cliSApellido);
-        txtClave.textProperty().bindBidirectional(proClientesDto.cliClave);
+        txtContra.textProperty().bindBidirectional(proClientesDto.cliClave);
         txtCorreo.textProperty().bindBidirectional(proClientesDto.cliCorreo);
         txtUsuario.textProperty().bindBidirectional(proClientesDto.cliUsuario);
         BindingUtils.bindToggleGroupToProperty(tggIdioma, proClientesDto.cliIdioma);
@@ -149,7 +149,7 @@ public class UsuariosViewController extends Controller implements Initializable 
         txtNombre.textProperty().unbindBidirectional(proClientesDto.cliNombre);
         txtPApellido.textProperty().unbindBidirectional(proClientesDto.cliPApellido);
         txtSApellido.textProperty().unbindBidirectional(proClientesDto.cliSApellido);
-        txtClave.textProperty().unbindBidirectional(proClientesDto.cliClave);
+        txtContra.textProperty().unbindBidirectional(proClientesDto.cliClave);
         txtCorreo.textProperty().unbindBidirectional(proClientesDto.cliCorreo);
         txtUsuario.textProperty().unbindBidirectional(proClientesDto.cliUsuario);
         BindingUtils.unbindToggleGroupToProperty(tggIdioma, proClientesDto.cliIdioma);
