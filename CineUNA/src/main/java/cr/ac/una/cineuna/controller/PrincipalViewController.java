@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -28,6 +29,10 @@ public class PrincipalViewController extends Controller implements Initializable
     private JFXButton btnSalas;
     @FXML
     private JFXButton btnCerrar;
+    @FXML
+    private BorderPane Fondo;
+    @FXML
+    private JFXButton btnComidas;
 
     /**
      * Initializes the controller class.
@@ -63,6 +68,11 @@ public class PrincipalViewController extends Controller implements Initializable
         FlowController.getInstance().initialize();
         FlowController.getInstance().goViewInWindow("LoginView");
         ((Stage) btnCerrar.getScene().getWindow()).close();
+    }
+
+    @FXML
+    private void OnActionBtnComidas(ActionEvent event) {
+        FlowController.getInstance().goView("ComidasAdminView");
     }
     
 }

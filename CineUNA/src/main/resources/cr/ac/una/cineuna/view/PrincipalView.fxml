@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="Fondo" prefHeight="510.0" prefWidth="850.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.PrincipalViewController">
+<BorderPane fx:id="Fondo" prefHeight="510.0" prefWidth="850.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.PrincipalViewController">
    <center>
       <VBox>
          <children>
@@ -26,6 +26,7 @@
             <JFXButton fx:id="btnUsuarios" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnUsuarios" text="Mantenimiento Usuarios" />
             <JFXButton fx:id="btnPeliculas" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnPeliculas" text="Mantenimiento de Peliculas " />
             <JFXButton fx:id="btnSalas" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnSalas" text="Mantenimiento de Salas" />
+            <JFXButton fx:id="btnComidas" layoutX="10.0" layoutY="260.0" minHeight="80.0" minWidth="200.0" onAction="#OnActionBtnComidas" text="Mant de Comidas" />
             <JFXButton fx:id="btnCerrar" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnCerrar" text="Cerrar Sesión" />
          </children>
       </VBox>

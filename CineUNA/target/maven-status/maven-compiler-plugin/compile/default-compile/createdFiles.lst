@@ -13,6 +13,7 @@ cr\ac\una\cineuna\util\Request$1$1.class
 cr\ac\una\cineuna\util\DragResizer$3.class
 cr\ac\una\cineuna\controller\ComidasAdminViewController.class
 cr\ac\una\cineuna\model\ProPeliculasDto.class
+cr\ac\una\cineuna\service\ProFacturasService.class
 cr\ac\una\cineuna\controller\MantUsuariosViewController.class
 cr\ac\una\cineuna\controller\MantPeliculasViewController.class
 cr\ac\una\cineuna\controller\UsuariosViewController.class

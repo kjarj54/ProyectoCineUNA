@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="Fondo" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.PrincipalUsuariosViewController">
+<BorderPane fx:id="Fondo" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.PrincipalUsuariosViewController">
    <center>
       <VBox>
          <children>
@@ -20,7 +21,14 @@
       </VBox>
    </center>
    <left>
-      <VBox prefHeight="400.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="400.0" prefWidth="150.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton fx:id="btnUsuario" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnUsuario" text="Usuario" />
+            <JFXButton fx:id="btnComidas" minHeight="80.0" minWidth="200.0" onAction="#OnActionBtnComidas" text="Comidas" />
+            <JFXButton fx:id="btnPeliculas" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnPeliculas" text="Peliculas " />
+            <JFXButton fx:id="btnReservar" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnReservar" text="Reservar" />
+            <JFXButton fx:id="btnCerrar" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnCerrar" text="Cerrar Sesión" />
+         </children></VBox>
    </left>
    <top>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="726.0" BorderPane.alignment="CENTER">
