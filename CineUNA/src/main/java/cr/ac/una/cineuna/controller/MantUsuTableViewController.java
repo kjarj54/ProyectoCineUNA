@@ -177,7 +177,7 @@ public class MantUsuTableViewController extends Controller implements Initializa
                 admin = "%" + txtAdmin.getText();
             }
 
-            Respuesta respuesta = proClientesService.getClientes(id, nombre, usuario, estado, admin);
+            Respuesta respuesta = proClientesService.getCliente(usuario, admin);
 
             if (respuesta.getEstado()) {
                 ObservableList<ProClientesDto> proClientesDtos = FXCollections.observableList((List<ProClientesDto>) respuesta.getResultado("ProClientes"));
