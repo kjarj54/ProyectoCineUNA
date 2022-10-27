@@ -101,19 +101,19 @@ public class ProClientesService {
             List<ProClientes> clientes = qryClientes.getResultList();
 
             if (!id.equals("%")) {
-                clientes.stream().filter((p) -> p.getCliId().equals(Long.getLong(id))).collect(Collectors.toList());
+                clientes = clientes.stream().filter((p) -> p.getCliId().equals(Long.parseLong(id))).collect(Collectors.toList());
             }
             if (!usuario.equals("%")) {
-                clientes.stream().filter((p) -> p.getCliUsuario().contains(usuario)).collect(Collectors.toList());
+                clientes = clientes.stream().filter((p) -> p.getCliUsuario().contains(usuario.toUpperCase()) || p.getCliUsuario().contains(usuario)).collect(Collectors.toList());
             }
             if (!nombre.equals("%")) {
-                clientes.stream().filter((p) -> p.getCliNombre().contains(nombre)).collect(Collectors.toList());
+                clientes = clientes.stream().filter((p) -> p.getCliNombre().contains(nombre.toUpperCase()) || p.getCliNombre().contains(nombre)).collect(Collectors.toList());
             }
             if (!estado.equals("%")) {
-                clientes.stream().filter((p) -> p.getCliEstado().contains(estado)).collect(Collectors.toList());
+                clientes = clientes.stream().filter((p) -> p.getCliEstado().contains(estado) || p.getCliEstado().contains(estado)).collect(Collectors.toList());
             }
             if (!admin.equals("%")) {
-                clientes.stream().filter((p) -> p.getCliAdmin().contains(admin)).collect(Collectors.toList());
+                clientes = clientes.stream().filter((p) -> p.getCliAdmin().contains(admin) || p.getCliAdmin().contains(admin)).collect(Collectors.toList());
             }
 
             List<ProClientesDto> clientesDto = new ArrayList<>();
@@ -130,8 +130,7 @@ public class ProClientesService {
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el cliente.", "getCliente " + ex.getMessage());
         }
     }
-    
-    
+
     public Respuesta eliminarCliente(Long id) {
         try {
             ProClientes clientes;
@@ -154,6 +153,5 @@ public class ProClientesService {
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al eliminar el cliente.", "eliminarCliente " + ex.getMessage());
         }
     }
-    
 
 }

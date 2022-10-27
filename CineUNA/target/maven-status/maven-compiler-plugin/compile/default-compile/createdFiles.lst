@@ -30,6 +30,7 @@ cr\ac\una\cineuna\util\DragResizer.class
 cr\ac\una\cineuna\controller\LoginViewController.class
 cr\ac\una\cineuna\util\Request$1.class
 cr\ac\una\cineuna\controller\RecuperarContraViewController.class
+cr\ac\una\cineuna\service\ProClientesService$1.class
 cr\ac\una\cineuna\service\ProTandasService.class
 module-info.class
 cr\ac\una\cineuna\model\ProClientesDto.class
