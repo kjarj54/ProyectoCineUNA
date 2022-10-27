@@ -7,7 +7,9 @@ package cr.ac.una.cineuna.service;
 import cr.ac.una.cineuna.model.ProClientesDto;
 import cr.ac.una.cineuna.util.Request;
 import cr.ac.una.cineuna.util.Respuesta;
+import jakarta.ws.rs.core.GenericType;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,8 +19,8 @@ import java.util.logging.Logger;
  * @author kevin
  */
 public class ProClientesService {
-    
-    public Respuesta getCliente(String usuario, String clave){
+
+    public Respuesta getCliente(String usuario, String clave) {
         try {
             //TODO
             Map<String, Object> parametros = new HashMap<>();
@@ -36,7 +38,7 @@ public class ProClientesService {
             return new Respuesta(false, "Error obteniendo el usuario.", "getUsuario " + ex.getMessage());
         }
     }
-    
+
     public Respuesta eliminarCliente(Long id) {
         try {
             Map<String, Object> parametros = new HashMap<>();
@@ -52,7 +54,7 @@ public class ProClientesService {
             return new Respuesta(false, "Ocurrio un error al eliminar el cliente.", "eliminarCliente " + ex.getMessage());
         }
     }
-    
+
     public Respuesta guardarCliente(ProClientesDto proClientesDto) {
         try {
             //TODO
@@ -68,7 +70,33 @@ public class ProClientesService {
             return new Respuesta(false, "Error guardando el empleado.", "guardarEmpleado " + ex.getMessage());
         }
     }
+
+    public Respuesta getClientes(String id, String nombre, String usuario, String estado, String admin) {
+        try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("id", id);
+            parametros.put("usuario", usuario);
+            parametros.put("nombre", nombre);
+            parametros.put("estado", estado);
+            parametros.put("admin", admin);
+
+            Request request = new Request("ProClientesController/getClientes", "/{id}/{usuario}/{nombre}/{estado}/{admin}", parametros);
+            request.get();
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+
+            List<ProClientesDto> proClientesDto = (List<ProClientesDto>) request.readEntity(new GenericType<List<ProClientesDto>>() {
+            });
+            return new Respuesta(true, "", "", "ProClientes", proClientesDto);
+
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Error consultando el cliente.", ex);
+            return new Respuesta(false, "Error consultando el cliente.", "getClientes " + ex.getMessage());
+        }
+    }
     
+
     public Respuesta renovarToken() {
         try {
             Request request = new Request("ProClientesController/renovar");
@@ -83,5 +111,5 @@ public class ProClientesService {
             return new Respuesta(false, "Error renovando el token.", "renovarToken " + ex.getMessage());
         }
     }
-    
+
 }
