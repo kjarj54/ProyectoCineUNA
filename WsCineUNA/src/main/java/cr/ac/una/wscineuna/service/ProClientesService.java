@@ -104,16 +104,16 @@ public class ProClientesService {
                 clientes = clientes.stream().filter((p) -> p.getCliId().equals(Long.parseLong(id))).collect(Collectors.toList());
             }
             if (!usuario.equals("%")) {
-                clientes = clientes.stream().filter((p) -> p.getCliUsuario().contains(usuario.toUpperCase()) || p.getCliUsuario().contains(usuario)).collect(Collectors.toList());
+                clientes = clientes.stream().filter((p) -> p.getCliUsuario().contains(usuario.toLowerCase()) || p.getCliUsuario().contains(usuario.toUpperCase())).collect(Collectors.toList());
             }
             if (!nombre.equals("%")) {
-                clientes = clientes.stream().filter((p) -> p.getCliNombre().contains(nombre.toUpperCase()) || p.getCliNombre().contains(nombre)).collect(Collectors.toList());
+                clientes = clientes.stream().filter((p) -> p.getCliNombre().contains(nombre.toLowerCase()) || p.getCliNombre().contains(nombre.toUpperCase())).collect(Collectors.toList());
             }
             if (!estado.equals("%")) {
-                clientes = clientes.stream().filter((p) -> p.getCliEstado().contains(estado) || p.getCliEstado().contains(estado)).collect(Collectors.toList());
+                clientes = clientes.stream().filter((p) -> p.getCliEstado().contains(estado.toLowerCase()) || p.getCliEstado().contains(estado.toUpperCase())).collect(Collectors.toList());
             }
             if (!admin.equals("%")) {
-                clientes = clientes.stream().filter((p) -> p.getCliAdmin().contains(admin) || p.getCliAdmin().contains(admin)).collect(Collectors.toList());
+                clientes = clientes.stream().filter((p) -> p.getCliAdmin().contains(admin.toLowerCase()) || p.getCliAdmin().contains(admin.toUpperCase())).collect(Collectors.toList());
             }
 
             List<ProClientesDto> clientesDto = new ArrayList<>();
