@@ -69,7 +69,6 @@ public class ProClientesService {
         }
     }
     
-    
     public Respuesta renovarToken() {
         try {
             Request request = new Request("ProClientesController/renovar");
