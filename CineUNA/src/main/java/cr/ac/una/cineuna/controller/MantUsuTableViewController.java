@@ -7,6 +7,7 @@ package cr.ac.una.cineuna.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import cr.ac.una.cineuna.model.ProClientesDto;
+import cr.ac.una.cineuna.service.ProClientesService;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.InvalidationListener;
@@ -89,7 +90,24 @@ public class MantUsuTableViewController extends Controller implements Initializa
                 btnFiltrar.fire();
             }
         };
-
+        
+        tbcId.setCellValueFactory(clbck-> clbck.getValue().cliId);
+        
+        tbcNombre.setCellValueFactory(clbck-> clbck.getValue().cliNombre);
+        
+        tbcUsuario.setCellValueFactory(clbck-> clbck.getValue().cliUsuario);
+        
+        tbcPApellido.setCellValueFactory(clbck-> clbck.getValue().cliPApellido);
+        
+        tbcSApellido.setCellValueFactory(clbck-> clbck.getValue().cliSApellido);
+        
+        tbvResultados.getColumns().add(tbcId);
+        tbvResultados.getColumns().add(tbcNombre);
+        tbvResultados.getColumns().add(tbcUsuario);
+        tbvResultados.getColumns().add(tbcPApellido);
+        tbvResultados.getColumns().add(tbcSApellido);
+        tbvResultados.refresh();
+        
         Callback<TableColumn<ProClientesDto, Boolean>, TableCell<ProClientesDto, Boolean>> boolenaCellFactory = new Callback<TableColumn<ProClientesDto, Boolean>, TableCell<ProClientesDto, Boolean>>() {
             @Override
             public TableCell<ProClientesDto, Boolean> call(TableColumn<ProClientesDto, Boolean> p) {
@@ -115,6 +133,14 @@ public class MantUsuTableViewController extends Controller implements Initializa
     @FXML
     private void onActionBtnAceptar(ActionEvent event) {
 
+    }
+
+    @FXML
+    private void onActionBtnFiltrar(ActionEvent event) {
+        tbvResultados.getItems();
+        ProClientesService proClientesService = new ProClientesService();
+        
+        String id = txtId.getText();
     }
 
     private class CheckBoxCell extends TableCell<ProClientesDto, Boolean> {

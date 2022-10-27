@@ -49,7 +49,7 @@ public class PrincipalViewController extends Controller implements Initializable
 
     @FXML
     private void OnActionbtnUsuarios(ActionEvent event) {
-        FlowController.getInstance().goView("MantUsuariosView");
+        FlowController.getInstance().goView("MantUsuTableView");
     }
 
     @FXML
