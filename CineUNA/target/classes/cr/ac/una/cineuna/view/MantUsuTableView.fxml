@@ -50,30 +50,22 @@
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-padding: 0 0 0 0;" styleClass="jfx-contenedor-principal" HBox.hgrow="ALWAYS">
                <children>
                   <Label fx:id="lblTitulo" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="2000.0" styleClass="jfx-titulo-label-fondo" text="Búsqueda" wrapText="true" VBox.vgrow="ALWAYS" />
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="347.0" prefWidth="685.0">
-                           <children>
-                              <HBox prefHeight="359.0" prefWidth="877.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <TableView fx:id="tbvResultados" onMousePressed="#OnMousePressedTbvResultados" prefHeight="312.0" prefWidth="685.0" HBox.hgrow="ALWAYS">
-                                       <columns>
-                                          <TableColumn fx:id="tbcAdmin" prefWidth="75.0" text="Admin" />
-                                          <TableColumn fx:id="tbcEstado" prefWidth="75.0" text="Estado" />
-                                          <TableColumn fx:id="tbcId" prefWidth="75.0" text="Id" />
-                                          <TableColumn fx:id="tbcNombre" prefWidth="75.0" text="Nombre" />
-                                          <TableColumn fx:id="tbcUsuario" prefWidth="75.0" text="Usuario" />
-                                          <TableColumn fx:id="tbcPApellido" prefWidth="75.0" text="PApellido" />
-                                          <TableColumn fx:id="tbcSApellido" prefWidth="70.0" text="SApellido" />
-                                          <TableColumn fx:id="tbcCorreo" text="Correo" />
-                                       </columns>
-                                    </TableView>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </ScrollPane>
+                  <HBox prefHeight="359.0" prefWidth="877.0">
+                     <children>
+                        <TableView fx:id="tbvResultados" onMousePressed="#OnMousePressedTbvResultados" prefHeight="312.0" prefWidth="685.0" HBox.hgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="tbcAdmin" prefWidth="75.0" text="Admin" />
+                              <TableColumn fx:id="tbcEstado" prefWidth="75.0" text="Estado" />
+                              <TableColumn fx:id="tbcId" prefWidth="75.0" text="Id" />
+                              <TableColumn fx:id="tbcNombre" prefWidth="75.0" text="Nombre" />
+                              <TableColumn fx:id="tbcUsuario" prefWidth="75.0" text="Usuario" />
+                              <TableColumn fx:id="tbcPApellido" prefWidth="75.0" text="PApellido" />
+                              <TableColumn fx:id="tbcSApellido" prefWidth="70.0" text="SApellido" />
+                              <TableColumn fx:id="tbcCorreo" text="Correo" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="200.0" style="-fx-padding: 0 0 0 0;" styleClass="jfx-contenedor-principal" VBox.vgrow="NEVER">
                      <children>
                         <JFXButton fx:id="btnAceptar" buttonType="RAISED" onAction="#onActionBtnAceptar" prefHeight="30.0" prefWidth="150.0" ripplerFill="WHITE" styleClass="jfx-menubutton2" text="Aceptar" />

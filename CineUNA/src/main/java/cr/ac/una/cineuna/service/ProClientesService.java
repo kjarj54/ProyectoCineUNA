@@ -75,8 +75,8 @@ public class ProClientesService {
         try {
             Map<String, Object>parametros = new HashMap<>();
             parametros.put("id", id);
-            parametros.put("nombre", nombre);
             parametros.put("usuario", usuario);
+            parametros.put("nombre", nombre);
             parametros.put("estado", estado);
             parametros.put("admin", admin);
             
