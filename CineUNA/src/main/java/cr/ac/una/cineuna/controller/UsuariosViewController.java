@@ -159,6 +159,7 @@ public class UsuariosViewController extends Controller implements Initializable 
         unbindClientes();
         proClientesDto = new ProClientesDto();
         bindClientes(true);
+        txtUsuario.requestFocus();
     }
 
     @FXML

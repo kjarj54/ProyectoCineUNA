@@ -94,7 +94,7 @@ public class ProClientes implements Serializable {
         this.cliId = cliId;
     }
 
-    public ProClientes(Long cliId, String cliUsuario, String cliClave, String cliNombre, String cliPapellido, String cliCorreo, String cliIdioma, String cliEstado, String cliAdmin) {
+    public ProClientes(Long cliId, String cliUsuario, String cliClave, String cliNombre, String cliPapellido, String cliCorreo, String cliIdioma, String cliEstado, String cliAdmin,String cliSapellido) {
         this.cliId = cliId;
         this.cliUsuario = cliUsuario;
         this.cliClave = cliClave;
@@ -104,6 +104,7 @@ public class ProClientes implements Serializable {
         this.cliIdioma = cliIdioma;
         this.cliEstado = cliEstado;
         this.cliAdmin = cliAdmin;
+        this.cliSapellido = cliSapellido;
     }
 
     public ProClientes(ProClientesDto proClientesDto) {
@@ -120,6 +121,7 @@ public class ProClientes implements Serializable {
         this.cliIdioma = proClientesDto.getCliIdioma();
         this.cliEstado = proClientesDto.getCliEstado();
         this.cliAdmin = proClientesDto.getCliAdmin();
+        this.cliSapellido = proClientesDto.getCliSApellido();
     }
 
     public Long getCliId() {
