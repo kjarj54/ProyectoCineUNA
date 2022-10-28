@@ -37,7 +37,7 @@ public class ComidasClienteViewController extends Controller implements Initiali
     @FXML
     private TableColumn<ProComidasDto, String> tbcPrecio;
     @FXML
-    private TableColumn<ProComidasDto, String> tbcAgregar;
+    private TableColumn<ProComidasDto, Boolean> tbcAgregar;
     @FXML
     private TableView<ProFacturasDto> tbvFactura;
     @FXML
@@ -45,7 +45,7 @@ public class ComidasClienteViewController extends Controller implements Initiali
     @FXML
     private TableColumn<ProFacturasDto, String> tbcPrecioFactura;
     @FXML
-    private TableColumn<ProFacturasDto, String> tbcQuitar;
+    private TableColumn<ProFacturasDto, Boolean> tbcQuitar;
     @FXML
     private Label txtTotal;
     @FXML
