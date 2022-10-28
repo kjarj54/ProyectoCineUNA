@@ -130,6 +130,16 @@ JFXButton{
     -fx-text-fill: #ffffff;
 }
 
+.jfx-radio-button1{
+    -fx-font-size: 14.0px;
+    -fx-pref-height: 26px;
+    -fx-min-height: 26px;
+    -fx-max-height: 26px;
+    -jfx-selected-color: -fx-base-color-focus;
+    -jfx-unselected-color: -fx-base-color-unfocus;
+    -fx-text-fill: #000000;
+}
+
 /************************************* BOTONES POR CLASES **************************************/
 
 .jfx-btn-registrar > ImageView,.jfx-btnimg-registrar > ImageView{

@@ -4,9 +4,15 @@
  */
 package cr.ac.una.cineuna.controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -14,6 +20,35 @@ import javafx.fxml.Initializable;
  * @author Emanuel
  */
 public class MantUsuariosViewController extends Controller implements Initializable {
+
+    @FXML
+    private AnchorPane root;
+    @FXML
+    private JFXTextField txtNombre;
+    @FXML
+    private JFXTextField txtUsuario;
+    @FXML
+    private JFXTextField txtClave;
+    @FXML
+    private JFXTextField txtPApellido;
+    @FXML
+    private JFXTextField txtCorreo;
+    @FXML
+    private JFXTextField txtSApellido;
+    @FXML
+    private RadioButton rdbEspañol;
+    @FXML
+    private ToggleGroup tggIdioma1;
+    @FXML
+    private RadioButton rdbEnglish;
+    @FXML
+    private ToggleGroup tggIdioma;
+    @FXML
+    private JFXButton btnCancelar;
+    @FXML
+    private JFXButton btnAtras;
+    @FXML
+    private JFXButton btnGuardar;
 
     /**
      * Initializes the controller class.
