@@ -118,6 +118,18 @@ public class MantUsuTableViewController extends Controller implements Initializa
         tbcSApellido.setCellValueFactory(clbck -> clbck.getValue().cliSApellido);
         
         tbcCorreo.setCellValueFactory(clbck-> clbck.getValue().cliCorreo);
+        
+        ProClientesService proClientesService = new ProClientesService();
+        
+        Respuesta respuesta = proClientesService.getClientesSinParametros();
+
+            if (respuesta.getEstado()) {
+                ObservableList<ProClientesDto> proClientesDtos = FXCollections.observableList((List<ProClientesDto>) respuesta.getResultado("ProClientes"));
+                tbvResultados.setItems(proClientesDtos);
+                tbvResultados.refresh();
+            } else {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Consulta usuarios", getStage(), respuesta.getMensaje());
+            }
 
         tbvResultados.refresh();
 

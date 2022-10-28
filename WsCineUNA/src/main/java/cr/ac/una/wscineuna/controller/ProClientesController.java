@@ -92,11 +92,28 @@ public class ProClientesController {
     }
 
     @GET
-    //@Secure
+    @Secure
     @Path("/getClientes/{id}/{usuario}/{nombre}/{estado}/{admin}")
     public Response getClientes(@PathParam("id") String id, @PathParam("usuario") String usuario, @PathParam("nombre") String nombre, @PathParam("estado") String estado, @PathParam("admin") String admin) {
         try {
             Respuesta res = proClientesService.getClientes(id, usuario, nombre, estado, admin);
+            if (!res.getEstado()) {
+                return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
+            }
+            return Response.ok(new GenericEntity<List<ProClientesDto>>((List<ProClientesDto>) res.getResultado("ProClientes")) {
+            }).build();
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesController.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error obteniendo Clientes").build();
+        }
+    }
+    
+    @GET
+    @Secure
+    @Path("/getClientes/")
+    public Response getClientesSinParametros() {
+        try {
+            Respuesta res = proClientesService.getClientesSinParametros();
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }

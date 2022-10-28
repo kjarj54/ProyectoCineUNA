@@ -130,6 +130,28 @@ public class ProClientesService {
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el cliente.", "getCliente " + ex.getMessage());
         }
     }
+    
+    public Respuesta getClientesSinParametros() {
+        try {
+            Query qryClientes = em.createNamedQuery("ProClientes.findAll", ProClientes.class);
+            List<ProClientes> clientes = qryClientes.getResultList();
+
+    
+            List<ProClientesDto> clientesDto = new ArrayList<>();
+            for (ProClientes cliente : clientes) {
+                clientesDto.add(new ProClientesDto(cliente));
+            }
+
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProClientes", clientesDto);
+
+        } catch (NoResultException ex) {
+            return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen clientes con los criterios ingresados.", "getClientes NoResultException");
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el cliente.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el cliente.", "getCliente " + ex.getMessage());
+        }
+    }
+    
 
     public Respuesta eliminarCliente(Long id) {
         try {

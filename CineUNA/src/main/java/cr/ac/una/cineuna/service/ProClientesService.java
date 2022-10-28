@@ -96,6 +96,26 @@ public class ProClientesService {
         }
     }
     
+    
+    public Respuesta getClientesSinParametros() {
+        try {
+            
+            Request request = new Request("ProClientesController/getClientes");
+            request.get();
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+
+            List<ProClientesDto> proClientesDto = (List<ProClientesDto>) request.readEntity(new GenericType<List<ProClientesDto>>() {
+            });
+            return new Respuesta(true, "", "", "ProClientes", proClientesDto);
+
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Error consultando el cliente.", ex);
+            return new Respuesta(false, "Error consultando el cliente.", "getClientes " + ex.getMessage());
+        }
+    }
+    
 
     public Respuesta renovarToken() {
         try {
