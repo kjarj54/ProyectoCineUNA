@@ -29,6 +29,12 @@
     -fx-background-color: rgba(0, 0, 0, 0.3);
 }
 
+#brdrPane{
+    -fx-background-image: url("../resources/fondito.jpg");
+    -fx-background-position:100% 100%;  
+    -fx-background-size:cover;
+}
+
 /******************************* ESTILOS DE TEXTO POR CLASE ******************************************/
 
 .jfx-text-field .input-line{-fx-pref-height: 0px;}
@@ -37,7 +43,7 @@
 .jfx-password-field .input-focused-line{-fx-pref-height: 0px;}
 
 .jfx-text-field, .jfx-password-field{
-    -fx-max-width:300;
+    -fx-max-width:400;
     -fx-background-color: #444444;
     -fx-text-fill: white; 
     -fx-prompt-text-fill: white;
@@ -55,16 +61,46 @@
     -fx-font-size: 38px; 
 }
 
+.h1-contraste{
+    -fx-font-family: 'Roboto', sans-serif;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 36px; 
+    -fx-background-color: 
+        linear-gradient(#203354, #1c2e4a);
+    -fx-background-radius: 20 20 20 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
+}
+
 .h2{
     -fx-font-family: 'Roboto', sans-serif;
     -fx-text-fill: #ffffff;
     -fx-font-size: 24px; 
 }
 
+.h2-contraste{
+    -fx-font-family: 'Roboto', sans-serif;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 24px; 
+    -fx-background-color: 
+        linear-gradient(#203354, #1c2e4a);
+    -fx-background-radius: 20 20 20 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
+}
+
 .h3{
     -fx-font-family: 'Roboto', sans-serif;
     -fx-text-fill: #ffffff;
     -fx-font-size: 18px; 
+}
+
+.h3-contraste{
+    -fx-font-family: 'Roboto', sans-serif;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 18px; 
+    -fx-background-color: 
+        linear-gradient(#203354, #1c2e4a);
+    -fx-background-radius: 20 20 20 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
 }
 
 /******************************* ESTILOS DE TEXTO POR ID ******************************************/
@@ -130,15 +166,6 @@ JFXButton{
     -fx-text-fill: #ffffff;
 }
 
-.jfx-radio-button1{
-    -fx-font-size: 14.0px;
-    -fx-pref-height: 26px;
-    -fx-min-height: 26px;
-    -fx-max-height: 26px;
-    -jfx-selected-color: -fx-base-color-focus;
-    -jfx-unselected-color: -fx-base-color-unfocus;
-    -fx-text-fill: #000000;
-}
 
 /************************************* BOTONES POR CLASES **************************************/
 
