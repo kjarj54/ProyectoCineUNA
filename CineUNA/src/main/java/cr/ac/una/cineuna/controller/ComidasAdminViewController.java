@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import cr.ac.una.cineuna.model.ProComidasDto;
 import cr.ac.una.cineuna.service.ProComidasService;
+import cr.ac.una.cineuna.util.FlowController;
 import cr.ac.una.cineuna.util.Formato;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
@@ -23,6 +24,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -97,9 +99,9 @@ public class ComidasAdminViewController extends Controller implements Initializa
         } else {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Consulta usuarios", getStage(), respuesta.getMensaje());
         }
-        
+
         tbvComidas.refresh();
-        
+
         tbcEliminar.setCellValueFactory((TableColumn.CellDataFeatures<ProComidasDto, Boolean> p) -> new SimpleBooleanProperty(p.getValue() != null));
 
         //Adding the Button to the cell
@@ -193,9 +195,24 @@ public class ComidasAdminViewController extends Controller implements Initializa
                     unbindComidas();
                     proComidasDto = (ProComidasDto) respuesta.getResultado("Comida");
                     bindComidas();
+
                     tbvComidas.refresh();
                     new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar comida", getStage(), "Comida actualizado correctamente.");
                 }
+                
+                ProComidasService proComidasService = new ProComidasService();
+                Respuesta respuesta2 = proComidasService.getComidas();
+
+                if (respuesta2.getEstado()) {
+                    ObservableList<ProComidasDto> comidasDtos = FXCollections.observableList((List<ProComidasDto>) respuesta2.getResultado("ProComidas"));
+                    tbvComidas.setItems(comidasDtos);
+                    tbvComidas.refresh();
+                } else {
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Consulta usuarios", getStage(), respuesta2.getMensaje());
+                }
+
+                tbvComidas.refresh();
+
             }
 
         } catch (Exception ex) {
@@ -207,6 +224,7 @@ public class ComidasAdminViewController extends Controller implements Initializa
 
     @FXML
     private void onActionBtnAtras(ActionEvent event) {
+
     }
 
     private class ButtonCell extends TableCell<ProComidasDto, Boolean> {
