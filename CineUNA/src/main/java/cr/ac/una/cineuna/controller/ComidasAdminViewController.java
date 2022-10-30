@@ -11,15 +11,23 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import cr.ac.una.cineuna.model.ProComidasDto;
+import cr.ac.una.cineuna.service.ProComidasService;
 import cr.ac.una.cineuna.util.Formato;
+import cr.ac.una.cineuna.util.Mensaje;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -136,6 +144,39 @@ public class ComidasAdminViewController extends Controller implements Initializa
     @Override
     public void initialize() {
 
+    }
+
+    private class ButtonCell extends TableCell<ProComidasDto, Boolean> {
+
+        final Button cellButton = new Button();
+
+        ButtonCell() {
+            cellButton.setPrefWidth(500);
+            cellButton.getStyleClass().add("jfx-btnimg-tbveliminar");
+
+            cellButton.setOnAction((ActionEvent t) -> {
+                try {
+                    ProComidasDto emp = (ProComidasDto) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
+                    ProComidasService proComidasService = new ProComidasService();
+                    
+
+                    tbvComidas.getItems().remove(emp);
+                    tbvComidas.refresh();
+                    
+                } catch (Exception ex) {
+                    Logger.getLogger(ComidasAdminViewController.class.getName()).log(Level.SEVERE, "Error eliminando la comida.", ex);
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar comida", getStage(), "Ocurrio un error eliminando la comida.");
+                }
+            });
+        }
+
+        @Override
+        protected void updateItem(Boolean t, boolean empty) {
+            super.updateItem(t, empty);
+            if (!empty) {
+                setGraphic(cellButton);
+            }
+        }
     }
 
 }
