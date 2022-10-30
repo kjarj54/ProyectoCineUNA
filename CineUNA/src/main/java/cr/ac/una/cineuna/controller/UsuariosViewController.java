@@ -27,6 +27,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 
 /**
  * FXML Controller class
@@ -87,6 +96,51 @@ public class UsuariosViewController extends Controller implements Initializable 
     @Override
     public void initialize() {
 
+    }
+    
+    public void enviarCorreo(){
+        //provide recipient's email ID
+      String to = "diegocj92@gmail.com";
+      //provide sender's email ID
+      String from = "cineuna.smtp@gmail.com";
+      //provide Mailtrap's username
+      final String username = "cineuna.smtp@gmail.com";
+      //provide Mailtrap's password
+      final String password = "smtp.Cineuna";
+      //provide Mailtrap's host address
+      String host = "smtp.gmail.com";
+      //configure Mailtrap's SMTP server details
+      Properties props = new Properties();
+      props.put("mail.smtp.auth", "true");
+      props.put("mail.smtp.starttls.enable", "true");
+      props.put("mail.smtp.host", host);
+      props.put("mail.smtp.port", "587");
+      //create the Session object
+      Session session = Session.getInstance(props,
+         new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+               return new PasswordAuthentication(username, password);
+    }
+         });
+      
+        try {
+    //create a MimeMessage object
+    Message message = new MimeMessage(session);
+    //set From email field
+    message.setFrom(new InternetAddress(from));
+    //set To email field
+    message.setRecipients(Message.RecipientType.TO,
+               InternetAddress.parse(to));
+    //set email subject field
+    message.setSubject("Here comes Jakarta Mail!");
+    //set the content of the email message
+    message.setText("Just discovered that Jakarta Mail is fun and easy to use");
+    //send the email message
+    Transport.send(message);
+    System.out.println("Email Message Sent Successfully");
+      } catch (MessagingException e) {
+         throw new RuntimeException(e);
+      }
     }
 
     public void indicarRequeridos() {
@@ -169,7 +223,6 @@ public class UsuariosViewController extends Controller implements Initializable 
             if (!invalidos.isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar usuario", getStage(), invalidos);
             } else {
-
                 ProClientesService service = new ProClientesService();
                 Respuesta respuesta = service.guardarCliente(proClientesDto);
                 if (!respuesta.getEstado()) {
@@ -180,11 +233,14 @@ public class UsuariosViewController extends Controller implements Initializable 
                     bindClientes(false);
                     new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar usuario", getStage(), "Usuario actualizado correctamente.");
                 }
+                //enviarCorreo();
             }
+
         } catch (Exception ex) {
             Logger.getLogger(UsuariosViewController.class.getName()).log(Level.SEVERE, "Error guardando el usuario.", ex);
             new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar usuario", getStage(), "Ocurrio un error guardando el usuario.");
         }
+        
     }
 
     @FXML
@@ -199,4 +255,3 @@ public class UsuariosViewController extends Controller implements Initializable 
         getStage().close();
     }
 }
-

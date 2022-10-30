@@ -51,17 +51,17 @@ public class LoginViewController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
     }
 
     @Override
     public void initialize() {
-
+        
     }
 
     @FXML
     private void onActionBtnAuto(ActionEvent event) {
-
+      
     }
 
     @FXML
