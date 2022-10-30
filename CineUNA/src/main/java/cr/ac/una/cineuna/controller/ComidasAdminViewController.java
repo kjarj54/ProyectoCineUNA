@@ -14,6 +14,7 @@ import cr.ac.una.cineuna.model.ProComidasDto;
 import cr.ac.una.cineuna.service.ProComidasService;
 import cr.ac.una.cineuna.util.Formato;
 import cr.ac.una.cineuna.util.Mensaje;
+import cr.ac.una.cineuna.util.Respuesta;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +22,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -73,6 +77,33 @@ public class ComidasAdminViewController extends Controller implements Initializa
         txtNombre.setTextFormatter(Formato.getInstance().maxLengthFormat(30));
         txtPrecio.setTextFormatter(Formato.getInstance().integerFormat());
 
+        proComidasDto = new ProComidasDto();
+        nuevaComida();
+
+        tbcNombre.setCellValueFactory(clbck -> clbck.getValue().comNombre);
+
+        tbcDescripcion.setCellValueFactory(clbck -> clbck.getValue().comDescripcion);
+
+        tbcPrecio.setCellValueFactory(clbck -> clbck.getValue().comPrecio);
+
+        ProComidasService proComidasService = new ProComidasService();
+
+        Respuesta respuesta = proComidasService.getComidas();
+
+        if (respuesta.getEstado()) {
+            ObservableList<ProComidasDto> comidasDtos = FXCollections.observableList((List<ProComidasDto>) respuesta.getResultado("ProComidas"));
+            tbvComidas.setItems(comidasDtos);
+            tbvComidas.refresh();
+        } else {
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Consulta usuarios", getStage(), respuesta.getMensaje());
+        }
+        
+        tbvComidas.refresh();
+        
+        tbcEliminar.setCellValueFactory((TableColumn.CellDataFeatures<ProComidasDto, Boolean> p) -> new SimpleBooleanProperty(p.getValue() != null));
+
+        //Adding the Button to the cell
+        tbcEliminar.setCellFactory((TableColumn<ProComidasDto, Boolean> p) -> new ButtonCell());
     }
 
     public void indicarRequeridos() {
@@ -146,6 +177,38 @@ public class ComidasAdminViewController extends Controller implements Initializa
 
     }
 
+    @FXML
+    private void onActionBtinAceptar(ActionEvent event) {
+        try {
+            String invalidos = validarRequeridos();
+            if (!invalidos.isEmpty()) {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar comida", getStage(), invalidos);
+            } else {
+
+                ProComidasService service = new ProComidasService();
+                Respuesta respuesta = service.guardarComida(proComidasDto);
+                if (!respuesta.getEstado()) {
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar comida", getStage(), respuesta.getMensaje());
+                } else {
+                    unbindComidas();
+                    proComidasDto = (ProComidasDto) respuesta.getResultado("Comida");
+                    bindComidas();
+                    tbvComidas.refresh();
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar comida", getStage(), "Comida actualizado correctamente.");
+                }
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(ComidasAdminViewController.class.getName()).log(Level.SEVERE, "Error guardadno la comida.", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar comida", getStage(), "Ocurrio un error guardado la comida.");
+        }
+
+    }
+
+    @FXML
+    private void onActionBtnAtras(ActionEvent event) {
+    }
+
     private class ButtonCell extends TableCell<ProComidasDto, Boolean> {
 
         final Button cellButton = new Button();
@@ -156,13 +219,18 @@ public class ComidasAdminViewController extends Controller implements Initializa
 
             cellButton.setOnAction((ActionEvent t) -> {
                 try {
-                    ProComidasDto emp = (ProComidasDto) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
+                    ProComidasDto com = (ProComidasDto) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
                     ProComidasService proComidasService = new ProComidasService();
-                    
+                    Respuesta respuesta = proComidasService.eliminarComida(com.getComId());
+                    if (!respuesta.getEstado()) {
+                        new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar comida", getStage(), respuesta.getMensaje());
+                    } else {
+                        new Mensaje().showModal(Alert.AlertType.INFORMATION, "Eliminar comida", getStage(), "Comida eliminada correctamente.");
+                    }
 
-                    tbvComidas.getItems().remove(emp);
+                    tbvComidas.getItems().remove(com);
                     tbvComidas.refresh();
-                    
+
                 } catch (Exception ex) {
                     Logger.getLogger(ComidasAdminViewController.class.getName()).log(Level.SEVERE, "Error eliminando la comida.", ex);
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar comida", getStage(), "Ocurrio un error eliminando la comida.");

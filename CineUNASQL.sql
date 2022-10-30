@@ -509,7 +509,7 @@ END;
 CREATE OR REPLACE TRIGGER PRO_COMIDAS_TGR01 BEFORE INSERT
 ON PRO_COMIDAS FOR EACH ROW
 BEGIN
-  :if:new.com_id is null or :new.com_id <=0 then 
+  if:new.com_id is null or :new.com_id <=0 then 
 	:new.com_id := PRO_COMIDAS_SEQ01.nextval;
   end if;
 END;
@@ -525,7 +525,7 @@ END;
 CREATE OR REPLACE TRIGGER PRO_FACTURAS_TGR01 BEFORE INSERT
 ON PRO_FACTURAS FOR EACH ROW
 BEGIN
-  :if:new.fac_id is null or :new.fac_id <= 0 then 
+  if:new.fac_id is null or :new.fac_id <= 0 then 
   :new.fac_id := PRO_FACTURAS_SEQ01.nextval;
   end if;
 END;
