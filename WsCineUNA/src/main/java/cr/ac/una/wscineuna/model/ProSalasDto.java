@@ -6,6 +6,8 @@ package cr.ac.una.wscineuna.model;
 
 import java.security.Timestamp;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,9 +20,13 @@ public class ProSalasDto {
     private String salEstado;
     private Byte[] salImgFondo;
     private Boolean modificado;
+    List<ProPeliculasDto> peliculas;
+    List<ProPeliculasDto> peliculasEliminados;
 
     public ProSalasDto() {
         this.modificado = false;
+        peliculas = new ArrayList<>();
+        peliculasEliminados = new ArrayList<>();
     }
 
     public ProSalasDto(ProSalas proSalas) {
@@ -69,5 +75,23 @@ public class ProSalasDto {
     public void setModificado(Boolean modificado) {
         this.modificado = modificado;
     }
+
+    public List<ProPeliculasDto> getPeliculas() {
+        return peliculas;
+    }
+
+    public void setPeliculas(List<ProPeliculasDto> peliculas) {
+        this.peliculas = peliculas;
+    }
+
+    public List<ProPeliculasDto> getPeliculasEliminados() {
+        return peliculasEliminados;
+    }
+
+    public void setPeliculasEliminados(List<ProPeliculasDto> peliculasEliminados) {
+        this.peliculasEliminados = peliculasEliminados;
+    }
+    
+    
 
 }

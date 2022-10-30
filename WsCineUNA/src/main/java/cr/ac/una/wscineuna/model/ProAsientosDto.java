@@ -15,6 +15,7 @@ public class ProAsientosDto {
     private String asiNombre;
     private Long asiCantidad;
     private Boolean asiModificado;
+    private ProSalas salId;
 
     public ProAsientosDto() {
         this.asiModificado = false;
@@ -27,6 +28,7 @@ public class ProAsientosDto {
         this.asiImg = (Byte[]) proAsientos.getAsiImg();
         this.asiNombre = proAsientos.getAsiNombre();
         this.asiCantidad = proAsientos.getAsiCantidad();
+        this.salId = proAsientos.getSalId();
     }
     
     public Long getAsiId() {

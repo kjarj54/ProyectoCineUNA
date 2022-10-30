@@ -6,7 +6,9 @@ package cr.ac.una.wscineuna.model;
 
 import java.security.Timestamp;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -21,9 +23,13 @@ public class ProTandasDto {
     private LocalDate tanFecha;
     private Long tanPrecio;
     private Boolean modificado;
+    List<ProAsientosDto> asientos;
+    List<ProAsientosDto> asientosEliminados;
 
     public ProTandasDto() {
         this.modificado = false;
+        asientos = new ArrayList<>();
+        asientosEliminados = new ArrayList<>();
     }
 
     public ProTandasDto(ProTandas proTandas) {
@@ -93,5 +99,23 @@ public class ProTandasDto {
     public void setModificado(Boolean modificado) {
         this.modificado = modificado;
     }
+
+    public List<ProAsientosDto> getAsientos() {
+        return asientos;
+    }
+
+    public void setAsientos(List<ProAsientosDto> asientos) {
+        this.asientos = asientos;
+    }
+
+    public List<ProAsientosDto> getAsientosEliminados() {
+        return asientosEliminados;
+    }
+
+    public void setAsientosEliminados(List<ProAsientosDto> asientosEliminados) {
+        this.asientosEliminados = asientosEliminados;
+    }
+    
+    
 
 }
