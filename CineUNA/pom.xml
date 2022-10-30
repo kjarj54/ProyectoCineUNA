@@ -48,13 +48,13 @@
             <artifactId>javafx-web</artifactId>
             <version>11.0.2</version>
         </dependency>
-        <dependencies>
+       
             <dependency>
                 <groupId>com.sun.mail</groupId>
                 <artifactId>jakarta.mail</artifactId>
                 <version>1.6.4</version>
             </dependency>
-        </dependencies>
+  
         <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc8</artifactId>
