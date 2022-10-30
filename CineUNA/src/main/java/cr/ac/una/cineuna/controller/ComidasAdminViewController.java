@@ -5,12 +5,21 @@
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import cr.ac.una.cineuna.model.ProComidasDto;
+import cr.ac.una.cineuna.util.Formato;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -30,17 +39,20 @@ public class ComidasAdminViewController extends Controller implements Initializa
     @FXML
     private JFXButton btnAgregar;
     @FXML
-    private TableView<?> tbvComidas;
+    private TableView<ProComidasDto> tbvComidas;
     @FXML
-    private TableColumn<?, ?> tbcNombre;
+    private TableColumn<ProComidasDto, String> tbcNombre;
     @FXML
-    private TableColumn<?, ?> tbcDescripcion;
+    private TableColumn<ProComidasDto, String> tbcDescripcion;
     @FXML
-    private TableColumn<?, ?> tbcPrecio;
+    private TableColumn<ProComidasDto, String> tbcPrecio;
     @FXML
-    private TableColumn<?, ?> tbcEliminar;
+    private TableColumn<ProComidasDto, Boolean> tbcEliminar;
     @FXML
     private JFXButton btnAtras;
+
+    List<Node> requeridos = new ArrayList<>();
+    ProComidasDto proComidasDto;
 
     /**
      * Initializes the controller class.
@@ -48,11 +60,82 @@ public class ComidasAdminViewController extends Controller implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+
+        txtDescripcion.setTextFormatter(Formato.getInstance().maxLengthFormat(30));
+        txtNombre.setTextFormatter(Formato.getInstance().maxLengthFormat(30));
+        txtPrecio.setTextFormatter(Formato.getInstance().integerFormat());
+
+    }
+
+    public void indicarRequeridos() {
+        requeridos.clear();
+        requeridos.addAll(Arrays.asList(txtNombre, txtPrecio));
+    }
+
+    public String validarRequeridos() {
+        Boolean validos = true;
+        String invalidos = "";
+        for (Node node : requeridos) {
+            if (node instanceof JFXTextField && !((JFXTextField) node).validate()) {
+                if (validos) {
+                    invalidos += ((JFXTextField) node).getPromptText();
+                } else {
+                    invalidos += "," + ((JFXTextField) node).getPromptText();
+                }
+                validos = false;
+            } else if (node instanceof JFXPasswordField && !((JFXPasswordField) node).validate()) {
+                if (validos) {
+                    invalidos += ((JFXPasswordField) node).getPromptText();
+                } else {
+                    invalidos += "," + ((JFXPasswordField) node).getPromptText();
+                }
+                validos = false;
+            } else if (node instanceof JFXDatePicker && ((JFXDatePicker) node).getValue() == null) {
+                if (validos) {
+                    invalidos += ((JFXDatePicker) node).getAccessibleText();
+                } else {
+                    invalidos += "," + ((JFXDatePicker) node).getAccessibleText();
+                }
+                validos = false;
+            } else if (node instanceof JFXComboBox && ((JFXComboBox) node).getSelectionModel().getSelectedIndex() < 0) {
+                if (validos) {
+                    invalidos += ((JFXComboBox) node).getPromptText();
+                } else {
+                    invalidos += "," + ((JFXComboBox) node).getPromptText();
+                }
+                validos = false;
+            }
+        }
+        if (validos) {
+            return "";
+        } else {
+            return "Campos requeridos o con problemas de formato [" + invalidos + "].";
+        }
+    }
+
+    public void bindComidas() {
+        txtDescripcion.textProperty().bindBidirectional(proComidasDto.comDescripcion);
+        txtNombre.textProperty().bindBidirectional(proComidasDto.comNombre);
+        txtPrecio.textProperty().bindBidirectional(proComidasDto.comPrecio);
+    }
+
+    public void unbindComidas() {
+        txtDescripcion.textProperty().unbindBidirectional(proComidasDto.comDescripcion);
+        txtNombre.textProperty().unbindBidirectional(proComidasDto.comNombre);
+        txtPrecio.textProperty().unbindBidirectional(proComidasDto.comPrecio);
+    }
+
+    public void nuevaComida() {
+        unbindComidas();
+        proComidasDto = new ProComidasDto();
+        bindComidas();
+        txtNombre.requestFocus();
+
+    }
 
     @Override
     public void initialize() {
-        
+
     }
-    
+
 }

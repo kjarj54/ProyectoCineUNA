@@ -12,10 +12,10 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class ProComidasDto {
 
-    private SimpleStringProperty comId;
-    private SimpleStringProperty comNombre;
-    private SimpleStringProperty comPrecio;
-    private SimpleStringProperty comDescripcion;
+    public SimpleStringProperty comId;
+    public SimpleStringProperty comNombre;
+    public SimpleStringProperty comPrecio;
+    public SimpleStringProperty comDescripcion;
     private Boolean modificado;
 
     public ProComidasDto() {
