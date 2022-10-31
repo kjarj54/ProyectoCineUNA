@@ -51,8 +51,6 @@ public class MantUsuTableViewController extends Controller implements Initializa
     @FXML
     private AnchorPane root;
     @FXML
-    private VBox vbxParametros;
-    @FXML
     private JFXTextField txtId;
     @FXML
     private JFXTextField txtNombre;

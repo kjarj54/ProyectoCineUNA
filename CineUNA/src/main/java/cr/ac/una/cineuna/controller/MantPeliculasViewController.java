@@ -1,12 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package cr.ac.una.cineuna.controller;
 
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 /**
  * FXML Controller class
@@ -14,6 +16,13 @@ import javafx.fxml.Initializable;
  * @author Emanuel
  */
 public class MantPeliculasViewController extends Controller implements Initializable {
+
+    @FXML
+    private Label labelTitulo;
+    @FXML
+    private JFXButton btnCargarImagen;
+    @FXML
+    private TextArea txtAreaSinopsis;
 
     /**
      * Initializes the controller class.
@@ -26,6 +35,10 @@ public class MantPeliculasViewController extends Controller implements Initializ
     @Override
     public void initialize() {
         
+    }
+
+    @FXML
+    private void onActionCargarImagen(ActionEvent event) {
     }
     
 }

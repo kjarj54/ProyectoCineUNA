@@ -43,7 +43,9 @@
 .jfx-password-field .input-focused-line{-fx-pref-height: 0px;}
 
 .jfx-text-field, .jfx-password-field{
-    -fx-max-width:400;
+    -fx-min-width:200;
+    -fx-pref-width:300;
+    -fx-max-width:350;
     -fx-background-color: #444444;
     -fx-text-fill: white; 
     -fx-prompt-text-fill: white;
