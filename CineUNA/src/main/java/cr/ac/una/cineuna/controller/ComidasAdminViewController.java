@@ -88,17 +88,7 @@ public class ComidasAdminViewController extends Controller implements Initializa
 
         tbcPrecio.setCellValueFactory(clbck -> clbck.getValue().comPrecio);
 
-        ProComidasService proComidasService = new ProComidasService();
-
-        Respuesta respuesta = proComidasService.getComidas();
-
-        if (respuesta.getEstado()) {
-            ObservableList<ProComidasDto> comidasDtos = FXCollections.observableList((List<ProComidasDto>) respuesta.getResultado("ProComidas"));
-            tbvComidas.setItems(comidasDtos);
-            tbvComidas.refresh();
-        } else {
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Consulta usuarios", getStage(), respuesta.getMensaje());
-        }
+        actualizarTbv();
 
         tbvComidas.refresh();
 
@@ -173,6 +163,20 @@ public class ComidasAdminViewController extends Controller implements Initializa
         txtNombre.requestFocus();
 
     }
+    
+    public void actualizarTbv(){
+        ProComidasService proComidasService = new ProComidasService();
+
+        Respuesta respuesta = proComidasService.getComidas();
+
+        if (respuesta.getEstado()) {
+            ObservableList<ProComidasDto> comidasDtos = FXCollections.observableList((List<ProComidasDto>) respuesta.getResultado("ProComidas"));
+            tbvComidas.setItems(comidasDtos);
+            tbvComidas.refresh();
+        } else {
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Consulta usuarios", getStage(), respuesta.getMensaje());
+        }
+    }
 
     @Override
     public void initialize() {
@@ -200,16 +204,7 @@ public class ComidasAdminViewController extends Controller implements Initializa
                     new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar comida", getStage(), "Comida actualizado correctamente.");
                 }
                 
-                ProComidasService proComidasService = new ProComidasService();
-                Respuesta respuesta2 = proComidasService.getComidas();
-
-                if (respuesta2.getEstado()) {
-                    ObservableList<ProComidasDto> comidasDtos = FXCollections.observableList((List<ProComidasDto>) respuesta2.getResultado("ProComidas"));
-                    tbvComidas.setItems(comidasDtos);
-                    tbvComidas.refresh();
-                } else {
-                    new Mensaje().showModal(Alert.AlertType.ERROR, "Consulta usuarios", getStage(), respuesta2.getMensaje());
-                }
+                actualizarTbv();
 
                 tbvComidas.refresh();
 
@@ -245,7 +240,7 @@ public class ComidasAdminViewController extends Controller implements Initializa
                     } else {
                         new Mensaje().showModal(Alert.AlertType.INFORMATION, "Eliminar comida", getStage(), "Comida eliminada correctamente.");
                     }
-
+                    nuevaComida();
                     tbvComidas.getItems().remove(com);
                     tbvComidas.refresh();
 
