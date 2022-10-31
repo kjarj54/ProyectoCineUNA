@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -136,7 +137,7 @@ public class FlowController {
                 break;
         }
     }
-
+    
     public void goViewInStage(String viewName, Stage stage) {
         FXMLLoader loader = getLoader(viewName);
         Controller controller = loader.getController();

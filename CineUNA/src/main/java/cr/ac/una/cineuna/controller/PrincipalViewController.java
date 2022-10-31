@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
@@ -12,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -30,9 +28,9 @@ public class PrincipalViewController extends Controller implements Initializable
     @FXML
     private JFXButton btnCerrar;
     @FXML
-    private BorderPane Fondo;
-    @FXML
     private JFXButton btnComidas;
+    @FXML
+    private BorderPane brdrPane;
 
     /**
      * Initializes the controller class.

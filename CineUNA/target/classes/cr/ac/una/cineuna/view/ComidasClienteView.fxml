@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="512.0" prefWidth="797.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="cr.ac.una.cineuna.controller.ComidasClienteViewController">
+<AnchorPane id="AnchorPane" prefHeight="512.0" prefWidth="797.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="cr.ac.una.cineuna.controller.ComidasClienteViewController">
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>
