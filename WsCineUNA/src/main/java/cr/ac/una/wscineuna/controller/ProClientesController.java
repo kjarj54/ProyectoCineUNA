@@ -54,6 +54,21 @@ public class ProClientesController {
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error guardando el cliente").build();
         }
     }
+    
+    @POST
+    @Path("/activarCuenta")
+    public Response activarCuenta(ProClientesDto proClientesDto) {
+        try {
+            Respuesta res = proClientesService.guardarCliente(proClientesDto);
+            if (!res.getEstado()) {
+                return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
+            }
+            return Response.ok((ProClientesDto) res.getResultado("Cliente")).build();
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesController.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error guardando el cliente").build();
+        }
+    }
 
     @GET
     @Path("/usuario/{usuario}/{clave}")
