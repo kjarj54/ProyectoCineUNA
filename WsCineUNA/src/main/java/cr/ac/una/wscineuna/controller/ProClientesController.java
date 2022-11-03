@@ -15,6 +15,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
@@ -56,10 +57,10 @@ public class ProClientesController {
     }
     
     @POST
-    @Path("/activarCuenta")
-    public Response activarCuenta(ProClientesDto proClientesDto) {
+    @Path("/activarCuenta/{id}")
+    public Response activarCuenta(@QueryParam("id") Long id) {
         try {
-            Respuesta res = proClientesService.guardarCliente(proClientesDto);
+            Respuesta res = proClientesService.activacionCuenta(id);
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }

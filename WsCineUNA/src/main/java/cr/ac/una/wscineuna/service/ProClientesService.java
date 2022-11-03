@@ -94,13 +94,16 @@ public class ProClientesService {
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al guardar el cliente.", "guardarCliente " + ex.getMessage());
         }
     }
-    
-    public Respuesta activacionCuenta(ProClientesDto proClientesDto) {
+
+    public Respuesta activacionCuenta(Long id) {
         try {
+            Query qryActividad = em.createNamedQuery("ProClientes.findByCliId", ProClientes.class);
+            qryActividad.setParameter("cliId", id);
+            ProClientesDto proClientesDto = new ProClientesDto((ProClientes) qryActividad.getSingleResult());
+            proClientesDto.setCliEstado("A");
             ProClientes proClientes;
             if (proClientesDto.getCliId() != null && proClientesDto.getCliId() > 0) {
                 proClientes = em.find(ProClientes.class, proClientesDto.getCliId());
-                proClientes.setCliEstado("A");
                 if (proClientes == null) {
                     return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encrontró el cliente a modificar.", "guardarCliente NoResultException");
                 }
@@ -153,13 +156,12 @@ public class ProClientesService {
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el cliente.", "getCliente " + ex.getMessage());
         }
     }
-    
+
     public Respuesta getClientesSinParametros() {
         try {
             Query qryClientes = em.createNamedQuery("ProClientes.findAll", ProClientes.class);
             List<ProClientes> clientes = qryClientes.getResultList();
 
-    
             List<ProClientesDto> clientesDto = new ArrayList<>();
             for (ProClientes cliente : clientes) {
                 clientesDto.add(new ProClientesDto(cliente));
@@ -174,7 +176,6 @@ public class ProClientesService {
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el cliente.", "getCliente " + ex.getMessage());
         }
     }
-    
 
     public Respuesta eliminarCliente(Long id) {
         try {
