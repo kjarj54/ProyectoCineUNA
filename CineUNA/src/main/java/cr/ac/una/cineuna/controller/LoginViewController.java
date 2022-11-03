@@ -93,23 +93,29 @@ public class LoginViewController extends Controller implements Initializable {
                             if ("I".equals(proClientesDto.getCliIdioma())) {
                                 cambioIdiomaIngles();
                                 FlowController.getInstance().goMain();
+                                getStage().close();
                             } else {
                                 cambioIdiomaEspanol();
                                 FlowController.getInstance().goMain();
+                                getStage().close();
                             }
                         } else if ("N".equals(proClientesDto.getCliAdmin()) && "A".equals(proClientesDto.getCliEstado())) {
                             if ("I".equals(proClientesDto.getCliIdioma())) {
                                 cambioIdiomaIngles();
                                 FlowController.getInstance().goMainCliente();
+                                getStage().close();
                             } else {
                                 cambioIdiomaEspanol();
                                 FlowController.getInstance().goMainCliente();
+                                getStage().close();
                             }
 
+                        } else {
+                            new Mensaje().showModal(Alert.AlertType.ERROR, "Validación de usuario", (Stage) btnIngresar.getScene().getWindow(), "Es necesario que su cuenta este activada.");
                         }
 
                     }
-                    getStage().close();
+                    
 
                 } else {
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Ingreso", getStage(), respuesta.getMensaje());
