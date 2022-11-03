@@ -27,7 +27,7 @@
                   <JFXTextField fx:id="txtUsuarios" focusColor="WHITE" labelFloat="true" promptText="%usuario" />
                   <JFXPasswordField fx:id="txtClave" focusColor="WHITE" labelFloat="true" promptText="%clave" />
                   <Hyperlink fx:id="linkRecuperarClave" alignment="CENTER" onAction="#onActionLinkRecuperarClave" styleClass="h3" text="%recuperar" textAlignment="CENTER" underline="true" wrapText="true" />
-                  <JFXButton fx:id="btnAuto" buttonType="RAISED" onAction="#onActionBtnAuto" styleClass="jfx-btnimg-auto" text="Autoregistrarse">
+                  <JFXButton fx:id="btnAuto" buttonType="RAISED" onAction="#onActionBtnAuto" styleClass="jfx-btnimg-auto" text="%autoreg">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="jfx-btn-auto" />
                      </graphic>
