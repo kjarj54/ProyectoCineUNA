@@ -113,17 +113,24 @@ public class LoginViewController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnIdioma(ActionEvent event) {
-        
+
         Locale local = new Locale("es_ES");
         ResourceBundle bundle = ResourceBundle.getBundle("cr/ac/una/cineuna/resources/i18n/Bundle", local);
-        
+
         Locale local2 = new Locale("en_EN");
-        ResourceBundle bundle2 = ResourceBundle.getBundle("cr/ac/una/cineuna/resources/i18n/Bundle", local);
+        ResourceBundle bundle2 =  ResourceBundle.getBundle("cr/ac/una/cineuna/resources/i18n/Bundle", local2);
 
         if (FlowController.getInstance().getIdioma() == bundle) {
+            FlowController.getInstance().initialize();
             FlowController.setIdioma(bundle2);
             FlowController.getInstance().limpiarLoader("LoginView");
+
+            getStage().close();
+            FlowController.getInstance().goViewInWindow("LoginView");
+        }else{
             FlowController.getInstance().initialize();
+            FlowController.setIdioma(bundle);
+            FlowController.getInstance().limpiarLoader("LoginView");
             getStage().close();
             FlowController.getInstance().goViewInWindow("LoginView");
         }
