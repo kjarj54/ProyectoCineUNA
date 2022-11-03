@@ -45,7 +45,10 @@ public class LoginViewController extends Controller implements Initializable {
     @FXML
     private VBox VBoxContainer;
 
+    @FXML
     private Hyperlink linkRecuperarClave;
+    @FXML
+    private JFXButton btnIdioma;
 
     /**
      * Initializes the controller class.
@@ -106,6 +109,24 @@ public class LoginViewController extends Controller implements Initializable {
     @FXML
     private void onActionLinkRecuperarClave(ActionEvent event) {
         FlowController.getInstance().goViewInWindow("RecuperarContraView");
+    }
+
+    @FXML
+    private void onActionBtnIdioma(ActionEvent event) {
+        
+        Locale local = new Locale("es_ES");
+        ResourceBundle bundle = ResourceBundle.getBundle("cr/ac/una/cineuna/resources/i18n/Bundle", local);
+        
+        Locale local2 = new Locale("en_EN");
+        ResourceBundle bundle2 = ResourceBundle.getBundle("cr/ac/una/cineuna/resources/i18n/Bundle", local);
+
+        if (FlowController.getInstance().getIdioma() == bundle) {
+            FlowController.setIdioma(bundle2);
+            FlowController.getInstance().limpiarLoader("LoginView");
+            FlowController.getInstance().initialize();
+            getStage().close();
+            FlowController.getInstance().goViewInWindow("LoginView");
+        }
     }
 
 }

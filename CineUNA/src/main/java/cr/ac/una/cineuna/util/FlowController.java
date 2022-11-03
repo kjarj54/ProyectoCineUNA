@@ -201,6 +201,10 @@ public class FlowController {
         this.loaders.remove(view);
     }
     
+    public ResourceBundle getIdioma(){
+        return idioma;
+    }
+    
     public static void setIdioma(ResourceBundle idioma) {
         FlowController.idioma = idioma;
     }

@@ -64,7 +64,7 @@
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
                      <children>
                         <Label styleClass="jfx-text-field-idioma" text="%idioma" VBox.vgrow="ALWAYS" />
-                        <JFXButton id="sale" prefHeight="26.0" prefWidth="80.0" text="%idiomaBtn" VBox.vgrow="ALWAYS" />
+                        <JFXButton id="sale" fx:id="btnIdioma" onAction="#onActionBtnIdioma" prefHeight="26.0" prefWidth="80.0" text="%idiomaBtn" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </children>
