@@ -15,7 +15,7 @@
          <children>
             <JFXButton fx:id="btnUsuarios" onAction="#OnActionbtnUsuarios" text="%usuarioTxt" />
             <JFXButton fx:id="btnPeliculas" onAction="#OnActionbtnPeliculas" text="%pel" />
-            <JFXButton fx:id="btnSalas" onAction="#OnActionbtnSalas" text="%sal" />
+            <JFXButton fx:id="btnSalas" onAction="#OnActionbtnSalas" text="%salas" />
             <JFXButton fx:id="btnComidas" layoutX="10.0" layoutY="260.0" minHeight="80.0" minWidth="200.0" onAction="#OnActionBtnComidas" text="%comidas" />
             <JFXButton fx:id="btnCerrar" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnCerrar" text="%cerrarSes" />
          </children>
