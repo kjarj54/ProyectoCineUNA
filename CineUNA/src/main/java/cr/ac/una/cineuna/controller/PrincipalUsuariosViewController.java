@@ -49,7 +49,7 @@ public class PrincipalUsuariosViewController extends Controller implements Initi
 
     @FXML
     private void OnActionbtnUsuario(ActionEvent event) {
-        FlowController.getInstance().goView("");
+        FlowController.getInstance().goView("MantUsuariosView");
     }
 
     @FXML
@@ -59,12 +59,12 @@ public class PrincipalUsuariosViewController extends Controller implements Initi
 
     @FXML
     private void OnActionbtnPeliculas(ActionEvent event) {
-        FlowController.getInstance().goView("");
+        FlowController.getInstance().goView("CarteleraView");
     }
 
     @FXML
     private void OnActionbtnReservar(ActionEvent event) {
-        FlowController.getInstance().goView("");
+        FlowController.getInstance().goView("ReservarView");
     }
 
     @FXML
