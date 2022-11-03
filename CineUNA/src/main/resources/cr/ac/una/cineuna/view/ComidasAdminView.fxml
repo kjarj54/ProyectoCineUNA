@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="575.0" prefWidth="762.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.ComidasAdminViewController">
+<AnchorPane id="AnchorPane" prefHeight="575.0" prefWidth="762.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.ComidasAdminViewController">
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>
@@ -25,9 +25,9 @@
                <children>
                   <VBox prefHeight="228.0" prefWidth="552.0" spacing="30.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXTextField fx:id="txtNombre" labelFloat="true" promptText="Nombre" VBox.vgrow="ALWAYS" />
-                        <JFXTextField fx:id="txtPrecio" labelFloat="true" maxWidth="490.0" prefHeight="37.0" prefWidth="490.0" promptText="Precio" VBox.vgrow="ALWAYS" />
-                        <JFXTextArea fx:id="txtDescripcion" labelFloat="true" prefHeight="91.0" prefWidth="300.0" promptText="Descripcion" />
+                        <JFXTextField fx:id="txtNombre" labelFloat="true" promptText="%nombre" VBox.vgrow="ALWAYS" />
+                        <JFXTextField fx:id="txtPrecio" labelFloat="true" maxWidth="490.0" prefHeight="37.0" prefWidth="490.0" promptText="%precio" VBox.vgrow="ALWAYS" />
+                        <JFXTextArea fx:id="txtDescripcion" labelFloat="true" prefHeight="91.0" prefWidth="300.0" promptText="%descripcion" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="25.0" />
@@ -35,7 +35,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="228.0" prefWidth="299.0" HBox.hgrow="SOMETIMES">
                      <children>
-                        <JFXButton fx:id="btnAgregar" onAction="#onActionBtinAceptar" text="Agregar" VBox.vgrow="ALWAYS" />
+                        <JFXButton fx:id="btnAgregar" onAction="#onActionBtinAceptar" text="%agregar" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </children>
@@ -44,10 +44,10 @@
                <children>
                   <TableView fx:id="tbvComidas" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                     <columns>
-                      <TableColumn fx:id="tbcNombre" prefWidth="75.0" text="Nombre" />
-                      <TableColumn fx:id="tbcDescripcion" prefWidth="75.0" text="Descripcion" />
-                        <TableColumn fx:id="tbcPrecio" prefWidth="75.0" text="Precio" />
-                        <TableColumn fx:id="tbcEliminar" prefWidth="75.0" text="Eliminar" />
+                      <TableColumn fx:id="tbcNombre" prefWidth="75.0" text="%nombre" />
+                      <TableColumn fx:id="tbcDescripcion" prefWidth="424.0" text="%descripcion" />
+                        <TableColumn fx:id="tbcPrecio" prefWidth="110.0" text="%precio" />
+                        <TableColumn fx:id="tbcEliminar" prefWidth="110.0" text="%eliminar" />
                     </columns>
                   </TableView>
                </children>

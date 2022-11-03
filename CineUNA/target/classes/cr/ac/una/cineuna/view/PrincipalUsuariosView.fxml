@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="Fondo" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.PrincipalUsuariosViewController">
+<BorderPane fx:id="Fondo" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.PrincipalUsuariosViewController">
    <center>
       <VBox>
          <children>
@@ -24,17 +24,17 @@
    <left>
       <VBox prefHeight="400.0" prefWidth="150.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
-            <JFXButton fx:id="btnUsuario" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnUsuario" text="Usuario" />
-            <JFXButton fx:id="btnComidas" minHeight="80.0" minWidth="200.0" onAction="#OnActionBtnComidas" text="Comidas" />
-            <JFXButton fx:id="btnPeliculas" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnPeliculas" text="Peliculas " />
-            <JFXButton fx:id="btnReservar" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnReservar" text="Reservar" />
-            <JFXButton fx:id="btnCerrar" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnCerrar" text="Cerrar Sesión" />
+            <JFXButton fx:id="btnUsuario" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnUsuario" text="%usuarioTxt" VBox.vgrow="ALWAYS" />
+            <JFXButton fx:id="btnComidas" minHeight="80.0" minWidth="200.0" onAction="#OnActionBtnComidas" text="%comidas" VBox.vgrow="ALWAYS" />
+            <JFXButton fx:id="btnPeliculas" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnPeliculas" text="%pel" VBox.vgrow="ALWAYS" />
+            <JFXButton fx:id="btnReservar" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnReservar" text="%resv" VBox.vgrow="ALWAYS" />
+            <JFXButton fx:id="btnCerrar" minHeight="80.0" minWidth="200.0" onAction="#OnActionbtnCerrar" text="%cerrarSes" VBox.vgrow="ALWAYS" />
          </children></VBox>
    </left>
    <top>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="726.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Bienvenidos a CINEUNA">
+            <Label text="%labelPrinCine" HBox.hgrow="ALWAYS">
                <font>
                   <Font name="Californian FB" size="24.0" />
                </font>

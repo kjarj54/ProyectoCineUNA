@@ -15,15 +15,15 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.MantSalasViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.MantSalasViewController">
    <children>
       <VBox alignment="CENTER" minHeight="400.0" minWidth="400.0" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
             <HBox alignment="CENTER">
                <children>
-                  <Label styleClass="h3-contraste" text="Seleccione la pelicula" />
+                  <Label styleClass="h3-contraste" text="%selecPel" />
                   <Separator maxWidth="1.7976931348623157E308" orientation="VERTICAL" visible="false" HBox.hgrow="ALWAYS" />
-                  <MenuButton fx:id="menuPelicula" mnemonicParsing="false" styleClass="h3" text="Pelicula">
+                  <MenuButton fx:id="menuPelicula" mnemonicParsing="false" styleClass="h3" text="%menuBtnPel">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />
@@ -33,9 +33,9 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Label styleClass="h3-contraste" text="Seleccione la tanda" />
+                  <Label styleClass="h3-contraste" text="%selecTanda" />
                   <Separator maxWidth="1.7976931348623157E308" orientation="VERTICAL" visible="false" HBox.hgrow="ALWAYS" />
-                  <MenuButton fx:id="menuTanda" mnemonicParsing="false" styleClass="h3" text="Tandas">
+                  <MenuButton fx:id="menuTanda" mnemonicParsing="false" styleClass="h3" text="%menuBtnTan">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Action 1" />
                         <MenuItem mnemonicParsing="false" text="Action 2" />
@@ -45,7 +45,7 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Label styleClass="h3-contraste" text="Arrastra y suelte para agregar asientos" />
+                  <Label styleClass="h3-contraste" text="%arrastrar" />
                   <Separator maxWidth="1.7976931348623157E308" orientation="VERTICAL" visible="false" HBox.hgrow="ALWAYS" />
                   <ImageView fx:id="imgAsiento" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -73,8 +73,8 @@
             </GridPane>
             <HBox alignment="CENTER" spacing="60.0">
                <children>
-                  <JFXButton fx:id="btnSalir" buttonType="RAISED" onAction="#onActionSalir" text="Eliminar" />
-                  <JFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" text="Guardar" />
+                  <JFXButton fx:id="btnSalir" buttonType="RAISED" onAction="#onActionSalir" text="%eliminar" />
+                  <JFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" text="%guardar" />
                </children>
             </HBox>
          </children>

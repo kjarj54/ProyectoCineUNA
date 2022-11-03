@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="473.0" prefWidth="813.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.MantUsuTableViewController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="473.0" prefWidth="813.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.MantUsuTableViewController">
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>
@@ -22,17 +22,17 @@
                <children>
                   <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="h3-contraste" text="Parámetros" wrapText="true" VBox.vgrow="ALWAYS" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="h3-contraste" text="%parametros" wrapText="true" VBox.vgrow="ALWAYS" />
                         <VBox alignment="CENTER" spacing="20.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <JFXTextField fx:id="txtId" promptText="Id" />
-                              <JFXTextField fx:id="txtNombre" promptText="Nombre" />
-                              <JFXTextField fx:id="txtUsuario" promptText="Usuario" />
-                              <JFXTextField fx:id="txtEstado" promptText="Estado" />
-                              <JFXTextField fx:id="txtAdmin" promptText="Admin" />
+                              <JFXTextField fx:id="txtId" promptText="%id" />
+                              <JFXTextField fx:id="txtNombre" promptText="%nombre" />
+                              <JFXTextField fx:id="txtUsuario" promptText="%usuarioTxt" />
+                              <JFXTextField fx:id="txtEstado" promptText="%estado" />
+                              <JFXTextField fx:id="txtAdmin" promptText="%admin" />
                            </children>
                         </VBox>
-                        <JFXButton fx:id="btnFiltrar" buttonType="RAISED" onAction="#onActionBtnFiltrar" ripplerFill="WHITE" styleClass="jfx-menubutton1" text="Filtrar" VBox.vgrow="ALWAYS" />
+                        <JFXButton fx:id="btnFiltrar" buttonType="RAISED" onAction="#onActionBtnFiltrar" ripplerFill="WHITE" styleClass="jfx-menubutton1" text="%filtrar" VBox.vgrow="ALWAYS" />
                      </children>
                      <HBox.margin>
                         <Insets />
@@ -40,20 +40,20 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="lblTitulo" alignment="CENTER" contentDisplay="CENTER" styleClass="h3-contraste" text="Búsqueda" wrapText="true" VBox.vgrow="ALWAYS" />
+                        <Label fx:id="lblTitulo" alignment="CENTER" contentDisplay="CENTER" styleClass="h3-contraste" text="%buscar" wrapText="true" VBox.vgrow="ALWAYS" />
                         <TableView fx:id="tbvResultados" onMousePressed="#OnMousePressedTbvResultados" VBox.vgrow="ALWAYS">
                            <columns>
-                              <TableColumn fx:id="tbcAdmin" minWidth="-Infinity" prefWidth="50.0" text="Admin" />
-                              <TableColumn fx:id="tbcEstado" minWidth="-Infinity" prefWidth="50.0" text="Estado" />
-                              <TableColumn fx:id="tbcId" minWidth="-Infinity" prefWidth="40.0" text="Id" />
-                              <TableColumn fx:id="tbcNombre" minWidth="-Infinity" text="Nombre" />
-                              <TableColumn fx:id="tbcUsuario" minWidth="-Infinity" text="Usuario" />
-                              <TableColumn fx:id="tbcPApellido" minWidth="-Infinity" text="PApellido" />
-                              <TableColumn fx:id="tbcSApellido" minWidth="-Infinity" text="SApellido" />
-                              <TableColumn fx:id="tbcCorreo" minWidth="-Infinity" text="Correo" />
+                              <TableColumn fx:id="tbcAdmin" minWidth="-Infinity" prefWidth="50.0" text="%admin" />
+                              <TableColumn fx:id="tbcEstado" minWidth="-Infinity" prefWidth="50.0" text="%estado" />
+                              <TableColumn fx:id="tbcId" minWidth="-Infinity" prefWidth="40.0" text="%id" />
+                              <TableColumn fx:id="tbcNombre" minWidth="-Infinity" text="%nombre" />
+                              <TableColumn fx:id="tbcUsuario" minWidth="-Infinity" text="%usuarioTxt" />
+                              <TableColumn fx:id="tbcPApellido" minWidth="-Infinity" text="%papellido" />
+                              <TableColumn fx:id="tbcSApellido" minWidth="-Infinity" text="%sapellido" />
+                              <TableColumn fx:id="tbcCorreo" minWidth="-Infinity" text="%correo" />
                            </columns>
                         </TableView>
-                        <JFXButton fx:id="btnAceptar" buttonType="RAISED" onAction="#onActionBtnAceptar" ripplerFill="WHITE" styleClass="jfx-menubutton2" text="Aceptar" />
+                        <JFXButton fx:id="btnAceptar" buttonType="RAISED" onAction="#onActionBtnAceptar" ripplerFill="WHITE" styleClass="jfx-menubutton2" text="%aceptar" />
                      </children>
                   </VBox>
                </children>

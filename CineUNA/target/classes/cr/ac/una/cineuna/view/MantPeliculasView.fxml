@@ -11,39 +11,39 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.MantPeliculasViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.MantPeliculasViewController">
    <children>
       <VBox alignment="CENTER" spacing="20.0" styleClass="VBoxContainer" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
             <VBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Label fx:id="labelTitulo" text="Titulo" />
+                  <Label fx:id="labelTitulo" text="%tituloMantPel" />
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                  <JFXButton fx:id="btnCargarImagen" buttonType="RAISED" onAction="#onActionCargarImagen" styleClass="jfx-radio-button" text="Cargar imagen" VBox.vgrow="ALWAYS" />
-                  <Label text="Trailer URLs" />
+                  <JFXButton fx:id="btnCargarImagen" buttonType="RAISED" onAction="#onActionCargarImagen" styleClass="jfx-radio-button" text="%cargarImg" VBox.vgrow="ALWAYS" />
+                  <Label text="%trailerURL" />
                   <HBox alignment="CENTER" spacing="50.0">
                      <children>
-                        <Label text="Espanol/Spanish" />
+                        <Label text="%espanol" />
                         <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" visible="false" HBox.hgrow="ALWAYS" />
-                        <JFXTextField focusColor="WHITE" labelFloat="true" promptText="Ingresa URL del video (ESP)" />
+                        <JFXTextField focusColor="WHITE" labelFloat="true" promptText="%urlEspanol" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="50.0">
                      <children>
-                        <Label text="Ingles/English" />
+                        <Label text="%ingles" />
                         <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" visible="false" HBox.hgrow="ALWAYS" />
-                        <JFXTextField focusColor="WHITE" promptText="Ingresa URL del video (ENG)" />
+                        <JFXTextField focusColor="WHITE" promptText="%urlIngles" />
                      </children>
                   </HBox>
-                  <Label text="Sinopsis o detalle de la pelicula" />
+                  <Label text="%sinopsis" />
                   <TextArea fx:id="txtAreaSinopsis" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="400.0" />
                </children>
             </VBox>
             <HBox alignment="CENTER">
                <children>
-                  <JFXButton buttonType="RAISED" text="Guardar" />
+                  <JFXButton buttonType="RAISED" text="%guardar" />
                   <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" visible="false" HBox.hgrow="ALWAYS" />
-                  <JFXButton buttonType="RAISED" text="Limpiar" />
+                  <JFXButton buttonType="RAISED" text="%limpiar" />
                </children>
             </HBox>
          </children>
