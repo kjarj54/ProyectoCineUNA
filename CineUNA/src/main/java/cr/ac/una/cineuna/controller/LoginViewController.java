@@ -98,7 +98,7 @@ public class LoginViewController extends Controller implements Initializable {
                                 FlowController.getInstance().goMain();
                             }
                         } else if ("N".equals(proClientesDto.getCliAdmin()) && "A".equals(proClientesDto.getCliEstado())) {
-                            if (!"E".equals(proClientesDto.getCliIdioma())) {
+                            if ("I".equals(proClientesDto.getCliIdioma())) {
                                 cambioIdiomaIngles();
                                 FlowController.getInstance().goMainCliente();
                             } else {
