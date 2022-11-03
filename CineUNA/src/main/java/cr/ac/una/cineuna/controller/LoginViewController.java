@@ -10,6 +10,7 @@ import cr.ac.una.cineuna.util.FlowController;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,17 +52,17 @@ public class LoginViewController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
     }
 
     @Override
     public void initialize() {
-        
+
     }
 
     @FXML
     private void onActionBtnAuto(ActionEvent event) {
-      
+
     }
 
     @FXML
@@ -79,12 +80,12 @@ public class LoginViewController extends Controller implements Initializable {
                     AppContext.getInstance().set("Usuario", proClientesDto);
                     AppContext.getInstance().set("Token", proClientesDto.getToken());
                     if (getStage().getOwner() == null) {
-                        if(proClientesDto.getCliAdmin() == "S"){
-                           FlowController.getInstance().goMain(); 
-                        }else{
-                           FlowController.getInstance().goMainCliente();
+                        if (proClientesDto.getCliAdmin() == "S") {
+                            FlowController.getInstance().goMain();
+                        } else {
+                            FlowController.getInstance().goMainCliente();
                         }
-                        
+
                     }
                     getStage().close();
 

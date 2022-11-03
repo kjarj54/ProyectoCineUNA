@@ -5,6 +5,7 @@ cr\ac\una\cineuna\model\ProComidasDto.class
 cr\ac\una\cineuna\model\ProTandasDto.class
 cr\ac\una\cineuna\util\DragResizer$2.class
 cr\ac\una\cineuna\controller\ComidasClienteViewController$ButtonCellFactura.class
+cr\ac\una\cineuna\service\ProComidasService$1.class
 cr\ac\una\cineuna\controller\MantUsuTableViewController$CheckBoxCell.class
 cr\ac\una\cineuna\model\ProFacturasDto.class
 cr\ac\una\cineuna\util\BindingUtils.class
@@ -26,14 +27,17 @@ cr\ac\una\cineuna\service\ProClientesService.class
 cr\ac\una\cineuna\util\DragResizer$OnDragResizeEventListener.class
 cr\ac\una\cineuna\service\ProReservacionService.class
 cr\ac\una\cineuna\util\DragResizer$6.class
+cr\ac\una\cineuna\controller\ComidasAdminViewController$ButtonCell.class
 cr\ac\una\cineuna\util\DragResizer$S.class
 cr\ac\una\cineuna\util\Respuesta.class
 cr\ac\una\cineuna\service\ProAsientosService.class
 cr\ac\una\cineuna\util\DragResizer.class
+cr\ac\una\cineuna\controller\CarteleraViewController.class
 cr\ac\una\cineuna\controller\LoginViewController.class
 cr\ac\una\cineuna\util\Request$1.class
 cr\ac\una\cineuna\controller\RecuperarContraViewController.class
 cr\ac\una\cineuna\service\ProClientesService$1.class
+cr\ac\una\cineuna\controller\ReservarViewController.class
 cr\ac\una\cineuna\service\ProTandasService.class
 module-info.class
 cr\ac\una\cineuna\model\ProClientesDto.class
