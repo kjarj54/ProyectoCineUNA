@@ -3,31 +3,31 @@
 
 #PantallaInicio{
     -fx-background-image: url("../resources/cinee.jpg");
-    -fx-background-position:100% 100%;  
+    -fx-background-position:100% 100%;
     -fx-background-size:cover;
 }
 
 #FondoUsuarios{
     -fx-background-image: url("../resources/movie.jpg");
-    -fx-background-position:100% 100%;  
+    -fx-background-position:100% 100%;
     -fx-background-size:cover;
 }
 
 #Fondo{
     -fx-background-image: url("../resources/fondito.jpg");
-    -fx-background-position:100% 100%;  
+    -fx-background-position:100% 100%;
     -fx-background-size:cover;
 }
 
 #PantallaRecuperar{
     -fx-background-image: url("../resources/pregunta.jpg");
-    -fx-background-position:100% 100%;  
+    -fx-background-position:100% 100%;
     -fx-background-size:cover;
 }
 
 #brdrPane{
     -fx-background-image: url("../resources/fondito.jpg");
-    -fx-background-position:100% 100%;  
+    -fx-background-position:100% 100%;
     -fx-background-size:cover;
 }
 
@@ -36,18 +36,32 @@
 }
 
 /******************************* ESTILOS DE TEXTO POR CLASE ******************************************/
+.jfx-text-field-idioma{
+    -fx-font-family: 'Roboto', sans-serif;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
 
-.jfx-text-field .input-line{-fx-pref-height: 0px;}
-.jfx-text-field .input-focused-line{-fx-pref-height: 0px;}
-.jfx-password-field .input-line{-fx-pref-height: 0px;}
-.jfx-password-field .input-focused-line{-fx-pref-height: 0px;}
+.jfx-text-field .input-line{
+    -fx-pref-height: 0px;
+}
+.jfx-text-field .input-focused-line{
+    -fx-pref-height: 0px;
+}
+.jfx-password-field .input-line{
+    -fx-pref-height: 0px;
+}
+.jfx-password-field .input-focused-line{
+    -fx-pref-height: 0px;
+}
 
 .jfx-text-field, .jfx-password-field{
     -fx-min-width:200;
     -fx-pref-width:300;
     -fx-max-width:350;
     -fx-background-color: #444444;
-    -fx-text-fill: white; 
+    -fx-text-fill: white;
     -fx-prompt-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 20 20 20 20;
@@ -60,14 +74,14 @@
 .h1{
     -fx-font-family: 'Roboto', sans-serif;
     -fx-text-fill: #FFFFFF;
-    -fx-font-size: 36px; 
+    -fx-font-size: 36px;
     -fx-font-weight: bold;
 }
 
 .h1-contraste{
     -fx-font-family: 'Roboto', sans-serif;
     -fx-text-fill: #000000;
-    -fx-font-size: 36px; 
+    -fx-font-size: 36px;
     -fx-font-weight: bold;
     -fx-background-color: rgba(255, 191, 0, 1);
     -fx-background-radius: 10 10 10 10;
@@ -76,14 +90,14 @@
 .h2{
     -fx-font-family: 'Roboto', sans-serif;
     -fx-text-fill: #FFFFFF;
-    -fx-font-size: 24px; 
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
 }
 
 .h2-contraste{
     -fx-font-family: 'Roboto', sans-serif;
     -fx-text-fill: #000000;
-    -fx-font-size: 24px; 
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-background-color: rgba(255, 191, 0, 1);
     -fx-background-radius: 10 10 10 10;
@@ -92,14 +106,14 @@
 .h3{
     -fx-font-family: 'Roboto', sans-serif;
     -fx-text-fill: #FFFFFF;
-    -fx-font-size: 18px; 
+    -fx-font-size: 18px;
     -fx-font-weight: bold;
 }
 
 .h3-contraste{
     -fx-font-family: 'Roboto', sans-serif;
     -fx-text-fill: #000000;
-    -fx-font-size: 18px; 
+    -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-background-color: rgba(255, 191, 0, 1);
     -fx-background-radius: 10 10 10 10;
@@ -124,7 +138,7 @@
 }
 
 #linkRecuperarClave{
-    -fx-text-fill: #FFD02A; 
+    -fx-text-fill: #FFD02A;
     -fx-background-radius: 20 20 20 20;
     -fx-alignment: center;
     -fx-font-weight: bold;
@@ -132,32 +146,11 @@
 }
 
 #linkRecuperarClave:hover{
-    -fx-text-fill: #f9812a; 
+    -fx-text-fill: #f9812a;
 }
 
 /******************************* BOTONES GENERAL ******************************************/
 
-JFXButton{
-    -fx-background-color: 
-        linear-gradient(#203354, #1c2e4a);
-    -fx-min-width:210;
-    -fx-min-height:50;
-    -fx-pref-width:220;
-    -fx-pref-height:50;
-    -fx-max-width:260;
-    -fx-max-height:50;
-    -fx-text-fill: white;
-    -fx-background-radius: 50;
-    -fx-effect: 
-        dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-line-height: 20px;
-    -fx-overflow: visible;
-    -fx-text-align: center;
-    -fx-touch-action: manipulation;
-    -fx-cursor:hand;
-}
 
 MenuButton{
     -fx-pref-width:150;
@@ -194,42 +187,42 @@ MenuButton{
 /************************************** BOTONES POR ID *******************************************/
 
 #btnRegistrar{
-    -fx-background-color: 
+    -fx-background-color:
         linear-gradient(#eb9605, #ffbf00);
 }
 
 #btnRegistrar:hover{
-    -fx-background-color: 
+    -fx-background-color:
         linear-gradient(#DA9200, #FF9F00);
 }
 
 #btnAuto, #btnLimpiar, #btnRecuperar{
-    -fx-background-color: 
+    -fx-background-color:
         linear-gradient(#57a0d3, #73c2fb);
 }
 
 #btnAuto:hover, #btnLimpiar:hover, #btnRecuperar:hover{
-    -fx-background-color: 
+    -fx-background-color:
         linear-gradient(#1DE0DF, #73AFFB);
 }
 
 #btnIngresar {
-    -fx-background-color: 
+    -fx-background-color:
         linear-gradient( #f9812a, #ef820e);
 }
 
 #btnIngresar:hover{
-    -fx-background-color: 
+    -fx-background-color:
         linear-gradient(#DF9426, #EF920E);
 }
 
 #btnAtras, #btnSalir{
-    -fx-background-color: 
+    -fx-background-color:
         linear-gradient(#be1d00, #ff5400);
 }
 
 #btnAtras:hover, #btnSalir:hover{
-    -fx-background-color: 
+    -fx-background-color:
         linear-gradient(#BE3A00, #FF4C00);
 }
 
@@ -242,3 +235,37 @@ MenuButton{
     -fx-background-color:
         linear-gradient(#18191a,#3a3b3c);
 }
+
+#sale
+{
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0,0 0 6 0,0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color:
+        linear-gradient(from 0% 93% to 0% 100%,#a34313 0%,#903b12 100%),
+        #9d4024,
+        #d86e3a,
+        radial-gradient(center 50% 50%, radius 100%,#d96e3a,#c54e2c);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75),4,0,0,1);
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-text-fill: white;
+}
+
+#sale:hover
+{
+
+    -fx-background-color:
+        linear-gradient(from 0% 93% to 0% 100%,#a34313 0%,#903b12 100),
+        #9d4024,
+        #d86e3a,
+        radial-gradient(center 50% 50%,radius 100%,#ea7f4b,#c54e2c);
+}
+
+#sale:pressed
+{
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0,2 0 4 0,2 0 5 0;
+
+}
+
