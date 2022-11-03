@@ -50,6 +50,12 @@ public class LoginViewController extends Controller implements Initializable {
     @FXML
     private JFXButton btnIdioma;
 
+    Locale local = new Locale("es_ES");
+    ResourceBundle bundle = ResourceBundle.getBundle("cr/ac/una/cineuna/resources/i18n/Bundle", local);
+
+    Locale local2 = new Locale("en_EN");
+    ResourceBundle bundle2 = ResourceBundle.getBundle("cr/ac/una/cineuna/resources/i18n/Bundle", local2);
+
     /**
      * Initializes the controller class.
      */
@@ -83,10 +89,23 @@ public class LoginViewController extends Controller implements Initializable {
                     AppContext.getInstance().set("Usuario", proClientesDto);
                     AppContext.getInstance().set("Token", proClientesDto.getToken());
                     if (getStage().getOwner() == null) {
-                        if (proClientesDto.getCliAdmin() == "S") {
-                            FlowController.getInstance().goMain();
-                        } else {
-                            FlowController.getInstance().goMainCliente();
+                        if ("S".equals(proClientesDto.getCliAdmin()) && "A".equals(proClientesDto.getCliEstado())) {
+                            if ("I".equals(proClientesDto.getCliIdioma())) {
+                                cambioIdiomaIngles();
+                                FlowController.getInstance().goMain();
+                            } else {
+                                cambioIdiomaEspanol();
+                                FlowController.getInstance().goMain();
+                            }
+                        } else if ("N".equals(proClientesDto.getCliAdmin()) && "A".equals(proClientesDto.getCliEstado())) {
+                            if (proClientesDto.getCliIdioma() != "E") {
+                                cambioIdiomaIngles();
+                                FlowController.getInstance().goMainCliente();
+                            } else {
+                                cambioIdiomaEspanol();
+                                FlowController.getInstance().goMainCliente();
+                            }
+
                         }
 
                     }
@@ -99,6 +118,18 @@ public class LoginViewController extends Controller implements Initializable {
         } catch (Exception ex) {
             Logger.getLogger(LoginViewController.class.getName()).log(Level.SEVERE, "Error ingresando.", ex);
         }
+    }
+
+    public void cambioIdiomaIngles() {
+        FlowController.getInstance().initialize();
+        FlowController.setIdioma(bundle2);
+        FlowController.getInstance().limpiarLoader("PrincipalView");
+    }
+
+    public void cambioIdiomaEspanol() {
+        FlowController.getInstance().initialize();
+        FlowController.setIdioma(bundle);
+        FlowController.getInstance().limpiarLoader("PrincipalView");
     }
 
     @FXML
@@ -114,23 +145,13 @@ public class LoginViewController extends Controller implements Initializable {
     @FXML
     private void onActionBtnIdioma(ActionEvent event) {
 
-        Locale local = new Locale("es_ES");
-        ResourceBundle bundle = ResourceBundle.getBundle("cr/ac/una/cineuna/resources/i18n/Bundle", local);
-
-        Locale local2 = new Locale("en_EN");
-        ResourceBundle bundle2 =  ResourceBundle.getBundle("cr/ac/una/cineuna/resources/i18n/Bundle", local2);
-
         if (FlowController.getInstance().getIdioma() == bundle) {
-            FlowController.getInstance().initialize();
-            FlowController.setIdioma(bundle2);
-            FlowController.getInstance().limpiarLoader("LoginView");
+            cambioIdiomaIngles();
 
             getStage().close();
             FlowController.getInstance().goViewInWindow("LoginView");
-        }else{
-            FlowController.getInstance().initialize();
-            FlowController.setIdioma(bundle);
-            FlowController.getInstance().limpiarLoader("LoginView");
+        } else {
+            cambioIdiomaEspanol();
             getStage().close();
             FlowController.getInstance().goViewInWindow("LoginView");
         }
