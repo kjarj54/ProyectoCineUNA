@@ -46,13 +46,13 @@ public class ComidasClienteViewController extends Controller implements Initiali
     @FXML
     private TableColumn<ProComidasDto, Boolean> tbcAgregar;
     @FXML
-    private TableView<ProFacturasDto> tbvFactura;
+    private TableView<ProComidasDto> tbvFactura;
     @FXML
-    private TableColumn<ProFacturasDto, String> tbcNombreFactura;
+    private TableColumn<ProComidasDto, String> tbcNombreFactura;
     @FXML
-    private TableColumn<ProFacturasDto, String> tbcPrecioFactura;
+    private TableColumn<ProComidasDto, String> tbcPrecioFactura;
     @FXML
-    private TableColumn<ProFacturasDto, Boolean> tbcQuitar;
+    private TableColumn<ProComidasDto, Boolean> tbcQuitar;
     @FXML
     private Label txtTotal;
     @FXML
@@ -73,15 +73,19 @@ public class ComidasClienteViewController extends Controller implements Initiali
         
         tbcAgregar.setCellFactory((TableColumn<ProComidasDto, Boolean> p) -> new ButtonCellComida());
         
-        tbcQuitar.setCellValueFactory((TableColumn.CellDataFeatures<ProFacturasDto,Boolean >p)-> new SimpleObjectProperty(p.getValue() != null));
+        tbcQuitar.setCellValueFactory((TableColumn.CellDataFeatures<ProComidasDto,Boolean >p)-> new SimpleObjectProperty(p.getValue() != null));
         
-        tbcQuitar.setCellFactory((TableColumn<ProFacturasDto, Boolean> p) -> new ButtonCellFactura());
+        tbcQuitar.setCellFactory((TableColumn<ProComidasDto, Boolean> p) -> new ButtonCellFactura());
     
-         tbcNombre.setCellValueFactory(clbck -> clbck.getValue().comNombre);
+        tbcNombre.setCellValueFactory(clbck -> clbck.getValue().comNombre);
 
         tbcDescripcion.setCellValueFactory(clbck -> clbck.getValue().comDescripcion);
 
         tbcPrecio.setCellValueFactory(clbck -> clbck.getValue().comPrecio);
+        
+        tbcNombreFactura.setCellValueFactory(clbck -> clbck.getValue().comNombre);
+        
+        tbcPrecioFactura.setCellValueFactory(clbck -> clbck.getValue().comPrecio);
 
         actualizarTbv();
 
@@ -112,7 +116,9 @@ public class ComidasClienteViewController extends Controller implements Initiali
             cellButton.setStyle("-fx-background-color: #FFAD5B");
             cellButton.setOnAction((ActionEvent t) -> {
                 ProComidasDto com = (ProComidasDto) ButtonCellComida.this.getTableView().getItems().get(ButtonCellComida.this.getIndex());
+                tbvFactura.getItems().add(com);
                 tbvComidas.refresh();
+                tbvFactura.refresh();
                 
             });
         }
@@ -140,7 +146,7 @@ public class ComidasClienteViewController extends Controller implements Initiali
         }
     }
     
-    private class ButtonCellFactura extends TableCell<ProFacturasDto, Boolean> {
+    private class ButtonCellFactura extends TableCell<ProComidasDto, Boolean> {
 
         final Button cellButton = new Button();
 
@@ -150,8 +156,7 @@ public class ComidasClienteViewController extends Controller implements Initiali
             cellButton.setText("Eliminar");
             cellButton.setStyle("-fx-background-color: #8EF680");
             cellButton.setOnAction((ActionEvent t) -> {
-                ProFacturasDto fac = (ProFacturasDto) ButtonCellFactura.this.getTableView().getItems().get(ButtonCellFactura.this.getIndex());
-                
+                ProComidasDto fac = (ProComidasDto) ButtonCellFactura.this.getTableView().getItems().get(ButtonCellFactura.this.getIndex());               
                 tbvFactura.getItems().remove(fac);
                 tbvFactura.refresh();
             });
