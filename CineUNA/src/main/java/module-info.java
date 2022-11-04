@@ -12,6 +12,8 @@ module cr.ac.una.cineuna {
     requires javafx.media;
     requires jasperreports;
     requires jakarta.mail;
+    requires jakarta.activation;
+    
     
     opens cr.ac.una.cineuna to javafx.fxml, com.jfoenix,javafx.graphics;
     opens cr.ac.una.cineuna.controller to javafx.fxml, javafx.web, com.jfoenix, java.base, jasperreports, jakarta.json, jakarta.xml.bind, jakarta.mail;
