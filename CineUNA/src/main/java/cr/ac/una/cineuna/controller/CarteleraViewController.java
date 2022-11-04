@@ -4,8 +4,12 @@
  */
 package cr.ac.una.cineuna.controller;
 
+import com.jfoenix.controls.JFXButton;
+import cr.ac.una.cineuna.util.FlowController;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -14,6 +18,11 @@ import javafx.fxml.Initializable;
  * @author UNA-Audivisuales
  */
 public class CarteleraViewController extends Controller implements Initializable {
+
+    @FXML
+    private JFXButton btnEstrenos;
+    @FXML
+    private JFXButton btnCartelera;
 
     /**
      * Initializes the controller class.
@@ -25,6 +34,15 @@ public class CarteleraViewController extends Controller implements Initializable
 
     @Override
     public void initialize() {
+    }
+
+    @FXML
+    private void OnActionbtnEstrenos(ActionEvent event) {
+        //FlowController.getInstance().goView("RecuperarContraView");
+    }
+
+    @FXML
+    private void OnActionbtnCartelera(ActionEvent event) {
     }
     
 }
