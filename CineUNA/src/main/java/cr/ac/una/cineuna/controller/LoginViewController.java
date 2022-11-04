@@ -51,10 +51,10 @@ public class LoginViewController extends Controller implements Initializable {
     private JFXButton btnIdioma;
 
     Locale local = new Locale("es_ES");
-    ResourceBundle bundle = ResourceBundle.getBundle("cr/ac/una/cineuna/resources/i18n/Bundle", local);
+    ResourceBundle bundle = ResourceBundle.getBundle("cr/ac/una/cineuna/resources/i18n/Bundle", local);//configuracion de Español
 
     Locale local2 = new Locale("en_EN");
-    ResourceBundle bundle2 = ResourceBundle.getBundle("cr/ac/una/cineuna/resources/i18n/Bundle", local2);
+    ResourceBundle bundle2 = ResourceBundle.getBundle("cr/ac/una/cineuna/resources/i18n/Bundle", local2);//configuracion de ingles
 
     /**
      * Initializes the controller class.
@@ -89,8 +89,8 @@ public class LoginViewController extends Controller implements Initializable {
                     AppContext.getInstance().set("Usuario", proClientesDto);
                     AppContext.getInstance().set("Token", proClientesDto.getToken());
                     if (getStage().getOwner() == null) {
-                        if ("S".equals(proClientesDto.getCliAdmin()) && "A".equals(proClientesDto.getCliEstado())) {
-                            if ("I".equals(proClientesDto.getCliIdioma())) {
+                        if ("S".equals(proClientesDto.getCliAdmin()) && "A".equals(proClientesDto.getCliEstado())) {//compruba que el usuario este activo
+                            if ("I".equals(proClientesDto.getCliIdioma())) {//comprueba que el idioma sea ingles del admin
                                 cambioIdiomaIngles();
                                 FlowController.getInstance().goMain();
                                 getStage().close();
@@ -99,8 +99,8 @@ public class LoginViewController extends Controller implements Initializable {
                                 FlowController.getInstance().goMain();
                                 getStage().close();
                             }
-                        } else if ("N".equals(proClientesDto.getCliAdmin()) && "A".equals(proClientesDto.getCliEstado())) {
-                            if ("I".equals(proClientesDto.getCliIdioma())) {
+                        } else if ("N".equals(proClientesDto.getCliAdmin()) && "A".equals(proClientesDto.getCliEstado())) {//compruba que el usuario este activo
+                            if ("I".equals(proClientesDto.getCliIdioma())) {//comprueba que el idioma sea ingles del cliente
                                 cambioIdiomaIngles();
                                 FlowController.getInstance().goMainCliente();
                                 getStage().close();
@@ -126,6 +126,8 @@ public class LoginViewController extends Controller implements Initializable {
         }
     }
 
+    //Se encarga del seteo
+    
     public void cambioIdiomaIngles() {
         FlowController.getInstance().initialize();
         FlowController.setIdioma(bundle2);
@@ -152,12 +154,12 @@ public class LoginViewController extends Controller implements Initializable {
     private void onActionBtnIdioma(ActionEvent event) {
 
         if (FlowController.getInstance().getIdioma() == bundle) {
-            cambioIdiomaIngles();
+            cambioIdiomaIngles();//setea el idioma en ingles
 
             getStage().close();
             FlowController.getInstance().goViewInWindow("LoginView");
         } else {
-            cambioIdiomaEspanol();
+            cambioIdiomaEspanol();//setea el idioma en espanol
             getStage().close();
             FlowController.getInstance().goViewInWindow("LoginView");
         }
