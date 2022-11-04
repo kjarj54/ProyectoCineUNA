@@ -242,6 +242,7 @@ public class UsuariosViewController extends Controller implements Initializable 
             t.connect(correoRemitente, passwordRemitente);
             t.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
             t.close();
+            new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Verificación",getStage(), "El correo ha sido enviado exitosamente");
         } catch (Exception ex) {
             Logger.getLogger(UsuariosViewController.class.getName()).log(Level.SEVERE, "Error enviando el correo.", ex);
             new Mensaje().showModal(Alert.AlertType.ERROR, "Enviar Correo", getStage(), "Ocurrio un error enviando el correo.");
