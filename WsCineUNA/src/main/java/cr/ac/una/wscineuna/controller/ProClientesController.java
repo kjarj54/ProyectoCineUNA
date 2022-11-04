@@ -56,15 +56,16 @@ public class ProClientesController {
         }
     }
     
-    @POST
-    @Path("/activarCuenta/{id}")
+    @GET
+    //@Secure
+    @Path("/activarCuenta")
     public Response activarCuenta(@QueryParam("id") Long id) {
         try {
             Respuesta res = proClientesService.activacionCuenta(id);
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }
-            return Response.ok((ProClientesDto) res.getResultado("Cliente")).build();
+            return Response.ok().build();
         } catch (Exception ex) {
             Logger.getLogger(ProClientesController.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error guardando el cliente").build();

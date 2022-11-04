@@ -114,7 +114,7 @@ public class ProClientesService {
                 em.persist(proClientes);
             }
             em.flush();
-            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Cliente", new ProClientesDto(proClientes));
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "");
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "Ocurrio un error al guardar el cliente.", ex);
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al guardar el cliente.", "guardarCliente " + ex.getMessage());
