@@ -266,7 +266,6 @@ public class UsuariosViewController extends Controller implements Initializable 
                     new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar usuario", getStage(), "Usuario actualizado correctamente.");
                     correoActivacion(proClientesDto);
                 }
-                //enviarCorreo();
             }
 
         } catch (Exception ex) {
