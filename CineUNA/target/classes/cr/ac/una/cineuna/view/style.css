@@ -150,6 +150,8 @@
 }
 
 /******************************* BOTONES GENERAL ******************************************/
+
+
 JFXButton{
     -fx-background-color:
         linear-gradient(#203354, #1c2e4a);
@@ -188,6 +190,8 @@ MenuButton{
     -jfx-unselected-color: -fx-base-color-unfocus;
     -fx-text-fill: #ffffff;
 }
+
+
 
 
 /************************************* BOTONES POR CLASES **************************************/
@@ -256,7 +260,7 @@ MenuButton{
         linear-gradient(#18191a,#3a3b3c);
 }
 
-#sale
+#btnIdioma
 {
     -fx-padding: 8 15 15 15;
     -fx-background-insets: 0,0 0 5 0,0 0 6 0,0 0 7 0;

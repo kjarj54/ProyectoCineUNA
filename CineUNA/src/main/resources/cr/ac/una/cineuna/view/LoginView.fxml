@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="PantallaInicio" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.LoginViewController">
+<AnchorPane fx:id="PantallaInicio" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.LoginViewController">
    <children>
       <VBox fx:id="VBoxContainer" alignment="CENTER" layoutX="100.0" layoutY="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -64,7 +64,7 @@
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
                      <children>
                         <Label styleClass="jfx-text-field-idioma" text="%idioma" VBox.vgrow="ALWAYS" />
-                        <JFXButton id="sale" fx:id="btnIdioma" onAction="#onActionBtnIdioma" prefHeight="26.0" prefWidth="80.0" text="%idiomaBtn" VBox.vgrow="ALWAYS" />
+                        <JFXButton fx:id="btnIdioma" minHeight="2.0" minWidth="75.0" onAction="#onActionBtnIdioma" prefHeight="2.0" prefWidth="75.0" styleClass="jfx-idioma" stylesheets="@style.css" text="%idiomaBtn" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </children>

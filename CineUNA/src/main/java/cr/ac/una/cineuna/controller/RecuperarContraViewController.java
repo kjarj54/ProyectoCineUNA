@@ -102,7 +102,7 @@ public class RecuperarContraViewController extends Controller implements Initial
                 String passwordRemitente = "cine1234";
                 String correoReceptor = txtCorreo.getText();
                 String asunto = "CINEUNA";
-                String mensaje = "Bienvenid@"+"<br><br>"+"Clave nueva: "+generateRandomPassword(len)+"<br><br>"+"http://localhost:8080/WsCineUNA/ws/ProClientesController/activarCuenta?id=4"+"<br><br>Cambio de Contraseña <b> CINEUNA</b><br><br>Att: <b>CineUna</b>";
+                String mensaje = "Bienvenid@"+"<br><br>"+"Clave nueva: "+generateRandomPassword(len)+"<br><br>"+"<br><br>Cambio de Contraseña <b> CINEUNA</b><br><br>Att: <b>CineUna</b>";
                 //mensaje.replace("[[URL]]", "http://localhost:8080/WsCineUNA/ws/ProClientesController/activarCuenta?id=4");
                
                 MimeMessage message = new MimeMessage(session);

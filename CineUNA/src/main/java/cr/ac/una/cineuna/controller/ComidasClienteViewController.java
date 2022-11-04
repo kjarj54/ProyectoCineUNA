@@ -7,12 +7,19 @@ package cr.ac.una.cineuna.controller;
 import com.jfoenix.controls.JFXButton;
 import cr.ac.una.cineuna.model.ProComidasDto;
 import cr.ac.una.cineuna.model.ProFacturasDto;
+import cr.ac.una.cineuna.service.ProComidasService;
+import cr.ac.una.cineuna.util.Mensaje;
+import cr.ac.una.cineuna.util.Respuesta;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -69,6 +76,16 @@ public class ComidasClienteViewController extends Controller implements Initiali
         tbcQuitar.setCellValueFactory((TableColumn.CellDataFeatures<ProFacturasDto,Boolean >p)-> new SimpleObjectProperty(p.getValue() != null));
         
         tbcQuitar.setCellFactory((TableColumn<ProFacturasDto, Boolean> p) -> new ButtonCellFactura());
+    
+         tbcNombre.setCellValueFactory(clbck -> clbck.getValue().comNombre);
+
+        tbcDescripcion.setCellValueFactory(clbck -> clbck.getValue().comDescripcion);
+
+        tbcPrecio.setCellValueFactory(clbck -> clbck.getValue().comPrecio);
+
+        actualizarTbv();
+
+        tbvComidas.refresh();
     }    
 
     @Override
@@ -83,10 +100,12 @@ public class ComidasClienteViewController extends Controller implements Initiali
         ButtonCellComida() {
             cellButton.setPrefWidth(500);
             cellButton.getStyleClass().add("jfx-btnimg-tbveliminar");
-
+            cellButton.setText("Agregar");
+            cellButton.setStyle("-fx-background-color: #8EF680");
             cellButton.setOnAction((ActionEvent t) -> {
                 ProComidasDto com = (ProComidasDto) ButtonCellComida.this.getTableView().getItems().get(ButtonCellComida.this.getIndex());
                 tbvComidas.refresh();
+                
             });
         }
 
@@ -99,6 +118,20 @@ public class ComidasClienteViewController extends Controller implements Initiali
         }
     }
     
+    public void actualizarTbv(){
+        ProComidasService proComidasService = new ProComidasService();
+
+        Respuesta respuesta = proComidasService.getComidas();
+
+        if (respuesta.getEstado()) {
+            ObservableList<ProComidasDto> comidasDtos = FXCollections.observableList((List<ProComidasDto>) respuesta.getResultado("ProComidas"));
+            tbvComidas.setItems(comidasDtos);
+            tbvComidas.refresh();
+        } else {
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Consulta usuarios", getStage(), respuesta.getMensaje());
+        }
+    }
+    
     private class ButtonCellFactura extends TableCell<ProFacturasDto, Boolean> {
 
         final Button cellButton = new Button();
@@ -106,7 +139,8 @@ public class ComidasClienteViewController extends Controller implements Initiali
         ButtonCellFactura() {
             cellButton.setPrefWidth(500);
             cellButton.getStyleClass().add("jfx-btnimg-tbveliminar");
-
+            cellButton.setText("Eliminar");
+            cellButton.setStyle("-fx-background-color: #8EF680");
             cellButton.setOnAction((ActionEvent t) -> {
                 ProFacturasDto fac = (ProFacturasDto) ButtonCellFactura.this.getTableView().getItems().get(ButtonCellFactura.this.getIndex());
                 
