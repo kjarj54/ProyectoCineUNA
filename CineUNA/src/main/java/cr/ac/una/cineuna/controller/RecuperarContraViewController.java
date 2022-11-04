@@ -90,6 +90,7 @@ public class RecuperarContraViewController extends Controller implements Initial
             
             
             try {
+                //setea las propiedades del smtp para poder enviar los emails
                 Properties props = new Properties();
                 props.setProperty("mail.smtp.host", "smtp.outlook.com");
                 props.setProperty("mail.smtp.starttls.enable", "true");
@@ -98,12 +99,14 @@ public class RecuperarContraViewController extends Controller implements Initial
                 
                 Session session = Session.getDefaultInstance(props);
                 
+                //proporciona el correo y contrasena del correo con el que va a ser enviado
                 String correoRemitente = "CineUna123@outlook.com";
                 String passwordRemitente = "cine1234";
+                //Optine el correo al cual va a ser enviado el mensaje
                 String correoReceptor = txtCorreo.getText();
                 String asunto = "CINEUNA";
+                //Llama al metodo de creacion de contrasena y se la manda a la persona y luego se la setea para que la cambie
                 String mensaje = "Bienvenid@"+"<br><br>"+"Clave nueva: "+generateRandomPassword(len)+"<br><br>"+"http://localhost:8080/WsCineUNA/ws/ProClientesController/activarCuenta?id=4"+"<br><br>Cambio de Contraseña <b> CINEUNA</b><br><br>Att: <b>CineUna</b>";
-                //mensaje.replace("[[URL]]", "http://localhost:8080/WsCineUNA/ws/ProClientesController/activarCuenta?id=4");
                
                 MimeMessage message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(correoRemitente));

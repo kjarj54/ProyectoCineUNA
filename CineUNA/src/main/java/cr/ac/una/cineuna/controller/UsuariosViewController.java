@@ -217,6 +217,7 @@ public class UsuariosViewController extends Controller implements Initializable 
 
     public void correoActivacion(ProClientesDto proClientesDto) {
         try {
+            //setea las propiedades del smtp para poder enviar los emails
             Properties props = new Properties();
             props.setProperty("mail.smtp.host", "smtp.outlook.com");
             props.setProperty("mail.smtp.starttls.enable", "true");
@@ -224,11 +225,13 @@ public class UsuariosViewController extends Controller implements Initializable 
             props.setProperty("mail.smtp.auth", "true");
 
             Session session = Session.getDefaultInstance(props);
-
+            
+            //proporciona el correo y contrasena del correo con el que va a ser enviado
             String correoRemitente = "CineUna123@outlook.com";
             String passwordRemitente = "cine1234";
             String correoReceptor = proClientesDto.getCliCorreo();
             String asunto = "CINEUNA";
+            //Mensaje que va a ser enviado
             String mensaje = "Bienvenid@" + "<br><br>" + "<br><br>" + "http://localhost:8080/WsCineUNA/ws/ProClientesController/activarCuenta?id=" + proClientesDto.getCliId() + "<br><br>Activacion de cuenta <b> CINEUNA</b><br><br>Att: <b>CineUna</b>";
 
             MimeMessage message = new MimeMessage(session);
@@ -242,7 +245,7 @@ public class UsuariosViewController extends Controller implements Initializable 
             t.connect(correoRemitente, passwordRemitente);
             t.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
             t.close();
-            new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Verificación",getStage(), "El correo ha sido enviado exitosamente");
+            new Mensaje().showModal(Alert.AlertType.CONFIRMATION, "Verificación", getStage(), "El correo ha sido enviado exitosamente");
         } catch (Exception ex) {
             Logger.getLogger(UsuariosViewController.class.getName()).log(Level.SEVERE, "Error enviando el correo.", ex);
             new Mensaje().showModal(Alert.AlertType.ERROR, "Enviar Correo", getStage(), "Ocurrio un error enviando el correo.");

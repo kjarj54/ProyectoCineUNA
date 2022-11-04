@@ -230,11 +230,11 @@ public class ComidasAdminViewController extends Controller implements Initializa
             cellButton.setPrefWidth(500);
             cellButton.getStyleClass().add("jfx-btnimg-tbveliminar");
 
-            cellButton.setOnAction((ActionEvent t) -> {
+            cellButton.setOnAction((ActionEvent t) -> {//se encarga de eliminar tanto de basse de datos como de el tbv
                 try {
                     ProComidasDto com = (ProComidasDto) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
                     ProComidasService proComidasService = new ProComidasService();
-                    Respuesta respuesta = proComidasService.eliminarComida(com.getComId());
+                    Respuesta respuesta = proComidasService.eliminarComida(com.getComId());//Elimina del todo
                     if (!respuesta.getEstado()) {
                         new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar comida", getStage(), respuesta.getMensaje());
                     } else {

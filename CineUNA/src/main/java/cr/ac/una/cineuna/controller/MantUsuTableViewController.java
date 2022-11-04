@@ -187,10 +187,10 @@ public class MantUsuTableViewController extends Controller implements Initializa
                 admin = "%" + txtAdmin.getText();
             }
 
-            Respuesta respuesta = proClientesService.getClientes(id, nombre, usuario, estado,admin);
+            Respuesta respuesta = proClientesService.getClientes(id, nombre, usuario, estado,admin);//manda los filtros por los que se desea buscar
 
             if (respuesta.getEstado()) {
-                ObservableList<ProClientesDto> proClientesDtos = FXCollections.observableList((List<ProClientesDto>) respuesta.getResultado("ProClientes"));
+                ObservableList<ProClientesDto> proClientesDtos = FXCollections.observableList((List<ProClientesDto>) respuesta.getResultado("ProClientes"));//convierte un list a observable list
                 tbvResultados.setItems(proClientesDtos);
                 tbvResultados.refresh();
             } else {
@@ -208,7 +208,7 @@ public class MantUsuTableViewController extends Controller implements Initializa
 
         final CheckBox cellCheckBox = new CheckBox();
 
-        CheckBoxCell() {
+        CheckBoxCell() {//Crea el check para setear si el admin o no
             cellCheckBox.setPrefWidth(500);
 
         }
