@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
@@ -61,6 +62,18 @@ public class MantUsuariosViewController extends Controller implements Initializa
     @Override
     public void initialize() {
         
+    }
+
+    @FXML
+    private void OnActionBtnCancelar(ActionEvent event) {
+    }
+
+    @FXML
+    private void OnActionBtnAtras(ActionEvent event) {
+    }
+
+    @FXML
+    private void OnActionBtnGuardar(ActionEvent event) {
     }
     
 }

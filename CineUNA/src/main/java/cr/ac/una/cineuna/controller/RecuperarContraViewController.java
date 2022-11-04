@@ -106,7 +106,7 @@ public class RecuperarContraViewController extends Controller implements Initial
                 String correoReceptor = txtCorreo.getText();
                 String asunto = "CINEUNA";
                 //Llama al metodo de creacion de contrasena y se la manda a la persona y luego se la setea para que la cambie
-                String mensaje = "Bienvenid@"+"<br><br>"+"Clave nueva: "+generateRandomPassword(len)+"<br><br>"+"http://localhost:8080/WsCineUNA/ws/ProClientesController/activarCuenta?id=4"+"<br><br>Cambio de Contraseña <b> CINEUNA</b><br><br>Att: <b>CineUna</b>";
+                String mensaje = "Bienvenid@"+"<br><br>"+"Clave nueva: "+generateRandomPassword(len)+"<br><br>"+"<br><br>Cambio de Contraseña <b> CINEUNA</b><br><br>Att: <b>CineUna</b>";
                
                 MimeMessage message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(correoRemitente));

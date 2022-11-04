@@ -92,6 +92,14 @@ public class ComidasClienteViewController extends Controller implements Initiali
     public void initialize() {
         
     }
+
+    @FXML
+    private void OnActionBtnPagar(ActionEvent event) {
+    }
+
+    @FXML
+    private void OnActionBtnCancelar(ActionEvent event) {
+    }
     
     private class ButtonCellComida extends TableCell<ProComidasDto, Boolean> {
 
@@ -101,7 +109,7 @@ public class ComidasClienteViewController extends Controller implements Initiali
             cellButton.setPrefWidth(500);
             cellButton.getStyleClass().add("jfx-btnimg-tbveliminar");
             cellButton.setText("Agregar");
-            cellButton.setStyle("-fx-background-color: #8EF680");
+            cellButton.setStyle("-fx-background-color: #FFAD5B");
             cellButton.setOnAction((ActionEvent t) -> {
                 ProComidasDto com = (ProComidasDto) ButtonCellComida.this.getTableView().getItems().get(ButtonCellComida.this.getIndex());
                 tbvComidas.refresh();

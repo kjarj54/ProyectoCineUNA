@@ -71,6 +71,7 @@ public class LoginViewController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnAuto(ActionEvent event) {
+        
 
     }
 
