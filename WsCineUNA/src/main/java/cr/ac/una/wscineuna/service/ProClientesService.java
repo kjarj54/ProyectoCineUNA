@@ -9,9 +9,15 @@ import cr.ac.una.wscineuna.model.ProClientes;
 import cr.ac.una.wscineuna.model.ProClientesDto;
 import cr.ac.una.wscineuna.util.CodigoRespuesta;
 import cr.ac.una.wscineuna.util.Respuesta;
+import jakarta.mail.Message;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -109,7 +115,7 @@ public class ProClientesService {
                 }
                 proClientes.actualizarCliente(proClientesDto);
                 proClientes = em.merge(proClientes);
-            } 
+            }
             em.flush();
             return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "");
         } catch (Exception ex) {
