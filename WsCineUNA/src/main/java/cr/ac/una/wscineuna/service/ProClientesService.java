@@ -109,10 +109,7 @@ public class ProClientesService {
                 }
                 proClientes.actualizarCliente(proClientesDto);
                 proClientes = em.merge(proClientes);
-            } else {
-                proClientes = new ProClientes(proClientesDto);
-                em.persist(proClientes);
-            }
+            } 
             em.flush();
             return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "");
         } catch (Exception ex) {
