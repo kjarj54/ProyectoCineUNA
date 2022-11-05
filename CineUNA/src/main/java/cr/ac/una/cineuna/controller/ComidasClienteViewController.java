@@ -60,8 +60,6 @@ public class ComidasClienteViewController extends Controller implements Initiali
     private JFXButton btnPagar;
     @FXML
     private JFXButton btnSalir;
-    
-    
 
     /**
      * Initializes the controller class.
@@ -69,62 +67,54 @@ public class ComidasClienteViewController extends Controller implements Initiali
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        tbcAgregar.setCellValueFactory((TableColumn.CellDataFeatures<ProComidasDto,Boolean >p)-> new SimpleObjectProperty(p.getValue() != null));
-        
+
+        tbcAgregar.setCellValueFactory((TableColumn.CellDataFeatures<ProComidasDto, Boolean> p) -> new SimpleObjectProperty(p.getValue() != null));
+
         tbcAgregar.setCellFactory((TableColumn<ProComidasDto, Boolean> p) -> new ButtonCellComida());
-        
-        tbcQuitar.setCellValueFactory((TableColumn.CellDataFeatures<ProComidasDto,Boolean >p)-> new SimpleObjectProperty(p.getValue() != null));
-        
+
+        tbcQuitar.setCellValueFactory((TableColumn.CellDataFeatures<ProComidasDto, Boolean> p) -> new SimpleObjectProperty(p.getValue() != null));
+
         tbcQuitar.setCellFactory((TableColumn<ProComidasDto, Boolean> p) -> new ButtonCellFactura());
-    
+
         tbcNombre.setCellValueFactory(clbck -> clbck.getValue().comNombre);
 
         tbcDescripcion.setCellValueFactory(clbck -> clbck.getValue().comDescripcion);
 
         tbcPrecio.setCellValueFactory(clbck -> clbck.getValue().comPrecio);
-        
+
         tbcNombreFactura.setCellValueFactory(clbck -> clbck.getValue().comNombre);
-        
+
         tbcPrecioFactura.setCellValueFactory(clbck -> clbck.getValue().comPrecio);
 
         actualizarTbv();
 
         tbvComidas.refresh();
-    }    
+    }
 
     @Override
     public void initialize() {
-        
+
     }
 
     @FXML
     private void OnActionBtnPagar(ActionEvent event) {
-    
-    //tbvFactura.getItems().forEach(producto ->
-     //                               txtTotal.setText(String.valueOf(producto.getComPrecio())));
-    
-   
-    
-    
+
     }
-    
-    public void Suma(){
-    double total1 = 0d;
-    for(int i = 0; i<tbvFactura.getItems().size();i++) {
-    DecimalFormat df = new DecimalFormat ("########.00");
-    Double valor2 = new Double(tbvFactura.getItems().get(i).getComPrecio().toString().replace(",", "."));
-    total1+=valor2;
-    txtTotal.setText(String.valueOf(df.format(Double.valueOf(total1))));
-}
+
+    public void Suma() {
+        double total1 = 0d;
+        for (int i = 0; i < tbvFactura.getItems().size(); i++) {
+            DecimalFormat df = new DecimalFormat("########.00");
+            Double valor2 = new Double(tbvFactura.getItems().get(i).getComPrecio().toString().replace(",", "."));
+            total1 += valor2;
+            txtTotal.setText(String.valueOf(df.format(Double.valueOf(total1))));
+        }
     }
-    
-    
 
     @FXML
     private void OnActionBtnCancelar(ActionEvent event) {
     }
-    
+
     private class ButtonCellComida extends TableCell<ProComidasDto, Boolean> {
 
         final Button cellButton = new Button();
@@ -140,7 +130,7 @@ public class ComidasClienteViewController extends Controller implements Initiali
                 tbvComidas.refresh();
                 tbvFactura.refresh();
                 Suma();
-                
+
             });
         }
 
@@ -152,8 +142,8 @@ public class ComidasClienteViewController extends Controller implements Initiali
             }
         }
     }
-    
-    public void actualizarTbv(){
+
+    public void actualizarTbv() {
         ProComidasService proComidasService = new ProComidasService();
 
         Respuesta respuesta = proComidasService.getComidas();
@@ -166,7 +156,7 @@ public class ComidasClienteViewController extends Controller implements Initiali
             new Mensaje().showModal(Alert.AlertType.ERROR, "Consulta usuarios", getStage(), respuesta.getMensaje());
         }
     }
-    
+
     private class ButtonCellFactura extends TableCell<ProComidasDto, Boolean> {
 
         final Button cellButton = new Button();
@@ -177,10 +167,13 @@ public class ComidasClienteViewController extends Controller implements Initiali
             cellButton.setText("Eliminar");
             cellButton.setStyle("-fx-background-color: #8EF680");
             cellButton.setOnAction((ActionEvent t) -> {
-                ProComidasDto fac = (ProComidasDto) ButtonCellFactura.this.getTableView().getItems().get(ButtonCellFactura.this.getIndex());               
+                ProComidasDto fac = (ProComidasDto) ButtonCellFactura.this.getTableView().getItems().get(ButtonCellFactura.this.getIndex());
                 tbvFactura.getItems().remove(fac);
                 tbvFactura.refresh();
                 Suma();
+                if(tbvFactura.getItems().isEmpty()){
+                    txtTotal.setText("0");
+                }
             });
         }
 
@@ -192,5 +185,5 @@ public class ComidasClienteViewController extends Controller implements Initiali
             }
         }
     }
-    
+
 }
