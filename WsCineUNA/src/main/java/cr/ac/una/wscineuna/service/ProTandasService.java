@@ -4,6 +4,8 @@
  */
 package cr.ac.una.wscineuna.service;
 
+import cr.ac.una.wscineuna.model.ProAsientos;
+import cr.ac.una.wscineuna.model.ProAsientosDto;
 import cr.ac.una.wscineuna.model.ProTandas;
 import cr.ac.una.wscineuna.model.ProTandasDto;
 import cr.ac.una.wscineuna.util.CodigoRespuesta;
@@ -62,6 +64,18 @@ public class ProTandasService {
                     return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encrontró la tanda a modificar.", "guardarTanda NoResultException");
                 }
                 proTandas.actualizarTanda(proTandasDto);
+                for (ProAsientosDto asi : proTandasDto.getAsientosEliminados()) {
+                    proTandas.getProAsientosList().remove(new ProAsientos(asi.getAsiId()));
+                }
+                if (!proTandasDto.getAsientos().isEmpty()) {
+                    for (ProAsientosDto asi : proTandasDto.getAsientos()) {
+                        if (asi.getAsiModificado()) {
+                            ProAsientos pelicula = em.find(ProAsientos.class, asi.getAsiId());
+                            pelicula.getProTandasList().add(proTandas);
+                            proTandas.getProAsientosList().add(pelicula);
+                        }
+                    }
+                }
                 proTandas = em.merge(proTandas);
             } else {
                 proTandas = new ProTandas(proTandasDto);

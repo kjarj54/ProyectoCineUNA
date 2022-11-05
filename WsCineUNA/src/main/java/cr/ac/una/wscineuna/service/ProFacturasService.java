@@ -4,6 +4,8 @@
  */
 package cr.ac.una.wscineuna.service;
 
+import cr.ac.una.wscineuna.model.ProComidas;
+import cr.ac.una.wscineuna.model.ProComidasDto;
 import cr.ac.una.wscineuna.model.ProFacturas;
 import cr.ac.una.wscineuna.model.ProFacturasDto;
 import cr.ac.una.wscineuna.util.CodigoRespuesta;
@@ -61,6 +63,18 @@ public class ProFacturasService {
                     return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encrontró la factura a modificar.", "guardarFactura NoResultException");
                 }
                 proFacturas.actualizarFatura(proFacturasDto);
+                for (ProComidasDto com : proFacturasDto.getComidasEliminadas()) {
+                    proFacturas.getProComidasList().remove(new ProComidas(com.getComId()));
+                }
+                if (!proFacturasDto.getComidas().isEmpty()) {
+                    for (ProComidasDto com : proFacturasDto.getComidas()) {
+                        if (com.getModificado()) {
+                            ProComidas comida = em.find(ProComidas.class, com.getComId());
+                            comida.getProFacturasList().add(proFacturas);
+                            proFacturas.getProComidasList().add(comida);
+                        }
+                    }
+                }
                 proFacturas = em.merge(proFacturas);
             } else {
                 proFacturas = new ProFacturas(proFacturasDto);
