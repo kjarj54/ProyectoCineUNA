@@ -65,7 +65,7 @@ public class ProClientesController {
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }
-            return Response.ok().build();
+            return Response.ok().entity("<b>Activacion exitosa</b>").build();
         } catch (Exception ex) {
             Logger.getLogger(ProClientesController.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error guardando el cliente").build();
