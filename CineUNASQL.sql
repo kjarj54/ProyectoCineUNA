@@ -285,8 +285,8 @@ COMMENT ON COLUMN PRO_RESERVACION.res_version IS 'Version del registro de reserv
 CREATE TABLE PRO_TANDAS(
   tan_id Number NOT NULL,
   tan_nombre Varchar2(50 ) NOT NULL,
-  tan_horainicio Timestamp(6) NOT NULL,
-  tan_horafinal Timestamp(6) NOT NULL,
+  tan_horainicio Varchar2(6 ) NOT NULL,
+  tan_horafinal Varchar2(6 ) NOT NULL,
   tan_fecha Date NOT NULL,
   tan_precio Number NOT NULL,
   tan_version Number DEFAULT ON NULL 1 NOT NULL,
