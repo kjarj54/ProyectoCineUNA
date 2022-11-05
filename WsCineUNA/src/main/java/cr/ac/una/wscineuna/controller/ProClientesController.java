@@ -55,7 +55,7 @@ public class ProClientesController {
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error guardando el cliente").build();
         }
     }
-    
+
     @GET
     //@Secure
     @Path("/activarCuenta")
@@ -65,7 +65,26 @@ public class ProClientesController {
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }
-            return Response.ok().entity("<b>Activacion exitosa</b>").build();
+            return Response.ok().entity("<html lang=\"es\">\n"
+                    + "<head>\n"
+                    + "	<meta charset=\"UTF-8\">\n"
+                    + "	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                    + "	<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n"
+                    + "	<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\">\n"
+                    + "	<title>Pagina de verificacion</title>\n"
+                    + "</head>\n"
+                    + "<body style=\"background-color: #f5f5f5;\">\n"
+                    + "	<div class=\"text-center p-5\">\n"
+                    + "	   <h1>Gracias por registrarse!</h1>\n"
+                    + "	   <p class=\"lead\">Ahora su cuenta a sido activada puede usar la app con normalidad.</p>\n"
+                    + "	</div>\n"
+                    + "	\n"
+                    + "	<!-- FOOTER -->\n"
+                    + "	<footer class=\"footer mt-5 text-muted text-center text-small\">\n"
+                    + "      <p>Email Verification</p>\n"
+                    + "    </footer>\n"
+                    + "</body>\n"
+                    + "</html>").build();
         } catch (Exception ex) {
             Logger.getLogger(ProClientesController.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error guardando el cliente").build();
@@ -124,7 +143,7 @@ public class ProClientesController {
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error obteniendo Clientes").build();
         }
     }
-    
+
     @GET
     @Secure
     @Path("/getClientes/")
