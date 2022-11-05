@@ -229,6 +229,8 @@ public class ComidasAdminViewController extends Controller implements Initializa
         ButtonCell() {
             cellButton.setPrefWidth(500);
             cellButton.getStyleClass().add("jfx-btnimg-tbveliminar");
+            cellButton.setText("Eliminar");
+            cellButton.setStyle("-fx-background-color: #FF5B41");
 
             cellButton.setOnAction((ActionEvent t) -> {//se encarga de eliminar tanto de basse de datos como de el tbv
                 try {

@@ -38,11 +38,12 @@ public class CarteleraViewController extends Controller implements Initializable
 
     @FXML
     private void OnActionbtnEstrenos(ActionEvent event) {
-        //FlowController.getInstance().goView("RecuperarContraView");
+        FlowController.getInstance().goView("EstrenosView");
     }
 
     @FXML
     private void OnActionbtnCartelera(ActionEvent event) {
+        FlowController.getInstance().goView("PelisActualesView");
     }
     
 }
