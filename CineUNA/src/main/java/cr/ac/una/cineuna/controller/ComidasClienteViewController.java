@@ -11,6 +11,7 @@ import cr.ac.una.cineuna.service.ProComidasService;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
@@ -99,7 +100,26 @@ public class ComidasClienteViewController extends Controller implements Initiali
 
     @FXML
     private void OnActionBtnPagar(ActionEvent event) {
+    
+    //tbvFactura.getItems().forEach(producto ->
+     //                               txtTotal.setText(String.valueOf(producto.getComPrecio())));
+    
+   
+    
+    
     }
+    
+    public void Suma(){
+    double total1 = 0d;
+    for(int i = 0; i<tbvFactura.getItems().size();i++) {
+    DecimalFormat df = new DecimalFormat ("########.00");
+    Double valor2 = new Double(tbvFactura.getItems().get(i).getComPrecio().toString().replace(",", "."));
+    total1+=valor2;
+    txtTotal.setText(String.valueOf(df.format(Double.valueOf(total1))));
+}
+    }
+    
+    
 
     @FXML
     private void OnActionBtnCancelar(ActionEvent event) {
@@ -119,6 +139,7 @@ public class ComidasClienteViewController extends Controller implements Initiali
                 tbvFactura.getItems().add(com);
                 tbvComidas.refresh();
                 tbvFactura.refresh();
+                Suma();
                 
             });
         }
@@ -159,6 +180,7 @@ public class ComidasClienteViewController extends Controller implements Initiali
                 ProComidasDto fac = (ProComidasDto) ButtonCellFactura.this.getTableView().getItems().get(ButtonCellFactura.this.getIndex());               
                 tbvFactura.getItems().remove(fac);
                 tbvFactura.refresh();
+                Suma();
             });
         }
 
