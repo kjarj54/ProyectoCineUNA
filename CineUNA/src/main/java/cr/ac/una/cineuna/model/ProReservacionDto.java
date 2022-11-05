@@ -6,6 +6,7 @@ package cr.ac.una.cineuna.model;
 
 import java.security.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,14 +19,14 @@ public class ProReservacionDto {
     
     public SimpleStringProperty resId;
     public ObjectProperty<LocalDate> resFecha;
-    public ObjectProperty<Timestamp> resHora;
+    public SimpleStringProperty resTotal;
     private Boolean modificado;
     
     public ProReservacionDto() {
         this.modificado = false;
         this.resId = new SimpleStringProperty();
         this.resFecha = new SimpleObjectProperty();
-        this.resHora = new SimpleObjectProperty();
+        this.resTotal = new SimpleStringProperty();
     }
     
     public Long getResId() {
@@ -48,12 +49,16 @@ public class ProReservacionDto {
         this.resFecha.set(resFecha);
     }
     
-    public Timestamp getResHora() {
-        return resHora.get();
+    public Long getResHora() {
+        if (resTotal.get() != null && !resTotal.get().isEmpty()) {
+            return Long.valueOf(resTotal.get());
+        } else {
+            return null;
+        }
     }
     
-    public void setResHora(Timestamp resHora) {
-        this.resHora.set(resHora);
+    public void setResHora(Long resTotal) {
+        this.resTotal.set(resTotal.toString());
     }
     
     public Boolean getModificado() {

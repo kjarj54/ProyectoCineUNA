@@ -17,7 +17,7 @@ public class ProFacturasDto {
     private Long facId;
     private Long facTotal;
     private LocalDate facFecha;
-    Boolean modificado;
+    private Boolean modificado;
     List<ProComidasDto> comidas;
     List<ProComidasDto> comidasEliminadas;
 

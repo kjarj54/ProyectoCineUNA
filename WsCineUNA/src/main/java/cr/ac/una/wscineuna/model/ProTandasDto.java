@@ -6,6 +6,7 @@ package cr.ac.una.wscineuna.model;
 
 import java.security.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +19,8 @@ public class ProTandasDto {
 
     private Long tanId;
     private String tanNombre;
-    private Timestamp tanHorainico;
-    private Timestamp tanHorafinal;
+    private LocalTime tanHorainico;
+    private LocalTime tanHorafinal;
     private LocalDate tanFecha;
     private Long tanPrecio;
     private Boolean modificado;
@@ -59,19 +60,19 @@ public class ProTandasDto {
         this.tanNombre = tanNombre;
     }
 
-    public Timestamp getTanHorainico() {
+    public LocalTime getTanHorainico() {
         return tanHorainico;
     }
 
-    public void setTanHorainico(Timestamp tanHorainico) {
+    public void setTanHorainico(LocalTime tanHorainico) {
         this.tanHorainico = tanHorainico;
     }
 
-    public Timestamp getTanHorafinal() {
+    public LocalTime getTanHorafinal() {
         return tanHorafinal;
     }
 
-    public void setTanHorafinal(Timestamp tanHorafinal) {
+    public void setTanHorafinal(LocalTime tanHorafinal) {
         this.tanHorafinal = tanHorafinal;
     }
 

@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -57,10 +58,10 @@ public class ProTandas implements Serializable {
     private String tanNombre;
     @Basic(optional = false)
     @Column(name = "TAN_HORAINICIO")
-    private Timestamp tanHorainicio;
+    private LocalTime tanHorainicio;
     @Basic(optional = false)
     @Column(name = "TAN_HORAFINAL")
-    private Timestamp tanHorafinal;
+    private LocalTime tanHorafinal;
     @Basic(optional = false)
     @Column(name = "TAN_FECHA")
     private LocalDate tanFecha;
@@ -87,7 +88,7 @@ public class ProTandas implements Serializable {
         this.tanId = tanId;
     }
 
-    public ProTandas(Long tanId, String tanNombre, Timestamp tanHorainicio, Timestamp tanHorafinal, LocalDate tanFecha, Long tanPrecio) {
+    public ProTandas(Long tanId, String tanNombre, LocalTime tanHorainicio, LocalTime tanHorafinal, LocalDate tanFecha, Long tanPrecio) {
         this.tanId = tanId;
         this.tanNombre = tanNombre;
         this.tanHorainicio = tanHorainicio;
@@ -125,19 +126,19 @@ public class ProTandas implements Serializable {
         this.tanNombre = tanNombre;
     }
 
-    public Timestamp getTanHorainicio() {
+    public LocalTime getTanHorainicio() {
         return tanHorainicio;
     }
 
-    public void setTanHorainicio(Timestamp tanHorainicio) {
+    public void setTanHorainicio(LocalTime tanHorainicio) {
         this.tanHorainicio = tanHorainicio;
     }
 
-    public Timestamp getTanHorafinal() {
+    public LocalTime getTanHorafinal() {
         return tanHorafinal;
     }
 
-    public void setTanHorafinal(Timestamp tanHorafinal) {
+    public void setTanHorafinal(LocalTime tanHorafinal) {
         this.tanHorafinal = tanHorafinal;
     }
 
