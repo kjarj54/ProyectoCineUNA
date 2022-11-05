@@ -31,6 +31,8 @@ public class PrincipalViewController extends Controller implements Initializable
     private JFXButton btnComidas;
     @FXML
     private BorderPane brdrPane;
+    @FXML
+    private JFXButton btnTanda;
 
     /**
      * Initializes the controller class.
@@ -71,6 +73,11 @@ public class PrincipalViewController extends Controller implements Initializable
     @FXML
     private void OnActionBtnComidas(ActionEvent event) {
         FlowController.getInstance().goView("ComidasAdminView");
+    }
+
+    @FXML
+    private void OnActionbtnTANDAS(ActionEvent event) {
+        FlowController.getInstance().goView("MantTandasView");
     }
     
 }

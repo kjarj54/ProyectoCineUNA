@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="575.0" prefWidth="762.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.ComidasAdminViewController">
     <stylesheets>
@@ -27,7 +28,10 @@
                      <children>
                         <JFXTextField fx:id="txtNombre" labelFloat="true" promptText="%nombre" VBox.vgrow="ALWAYS" />
                         <JFXTextField fx:id="txtPrecio" labelFloat="true" maxWidth="490.0" prefHeight="37.0" prefWidth="490.0" promptText="%precio" VBox.vgrow="ALWAYS" />
-                        <JFXTextArea fx:id="txtDescripcion" labelFloat="true" prefHeight="91.0" prefWidth="300.0" promptText="%descripcion" />
+                        <JFXTextArea fx:id="txtDescripcion" labelFloat="true" prefHeight="91.0" prefWidth="300.0" promptText="%descripcion" style="-fx-background-color: white;" unFocusColor="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font></JFXTextArea>
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="25.0" />

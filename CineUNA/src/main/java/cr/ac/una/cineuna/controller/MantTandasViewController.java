@@ -1,62 +1,55 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.paint.Color;
+
 /**
  * FXML Controller class
  *
  * @author Emanuel
  */
-public class MantSalasViewController extends Controller implements Initializable {
+public class MantTandasViewController extends Controller implements Initializable {
 
     @FXML
-    public GridPane gridPaneAsiento;
-    @FXML
-    public ImageView imgAsiento;
-    @FXML
     private MenuButton menuPelicula;
-    @FXML
-    private MenuButton menuTanda;
     @FXML
     private JFXButton btnSalir;
     @FXML
     private JFXButton btnGuardar;
     @FXML
-    private JFXTextField txtNombreSala;
+    private JFXTextField txtNombreTanda;
+    @FXML
+    private JFXDatePicker dpFecha;
+    @FXML
+    private JFXTimePicker HoraInicio;
+    @FXML
+    private JFXTimePicker HoraFinal;
+    @FXML
+    private JFXTextField txtPrecio;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        // TODO
     }    
 
     @Override
     public void initialize() {
         
-    }
-   
-    public void llenarImagen(){
-    for (int i = 0; i < gridPaneAsiento.getColumnCount(); i++) {
-            for (int j = 0; j < gridPaneAsiento.getRowCount(); i++){
-            imgAsiento = new ImageView();
-            }
-        }
     }
 
     @FXML
