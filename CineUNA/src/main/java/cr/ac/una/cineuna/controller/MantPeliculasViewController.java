@@ -2,6 +2,8 @@
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.net.URL;
@@ -10,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -40,6 +43,10 @@ public class MantPeliculasViewController extends Controller implements Initializ
     private JFXButton btnGuardar;
     @FXML
     private JFXButton btnLimpiar;
+    @FXML
+    private JFXComboBox<String> menuTanda;
+    @FXML
+    private JFXDatePicker dpFecha;
 
     /**
      * Initializes the controller class.
@@ -47,6 +54,9 @@ public class MantPeliculasViewController extends Controller implements Initializ
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        menuTanda.getItems().add("S");
+        menuTanda.getItems().add("I");
+        menuTanda.getItems().add("P");
     }    
 
     @Override

@@ -27,21 +27,21 @@
                <children>
                   <Label prefHeight="27.0" prefWidth="142.0" styleClass="h3-contraste" text="%NombreFecha" />
                   <Separator maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="38.0" prefWidth="168.0" visible="false" HBox.hgrow="ALWAYS" />
-                  <JFXDatePicker fx:id="dpFecha" prefHeight="38.0" prefWidth="300.0" />
+                  <JFXDatePicker fx:id="dpFecha" prefHeight="38.0" prefWidth="300.0" promptText="Fecha" />
                </children>
             </HBox>
             <HBox alignment="CENTER">
                <children>
                   <Label prefHeight="27.0" prefWidth="142.0" styleClass="h3-contraste" text="%NombreHoraI" />
                   <Separator maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="38.0" prefWidth="168.0" visible="false" HBox.hgrow="ALWAYS" />
-                  <JFXTimePicker fx:id="HoraInicio" prefWidth="300.0" />
+                  <JFXTimePicker fx:id="HoraInicio" prefWidth="300.0" promptText="Hora Inicio" />
                </children>
             </HBox>
             <HBox alignment="CENTER">
                <children>
                   <Label prefHeight="27.0" prefWidth="142.0" styleClass="h3-contraste" text="%NombreHoraF" />
                   <Separator maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="38.0" prefWidth="168.0" visible="false" HBox.hgrow="ALWAYS" />
-                  <JFXTimePicker fx:id="HoraFinal" prefWidth="300.0" />
+                  <JFXTimePicker fx:id="HoraFinal" prefWidth="300.0" promptText="Hora Final" />
                </children>
             </HBox>
             <HBox alignment="CENTER">

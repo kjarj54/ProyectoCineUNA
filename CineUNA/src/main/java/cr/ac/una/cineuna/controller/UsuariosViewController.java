@@ -260,7 +260,8 @@ public class UsuariosViewController extends Controller implements Initializable 
             String invalidos = validarRequeridos();
             if (!invalidos.isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar usuario", getStage(), invalidos);
-            } else {
+            } 
+            else {
                 ProClientesService service = new ProClientesService();
                 Respuesta respuesta = service.guardarCliente(proClientesDto);
                 if (!respuesta.getEstado()) {
