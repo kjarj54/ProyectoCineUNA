@@ -1,4 +1,4 @@
-﻿/*
+/*
 Created: 19/9/2022
 Modified: 22/10/2022
 Model: ProyectoCinesUna
@@ -97,11 +97,11 @@ CREATE TABLE PRO_CLIENTES(
   cli_nombre Varchar2(50 ) NOT NULL,
   cli_papellido Varchar2(30 ) NOT NULL,
   cli_correo Varchar2(50 ) NOT NULL,
-  cli_idioma Varchar2(1 ) DEFAULT ON NULL 'E' NOT NULL,
+  cli_idioma Varchar2(1 ) DEFAULT 'E' NOT NULL,
   cli_estado Varchar2(1 ) DEFAULT 'I' NOT NULL,
   cli_admin Varchar2(1 ) DEFAULT 'N' NOT NULL,
   cli_sapellido Varchar2(10 ),
-  cli_version Number DEFAULT ON NULL 1 NOT NULL,
+  cli_version Number DEFAULT 1 NOT NULL,
   CONSTRAINT PRO_CLIENTES_CK01 CHECK (cli_admin in ('S','N')),
   CONSTRAINT PRO_CLIENTES_CK02 CHECK (cli_estado in ('A', 'I'))
 )
@@ -168,7 +168,7 @@ COMMENT ON COLUMN PRO_PELICULAS.pel_id IS 'Id de las peliculas'
 ;
 COMMENT ON COLUMN PRO_PELICULAS.pel_nombre IS 'Nombre de la pelicula'
 ;
-COMMENT ON COLUMN PRO_PELICULAS.pel_synopsis IS 'Reseña de la pelicula'
+COMMENT ON COLUMN PRO_PELICULAS.pel_synopsis IS 'Rese�a de la pelicula'
 ;
 COMMENT ON COLUMN PRO_PELICULAS.pel_link IS 'Link del trailer de la pelicula'
 ;
