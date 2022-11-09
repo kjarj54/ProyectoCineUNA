@@ -246,7 +246,7 @@ public class ProClientesService {
         return ip.getHostAddress();
     }
 
-    public String mensajeEmail(ProClientesDto proClientesDto) {
+    public String mensajeEmail(ProClientesDto proClientesDto) throws UnknownHostException {
         return "<head>\n"
                 + "  <!--[if gte mso 9]>\n"
                 + "<xml>\n"
@@ -564,7 +564,7 @@ public class ProClientesService {
                 + "                                <p style=\"font-size: 14px; line-height: 180%;\"> </p>\n"
                 + "                                <p style=\"font-size: 14px; line-height: 180%;\"><span\n"
                 + "                                    style=\"font-size: 18px; line-height: 32.4px; color: #000000;\"><span\n"
-                + "                                      style=\"line-height: 32.4px; font-family: Montserrat, sans-serif; font-size: 18px;\">Presione el link para activar su cuenta: http://localhost:8080/WsCineUNA/ws/ProClientesController/activarCuenta?id=" + proClientesDto.getCliId() + "</span></span>\n"
+                + "                                      style=\"line-height: 32.4px; font-family: Montserrat, sans-serif; font-size: 18px;\">Presione el link para activar su cuenta: http://"+ obtenerIp() +":8080/WsCineUNA/ws/ProClientesController/activarCuenta?id=" + proClientesDto.getCliId() + "</span></span>\n"
                 + "                                </p>\n"
                 + "                                <p style=\"font-size: 14px; line-height: 180%;\"> </p>\n"
                 + "                              </div>\n"
