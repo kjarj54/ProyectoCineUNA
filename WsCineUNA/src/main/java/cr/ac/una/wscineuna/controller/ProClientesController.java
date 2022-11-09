@@ -45,10 +45,11 @@ public class ProClientesController {
     @Path("/guardarCliente")
     public Response guardarCliente(ProClientesDto proClientesDto) {
         try {
-            Respuesta res = proClientesService.guardarCliente(proClientesDto);
+            Respuesta res = proClientesService.guardarCliente(proClientesDto);           
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }
+            Respuesta res2 = proClientesService.correoActivacion((ProClientesDto) res.getResultado("Cliente"));
             return Response.ok((ProClientesDto) res.getResultado("Cliente")).build();
         } catch (Exception ex) {
             Logger.getLogger(ProClientesController.class.getName()).log(Level.SEVERE, null, ex);
