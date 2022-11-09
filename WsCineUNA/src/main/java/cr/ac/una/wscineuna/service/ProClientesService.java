@@ -203,6 +203,29 @@ public class ProClientesService {
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al eliminar el cliente.", "eliminarCliente " + ex.getMessage());
         }
     }
+    
+    public Respuesta recuperarClave(ProClientesDto proClientesDto) {
+        try {
+            ProClientes proClientes;
+            if (proClientesDto.getCliId() != null && proClientesDto.getCliId() > 0) {
+                proClientes = em.find(ProClientes.class, proClientesDto.getCliId());
+                if (proClientes == null) {
+                    return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encrontró el cliente a modificar.", "guardarCliente NoResultException");
+                }
+                proClientes.actualizarCliente(proClientesDto);
+                proClientes = em.merge(proClientes);
+            } else {
+                proClientes = new ProClientes(proClientesDto);
+                em.persist(proClientes);
+            }
+            em.flush();
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Cliente", new ProClientesDto(proClientes));
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al guardar el cliente.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al guardar el cliente.", "guardarCliente " + ex.getMessage());
+        }
+    }
+    
 
     public Respuesta correoActivacion(ProClientesDto proClientesDto) {
         try {
