@@ -56,10 +56,11 @@
     -fx-pref-height: 0px;
 }
 
-.jfx-text-field, .jfx-password-field{
+.jfx-text-field, .jfx-password-field, .jfx-date-picker{
     -fx-min-width:200;
     -fx-pref-width:300;
     -fx-max-width:350;
+    -fx-max-height:50;
     -fx-background-color: #444444;
     -fx-text-fill: white;
     -fx-prompt-text-fill: white;
@@ -220,12 +221,12 @@ MenuButton{
         linear-gradient(#DA9200, #FF9F00);
 }
 
-#btnAuto, #btnLimpiar, #btnRecuperar{
+#btnLimpiar, #btnRecuperar{
     -fx-background-color:
         linear-gradient(#57a0d3, #73c2fb);
 }
 
-#btnAuto:hover, #btnLimpiar:hover, #btnRecuperar:hover{
+#btnLimpiar:hover, #btnRecuperar:hover{
     -fx-background-color:
         linear-gradient(#1DE0DF, #73AFFB);
 }
@@ -270,26 +271,19 @@ MenuButton{
         #9d4024,
         #d86e3a,
         radial-gradient(center 50% 50%, radius 100%,#d96e3a,#c54e2c);
+    -fx-min-width:170;
+    -fx-min-height:50;
+    -fx-pref-width:180;
+    -fx-pref-height:50;
+    -fx-max-width:200;
+    -fx-max-height:50;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75),4,0,0,1);
-    -fx-font-weight: bold;
     -fx-font-size: 1.1em;
-    -fx-text-fill: white;
-}
-
-#sale:hover
-{
-
-    -fx-background-color:
-        linear-gradient(from 0% 93% to 0% 100%,#a34313 0%,#903b12 100),
-        #9d4024,
-        #d86e3a,
-        radial-gradient(center 50% 50%,radius 100%,#ea7f4b,#c54e2c);
 }
 
 #sale:pressed
 {
     -fx-padding: 10 15 13 15;
     -fx-background-insets: 2 0 0 0,2 0 3 0,2 0 4 0,2 0 5 0;
-
 }
 
