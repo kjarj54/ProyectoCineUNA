@@ -84,8 +84,6 @@ public class ProClientes implements Serializable {
     @Column(name = "CLI_VERSION")
     private Long cliVersion;
     @OneToMany(mappedBy = "cliId", fetch = FetchType.LAZY)
-    private List<ProSalas> proSalasList;
-    @OneToMany(mappedBy = "cliId", fetch = FetchType.LAZY)
     private List<ProReservacion> proReservacionList;
     @OneToMany(mappedBy = "cliId", fetch = FetchType.LAZY)
     private List<ProFacturas> proFacturasList;
@@ -217,13 +215,6 @@ public class ProClientes implements Serializable {
         this.cliVersion = cliVersion;
     }
 
-    public List<ProSalas> getProSalasList() {
-        return proSalasList;
-    }
-
-    public void setProSalasList(List<ProSalas> proSalasList) {
-        this.proSalasList = proSalasList;
-    }
 
     public List<ProReservacion> getProReservacionList() {
         return proReservacionList;
