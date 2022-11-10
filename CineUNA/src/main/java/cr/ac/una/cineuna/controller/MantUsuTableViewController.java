@@ -81,7 +81,7 @@ public class MantUsuTableViewController extends Controller implements Initializa
     @FXML
     private TableColumn<ProClientesDto, Boolean> tbcAdmin;
     @FXML
-    private TableColumn<ProClientesDto, String> tbcEstado;
+    private TableColumn<ProClientesDto, Boolean> tbcEstado;
     @FXML
     private TableColumn<ProClientesDto, String> tbcSApellido;
     @FXML
@@ -116,7 +116,7 @@ public class MantUsuTableViewController extends Controller implements Initializa
         tbcSApellido.setCellValueFactory(clbck -> clbck.getValue().cliSApellido);
         
         tbcCorreo.setCellValueFactory(clbck-> clbck.getValue().cliCorreo);
-        
+       
         ProClientesService proClientesService = new ProClientesService();
         
         Respuesta respuesta = proClientesService.getClientesSinParametros();
@@ -137,10 +137,23 @@ public class MantUsuTableViewController extends Controller implements Initializa
                 return new CheckBoxCell();
             }
         };
+        
+        
 
         tbcAdmin.setCellFactory(boolenaCellFactory);
         //Anyade el checkbox a la columna
         tbcAdmin.setCellFactory((TableColumn<ProClientesDto, Boolean> p) -> new CheckBoxCell());
+        
+        
+        Callback<TableColumn<ProClientesDto, Boolean>, TableCell<ProClientesDto, Boolean>> boolenaCellFactoryEstado = new Callback<TableColumn<ProClientesDto, Boolean>, TableCell<ProClientesDto, Boolean>>() {
+            @Override
+            public TableCell<ProClientesDto, Boolean> call(TableColumn<ProClientesDto, Boolean> p) {
+                return new CheckBoxCellEstado();
+            }
+        };
+        tbcEstado.setCellFactory(boolenaCellFactoryEstado);
+        //Anyade el checkbox a la columna
+        tbcEstado.setCellFactory((TableColumn<ProClientesDto, Boolean> p) -> new CheckBoxCellEstado());
     }
 
     @Override
@@ -210,7 +223,25 @@ public class MantUsuTableViewController extends Controller implements Initializa
 
         CheckBoxCell() {//Crea el check para setear si el admin o no
             cellCheckBox.setPrefWidth(500);
+        }
 
+        @Override
+        protected void updateItem(Boolean t, boolean empty) {
+            super.updateItem(t, empty);
+            if (!empty) {
+                setGraphic(cellCheckBox);
+            }
+        }
+    }
+    
+    private class CheckBoxCellEstado extends TableCell<ProClientesDto, Boolean> {
+
+        final CheckBox cellCheckBox = new CheckBox();
+
+        CheckBoxCellEstado() {//Crea el check para setear si el admin o no
+            cellCheckBox.setPrefWidth(500);
+            
+            
         }
 
         @Override

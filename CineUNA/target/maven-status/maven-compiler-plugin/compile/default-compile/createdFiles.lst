@@ -27,7 +27,6 @@ cr\ac\una\cineuna\service\ProTandasService.class
 module-info.class
 cr\ac\una\cineuna\service\ProClientesService$2.class
 cr\ac\una\cineuna\util\Formato.class
-.netbeans_automatic_build
 cr\ac\una\cineuna\controller\PelisActualesViewController.class
 cr\ac\una\cineuna\util\FlowController.class
 cr\ac\una\cineuna\controller\EscogerAsientosViewController.class
@@ -35,7 +34,6 @@ cr\ac\una\cineuna\controller\MantSalasViewController.class
 cr\ac\una\cineuna\model\ProSalasDto.class
 cr\ac\una\cineuna\App.class
 cr\ac\una\cineuna\model\ProReservacionDto.class
-cr\ac\una\cineuna\controller\MantUsuTableViewController.class
 cr\ac\una\cineuna\controller\ComidasClienteViewController$ButtonCellComida.class
 cr\ac\una\cineuna\service\ProFacturasService$1.class
 cr\ac\una\cineuna\controller\EstrenosViewController.class
@@ -46,7 +44,6 @@ cr\ac\una\cineuna\model\ProComidasDto.class
 cr\ac\una\cineuna\service\ProPeliculasService$1.class
 cr\ac\una\cineuna\model\ProTandasDto.class
 cr\ac\una\cineuna\util\DragResizer$2.class
-cr\ac\una\cineuna\controller\MantUsuTableViewController$CheckBoxCell.class
 cr\ac\una\cineuna\model\ProFacturasDto.class
 cr\ac\una\cineuna\util\DragResizer$5.class
 cr\ac\una\cineuna\controller\PrincipalUsuariosViewController.class
@@ -61,5 +58,4 @@ cr\ac\una\cineuna\controller\MantTandasViewController.class
 cr\ac\una\cineuna\model\ProClientesDto.class
 cr\ac\una\cineuna\model\ProAsientosDto.class
 cr\ac\una\cineuna\util\Mensaje.class
-cr\ac\una\cineuna\controller\MantUsuTableViewController$1.class
 cr\ac\una\cineuna\util\DragResizer$4.class
