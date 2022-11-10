@@ -24,7 +24,6 @@ cr\ac\una\cineuna\controller\RecuperarContraViewController.class
 cr\ac\una\cineuna\service\ProClientesService$1.class
 cr\ac\una\cineuna\controller\ReservarViewController.class
 cr\ac\una\cineuna\service\ProTandasService.class
-module-info.class
 cr\ac\una\cineuna\service\ProClientesService$2.class
 cr\ac\una\cineuna\util\Formato.class
 cr\ac\una\cineuna\controller\PelisActualesViewController.class
@@ -55,6 +54,7 @@ cr\ac\una\cineuna\controller\ComidasAdminViewController$ButtonCell.class
 cr\ac\una\cineuna\controller\CarteleraViewController.class
 cr\ac\una\cineuna\controller\LoginViewController.class
 cr\ac\una\cineuna\util\Request$1.class
+cr\ac\una\cineuna\controller\MantTandasViewController.class
 cr\ac\una\cineuna\model\ProClientesDto.class
 cr\ac\una\cineuna\model\ProAsientosDto.class
 cr\ac\una\cineuna\util\Mensaje.class

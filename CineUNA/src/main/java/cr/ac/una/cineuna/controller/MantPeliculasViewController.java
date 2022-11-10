@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -61,7 +62,21 @@ public class MantPeliculasViewController extends Controller implements Initializ
         menuTanda.getItems().add("I - Inactiva");
         menuTanda.getItems().add("P - Proximamente");
     }    
-
+    
+    private Image ConvertToImage(byte[] data) {
+        return new Image(new ByteArrayInputStream(data));
+    }
+    
+    private byte[] SaveImage(Image imagen) throws IOException {
+        System.out.println(imagen);
+        String image = imagen.getUrl().substring(6, imagen.getUrl().length());
+        System.out.println(image);
+        File file = new File(image);
+        FileInputStream fiStream = new FileInputStream(file.getAbsolutePath());
+        byte[] imageInBytes = IOUtils.toByteArray(fiStream);
+        return imageInBytes;
+    }
+    
     @Override
     public void initialize() {
         
