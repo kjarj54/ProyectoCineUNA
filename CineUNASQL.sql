@@ -1,6 +1,6 @@
-/*
+﻿/*
 Created: 19/9/2022
-Modified: 22/10/2022
+Modified: 9/11/2022
 Model: ProyectoCinesUna
 Database: Oracle 18c
 */
@@ -94,22 +94,27 @@ CREATE TABLE PRO_CLIENTES(
   cli_id Number NOT NULL,
   cli_usuario Varchar2(20 ) NOT NULL,
   cli_clave Varchar2(20 ) NOT NULL,
+  cli_claverestaurada Varchar2(20 ),
   cli_nombre Varchar2(50 ) NOT NULL,
   cli_papellido Varchar2(30 ) NOT NULL,
   cli_correo Varchar2(50 ) NOT NULL,
-  cli_idioma Varchar2(1 ) DEFAULT 'E' NOT NULL,
+  cli_idioma Varchar2(1 ) DEFAULT ON NULL 'E' NOT NULL,
   cli_estado Varchar2(1 ) DEFAULT 'I' NOT NULL,
   cli_admin Varchar2(1 ) DEFAULT 'N' NOT NULL,
   cli_sapellido Varchar2(10 ),
-  cli_version Number DEFAULT 1 NOT NULL,
+  cli_version Number DEFAULT ON NULL 1 NOT NULL,
   CONSTRAINT PRO_CLIENTES_CK01 CHECK (cli_admin in ('S','N')),
-  CONSTRAINT PRO_CLIENTES_CK02 CHECK (cli_estado in ('A', 'I'))
+  CONSTRAINT PRO_CLIENTES_CK02 CHECK (cli_estado in ('A', 'I')),
+  CONSTRAINT PRO_CLIENTES_CK03 CHECK (cli_idioma in ('E','I'))
 )
 ;
 
 -- Create indexes for table PRO_CLIENTES
 
 CREATE UNIQUE INDEX PRO_CLIENTES_UNQ01 ON PRO_CLIENTES (cli_usuario)
+;
+
+CREATE UNIQUE INDEX PRO_CLIENTES_UNQ02 ON PRO_CLIENTES (cli_correo)
 ;
 
 -- Add keys for table PRO_CLIENTES
@@ -124,6 +129,8 @@ COMMENT ON COLUMN PRO_CLIENTES.cli_id IS 'Id de los usuarios'
 COMMENT ON COLUMN PRO_CLIENTES.cli_usuario IS 'usuario de las personas'
 ;
 COMMENT ON COLUMN PRO_CLIENTES.cli_clave IS 'Clave de los usuarios'
+;
+COMMENT ON COLUMN PRO_CLIENTES.cli_claverestaurada IS 'Clave que se otorga caundo el usuario olvido la clave'
 ;
 COMMENT ON COLUMN PRO_CLIENTES.cli_nombre IS 'Nombre de los usuarios'
 ;
@@ -146,14 +153,16 @@ COMMENT ON COLUMN PRO_CLIENTES.cli_version IS 'Version del registro de usuarios'
 
 CREATE TABLE PRO_PELICULAS(
   pel_id Number NOT NULL,
+  pel_idioma Varchar2(1 ) DEFAULT 'S',
   pel_nombre Varchar2(30 ) NOT NULL,
-  pel_synopsis Varchar2(30 ),
+  pel_synopsis Varchar2(500 ),
   pel_link Varchar2(200 ) NOT NULL,
   pel_imagen Blob NOT NULL,
   pel_fechaestreno Date NOT NULL,
   pel_estado Varchar2(1 ) DEFAULT 'S' NOT NULL,
   pel_version Number DEFAULT 1 NOT NULL,
-  CONSTRAINT PRO_PELICULAS_CK01 CHECK (pel_estado in ('S','I','P'))
+  CONSTRAINT PRO_PELICULAS_CK01 CHECK (pel_estado in ('S','I','P')),
+  CONSTRAINT PRO_PELICULAS_CK02 CHECK (pel_idioma in ('E','I'))
 )
 ;
 
@@ -166,9 +175,11 @@ ALTER TABLE PRO_PELICULAS ADD CONSTRAINT PRO_PELICULAS_PK PRIMARY KEY (pel_id)
 
 COMMENT ON COLUMN PRO_PELICULAS.pel_id IS 'Id de las peliculas'
 ;
+COMMENT ON COLUMN PRO_PELICULAS.pel_idioma IS 'Idioma de la pelicula(E: espanol, I:ingles)'
+;
 COMMENT ON COLUMN PRO_PELICULAS.pel_nombre IS 'Nombre de la pelicula'
 ;
-COMMENT ON COLUMN PRO_PELICULAS.pel_synopsis IS 'Rese�a de la pelicula'
+COMMENT ON COLUMN PRO_PELICULAS.pel_synopsis IS 'Reseña de la pelicula'
 ;
 COMMENT ON COLUMN PRO_PELICULAS.pel_link IS 'Link del trailer de la pelicula'
 ;
@@ -187,14 +198,8 @@ CREATE TABLE PRO_SALAS(
   sal_estado Varchar2(1 ) DEFAULT 'I' NOT NULL,
   sal_imgfondo Blob NOT NULL,
   sal_version Number DEFAULT 1 NOT NULL,
-  cli_id Number,
   CONSTRAINT PRO_SALAS_CK01 CHECK (sal_estado in ('A','I'))
 )
-;
-
--- Create indexes for table PRO_SALAS
-
-CREATE INDEX PRO_CLIENTESALAS_FK01 ON PRO_SALAS (cli_id)
 ;
 
 -- Add keys for table PRO_SALAS
@@ -401,12 +406,17 @@ CREATE INDEX PRO_CLIENTESFACTURAS ON PRO_FACTURAS (cli_id)
 ALTER TABLE PRO_FACTURAS ADD CONSTRAINT PRO_FACTURAS_PK PRIMARY KEY (fac_id)
 ;
 
--- Table PRO_FATURASCOMIDAS
+-- Table PRO_FACTURASCOMIDAS
 
-CREATE TABLE PRO_FATURASCOMIDAS(
+CREATE TABLE PRO_FACTURASCOMIDAS(
   fac_id Number NOT NULL,
   com_id Number NOT NULL
 )
+;
+
+-- Add keys for table PRO_FACTURASCOMIDAS
+
+ALTER TABLE PRO_FACTURASCOMIDAS ADD CONSTRAINT PRO_FACTURASCOMIDAS_PK PRIMARY KEY (fac_id,com_id)
 ;
 
 -- Trigger for sequence PRO_CLIENTES_SEQ01 for column cli_id in table PRO_CLIENTES ---------
@@ -538,6 +548,8 @@ END;
 /
 
 
+
+
 -- Create foreign keys (relationships) section ------------------------------------------------- 
 
 ALTER TABLE PRO_SALASPELICULAS ADD CONSTRAINT PRO_SALASPELICULAS_FK01 FOREIGN KEY (pel_id) REFERENCES PRO_PELICULAS (pel_id)
@@ -564,11 +576,11 @@ ALTER TABLE PRO_TANDASASIENTOS ADD CONSTRAINT PRO_ASIENTOSTANDAS_FK02 FOREIGN KE
 ;
 
 
-ALTER TABLE PRO_FATURASCOMIDAS ADD CONSTRAINT PRO_FATURASCOMIDAS_FK01 FOREIGN KEY (fac_id) REFERENCES PRO_FACTURAS (fac_id)
+ALTER TABLE PRO_FACTURASCOMIDAS ADD CONSTRAINT PRO_FACTURASCOMIDAS_FK01 FOREIGN KEY (fac_id) REFERENCES PRO_FACTURAS (fac_id)
 ;
 
 
-ALTER TABLE PRO_FATURASCOMIDAS ADD CONSTRAINT PRO_FATURASCOMIDAS_FK02 FOREIGN KEY (com_id) REFERENCES PRO_COMIDAS (com_id)
+ALTER TABLE PRO_FACTURASCOMIDAS ADD CONSTRAINT PRO_FACTURASCOMIDAS_FK02 FOREIGN KEY (com_id) REFERENCES PRO_COMIDAS (com_id)
 ;
 
 
@@ -581,10 +593,6 @@ ALTER TABLE PRO_TANDAS ADD CONSTRAINT PRO_RESERVACIONTANDAS_FK01 FOREIGN KEY (re
 
 
 ALTER TABLE PRO_RESERVACION ADD CONSTRAINT PRO_CLIENTESRESERVACION_FK01 FOREIGN KEY (cli_id) REFERENCES PRO_CLIENTES (cli_id)
-;
-
-
-ALTER TABLE PRO_SALAS ADD CONSTRAINT PRO_CLIENTESALAS_FK01 FOREIGN KEY (cli_id) REFERENCES PRO_CLIENTES (cli_id)
 ;
 
 
