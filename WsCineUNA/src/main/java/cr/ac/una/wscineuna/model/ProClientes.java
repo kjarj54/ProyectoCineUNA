@@ -97,10 +97,11 @@ public class ProClientes implements Serializable {
         this.cliId = cliId;
     }
 
-    public ProClientes(Long cliId, String cliUsuario, String cliClave, String cliNombre, String cliPapellido, String cliCorreo, String cliIdioma, String cliEstado, String cliAdmin,String cliSapellido) {
+    public ProClientes(Long cliId, String cliUsuario, String cliClave, String cliNombre, String cliPapellido, String cliCorreo, String cliIdioma, String cliEstado, String cliAdmin,String cliSapellido,String cliClaverestaurada) {
         this.cliId = cliId;
         this.cliUsuario = cliUsuario;
         this.cliClave = cliClave;
+        this.cliClaverestaurada = cliClaverestaurada;
         this.cliNombre = cliNombre;
         this.cliPapellido = cliPapellido;
         this.cliCorreo = cliCorreo;
@@ -118,6 +119,7 @@ public class ProClientes implements Serializable {
     public void actualizarCliente(ProClientesDto proClientesDto) {
         this.cliUsuario = proClientesDto.getCliUsuario();
         this.cliClave = proClientesDto.getCliClave();
+        this.cliClaverestaurada = proClientesDto.getCliClaverestaurada();
         this.cliNombre = proClientesDto.getCliNombre();
         this.cliPapellido = proClientesDto.getCliPApellido();
         this.cliCorreo = proClientesDto.getCliCorreo();

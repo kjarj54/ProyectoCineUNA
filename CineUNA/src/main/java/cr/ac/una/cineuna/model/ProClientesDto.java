@@ -25,6 +25,7 @@ public class ProClientesDto {
     public SimpleBooleanProperty cliAdmin;
     public SimpleStringProperty cliSApellido;
     public SimpleStringProperty cliClave;
+    public SimpleStringProperty cliClaverestaurada;
     private Boolean modificado;
     private String token;
 
@@ -33,6 +34,7 @@ public class ProClientesDto {
         this.cliId = new SimpleStringProperty();
         this.cliUsuario = new SimpleStringProperty();
         this.cliClave = new SimpleStringProperty();
+        this.cliClaverestaurada = new SimpleStringProperty();
         this.cliNombre = new SimpleStringProperty();
         this.cliPApellido = new SimpleStringProperty();
         this.cliCorreo = new SimpleStringProperty();
@@ -141,4 +143,14 @@ public class ProClientesDto {
     public void setCliClave(String cliClave) {
         this.cliClave.set(cliClave);
     }
+
+    public String getCliClaverestaurada() {
+        return cliClaverestaurada.get();
+    }
+
+    public void setCliClaverestaurada(String cliClaverestaurada) {
+        this.cliClaverestaurada.set(cliClaverestaurada);
+    }
+    
+    
 }

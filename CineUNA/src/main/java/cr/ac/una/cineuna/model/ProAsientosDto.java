@@ -15,7 +15,7 @@ import javafx.beans.property.SimpleStringProperty;
 public class ProAsientosDto {
 
     public SimpleStringProperty asiId;
-    public ObjectProperty<Byte[]> asiImg;
+    public ObjectProperty<byte[]> asiImg;
     public SimpleStringProperty asiNombre;
     public SimpleStringProperty asiCantidad;
     private Boolean asiModificado;
@@ -41,11 +41,11 @@ public class ProAsientosDto {
         this.asiId.set(asiId.toString());
     }
 
-    public Byte[] getAsiImg() {
+    public byte[] getAsiImg() {
         return asiImg.get();
     }
 
-    public void setAsiImg(Byte[] asiImg) {
+    public void setAsiImg(byte[] asiImg) {
         this.asiImg.set(asiImg);
     }
 

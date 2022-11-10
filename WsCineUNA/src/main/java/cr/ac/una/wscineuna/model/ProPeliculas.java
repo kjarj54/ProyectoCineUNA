@@ -90,13 +90,14 @@ public class ProPeliculas implements Serializable {
         this.pelId = pelId;
     }
 
-    public ProPeliculas(Long pelId, String pelNombre, String pelLink, Serializable pelImagen, LocalDate pelFechaestreno, String pelEstado) {
+    public ProPeliculas(Long pelId, String pelNombre, String pelLink, Serializable pelImagen, LocalDate pelFechaestreno, String pelEstado,String pelIdioma) {
         this.pelId = pelId;
         this.pelNombre = pelNombre;
         this.pelLink = pelLink;
         this.pelImagen = pelImagen;
         this.pelFechaestreno = pelFechaestreno;
         this.pelEstado = pelEstado;
+        this.pelIdioma = pelIdioma;
     }
     
     public ProPeliculas(ProPeliculasDto proPeliculasDto){
@@ -111,6 +112,7 @@ public class ProPeliculas implements Serializable {
         this.pelLink = proPeliculasDto.getPelLink();
         this.pelNombre = proPeliculasDto.getPelNombre();
         this.pelSynopsis = proPeliculasDto.getPelSynopsis();
+        this.pelIdioma = proPeliculasDto.getPelIdioma();
     }
 
     public Long getPelId() {

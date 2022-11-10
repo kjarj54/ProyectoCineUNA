@@ -19,7 +19,8 @@ public class ProPeliculasDto {
     public SimpleStringProperty pelNombre;
     public SimpleStringProperty pelSynopsis;
     public SimpleStringProperty pelLink;
-    public ObjectProperty<Byte[]> pelImagen;
+    public ObjectProperty<byte[]> pelImagen;
+    public ObjectProperty<String> pelIdioma;
     public ObjectProperty<String> pelEstado;
     private Boolean modificado;
 
@@ -31,6 +32,7 @@ public class ProPeliculasDto {
         this.pelLink = new SimpleStringProperty();
         this.pelImagen = new SimpleObjectProperty();
         this.pelEstado = new SimpleObjectProperty("S");
+        this.pelIdioma = new SimpleObjectProperty("E");
     }
 
     public Long getPelId() {
@@ -69,11 +71,11 @@ public class ProPeliculasDto {
         this.pelLink.set(pelLink);
     }
 
-    public Byte[] getPelImagen() {
+    public byte[] getPelImagen() {
         return pelImagen.get();
     }
 
-    public void setPelImagen(Byte[] pelImagen) {
+    public void setPelImagen(byte[] pelImagen) {
         this.pelImagen.set(pelImagen);
     }
 
@@ -83,6 +85,14 @@ public class ProPeliculasDto {
 
     public void setPelEstado(String pelEstado) {
         this.pelEstado.set(pelEstado);
+    }
+
+    public String getPelIdioma() {
+        return pelIdioma.get();
+    }
+
+    public void setPelIdioma(String pelIdioma) {
+        this.pelIdioma.set(pelIdioma);
     }
 
 }

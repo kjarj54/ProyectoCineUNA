@@ -11,7 +11,7 @@ package cr.ac.una.wscineuna.model;
 public class ProAsientosDto {
 
     private Long asiId;
-    private Byte[] asiImg;
+    private byte[] asiImg;
     private String asiNombre;
     private Long asiCantidad;
     private Boolean asiModificado;
@@ -25,7 +25,7 @@ public class ProAsientosDto {
     public ProAsientosDto(ProAsientos proAsientos) {
         this();
         this.asiId = proAsientos.getAsiId();
-        this.asiImg = (Byte[]) proAsientos.getAsiImg();
+        this.asiImg = (byte[]) proAsientos.getAsiImg();
         this.asiNombre = proAsientos.getAsiNombre();
         this.asiCantidad = proAsientos.getAsiCantidad();
         this.salId = proAsientos.getSalId();
@@ -39,11 +39,11 @@ public class ProAsientosDto {
         this.asiId = asiId;
     }
 
-    public Byte[] getAsiImg() {
+    public byte[] getAsiImg() {
         return asiImg;
     }
 
-    public void setAsiImg(Byte[] asiImg) {
+    public void setAsiImg(byte[] asiImg) {
         this.asiImg = asiImg;
     }
 

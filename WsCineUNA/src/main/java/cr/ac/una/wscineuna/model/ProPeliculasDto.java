@@ -17,9 +17,10 @@ public class ProPeliculasDto {
     private String pelNombre;
     private String pelSynopsis;
     private String pelLink;
-    private Byte[] pelImagen;
+    private byte[] pelImagen;
     private LocalDate pelFechaestreno;
     private String pelEstado;
+    private String pelIdioma;
     private Boolean modificado;
 
     public ProPeliculasDto() {
@@ -32,8 +33,9 @@ public class ProPeliculasDto {
         this.pelNombre = proPeliculas.getPelNombre();
         this.pelSynopsis = proPeliculas.getPelSynopsis();
         this.pelLink = proPeliculas.getPelLink();
-        this.pelImagen = (Byte[]) proPeliculas.getPelImagen();
+        this.pelImagen = (byte[]) proPeliculas.getPelImagen();
         this.pelEstado = proPeliculas.getPelEstado();
+        this.pelIdioma = proPeliculas.getPelIdioma();
     }
     public Long getPelId() {
         return pelId;
@@ -67,11 +69,11 @@ public class ProPeliculasDto {
         this.pelLink = pelLink;
     }
 
-    public Byte[] getPelImagen() {
+    public byte[] getPelImagen() {
         return pelImagen;
     }
 
-    public void setPelImagen(Byte[] pelImagen) {
+    public void setPelImagen(byte[] pelImagen) {
         this.pelImagen = pelImagen;
     }
 
@@ -97,6 +99,14 @@ public class ProPeliculasDto {
 
     public void setModificado(Boolean modificado) {
         this.modificado = modificado;
+    }
+
+    public String getPelIdioma() {
+        return pelIdioma;
+    }
+
+    public void setPelIdioma(String pelIdioma) {
+        this.pelIdioma = pelIdioma;
     }
     
     
