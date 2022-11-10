@@ -59,6 +59,9 @@ public class ProPeliculas implements Serializable {
     @Column(name = "PEL_LINK")
     private String pelLink;
     @Basic(optional = false)
+    @Column(name = "PEL_IDIOMA")
+    private String pelIdioma;
+    @Basic(optional = false)
     @Lob
     @Column(name = "PEL_IMAGEN")
     private Serializable pelImagen;
@@ -188,6 +191,14 @@ public class ProPeliculas implements Serializable {
 
     public void setProTandasList(List<ProTandas> proTandasList) {
         this.proTandasList = proTandasList;
+    }
+
+    public String getPelIdioma() {
+        return pelIdioma;
+    }
+
+    public void setPelIdioma(String pelIdioma) {
+        this.pelIdioma = pelIdioma;
     }
 
     @Override

@@ -55,6 +55,9 @@ public class ProClientes implements Serializable {
     @Column(name = "CLI_USUARIO")
     private String cliUsuario;
     @Basic(optional = false)
+    @Column(name = "CLI_CLAVERESTAURADA")
+    private String cliClaverestaurada;
+    @Basic(optional = false)
     @Column(name = "CLI_CLAVE")
     private String cliClave;
     @Basic(optional = false)
@@ -234,6 +237,14 @@ public class ProClientes implements Serializable {
 
     public void setProFacturasList(List<ProFacturas> proFacturasList) {
         this.proFacturasList = proFacturasList;
+    }
+
+    public String getCliClaverestaurada() {
+        return cliClaverestaurada;
+    }
+
+    public void setCliClaverestaurada(String cliClaverestaurada) {
+        this.cliClaverestaurada = cliClaverestaurada;
     }
 
     @Override
