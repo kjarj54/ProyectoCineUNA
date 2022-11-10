@@ -6,7 +6,10 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
+import cr.ac.una.cineuna.service.ProPeliculasService;
 import cr.ac.una.cineuna.util.Formato;
+import cr.ac.una.cineuna.util.Mensaje;
+import cr.ac.una.cineuna.util.Respuesta;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,10 +19,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextArea;
@@ -74,7 +80,7 @@ public class MantPeliculasViewController extends Controller implements Initializ
         txtAreaSinopsis.setTextFormatter(Formato.getInstance().maxLengthFormat(500));
         txtUrlEspa.setTextFormatter(Formato.getInstance().maxLengthFormat(200));
         txtUrlIngles.setTextFormatter(Formato.getInstance().maxLengthFormat(200));
-        
+
     }
 
     public void indicarRequeridos() {
@@ -187,11 +193,36 @@ public class MantPeliculasViewController extends Controller implements Initializ
 
     @FXML
     private void onActionGuardar(ActionEvent event) {
+        try {
+            String invalidos = validarRequeridos();
+            if(!invalidos.isEmpty()){
+               new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar pelicula", getStage(), invalidos); 
+            }else{
+                ProPeliculasService service = new ProPeliculasService();
+                Respuesta respuesta = service.guardarPelicula(proPeliculasDto);
+                if(!respuesta.getEstado()){
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar pelicula", getStage(), respuesta.getMensaje());
+                }else{
+                    unbindPeliculas();
+                    proPeliculasDto = (ProPeliculasDto) respuesta.getResultado("Pelicula");
+                    bindPeliculas(false);
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar pelicula", getStage(), "Pelicula actualizada correctamente.");
+                }
+            }
+            
+            
+        } catch (Exception ex) {
+            Logger.getLogger(MantPeliculasViewController.class.getName()).log(Level.SEVERE, "Error guardando la pelicula.", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar pelicula", getStage(), "Ocurrio un error guardando la pelicula.");
+        }
 
     }
 
     @FXML
     private void onActionLimpiar(ActionEvent event) {
+        if (new Mensaje().showConfirmation("Limpiar usuario", getStage(), "¿Esta seguro que desea limpiar el registro?")) {
+            nuevaPelicula();
+        }
     }
 
 }
