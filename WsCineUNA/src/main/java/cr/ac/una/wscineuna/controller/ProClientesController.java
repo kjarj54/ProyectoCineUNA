@@ -45,7 +45,7 @@ public class ProClientesController {
     @Path("/guardarCliente")
     public Response guardarCliente(ProClientesDto proClientesDto) {
         try {
-            Respuesta res = proClientesService.guardarCliente(proClientesDto);           
+            Respuesta res = proClientesService.guardarCliente(proClientesDto);
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }
@@ -89,6 +89,22 @@ public class ProClientesController {
         } catch (Exception ex) {
             Logger.getLogger(ProClientesController.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error guardando el cliente").build();
+        }
+    }
+
+    @GET
+    @Path("/recuperarClave/{correo}")
+    public Response recuperarClave(@PathParam("correo") String correo) {
+        try {
+            Respuesta res = proClientesService.recuperarClave(correo);
+            if (!res.getEstado()) {
+                return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
+            }
+            return Response.ok().build();
+
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesController.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error obteniendo el usuario").build();
         }
     }
 
