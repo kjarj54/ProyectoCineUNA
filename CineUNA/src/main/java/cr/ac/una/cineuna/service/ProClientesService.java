@@ -54,6 +54,22 @@ public class ProClientesService {
             return new Respuesta(false, "Ocurrio un error al eliminar el cliente.", "eliminarCliente " + ex.getMessage());
         }
     }
+    
+    public Respuesta recuperarClave(String correo) {
+        try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("correo", correo);
+            Request request = new Request("ProClientesController/recuperarClave", "/{correo}", parametros);
+            request.get();
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+            return new Respuesta(true, "", "");
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Ocurrio un error al enviar el correo.", ex);
+            return new Respuesta(false, "Ocurrio un error al enviar el correo.", "recuperarClave " + ex.getMessage());
+        }
+    }
 
     public Respuesta guardarCliente(ProClientesDto proClientesDto) {
         try {
