@@ -5,6 +5,7 @@
 package cr.ac.una.cineuna.model;
 
 import java.net.URL;
+import java.time.LocalDate;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,6 +20,7 @@ public class ProPeliculasDto {
     public SimpleStringProperty pelNombre;
     public SimpleStringProperty pelSynopsis;
     public SimpleStringProperty pelLink;
+    public ObjectProperty<LocalDate> pelFechaestreno;
     public ObjectProperty<byte[]> pelImagen;
     public ObjectProperty<String> pelIdioma;
     public ObjectProperty<String> pelEstado;
@@ -33,6 +35,7 @@ public class ProPeliculasDto {
         this.pelImagen = new SimpleObjectProperty();
         this.pelEstado = new SimpleObjectProperty("S");
         this.pelIdioma = new SimpleObjectProperty("E");
+        this.pelFechaestreno = new SimpleObjectProperty();
     }
 
     public Long getPelId() {
@@ -95,4 +98,12 @@ public class ProPeliculasDto {
         this.pelIdioma.set(pelIdioma);
     }
 
+    public LocalDate getPelFechaestreno() {
+        return pelFechaestreno.get();
+    }
+
+    public void setPelFechaestreno(LocalDate pelFechaestreno) {
+        this.pelFechaestreno.set(pelFechaestreno);
+    }
+    
 }

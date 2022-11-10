@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.service.ProPeliculasService;
+import cr.ac.una.cineuna.util.BindingUtils;
 import cr.ac.una.cineuna.util.Formato;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
@@ -28,7 +29,9 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -60,12 +63,18 @@ public class MantPeliculasViewController extends Controller implements Initializ
     @FXML
     private JFXButton btnLimpiar;
     @FXML
-    private JFXComboBox<String> menuTanda;
-    @FXML
     private JFXDatePicker dpFecha;
 
     List<Node> requeridos = new ArrayList<>();
     ProPeliculasDto proPeliculasDto;
+    @FXML
+    private RadioButton rdbProximamente;
+    @FXML
+    private RadioButton rdbSala;
+    @FXML
+    private RadioButton rdbInactivo;
+    @FXML
+    private ToggleGroup tggEstado;
 
     /**
      * Initializes the controller class.
@@ -73,13 +82,15 @@ public class MantPeliculasViewController extends Controller implements Initializ
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        menuTanda.getItems().add("S - En Sala");
-        menuTanda.getItems().add("I - Inactiva");
-        menuTanda.getItems().add("P - Proximamente");
         txtNombrePel.setTextFormatter(Formato.getInstance().maxLengthFormat(30));
         txtAreaSinopsis.setTextFormatter(Formato.getInstance().maxLengthFormat(500));
         txtUrlEspa.setTextFormatter(Formato.getInstance().maxLengthFormat(200));
         txtUrlIngles.setTextFormatter(Formato.getInstance().maxLengthFormat(200));
+        proPeliculasDto = new ProPeliculasDto();
+        nuevaPelicula();
+        indicarRequeridos();
+        
+        
 
     }
 
@@ -134,6 +145,8 @@ public class MantPeliculasViewController extends Controller implements Initializ
         txtAreaSinopsis.textProperty().bindBidirectional(proPeliculasDto.pelSynopsis);
         txtUrlEspa.textProperty().bindBidirectional(proPeliculasDto.pelLink);
         txtUrlIngles.textProperty().bindBidirectional(proPeliculasDto.pelLink);
+ //       dpFecha.valueProperty().bindBidirectional(proPeliculasDto.pelFechaestreno);
+        BindingUtils.unbindToggleGroupToProperty(tggEstado, proPeliculasDto.pelEstado);
     }
 
     public void unbindPeliculas() {
@@ -141,7 +154,8 @@ public class MantPeliculasViewController extends Controller implements Initializ
         txtAreaSinopsis.textProperty().unbindBidirectional(proPeliculasDto.pelSynopsis);
         txtUrlEspa.textProperty().unbindBidirectional(proPeliculasDto.pelLink);
         txtUrlIngles.textProperty().unbindBidirectional(proPeliculasDto.pelLink);
-
+//        dpFecha.valueProperty().unbindBidirectional(proPeliculasDto.pelFechaestreno);
+        BindingUtils.unbindToggleGroupToProperty(tggEstado, proPeliculasDto.pelEstado);
     }
 
     public void nuevaPelicula() {
@@ -195,22 +209,21 @@ public class MantPeliculasViewController extends Controller implements Initializ
     private void onActionGuardar(ActionEvent event) {
         try {
             String invalidos = validarRequeridos();
-            if(!invalidos.isEmpty()){
-               new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar pelicula", getStage(), invalidos); 
-            }else{
+            if (!invalidos.isEmpty()) {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar pelicula", getStage(), invalidos);
+            } else {
                 ProPeliculasService service = new ProPeliculasService();
                 Respuesta respuesta = service.guardarPelicula(proPeliculasDto);
-                if(!respuesta.getEstado()){
+                if (!respuesta.getEstado()) {
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar pelicula", getStage(), respuesta.getMensaje());
-                }else{
+                } else {
                     unbindPeliculas();
                     proPeliculasDto = (ProPeliculasDto) respuesta.getResultado("Pelicula");
                     bindPeliculas(false);
                     new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar pelicula", getStage(), "Pelicula actualizada correctamente.");
                 }
             }
-            
-            
+
         } catch (Exception ex) {
             Logger.getLogger(MantPeliculasViewController.class.getName()).log(Level.SEVERE, "Error guardando la pelicula.", ex);
             new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar pelicula", getStage(), "Ocurrio un error guardando la pelicula.");
