@@ -54,9 +54,7 @@ public class MantPeliculasViewController extends Controller implements Initializ
     @FXML
     private JFXButton btnCargarImagen;
     @FXML
-    private JFXTextField txtUrlEspa;
-    @FXML
-    private JFXTextField txtUrlIngles;
+    private JFXTextField txtUrl;
     @FXML
     private JFXTextField txtNombrePel;
     @FXML
@@ -91,8 +89,7 @@ public class MantPeliculasViewController extends Controller implements Initializ
         rdbSala.setUserData("S");
         txtNombrePel.setTextFormatter(Formato.getInstance().maxLengthFormat(30));
         txtAreaSinopsis.setTextFormatter(Formato.getInstance().maxLengthFormat(500));
-        txtUrlEspa.setTextFormatter(Formato.getInstance().maxLengthFormat(200));
-        txtUrlIngles.setTextFormatter(Formato.getInstance().maxLengthFormat(200));
+        txtUrl.setTextFormatter(Formato.getInstance().maxLengthFormat(255));
         proPeliculasDto = new ProPeliculasDto();
         nuevaPelicula();
         indicarRequeridos();
@@ -100,7 +97,7 @@ public class MantPeliculasViewController extends Controller implements Initializ
 
     public void indicarRequeridos() {
         requeridos.clear();
-        requeridos.addAll(Arrays.asList(txtNombrePel, txtUrlEspa));
+        requeridos.addAll(Arrays.asList(txtNombrePel, txtUrl));
     }
 
     public String validarRequeridos() {
@@ -147,14 +144,14 @@ public class MantPeliculasViewController extends Controller implements Initializ
     public void bindPeliculas(Boolean nuevo) {
         txtNombrePel.textProperty().bindBidirectional(proPeliculasDto.pelNombre);
         txtAreaSinopsis.textProperty().bindBidirectional(proPeliculasDto.pelSynopsis);
-        txtUrlEspa.textProperty().bindBidirectional(proPeliculasDto.pelLink);
+        txtUrl.textProperty().bindBidirectional(proPeliculasDto.pelLink);
         BindingUtils.unbindToggleGroupToProperty(tggEstado, proPeliculasDto.pelEstado);
     }
 
     public void unbindPeliculas() {
         txtNombrePel.textProperty().unbindBidirectional(proPeliculasDto.pelNombre);
         txtAreaSinopsis.textProperty().unbindBidirectional(proPeliculasDto.pelSynopsis);
-        txtUrlEspa.textProperty().unbindBidirectional(proPeliculasDto.pelLink);
+        txtUrl.textProperty().unbindBidirectional(proPeliculasDto.pelLink);
         BindingUtils.unbindToggleGroupToProperty(tggEstado, proPeliculasDto.pelEstado);
     }
 

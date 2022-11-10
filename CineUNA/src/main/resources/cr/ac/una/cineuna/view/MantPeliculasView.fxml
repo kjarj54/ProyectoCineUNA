@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.MantPeliculasViewController">
+<AnchorPane id="AnchorPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.MantPeliculasViewController">
    <children>
       <VBox alignment="CENTER" fillWidth="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -27,21 +27,8 @@
                      <children>
                         <VBox alignment="CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <HBox alignment="CENTER" spacing="50.0">
-                                 <children>
-                                    <JFXTextField fx:id="txtUrlEspa" focusColor="WHITE" promptText="%urlEspanol" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" spacing="50.0">
-                                 <children>
-                                    <JFXTextField fx:id="txtUrlIngles" focusColor="WHITE" promptText="%urlIngles" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" spacing="50.0">
-                                 <children>
-                                    <JFXTextField fx:id="txtNombrePel" focusColor="WHITE" labelFloat="true" promptText="%NombrePelicula" />
-                                 </children>
-                              </HBox>
+                              <JFXTextField fx:id="txtNombrePel" focusColor="WHITE" labelFloat="true" promptText="%NombrePelicula" />
+                              <JFXTextField fx:id="txtUrl" focusColor="WHITE" promptText="%linkUrl" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
