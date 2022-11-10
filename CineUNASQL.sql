@@ -153,7 +153,7 @@ COMMENT ON COLUMN PRO_CLIENTES.cli_version IS 'Version del registro de usuarios'
 
 CREATE TABLE PRO_PELICULAS(
   pel_id Number NOT NULL,
-  pel_idioma Varchar2(1 ) DEFAULT 'S',
+  pel_idioma Varchar2(1 ) DEFAULT 'E',
   pel_nombre Varchar2(30 ) NOT NULL,
   pel_synopsis Varchar2(500 ),
   pel_link Varchar2(200 ) NOT NULL,
