@@ -44,8 +44,8 @@ public class ProPeliculasService {
             if (request.isError()) {
                 return new Respuesta(false, request.getError(), "");
             }
-            ProPeliculasDto proFactura = (ProPeliculasDto) request.readEntity(ProPeliculasDto.class);
-            return new Respuesta(true, "", "", "Pelicula", proFactura);
+            ProPeliculasDto proPelicula = (ProPeliculasDto) request.readEntity(ProPeliculasDto.class);
+            return new Respuesta(true, "", "", "Pelicula", proPelicula);
         } catch (Exception ex) {
             Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Error guardando la pelicula.", ex);
             return new Respuesta(false, "Error guardando la pelicula.", "guardarPelicula " + ex.getMessage());

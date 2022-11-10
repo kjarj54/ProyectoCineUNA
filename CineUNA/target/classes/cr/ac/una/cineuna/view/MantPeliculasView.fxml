@@ -53,7 +53,7 @@
                                           <ToggleGroup fx:id="tggEstado" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="rdbSala" mnemonicParsing="false" styleClass="jfx-radio-button" text="%Estado2" toggleGroup="$tggEstado" HBox.hgrow="ALWAYS" />
+                                    <RadioButton fx:id="rdbSala" mnemonicParsing="false" selected="true" styleClass="jfx-radio-button" text="%Estado2" toggleGroup="$tggEstado" HBox.hgrow="ALWAYS" />
                                     <RadioButton fx:id="rdbInactivo" mnemonicParsing="false" styleClass="jfx-radio-button" text="%Estado1" toggleGroup="$tggEstado" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>

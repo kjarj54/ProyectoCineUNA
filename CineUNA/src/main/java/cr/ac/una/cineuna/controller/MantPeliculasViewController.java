@@ -66,7 +66,9 @@ public class MantPeliculasViewController extends Controller implements Initializ
     private JFXDatePicker dpFecha;
 
     List<Node> requeridos = new ArrayList<>();
+
     ProPeliculasDto proPeliculasDto;
+
     @FXML
     private RadioButton rdbProximamente;
     @FXML
@@ -82,6 +84,9 @@ public class MantPeliculasViewController extends Controller implements Initializ
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        rdbInactivo.setUserData("I");
+        rdbProximamente.setUserData("P");
+        rdbSala.setUserData("S");
         txtNombrePel.setTextFormatter(Formato.getInstance().maxLengthFormat(30));
         txtAreaSinopsis.setTextFormatter(Formato.getInstance().maxLengthFormat(500));
         txtUrlEspa.setTextFormatter(Formato.getInstance().maxLengthFormat(200));
@@ -89,14 +94,11 @@ public class MantPeliculasViewController extends Controller implements Initializ
         proPeliculasDto = new ProPeliculasDto();
         nuevaPelicula();
         indicarRequeridos();
-        
-        
-
     }
 
     public void indicarRequeridos() {
         requeridos.clear();
-        requeridos.addAll(Arrays.asList(txtNombrePel, txtUrlEspa, txtUrlIngles));
+        requeridos.addAll(Arrays.asList(txtNombrePel, txtUrlEspa));
     }
 
     public String validarRequeridos() {
@@ -144,8 +146,6 @@ public class MantPeliculasViewController extends Controller implements Initializ
         txtNombrePel.textProperty().bindBidirectional(proPeliculasDto.pelNombre);
         txtAreaSinopsis.textProperty().bindBidirectional(proPeliculasDto.pelSynopsis);
         txtUrlEspa.textProperty().bindBidirectional(proPeliculasDto.pelLink);
-        txtUrlIngles.textProperty().bindBidirectional(proPeliculasDto.pelLink);
- //       dpFecha.valueProperty().bindBidirectional(proPeliculasDto.pelFechaestreno);
         BindingUtils.unbindToggleGroupToProperty(tggEstado, proPeliculasDto.pelEstado);
     }
 
@@ -153,8 +153,6 @@ public class MantPeliculasViewController extends Controller implements Initializ
         txtNombrePel.textProperty().unbindBidirectional(proPeliculasDto.pelNombre);
         txtAreaSinopsis.textProperty().unbindBidirectional(proPeliculasDto.pelSynopsis);
         txtUrlEspa.textProperty().unbindBidirectional(proPeliculasDto.pelLink);
-        txtUrlIngles.textProperty().unbindBidirectional(proPeliculasDto.pelLink);
-//        dpFecha.valueProperty().unbindBidirectional(proPeliculasDto.pelFechaestreno);
         BindingUtils.unbindToggleGroupToProperty(tggEstado, proPeliculasDto.pelEstado);
     }
 
@@ -162,7 +160,6 @@ public class MantPeliculasViewController extends Controller implements Initializ
         unbindPeliculas();
         proPeliculasDto = new ProPeliculasDto();
         bindPeliculas(true);
-        txtNombrePel.requestFocus();
     }
 
     private Image ConvertToImage(byte[] data) {
