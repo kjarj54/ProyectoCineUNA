@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
@@ -28,7 +32,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
@@ -40,18 +43,16 @@ import org.apache.commons.compress.utils.IOUtils;
 /**
  * FXML Controller class
  *
- * @author Emanuel
+ * @author kevin
  */
 public class MantPeliculasViewController extends Controller implements Initializable {
 
     @FXML
     private Label labelTitulo;
     @FXML
-    private JFXButton btnCargarImagen;
-    @FXML
-    private TextArea txtAreaSinopsis;
-    @FXML
     private ImageView imgPel;
+    @FXML
+    private JFXButton btnCargarImagen;
     @FXML
     private JFXTextField txtUrlEspa;
     @FXML
@@ -59,24 +60,25 @@ public class MantPeliculasViewController extends Controller implements Initializ
     @FXML
     private JFXTextField txtNombrePel;
     @FXML
-    private JFXButton btnGuardar;
-    @FXML
-    private JFXButton btnLimpiar;
-    @FXML
-    private JFXDatePicker dpFecha;
-
-    List<Node> requeridos = new ArrayList<>();
-
-    ProPeliculasDto proPeliculasDto;
-
-    @FXML
     private RadioButton rdbProximamente;
+    @FXML
+    private ToggleGroup tggEstado;
     @FXML
     private RadioButton rdbSala;
     @FXML
     private RadioButton rdbInactivo;
     @FXML
-    private ToggleGroup tggEstado;
+    private JFXDatePicker dpFecha;
+    @FXML
+    private TextArea txtAreaSinopsis;
+    @FXML
+    private JFXButton btnGuardar;
+    @FXML
+    private JFXButton btnLimpiar;
+    
+    List<Node> requeridos = new ArrayList<>();
+
+    ProPeliculasDto proPeliculasDto;
 
     /**
      * Initializes the controller class.
@@ -176,11 +178,6 @@ public class MantPeliculasViewController extends Controller implements Initializ
         return imageInBytes;
     }
 
-    @Override
-    public void initialize() {
-
-    }
-
     @FXML
     private void onActionCargarImagen(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -204,7 +201,7 @@ public class MantPeliculasViewController extends Controller implements Initializ
 
     @FXML
     private void onActionGuardar(ActionEvent event) {
-        try {
+         try {
             String invalidos = validarRequeridos();
             if (!invalidos.isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar pelicula", getStage(), invalidos);
@@ -225,14 +222,18 @@ public class MantPeliculasViewController extends Controller implements Initializ
             Logger.getLogger(MantPeliculasViewController.class.getName()).log(Level.SEVERE, "Error guardando la pelicula.", ex);
             new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar pelicula", getStage(), "Ocurrio un error guardando la pelicula.");
         }
-
     }
 
     @FXML
     private void onActionLimpiar(ActionEvent event) {
-        if (new Mensaje().showConfirmation("Limpiar usuario", getStage(), "¿Esta seguro que desea limpiar el registro?")) {
+         if (new Mensaje().showConfirmation("Limpiar usuario", getStage(), "¿Esta seguro que desea limpiar el registro?")) {
             nuevaPelicula();
         }
+    }
+
+    @Override
+    public void initialize() {
+        
     }
 
 }

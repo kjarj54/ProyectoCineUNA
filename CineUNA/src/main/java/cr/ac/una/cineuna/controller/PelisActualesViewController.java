@@ -4,9 +4,11 @@
  */
 package cr.ac.una.cineuna.controller;
 
+import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
 
 /**
  * FXML Controller class
@@ -21,7 +23,11 @@ public class PelisActualesViewController extends Controller implements Initializ
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
+    private Image ConvertToImage(byte[] data) {
+        return new Image(new ByteArrayInputStream(data));
+    }
 
     @Override
     public void initialize() {
