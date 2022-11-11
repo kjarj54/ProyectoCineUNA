@@ -49,7 +49,9 @@ public class ProClientesController {
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }
-            Respuesta res2 = proClientesService.correoActivacion((ProClientesDto) res.getResultado("Cliente"));
+            if (proClientesDto.getCliId() == null) {
+                Respuesta res2 = proClientesService.correoActivacion((ProClientesDto) res.getResultado("Cliente"));
+            }
             return Response.ok((ProClientesDto) res.getResultado("Cliente")).build();
         } catch (Exception ex) {
             Logger.getLogger(ProClientesController.class.getName()).log(Level.SEVERE, null, ex);
