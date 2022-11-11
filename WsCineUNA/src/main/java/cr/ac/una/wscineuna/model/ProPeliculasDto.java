@@ -36,6 +36,7 @@ public class ProPeliculasDto {
         this.pelImagen = (byte[]) proPeliculas.getPelImagen();
         this.pelEstado = proPeliculas.getPelEstado();
         this.pelIdioma = proPeliculas.getPelIdioma();
+        this.pelFechaestreno = proPeliculas.getPelFechaestreno();
     }
     public Long getPelId() {
         return pelId;

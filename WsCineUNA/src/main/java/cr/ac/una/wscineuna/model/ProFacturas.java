@@ -80,7 +80,7 @@ public class ProFacturas implements Serializable {
 
     public ProFacturas(ProFacturasDto proFacturasDto) {
         this.facId = proFacturasDto.getFacId();
-
+        actualizarFatura(proFacturasDto);
     }
 
     public void actualizarFatura(ProFacturasDto proFacturasDto) {
