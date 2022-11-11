@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.Property;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -76,6 +78,7 @@ public class MantPeliculasViewController extends Controller implements Initializ
     List<Node> requeridos = new ArrayList<>();
 
     ProPeliculasDto proPeliculasDto;
+    
 
     /**
      * Initializes the controller class.
@@ -144,7 +147,8 @@ public class MantPeliculasViewController extends Controller implements Initializ
         txtNombrePel.textProperty().bindBidirectional(proPeliculasDto.pelNombre);
         txtAreaSinopsis.textProperty().bindBidirectional(proPeliculasDto.pelSynopsis);
         txtUrl.textProperty().bindBidirectional(proPeliculasDto.pelLink);
-        BindingUtils.bindToggleGroupToProperty(tggEstado, proPeliculasDto.pelEstado);       
+        BindingUtils.bindToggleGroupToProperty(tggEstado, proPeliculasDto.pelEstado);
+        dpFecha.valueProperty().bindBidirectional(proPeliculasDto.pelFechaestreno);
     }
 
     public void unbindPeliculas() {
@@ -152,6 +156,7 @@ public class MantPeliculasViewController extends Controller implements Initializ
         txtAreaSinopsis.textProperty().unbindBidirectional(proPeliculasDto.pelSynopsis);
         txtUrl.textProperty().unbindBidirectional(proPeliculasDto.pelLink);
         BindingUtils.unbindToggleGroupToProperty(tggEstado, proPeliculasDto.pelEstado);
+        dpFecha.valueProperty().unbindBidirectional(proPeliculasDto.pelFechaestreno);
     }
 
     public void nuevaPelicula() {
@@ -171,7 +176,7 @@ public class MantPeliculasViewController extends Controller implements Initializ
     }
 
     @FXML
-    private void onActionCargarImagen(ActionEvent event) {
+    private void onActionCargarImagen(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Busqueda Imagen");
 
@@ -180,13 +185,14 @@ public class MantPeliculasViewController extends Controller implements Initializ
 
         //toma la imagen
         File imagFile = fileChooser.showOpenDialog(null);
-        
-        SaveImage(imagFile);
+       
 
         //comprueba y luego muestra la imagen
         if (imagFile != null) {
-
-            Image image = new Image("file:" + imagFile.getAbsolutePath());
+            
+            proPeliculasDto.setPelImagen(SaveImage(imagFile));
+            
+            Image image = new Image(new ByteArrayInputStream(SaveImage(imagFile)));
             imgPel.setImage(image);
 
         }
@@ -221,7 +227,8 @@ public class MantPeliculasViewController extends Controller implements Initializ
     @FXML
     private void onActionLimpiar(ActionEvent event) {
          if (new Mensaje().showConfirmation("Limpiar usuario", getStage(), "¿Esta seguro que desea limpiar el registro?")) {
-            nuevaPelicula();
+            nuevaPelicula();          
+            imgPel.setImage(null);
         }
     }
 
