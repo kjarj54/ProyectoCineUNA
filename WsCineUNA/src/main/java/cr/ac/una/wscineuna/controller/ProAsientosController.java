@@ -26,6 +26,7 @@ import javax.ws.rs.core.Response;
  * @author kevin
  */
 @Path("/ProAsientosController")
+@Secure
 public class ProAsientosController {
 
     @EJB
@@ -54,7 +55,6 @@ public class ProAsientosController {
     }
 
     @GET
-    @Secure
     @Path("/asiento/{id}")
     public Response getAsiento(@PathParam("id") Long id) {
         try {
@@ -73,7 +73,6 @@ public class ProAsientosController {
     }
 
     @GET
-    @Secure
     @Path("/asientos/")
     public Response getAsientos() {
         try {

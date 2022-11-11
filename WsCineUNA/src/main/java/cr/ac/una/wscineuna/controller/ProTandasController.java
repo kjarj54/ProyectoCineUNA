@@ -26,6 +26,7 @@ import javax.ws.rs.core.Response;
  * @author kevin
  */
 @Path("/ProTandasController")
+@Secure
 public class ProTandasController {
 
     @EJB
@@ -54,7 +55,6 @@ public class ProTandasController {
     }
 
     @GET
-    @Secure
     @Path("/tanda/{id}")
     public Response getPelicula(@PathParam("id") Long id) {
         try {
@@ -73,7 +73,6 @@ public class ProTandasController {
     }
 
     @GET
-    @Secure
     @Path("/tandas/")
     public Response getTandas() {
         try {

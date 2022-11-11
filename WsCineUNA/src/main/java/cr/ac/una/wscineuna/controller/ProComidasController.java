@@ -27,6 +27,7 @@ import javax.ws.rs.core.Response;
  */
 
 @Path("/ProComidasController")
+@Secure
 public class ProComidasController {
     @EJB
     ProComidasService proComidasService;
@@ -47,7 +48,6 @@ public class ProComidasController {
     }
 
     @GET
-    @Secure
     @Path("/comida/{id}")
     public Response getComida(@PathParam("id") Long id) {
         try {
@@ -66,7 +66,6 @@ public class ProComidasController {
     }
 
     @GET
-    @Secure
     @Path("/comidas/")
     public Response getComidas() {
         try {

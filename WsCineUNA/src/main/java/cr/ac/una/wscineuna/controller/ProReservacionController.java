@@ -53,7 +53,6 @@ public class ProReservacionController {
     }
 
     @GET
-    @Secure
     @Path("/reservacion/{id}")
     public Response getReservacion(@PathParam("id") Long id) {
         try {
@@ -72,7 +71,6 @@ public class ProReservacionController {
     }
 
     @GET
-    @Secure
     @Path("/reservaciones/")
     public Response getReservacines() {
         try {

@@ -183,8 +183,12 @@ JFXButton{
     -fx-font-weight: bold;
     -fx-overflow: visible;
     -fx-text-align: center;
-    -fx-touch-action: manipulation;
     -fx-cursor:hand;
+}
+
+JFXButton:hover{
+    -fx-background-color:
+        linear-gradient(#1c2e4a,#203354);
 }
 
 MenuButton{
@@ -223,12 +227,12 @@ MenuButton{
 
 /************************************** BOTONES POR ID *******************************************/
 
-#btnRegistrar{
+#btnRegistrar, #btnGuardar{
     -fx-background-color:
         linear-gradient(#eb9605, #ffbf00);
 }
 
-#btnRegistrar:hover{
+#btnRegistrar:hover, #btnGuardar:hover{
     -fx-background-color:
         linear-gradient(#DA9200, #FF9F00);
 }
@@ -273,8 +277,7 @@ MenuButton{
         linear-gradient(#18191a,#3a3b3c);
 }
 
-#btnIdioma
-{
+#btnIdioma{
     -fx-padding: 8 15 15 15;
     -fx-background-insets: 0,0 0 5 0,0 0 6 0,0 0 7 0;
     -fx-background-radius: 8;

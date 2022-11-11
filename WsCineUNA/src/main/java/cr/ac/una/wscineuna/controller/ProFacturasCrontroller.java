@@ -53,7 +53,6 @@ public class ProFacturasCrontroller {
     }
 
     @GET
-    @Secure
     @Path("/factura/{id}")
     public Response getFactura(@PathParam("id") Long id) {
         try {
@@ -72,7 +71,6 @@ public class ProFacturasCrontroller {
     }
 
     @GET
-    @Secure
     @Path("/facturas/")
     public Response getFacturas() {
         try {
