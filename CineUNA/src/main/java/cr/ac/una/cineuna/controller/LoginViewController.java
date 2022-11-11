@@ -71,7 +71,6 @@ public class LoginViewController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnAuto(ActionEvent event) {
-        
 
     }
 
@@ -91,32 +90,17 @@ public class LoginViewController extends Controller implements Initializable {
                     AppContext.getInstance().set("Token", proClientesDto.getToken());
                     if (getStage().getOwner() == null) {
                         if ("S".equals(proClientesDto.getCliAdmin()) && "A".equals(proClientesDto.getCliEstado())) {//compruba que el usuario este activo
-                            if ("I".equals(proClientesDto.getCliIdioma())) {//comprueba que el idioma sea ingles del admin
-                                cambioIdiomaIngles();
-                                FlowController.getInstance().goMain();
-                                getStage().close();
-                            } else {
-                                cambioIdiomaEspanol();
-                                FlowController.getInstance().goMain();
-                                getStage().close();
-                            }
+                            FlowController.getInstance().goMain();
+                            getStage().close();
                         } else if ("N".equals(proClientesDto.getCliAdmin()) && "A".equals(proClientesDto.getCliEstado())) {//compruba que el usuario este activo
-                            if ("I".equals(proClientesDto.getCliIdioma())) {//comprueba que el idioma sea ingles del cliente
-                                cambioIdiomaIngles();
-                                FlowController.getInstance().goMainCliente();
-                                getStage().close();
-                            } else {
-                                cambioIdiomaEspanol();
-                                FlowController.getInstance().goMainCliente();
-                                getStage().close();
-                            }
+                            FlowController.getInstance().goMainCliente();
+                            getStage().close();
 
                         } else {
                             new Mensaje().showModal(Alert.AlertType.ERROR, "Validación de usuario", (Stage) btnIngresar.getScene().getWindow(), "Es necesario que su cuenta este activada.");
                         }
 
                     }
-                    
 
                 } else {
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Ingreso", getStage(), respuesta.getMensaje());
@@ -128,7 +112,6 @@ public class LoginViewController extends Controller implements Initializable {
     }
 
     //Se encarga del seteo
-    
     public void cambioIdiomaIngles() {
         FlowController.getInstance().initialize();
         FlowController.setIdioma(bundle2);
