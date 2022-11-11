@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="473.0" prefWidth="813.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.MantUsuTableViewController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="473.0" prefWidth="813.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.MantUsuTableViewController">
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>
@@ -44,7 +44,6 @@
                         <TableView fx:id="tbvResultados" onMousePressed="#OnMousePressedTbvResultados" VBox.vgrow="ALWAYS">
                            <columns>
                               <TableColumn fx:id="tbcAdmin" minWidth="-Infinity" prefWidth="50.0" text="%admin" />
-                              <TableColumn fx:id="tbcEstado" minWidth="-Infinity" prefWidth="50.0" text="%estado" />
                               <TableColumn fx:id="tbcId" minWidth="-Infinity" prefWidth="40.0" text="%id" />
                               <TableColumn fx:id="tbcNombre" minWidth="-Infinity" text="%nombre" />
                               <TableColumn fx:id="tbcUsuario" minWidth="-Infinity" text="%usuarioTxt" />

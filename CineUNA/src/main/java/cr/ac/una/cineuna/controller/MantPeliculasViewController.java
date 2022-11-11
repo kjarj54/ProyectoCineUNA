@@ -12,10 +12,7 @@ import cr.ac.una.cineuna.util.BindingUtils;
 import cr.ac.una.cineuna.util.Formato;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +32,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import org.apache.commons.compress.utils.IOUtils;
+
+
 
 /**
  * FXML Controller class
@@ -142,7 +140,7 @@ public class MantPeliculasViewController extends Controller implements Initializ
         txtNombrePel.textProperty().bindBidirectional(proPeliculasDto.pelNombre);
         txtAreaSinopsis.textProperty().bindBidirectional(proPeliculasDto.pelSynopsis);
         txtUrl.textProperty().bindBidirectional(proPeliculasDto.pelLink);
-        BindingUtils.unbindToggleGroupToProperty(tggEstado, proPeliculasDto.pelEstado);
+        BindingUtils.unbindToggleGroupToProperty(tggEstado, proPeliculasDto.pelEstado);       
     }
 
     public void unbindPeliculas() {
@@ -158,19 +156,19 @@ public class MantPeliculasViewController extends Controller implements Initializ
         bindPeliculas(true);
     }
 
-    private Image ConvertToImage(byte[] data) {
-        return new Image(new ByteArrayInputStream(data));
-    }
-
-    private byte[] SaveImage(Image imagen) throws IOException {
-        System.out.println(imagen);
-        String image = imagen.getUrl().substring(6, imagen.getUrl().length());
-        System.out.println(image);
-        File file = new File(image);
-        FileInputStream fiStream = new FileInputStream(file.getAbsolutePath());
-        byte[] imageInBytes = IOUtils.toByteArray(fiStream);
-        return imageInBytes;
-    }
+//    private Image ConvertToImage(byte[] data) {
+//        return new Image(new ByteArrayInputStream(data));
+//    }
+//
+//    private byte[] SaveImage(Image imagen) throws IOException {
+//        System.out.println(imagen);
+//        String image = imagen.getUrl().substring(6, imagen.getUrl().length());
+//        System.out.println(image);
+//        File file = new File(image);
+//        FileInputStream fiStream = new FileInputStream(file.getAbsolutePath());
+//        byte[] imageInBytes = IOUtils.toByteArray(fiStream);
+//        return imageInBytes;
+//    }
 
     @FXML
     private void onActionCargarImagen(ActionEvent event) {
