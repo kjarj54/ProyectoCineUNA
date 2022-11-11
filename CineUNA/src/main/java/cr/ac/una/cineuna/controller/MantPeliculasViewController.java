@@ -12,7 +12,10 @@ import cr.ac.una.cineuna.util.BindingUtils;
 import cr.ac.una.cineuna.util.Formato;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +35,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import org.apache.commons.compress.utils.IOUtils;
 
 
 
@@ -140,7 +144,7 @@ public class MantPeliculasViewController extends Controller implements Initializ
         txtNombrePel.textProperty().bindBidirectional(proPeliculasDto.pelNombre);
         txtAreaSinopsis.textProperty().bindBidirectional(proPeliculasDto.pelSynopsis);
         txtUrl.textProperty().bindBidirectional(proPeliculasDto.pelLink);
-        BindingUtils.unbindToggleGroupToProperty(tggEstado, proPeliculasDto.pelEstado);       
+        BindingUtils.bindToggleGroupToProperty(tggEstado, proPeliculasDto.pelEstado);       
     }
 
     public void unbindPeliculas() {
@@ -156,19 +160,15 @@ public class MantPeliculasViewController extends Controller implements Initializ
         bindPeliculas(true);
     }
 
-//    private Image ConvertToImage(byte[] data) {
-//        return new Image(new ByteArrayInputStream(data));
-//    }
-//
-//    private byte[] SaveImage(Image imagen) throws IOException {
-//        System.out.println(imagen);
-//        String image = imagen.getUrl().substring(6, imagen.getUrl().length());
-//        System.out.println(image);
-//        File file = new File(image);
-//        FileInputStream fiStream = new FileInputStream(file.getAbsolutePath());
-//        byte[] imageInBytes = IOUtils.toByteArray(fiStream);
-//        return imageInBytes;
-//    }
+    private Image ConvertToImage(byte[] data) {
+        return new Image(new ByteArrayInputStream(data));
+    }
+
+    private byte[] SaveImage(File file) throws IOException {
+        FileInputStream fiStream = new FileInputStream(file.getAbsolutePath());
+        byte[] imageInBytes = IOUtils.toByteArray(fiStream);
+        return imageInBytes;
+    }
 
     @FXML
     private void onActionCargarImagen(ActionEvent event) {
@@ -180,6 +180,8 @@ public class MantPeliculasViewController extends Controller implements Initializ
 
         //toma la imagen
         File imagFile = fileChooser.showOpenDialog(null);
+        
+        SaveImage(imagFile);
 
         //comprueba y luego muestra la imagen
         if (imagFile != null) {
@@ -226,6 +228,10 @@ public class MantPeliculasViewController extends Controller implements Initializ
     @Override
     public void initialize() {
         
+    }
+
+    private Object toString(byte[] imageInBytes) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
