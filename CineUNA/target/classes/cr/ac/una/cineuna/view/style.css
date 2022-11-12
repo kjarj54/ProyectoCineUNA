@@ -55,30 +55,55 @@
 .jfx-password-field .input-focused-line{
     -fx-pref-height: 0px;
 }
-
-.jfx-date-picker{
-    -fx-font-weight: bold;
-    -fx-min-width:200;
-    -fx-pref-width:300;
-    -fx-max-width:350;
-    -fx-max-height:50;
-    -fx-font-size: 14;
-    -fx-text-fill: white;
-    -fx-prompt-text-fill: white;
-    -fx-focus-color:white;
-    -fx-alignment: center;
-    }
  
 .jfx-text-field, .jfx-password-field{
     -fx-background-color: #444444;
     -fx-text-fill: white;
-    -fx-min-width:140;
+    -fx-min-width:100;
+    -fx-pref-width:240;
     -fx-prompt-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 14;
     -fx-focus-color:white;
     -fx-alignment: center;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
+}
+
+#dpFecha{
+    -fx-min-width:120;
+    -fx-pref-width:150;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+}
+
+.jfx-date-picker .jfx-btn-dp{
+    -fx-background-color:
+        linear-gradient(#203354, #1c2e4a);
+    -fx-text-fill: white;
+    -fx-effect:
+        dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 5);
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-overflow: visible;
+    -fx-text-align: center;
+    -fx-cursor:hand;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-pref-width: 30px;
+    -fx-pref-height: 30px;
+    -fx-max-width: 30px;
+    -fx-max-height: 30px;
+}
+
+.jfx-date-picker .arrow-button {
+    -fx-background-color: #444444;
+}
+
+.jfx-date-picker .arrow-button:hover {
+    -fx-background-color: #333555;
+    -fx-overflow: visible;
+    -fx-text-align: center;
+    -fx-cursor:hand;
 }
 
 .h1{
@@ -213,6 +238,8 @@ JFXButton:hover{
         linear-gradient(#1c2e4a,#203354);
 }
 
+/************************************* BOTONES POR CLASES **************************************/
+
 .jfx-btn-personalizado{
     -fx-background-color:
         linear-gradient(#203354, #1c2e4a);
@@ -245,11 +272,6 @@ JFXButton:hover{
     -fx-min-height: 28px;
     -fx-max-height: 28px;
 }
-
-
-
-
-/************************************* BOTONES POR CLASES **************************************/
 
 .jfx-btn-registrar > ImageView,.jfx-btnimg-registrar > ImageView{
     -fx-image: url("../resources/register.png");

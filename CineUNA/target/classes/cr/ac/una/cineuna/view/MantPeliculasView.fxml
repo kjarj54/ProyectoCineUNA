@@ -13,20 +13,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.MantPeliculasViewController">
+<AnchorPane id="AnchorPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.MantPeliculasViewController">
    <children>
       <VBox alignment="CENTER" fillWidth="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox spacing="10.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <JFXTextField fx:id="txtNombrePel" focusColor="WHITE" labelFloat="true" promptText="%NombrePelicula" VBox.vgrow="ALWAYS" />
-                  <JFXTextField fx:id="txtUrl" focusColor="WHITE" promptText="%linkUrl" VBox.vgrow="ALWAYS" />
-               </children>
-            </VBox>
+            <VBox spacing="10.0" VBox.vgrow="ALWAYS" />
             <VBox alignment="CENTER" fillWidth="false" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <ImageView fx:id="imgPel" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
+                  <ImageView fx:id="imgPel" fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
                   <JFXButton fx:id="btnCargarImagen" buttonType="RAISED" onAction="#onActionCargarImagen" styleClass="jfx-btn-personalizado" text="%cargarImg" VBox.vgrow="ALWAYS" />
+                  <JFXTextField fx:id="txtNombrePel" focusColor="WHITE" labelFloat="true" promptText="%NombrePelicula" VBox.vgrow="ALWAYS" />
+                  <JFXTextField fx:id="txtUrl" focusColor="WHITE" promptText="%linkUrl" VBox.vgrow="ALWAYS" />
                   <HBox spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
                         <VBox alignment="CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
@@ -42,7 +39,7 @@
                                     <RadioButton fx:id="rdbInactivo" mnemonicParsing="false" styleClass="jfx-radio-button" text="%Estado1" toggleGroup="$tggEstado" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
-                              <JFXDatePicker fx:id="dpFecha" promptText="Fecha" VBox.vgrow="ALWAYS" />
+                              <JFXDatePicker fx:id="dpFecha" promptText="Fecha" styleClass="jfx-btn-dp" VBox.vgrow="ALWAYS" />
                               <TextArea fx:id="txtAreaSinopsis" prefHeight="100.0" promptText="Escribe una descripcion de la pelicula" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

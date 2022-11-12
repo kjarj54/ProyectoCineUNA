@@ -3,19 +3,28 @@ package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.paint.Color;
+import javafx.scene.input.TransferMode;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 /**
  * FXML Controller class
  *
@@ -23,8 +32,6 @@ import javafx.scene.paint.Color;
  */
 public class MantSalasViewController extends Controller implements Initializable {
 
-    @FXML
-    public GridPane gridPaneAsiento;
     @FXML
     public ImageView imgAsiento;
     @FXML
@@ -37,26 +44,22 @@ public class MantSalasViewController extends Controller implements Initializable
     private JFXButton btnGuardar;
     @FXML
     private JFXTextField txtNombreSala;
+    @FXML
+    private JFXButton btnAsientoSelect;
+    @FXML
+    private Pane paneAsientos;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
     }    
 
     @Override
     public void initialize() {
         
-    }
-   
-    public void llenarImagen(){
-    for (int i = 0; i < gridPaneAsiento.getColumnCount(); i++) {
-            for (int j = 0; j < gridPaneAsiento.getRowCount(); i++){
-            imgAsiento = new ImageView();
-            }
-        }
     }
 
     @FXML
@@ -65,6 +68,51 @@ public class MantSalasViewController extends Controller implements Initializable
 
     @FXML
     private void onActionBtnGuardar(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionBtnAsientoSelect(ActionEvent event) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        List<File> selectedFiles = fileChooser.showOpenMultipleDialog(null);
+        Image img = new Image(new FileInputStream(selectedFiles.get(0)));
+        imgAsiento.setImage(img);
+            }
+
+
+    @FXML
+    private void onDragOverImgView(DragEvent event) {
+        if(event.getDragboard().hasFiles()){
+        event.acceptTransferModes(TransferMode.ANY);
+        }
+    }
+
+    @FXML
+    private void onDragDroppedImgView(DragEvent event) throws FileNotFoundException {
+        List<File> file = event.getDragboard().getFiles();
+        Image img = new Image(new FileInputStream(file.get(0)));
+        imgAsiento.setImage(img);
+    }
+
+    @FXML
+    private void onDragDetectedImgView(MouseEvent event) {
+        Dragboard db = imgAsiento.startDragAndDrop(TransferMode.COPY);
+        ClipboardContent cp = new ClipboardContent() ;
+        cp.putImage(imgAsiento.getImage());
+        db.setContent(cp);
+        event.consume();
+    }
+
+    @FXML
+    private void onDragOverPane(DragEvent event) {
+        if(event.getDragboard().hasImage()){
+        event.acceptTransferModes(TransferMode.ANY);
+        }
+    }
+
+    @FXML
+    private void onDragDroppedPane(DragEvent event) {
+        event.getDragboard().getImage();
+        //paneAsientos
     }
     
 }
