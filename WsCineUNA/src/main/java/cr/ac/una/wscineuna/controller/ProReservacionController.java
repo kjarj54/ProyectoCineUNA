@@ -26,6 +26,7 @@ import javax.ws.rs.core.Response;
  * @author kevin
  */
 @Path("/ProReservacionController")
+@Secure
 public class ProReservacionController {
     @EJB
     ProReservacionService proReservacionService;

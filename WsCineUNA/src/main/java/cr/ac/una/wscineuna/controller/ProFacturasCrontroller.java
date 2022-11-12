@@ -25,6 +25,8 @@ import javax.ws.rs.core.Response;
  *
  * @author kevin
  */
+@Path("/ProFacturasController")
+@Secure
 public class ProFacturasCrontroller {
 
     @EJB

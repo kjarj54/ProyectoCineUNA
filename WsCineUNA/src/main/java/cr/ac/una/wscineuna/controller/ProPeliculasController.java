@@ -26,6 +26,7 @@ import javax.ws.rs.core.Response;
  * @author kevin
  */
 @Path("/ProPeliculasController")
+@Secure
 public class ProPeliculasController {
     @EJB
     ProPeliculasService proPeliculasService;
