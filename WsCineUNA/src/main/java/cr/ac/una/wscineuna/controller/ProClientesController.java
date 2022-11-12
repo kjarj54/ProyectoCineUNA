@@ -26,7 +26,6 @@ import javax.ws.rs.core.SecurityContext;
  * @author
  */
 @Path("/ProClientesController")
-@Secure
 public class ProClientesController {
 
     @EJB
