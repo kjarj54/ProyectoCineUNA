@@ -49,8 +49,6 @@ import org.apache.commons.compress.utils.IOUtils;
 public class MantPeliculasViewController extends Controller implements Initializable {
 
     @FXML
-    private Label labelTitulo;
-    @FXML
     private ImageView imgPel;
     @FXML
     private JFXButton btnCargarImagen;

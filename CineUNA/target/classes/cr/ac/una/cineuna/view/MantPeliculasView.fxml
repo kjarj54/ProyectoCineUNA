@@ -30,13 +30,13 @@
                            <children>
                               <HBox alignment="CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <RadioButton fx:id="rdbProximamente" mnemonicParsing="false" styleClass="jfx-radio-button" text="%Estado3" HBox.hgrow="ALWAYS">
+                                    <RadioButton fx:id="rdbProximamente" mnemonicParsing="false" styleClass="jfx-radio-button" text="%Estado3" textFill="WHITE" HBox.hgrow="ALWAYS">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="tggEstado" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="rdbSala" mnemonicParsing="false" selected="true" styleClass="jfx-radio-button" text="%Estado2" toggleGroup="$tggEstado" HBox.hgrow="ALWAYS" />
-                                    <RadioButton fx:id="rdbInactivo" mnemonicParsing="false" styleClass="jfx-radio-button" text="%Estado1" toggleGroup="$tggEstado" HBox.hgrow="ALWAYS" />
+                                    <RadioButton fx:id="rdbSala" mnemonicParsing="false" selected="true" styleClass="jfx-radio-button" text="%Estado2" textFill="WHITE" toggleGroup="$tggEstado" HBox.hgrow="ALWAYS" />
+                                    <RadioButton fx:id="rdbInactivo" mnemonicParsing="false" styleClass="jfx-radio-button" text="%Estado1" textFill="WHITE" toggleGroup="$tggEstado" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
                               <JFXDatePicker fx:id="dpFecha" promptText="Fecha" styleClass="jfx-btn-dp" VBox.vgrow="ALWAYS" />

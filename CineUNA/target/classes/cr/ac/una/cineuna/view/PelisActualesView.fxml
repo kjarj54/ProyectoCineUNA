@@ -12,7 +12,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="%act">
+                  <Label text="%act" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="24.0" />
                      </font>
