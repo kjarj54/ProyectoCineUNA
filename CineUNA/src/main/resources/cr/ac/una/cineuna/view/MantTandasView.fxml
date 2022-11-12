@@ -20,7 +20,7 @@
                <children>
                   <Label styleClass="h3-contraste" text="%NombreTanda" />
                   <Separator maxWidth="1.7976931348623157E308" orientation="VERTICAL" visible="false" HBox.hgrow="ALWAYS" />
-                  <JFXTextField fx:id="txtNombreTanda" labelFloat="true" promptText="%NombreTanda" />
+                  <JFXTextField fx:id="txtNombreTanda" focusColor="WHITE" labelFloat="true" promptText="%NombreTanda" />
                </children>
             </HBox>
             <HBox alignment="CENTER">
@@ -48,7 +48,7 @@
                <children>
                   <Label styleClass="h3-contraste" text="%NombrePrecio" />
                   <Separator maxWidth="1.7976931348623157E308" orientation="VERTICAL" visible="false" HBox.hgrow="ALWAYS" />
-                  <JFXTextField fx:id="txtPrecio" labelFloat="true" promptText="%NombrePrecio" />
+                  <JFXTextField fx:id="txtPrecio" focusColor="WHITE" labelFloat="true" promptText="%NombrePrecio" />
                </children>
             </HBox>
             <HBox alignment="CENTER">
