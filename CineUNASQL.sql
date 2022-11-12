@@ -225,7 +225,7 @@ COMMENT ON COLUMN PRO_SALAS.sal_version IS 'Version del registro de las salas'
 CREATE TABLE PRO_ASIENTOS(
   asi_id Number NOT NULL,
   asi_img Blob NOT NULL,
-  asi_nombre Varchar2(4 ) NOT NULL,
+  asi_nombre Varchar2(80) NOT NULL,
   asi_cantidad Number NOT NULL,
   asi_version Number DEFAULT 1 NOT NULL,
   sal_id Number

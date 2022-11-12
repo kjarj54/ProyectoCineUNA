@@ -94,6 +94,7 @@ public class ProClientesController {
     }
 
     @GET
+    @Secure
     @Path("/recuperarClave/{correo}")
     public Response recuperarClave(@PathParam("correo") String correo) {
         try {
@@ -127,6 +128,7 @@ public class ProClientesController {
     }
 
     @GET
+    @Secure
     @Path("/clientes/{id}")
     public Response getCliente(@PathParam("id") Long id) {
         try {
@@ -145,6 +147,7 @@ public class ProClientesController {
     }
 
     @GET
+    @Secure
     @Path("/getClientes/{id}/{usuario}/{nombre}/{estado}/{admin}")
     public Response getClientes(@PathParam("id") String id, @PathParam("usuario") String usuario, @PathParam("nombre") String nombre, @PathParam("estado") String estado, @PathParam("admin") String admin) {
         try {
@@ -161,6 +164,7 @@ public class ProClientesController {
     }
 
     @GET
+    @Secure
     @Path("/getClientes/")
     public Response getClientesSinParametros() {
         try {

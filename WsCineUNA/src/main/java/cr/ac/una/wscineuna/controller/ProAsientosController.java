@@ -55,6 +55,7 @@ public class ProAsientosController {
     }
 
     @GET
+    @Secure
     @Path("/asiento/{id}")
     public Response getAsiento(@PathParam("id") Long id) {
         try {
@@ -73,6 +74,7 @@ public class ProAsientosController {
     }
 
     @GET
+    @Secure
     @Path("/asientos/")
     public Response getAsientos() {
         try {
