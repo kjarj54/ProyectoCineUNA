@@ -105,6 +105,7 @@ public class MantTandasViewController extends Controller implements Initializabl
         unbindPeliculas();
         peli = new ProTandasDto();
         bindPeliculas(true);
+        
     }
 
     @FXML

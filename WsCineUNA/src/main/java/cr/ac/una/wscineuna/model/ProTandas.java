@@ -84,13 +84,14 @@ public class ProTandas implements Serializable {
         this.tanId = tanId;
     }
 
-    public ProTandas(Long tanId, String tanNombre, LocalTime tanHorainicio, LocalTime tanHorafinal, LocalDate tanFecha, Long tanPrecio) {
+    public ProTandas(Long tanId, String tanNombre, LocalTime tanHorainicio, LocalTime tanHorafinal, LocalDate tanFecha, Long tanPrecio, ProPeliculasDto peli) {
         this.tanId = tanId;
         this.tanNombre = tanNombre;
         this.tanHorainicio = tanHorainicio;
         this.tanHorafinal = tanHorafinal;
         this.tanFecha = tanFecha;
         this.tanPrecio = tanPrecio;
+        this.pelId = new ProPeliculas();
         
     }
     
@@ -105,6 +106,7 @@ public class ProTandas implements Serializable {
         this.tanHorainicio = proTandasDto.getTanHorainico();
         this.tanNombre = proTandasDto.getTanNombre();
         this.tanPrecio = proTandasDto.getTanPrecio();
+        this.pelId = new ProPeliculas(proTandasDto.getPelId());
         
     }
     
