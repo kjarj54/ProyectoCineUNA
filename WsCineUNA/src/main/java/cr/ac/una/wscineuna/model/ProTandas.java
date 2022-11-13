@@ -91,6 +91,7 @@ public class ProTandas implements Serializable {
         this.tanHorafinal = tanHorafinal;
         this.tanFecha = tanFecha;
         this.tanPrecio = tanPrecio;
+        
     }
     
     public ProTandas(ProTandasDto proTandasDto){
@@ -104,6 +105,7 @@ public class ProTandas implements Serializable {
         this.tanHorainicio = proTandasDto.getTanHorainico();
         this.tanNombre = proTandasDto.getTanNombre();
         this.tanPrecio = proTandasDto.getTanPrecio();
+        
     }
     
     public Long getTanId() {

@@ -26,11 +26,14 @@ public class ProTandasDto {
     private Boolean modificado;
     List<ProAsientosDto> asientos;
     List<ProAsientosDto> asientosEliminados;
+    
+    public ProPeliculasDto pelId;
 
     public ProTandasDto() {
         this.modificado = false;
         asientos = new ArrayList<>();
         asientosEliminados = new ArrayList<>();
+        this.pelId = new ProPeliculasDto();
     }
 
     public ProTandasDto(ProTandas proTandas) {
@@ -41,6 +44,8 @@ public class ProTandasDto {
         this.tanHorafinal = proTandas.getTanHorafinal();
         this.tanHorainico = proTandas.getTanHorainicio();
         this.tanPrecio = proTandas.getTanPrecio();
+        
+        
         
     }
     
@@ -91,6 +96,16 @@ public class ProTandasDto {
     public void setTanPrecio(Long tanPrecio) {
         this.tanPrecio = tanPrecio;
     }
+
+    public ProPeliculasDto getPelId() {
+        return pelId;
+    }
+
+    public void setPelId(ProPeliculasDto pelId) {
+        this.pelId = pelId;
+    }
+    
+    
 
     
     public Boolean getModificado() {

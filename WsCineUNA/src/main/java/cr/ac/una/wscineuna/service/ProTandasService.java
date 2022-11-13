@@ -6,6 +6,7 @@ package cr.ac.una.wscineuna.service;
 
 import cr.ac.una.wscineuna.model.ProAsientos;
 import cr.ac.una.wscineuna.model.ProAsientosDto;
+import cr.ac.una.wscineuna.model.ProPeliculas;
 import cr.ac.una.wscineuna.model.ProTandas;
 import cr.ac.una.wscineuna.model.ProTandasDto;
 import cr.ac.una.wscineuna.util.CodigoRespuesta;
@@ -58,8 +59,10 @@ public class ProTandasService {
         try {
 
             ProTandas proTandas;
+            ProPeliculas pelicula ;
             if (proTandasDto.getTanId() != null && proTandasDto.getTanId() > 0) {
                 proTandas = em.find(ProTandas.class, proTandasDto.getTanId());
+                pelicula = em.find(ProPeliculas.class, proTandasDto.getPelId().getPelId());
                 if (proTandas == null) {
                     return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encrontró la tanda a modificar.", "guardarTanda NoResultException");
                 }
@@ -70,23 +73,28 @@ public class ProTandasService {
                 if (!proTandasDto.getAsientos().isEmpty()) {
                     for (ProAsientosDto asi : proTandasDto.getAsientos()) {
                         if (asi.getAsiModificado()) {
-                            ProAsientos pelicula = em.find(ProAsientos.class, asi.getAsiId());
+                            ProAsientos pelicula1 = em.find(ProAsientos.class, asi.getAsiId());
                             pelicula.getProTandasList().add(proTandas);
-                            proTandas.getProAsientosList().add(pelicula);
+                            proTandas.getProAsientosList().add(pelicula1);
                         }
                     }
                 }
+
+                
+                pelicula.getProTandasList().add(proTandas);
+                proTandas.setPelId(pelicula);
+
                 proTandas = em.merge(proTandas);
             } else {
                 proTandas = new ProTandas(proTandasDto);
                 em.persist(proTandas);
             }
             em.flush();
-            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Comida", new ProTandasDto(proTandas));
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Tanda", new ProTandasDto(proTandas));
 
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "Ocurrio un error al guardar la tanda.", ex);
-            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al guardar la comida.", "guardarComida" + ex.getMessage());
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al guardar la comida.", "guardarTanda" + ex.getMessage());
         }
     }
 

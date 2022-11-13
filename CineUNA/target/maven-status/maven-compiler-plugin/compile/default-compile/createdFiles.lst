@@ -54,13 +54,16 @@ cr\ac\una\cineuna\service\ProFacturasService.class
 cr\ac\una\cineuna\controller\MantUsuariosViewController.class
 cr\ac\una\cineuna\controller\PrincipalViewController.class
 cr\ac\una\cineuna\controller\ComidasAdminViewController$ButtonCell.class
+cr\ac\una\cineuna\controller\MantPelTableViewController.class
 cr\ac\una\cineuna\controller\CarteleraViewController.class
 cr\ac\una\cineuna\controller\LoginViewController.class
 cr\ac\una\cineuna\controller\MantUsuTableViewController$ButtonCell.class
 cr\ac\una\cineuna\util\Request$1.class
 cr\ac\una\cineuna\controller\MantTandasViewController.class
+cr\ac\una\cineuna\controller\MantPelTableViewController$ButtonCell.class
 cr\ac\una\cineuna\model\ProClientesDto.class
 cr\ac\una\cineuna\model\ProAsientosDto.class
 cr\ac\una\cineuna\util\Mensaje.class
+cr\ac\una\cineuna\controller\UpdatePelViewController.class
 cr\ac\una\cineuna\util\DragResizer$4.class
 cr\ac\una\cineuna\controller\TablePeliculasViewController.class

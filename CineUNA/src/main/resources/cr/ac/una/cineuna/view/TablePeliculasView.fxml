@@ -9,6 +9,7 @@
    <children>
       <TableView fx:id="tbvResultados" layoutX="17.0" layoutY="14.0" onMousePressed="#OnMousePressedTbvResultados" prefHeight="356.0" prefWidth="566.0">
          <columns>
+            <TableColumn fx:id="tbcID" minWidth="-Infinity" prefWidth="50.0" text="ID" />
             <TableColumn fx:id="tbcNombre" minWidth="-Infinity" prefWidth="50.0" text="NOMBRE" />
             <TableColumn fx:id="tbcSynop" minWidth="-Infinity" prefWidth="40.0" text="SYNOPSIS" />
             <TableColumn fx:id="tbcFecha" minWidth="-Infinity" text="FECHA" />

@@ -5,18 +5,37 @@
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
+import cr.ac.una.cineuna.model.ProClientesDto;
+import cr.ac.una.cineuna.model.ProPeliculasDto;
+import cr.ac.una.cineuna.model.ProTandasDto;
+import cr.ac.una.cineuna.service.ProClientesService;
+import cr.ac.una.cineuna.service.ProPeliculasService;
+import cr.ac.una.cineuna.service.ProTandasService;
 import cr.ac.una.cineuna.util.AppContext;
+import cr.ac.una.cineuna.util.BindingUtils;
 import cr.ac.una.cineuna.util.FlowController;
+import cr.ac.una.cineuna.util.Mensaje;
+import cr.ac.una.cineuna.util.Respuesta;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -25,8 +44,6 @@ import javafx.scene.control.MenuButton;
  */
 public class MantTandasViewController extends Controller implements Initializable {
 
-    @FXML
-    private MenuButton menuPelicula;
     @FXML
     private JFXButton btnSalir;
     @FXML
@@ -45,9 +62,18 @@ public class MantTandasViewController extends Controller implements Initializabl
     private Button btnPeli;
     @FXML
     public JFXTextField txtPeli;
+    
+    List<Node> requeridos = new ArrayList<>();
+    
+    
 
     
     private TablePeliculasViewController menucontroller;
+    @FXML
+    public TextField txtID;
+    
+    
+    ProTandasDto peli;
     /**
      * Initializes the controller class.
      */
@@ -57,8 +83,10 @@ public class MantTandasViewController extends Controller implements Initializabl
         
         
         AppContext.getInstance().set("MantTandasViewController", this);
+        peli = new ProTandasDto();
         
-        
+        indicarRequeridos();
+        nuevaTnda();
         
         
         //txtPeli.setEditable(true);
@@ -72,9 +100,48 @@ public class MantTandasViewController extends Controller implements Initializabl
     @FXML
     private void onActionSalir(ActionEvent event) {
     }
+    
+    public void nuevaTnda() {
+        unbindPeliculas();
+        peli = new ProTandasDto();
+        bindPeliculas(true);
+    }
 
     @FXML
     private void onActionBtnGuardar(ActionEvent event) {
+        
+        //peli.setPelId(Long.valueOf(txtID.getText()));
+        String sss = txtID.getText();
+        
+        try {
+            ProPeliculasService service1 = new ProPeliculasService();
+            Respuesta respuesta1 = service1.getPelicula(Long.parseLong(sss)); 
+            ProPeliculasDto pelicula = new ProPeliculasDto();
+            pelicula = (ProPeliculasDto)respuesta1.getResultado("ProPelicula");
+            peli.setPelId(pelicula);
+            String invalidos = validarRequeridos();
+            if (!invalidos.isEmpty()) {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar tanda", getStage(), invalidos);
+            } 
+            else {
+                ProTandasService service = new ProTandasService();
+                Respuesta respuesta = service.guardarPelicula(peli);
+                if (!respuesta.getEstado()) {
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar tanda", getStage(), respuesta.getMensaje());
+                } else {
+                    unbindPeliculas();
+                    peli = (ProTandasDto) respuesta.getResultado("Tanda");
+                    bindPeliculas(false);
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar tanda", getStage(), "TANDA actualizado correctamente.");
+                }
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(MantTandasViewController.class.getName()).log(Level.SEVERE, "Error guardando el tanda.", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar tanda", getStage(), "Ocurrio un error guardando el tanda.");
+        }
+
+       
         
     }
 
@@ -83,6 +150,66 @@ public class MantTandasViewController extends Controller implements Initializabl
         FlowController.getInstance().goView("TablePeliculasView");
         //FlowController.getInstance().limpiarLoader("TablePeliculasView");
         
+    }
+    
+    
+    public void indicarRequeridos() {
+        requeridos.clear();
+        requeridos.addAll(Arrays.asList(txtNombreTanda));
+    }
+
+    public String validarRequeridos() {
+        Boolean validos = true;
+        String invalidos = "";
+        for (Node node : requeridos) {
+            if (node instanceof JFXTextField && !((JFXTextField) node).validate()) {
+                if (validos) {
+                    invalidos += ((JFXTextField) node).getPromptText();
+                } else {
+                    invalidos += "," + ((JFXTextField) node).getPromptText();
+                }
+                validos = false;
+            } else if (node instanceof JFXPasswordField && !((JFXPasswordField) node).validate()) {
+                if (validos) {
+                    invalidos += ((JFXPasswordField) node).getPromptText();
+                } else {
+                    invalidos += "," + ((JFXPasswordField) node).getPromptText();
+                }
+                validos = false;
+            } else if (node instanceof JFXDatePicker && ((JFXDatePicker) node).getValue() == null) {
+                if (validos) {
+                    invalidos += ((JFXDatePicker) node).getAccessibleText();
+                } else {
+                    invalidos += "," + ((JFXDatePicker) node).getAccessibleText();
+                }
+                validos = false;
+            } else if (node instanceof JFXComboBox && ((JFXComboBox) node).getSelectionModel().getSelectedIndex() < 0) {
+                if (validos) {
+                    invalidos += ((JFXComboBox) node).getPromptText();
+                } else {
+                    invalidos += "," + ((JFXComboBox) node).getPromptText();
+                }
+                validos = false;
+            }
+        }
+        if (validos) {
+            return "";
+        } else {
+            return "Campos requeridos o con problemas de formato [" + invalidos + "].";
+        }
+    }
+    
+    
+    public void bindPeliculas(Boolean nuevo) {
+        txtNombreTanda.textProperty().bindBidirectional(peli.tanNombre);
+        
+        dpFecha.valueProperty().bindBidirectional(peli.tanFecha);
+    }
+
+    public void unbindPeliculas() {
+        txtNombreTanda.textProperty().unbindBidirectional(peli.tanNombre);
+       
+        dpFecha.valueProperty().unbindBidirectional(peli.tanFecha);
     }
     
 }
