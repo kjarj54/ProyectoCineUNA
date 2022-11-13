@@ -22,6 +22,7 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -47,7 +48,7 @@ public class MantSalasViewController extends Controller implements Initializable
     @FXML
     private JFXButton btnAsientoSelect;
     @FXML
-    private Pane paneAsientos;
+    private GridPane gridPaneAsientos;
 
     /**
      * Initializes the controller class.
@@ -102,7 +103,6 @@ public class MantSalasViewController extends Controller implements Initializable
         event.consume();
     }
 
-    @FXML
     private void onDragOverPane(DragEvent event) {
         if(event.getDragboard().hasImage()){
         event.acceptTransferModes(TransferMode.ANY);
@@ -112,7 +112,7 @@ public class MantSalasViewController extends Controller implements Initializable
     @FXML
     private void onDragDroppedPane(DragEvent event) {
         event.getDragboard().getImage();
-        //paneAsientos
+        gridPaneAsientos.getChildren().addAll(new ImageView(imgAsiento.getImage()));
     }
     
 }
