@@ -54,7 +54,7 @@ public class PrincipalViewController extends Controller implements Initializable
 
     @FXML
     private void OnActionbtnPeliculas(ActionEvent event) {
-    FlowController.getInstance().goView("MantPeliculasView");
+    FlowController.getInstance().goView("MantPelTableView");
     }
 
     @FXML
