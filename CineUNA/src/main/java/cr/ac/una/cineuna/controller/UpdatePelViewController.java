@@ -9,9 +9,12 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import cr.ac.una.cineuna.model.ProClientesDto;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.service.ProPeliculasService;
+import cr.ac.una.cineuna.util.AppContext;
 import cr.ac.una.cineuna.util.BindingUtils;
+import cr.ac.una.cineuna.util.FlowController;
 import cr.ac.una.cineuna.util.Formato;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
@@ -73,6 +76,9 @@ public class UpdatePelViewController extends Controller implements Initializable
 
     ProPeliculasDto proPeliculasDto;
 
+    @FXML
+    private JFXButton btnAtras;
+
     /**
      * Initializes the controller class.
      */
@@ -86,7 +92,19 @@ public class UpdatePelViewController extends Controller implements Initializable
         txtAreaSinopsis.setTextFormatter(Formato.getInstance().maxLengthFormat(500));
         txtUrl.setTextFormatter(Formato.getInstance().maxLengthFormat(255));
         proPeliculasDto = new ProPeliculasDto();
-        nuevaPelicula();
+
+        Long id = (Long) AppContext.getInstance().get("EditarPelicula");
+        ProPeliculasService service = new ProPeliculasService();
+        Respuesta respuesta = service.getPelicula(id);
+        if (respuesta.getEstado()) {
+            unbindPeliculas();
+            proPeliculasDto = (ProPeliculasDto) respuesta.getResultado("ProPelicula");
+            imgPel.setImage(ConvertToImage(proPeliculasDto.pelImagen.getValue()));
+            bindPeliculas(false);
+            validarRequeridos();
+        } else {
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Cargar pelicula", getStage(), respuesta.getMensaje());
+        }
         indicarRequeridos();
     }
 
@@ -162,9 +180,9 @@ public class UpdatePelViewController extends Controller implements Initializable
         return new Image(new ByteArrayInputStream(data));
     }
 
-    private byte[] SaveImage(File file) throws IOException {
-        FileInputStream fiStream = new FileInputStream(file.getAbsolutePath());
-        byte[] imageInBytes = IOUtils.toByteArray(fiStream);
+    private byte[] SaveImage(File file) throws IOException {//Resive un file del filechoser       
+        FileInputStream fiStream = new FileInputStream(file.getAbsolutePath());//de la ruta lo pasa a un FileInputStream
+        byte[] imageInBytes = IOUtils.toByteArray(fiStream);//El fileSream lo convierte a un arreglo de bytes
         return imageInBytes;
     }
 
@@ -184,8 +202,8 @@ public class UpdatePelViewController extends Controller implements Initializable
 
             proPeliculasDto.setPelImagen(SaveImage(imagFile));
 
-            Image image = new Image(new ByteArrayInputStream(SaveImage(imagFile)));
-            imgPel.setImage(image);
+            Image image = new Image(new ByteArrayInputStream(SaveImage(imagFile)));//le setea el arreglo de bytes al Image
+            imgPel.setImage(image);//Coloca el image en el imageView
 
         }
 
@@ -226,6 +244,14 @@ public class UpdatePelViewController extends Controller implements Initializable
     @Override
     public void initialize() {
 
+    }
+
+    @FXML
+    private void onActionAtras(ActionEvent event) {
+        
+      FlowController.getInstance().goView("MantPelTableView");
+      FlowController.getInstance().limpiarLoader("UpdatePelView");
+        
     }
 
 }

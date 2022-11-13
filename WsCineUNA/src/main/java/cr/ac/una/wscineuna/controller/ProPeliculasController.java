@@ -73,10 +73,10 @@ public class ProPeliculasController {
 
     @GET
     @Secure
-    @Path("/peliculas/")
-    public Response getPeliculas() {
+    @Path("/getPeliculas/{id}/{nombre}")
+    public Response getPeliculas(@PathParam("id") String id,@PathParam("nombre") String nombre) {
         try {
-            Respuesta res = proPeliculasService.getPeliculas();
+            Respuesta res = proPeliculasService.getPeliculas(id, nombre);
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }

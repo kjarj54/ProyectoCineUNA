@@ -95,7 +95,7 @@ public class MantPelTableViewController extends Controller implements Initializa
 
         ProPeliculasService proPeliculasService = new ProPeliculasService();
 
-        Respuesta respuesta = proPeliculasService.getPelicualas();
+        Respuesta respuesta = proPeliculasService.getPeliculasSinParametros();
 
         if (respuesta.getEstado()) {
             ObservableList<ProPeliculasDto> proPeliculasDtos = FXCollections.observableList((List<ProPeliculasDto>) respuesta.getResultado("ProPeliculas"));
@@ -126,7 +126,7 @@ public class MantPelTableViewController extends Controller implements Initializa
             nombre = "%" + txtNombre.getText();
         }
 
-        Respuesta respuesta = proPeliculasService.getPelicualas();
+        Respuesta respuesta = proPeliculasService.getPeliculas(id,nombre);
         
         if (respuesta.getEstado()) {
             ObservableList<ProPeliculasDto> proPeliculasDtos = FXCollections.observableList((List<ProPeliculasDto>) respuesta.getResultado("ProPeliculas"));

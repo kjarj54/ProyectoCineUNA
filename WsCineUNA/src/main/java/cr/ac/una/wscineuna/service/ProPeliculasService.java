@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -56,7 +57,7 @@ public class ProPeliculasService {
 
     public Respuesta guardarPelicula(ProPeliculasDto proPeliculasDto) {
         try {
-            
+
             ProPeliculas proPeliculas;
             if (proPeliculasDto.getPelId() != null && proPeliculasDto.getPelId() > 0) {
                 proPeliculas = em.find(ProPeliculas.class, proPeliculasDto.getPelId());
@@ -77,12 +78,17 @@ public class ProPeliculasService {
         }
     }
 
-    public Respuesta getPeliculas() {
+    public Respuesta getPeliculas(String id, String nombre) {
         try {
-            
+
             Query qryPeliculas = em.createNamedQuery("ProPeliculas.findAll", ProPeliculas.class);
             List<ProPeliculas> peliculas = qryPeliculas.getResultList();
-
+            if (!id.equals("%")) {
+                peliculas = peliculas.stream().filter((p) -> p.getPelId().equals(Long.parseLong(id))).collect(Collectors.toList());
+            }
+            if (!nombre.equals("%")) {
+                peliculas = peliculas.stream().filter((p) -> p.getPelNombre().contains(nombre.toLowerCase()) || p.getPelNombre().contains(nombre.toUpperCase())).collect(Collectors.toList());
+            }
 
             List<ProPeliculasDto> peliculasDto = new ArrayList<>();
             for (ProPeliculas pelicula : peliculas) {
@@ -100,7 +106,7 @@ public class ProPeliculasService {
 
     public Respuesta eliminarPelicula(Long id) {
         try {
-            
+
             ProPeliculas peliculas;
             if (id != null && id > 0) {
                 peliculas = em.find(ProPeliculas.class, id);
@@ -121,8 +127,7 @@ public class ProPeliculasService {
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al eliminar la pelicula.", "eliminarPelicula " + ex.getMessage());
         }
     }
-    
-    
+
     public Respuesta getPeliculasSinParametros() {
         try {
             Query qryClientes = em.createNamedQuery("ProPeliculas.findAll", ProPeliculas.class);

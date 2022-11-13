@@ -39,6 +39,7 @@ public class ProPeliculasService {
     public Respuesta guardarPelicula(ProPeliculasDto proPeliculasDto) {
         try {
             //TODO
+
             Request request = new Request("ProPeliculasController/guardarPelicula");
             request.post(proPeliculasDto);
             if (request.isError()) {
@@ -51,11 +52,31 @@ public class ProPeliculasService {
             return new Respuesta(false, "Error guardando la pelicula.", "guardarPelicula " + ex.getMessage());
         }
     }
-
-    public Respuesta getPelicualas() {
+    
+    public Respuesta getPelicula(Long id) {
         try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("id", id);
+            Request request = new Request("ProPeliculasController/pelicula", "/{id}", parametros);
+            request.get();
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+            ProPeliculasDto proClienteDto = (ProPeliculasDto) request.readEntity(ProPeliculasDto.class);
+            return new Respuesta(true, "", "", "ProPelicula", proClienteDto);
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Ocurrio un error al consultar la pelicula.", ex);
+            return new Respuesta(false, "Ocurrio un error al al consultar la pelicula.", "getPelicula " + ex.getMessage());
+        }
+    }
 
-            Request request = new Request("ProPeliculasController/facturas");
+    public Respuesta getPeliculas(String id, String nombre) {
+        try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("id", id);
+            parametros.put("nombre", nombre);
+            
+            Request request = new Request("ProPeliculasController/getPeliculas", "/{id}/{nombre}",parametros);
             request.get();
             if (request.isError()) {
                 return new Respuesta(false, request.getError(), "");
@@ -63,17 +84,17 @@ public class ProPeliculasService {
 
             List<ProPeliculasDto> proComidasDto = (List<ProPeliculasDto>) request.readEntity(new GenericType<List<ProPeliculasDto>>() {
             });
-            return new Respuesta(true, "", "", "ProPeliculas", proComidasDto);
+            return new Respuesta(true, "", "", "ProPeliculasParametros", proComidasDto);
 
         } catch (Exception ex) {
             Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Error consultando las peliculas.", ex);
             return new Respuesta(false, "Error consultando las peliculas.", "getPelicualas" + ex.getMessage());
         }
     }
-    
-     public Respuesta getPeliculasSinParametros() {
+
+    public Respuesta getPeliculasSinParametros() {
         try {
-            
+
             Request request = new Request("ProPeliculasController/getPeliculas");
             request.get();
             if (request.isError()) {

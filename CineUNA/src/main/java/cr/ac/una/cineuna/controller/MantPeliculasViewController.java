@@ -1,4 +1,3 @@
-
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
@@ -9,6 +8,7 @@ import com.jfoenix.controls.JFXTextField;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.service.ProPeliculasService;
 import cr.ac.una.cineuna.util.BindingUtils;
+import cr.ac.una.cineuna.util.FlowController;
 import cr.ac.una.cineuna.util.Formato;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
@@ -38,8 +38,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import org.apache.commons.compress.utils.IOUtils;
-
-
 
 /**
  * FXML Controller class
@@ -72,11 +70,12 @@ public class MantPeliculasViewController extends Controller implements Initializ
     private JFXButton btnGuardar;
     @FXML
     private JFXButton btnLimpiar;
-    
+
     List<Node> requeridos = new ArrayList<>();
 
     ProPeliculasDto proPeliculasDto;
-    
+    @FXML
+    private JFXButton btnAtras;
 
     /**
      * Initializes the controller class.
@@ -183,13 +182,12 @@ public class MantPeliculasViewController extends Controller implements Initializ
 
         //toma la imagen
         File imagFile = fileChooser.showOpenDialog(null);
-       
 
         //comprueba y luego muestra la imagen
         if (imagFile != null) {
-            
+
             proPeliculasDto.setPelImagen(SaveImage(imagFile));
-            
+
             Image image = new Image(new ByteArrayInputStream(SaveImage(imagFile)));
             imgPel.setImage(image);
 
@@ -199,7 +197,7 @@ public class MantPeliculasViewController extends Controller implements Initializ
 
     @FXML
     private void onActionGuardar(ActionEvent event) {
-         try {
+        try {
             String invalidos = validarRequeridos();
             if (!invalidos.isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar pelicula", getStage(), invalidos);
@@ -224,19 +222,25 @@ public class MantPeliculasViewController extends Controller implements Initializ
 
     @FXML
     private void onActionLimpiar(ActionEvent event) {
-         if (new Mensaje().showConfirmation("Limpiar usuario", getStage(), "¿Esta seguro que desea limpiar el registro?")) {
-            nuevaPelicula();          
+        if (new Mensaje().showConfirmation("Limpiar usuario", getStage(), "¿Esta seguro que desea limpiar el registro?")) {
+            nuevaPelicula();
             imgPel.setImage(null);
         }
     }
 
     @Override
     public void initialize() {
-        
+
     }
 
     private Object toString(byte[] imageInBytes) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @FXML
+    private void onActionBtnAtras(ActionEvent event) {
+        FlowController.getInstance().goView("MantPelTableView");
+        FlowController.getInstance().limpiarLoader("MantPeliculasView");
     }
 
 }
