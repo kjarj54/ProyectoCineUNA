@@ -23,6 +23,8 @@ public class ProTandasDto {
     public ObjectProperty<Timestamp> tanHoraFinal;
     public ObjectProperty<LocalDate> tanFecha;
     private Boolean modificado;
+    
+    public ProPeliculasDto pelId;
 
     public ProTandasDto() {
         this.modificado = false;
@@ -32,6 +34,8 @@ public class ProTandasDto {
         this.tanHoraInicio = new SimpleObjectProperty();
         this.tanHoraFinal = new SimpleObjectProperty();
         this.tanFecha = new SimpleObjectProperty();
+        this.pelId = new ProPeliculasDto();
+        
     }
 
     public Long getTanId() {
@@ -97,4 +101,18 @@ public class ProTandasDto {
     public void setModificado(Boolean modificado) {
         this.modificado = modificado;
     }
+
+    public ProPeliculasDto getPelId() {
+        return pelId;
+    }
+
+    public void setPelId(ProPeliculasDto pelId) {
+        this.pelId = pelId;
+    }
+
+    
+
+    
+    
+    
 }

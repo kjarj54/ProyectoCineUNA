@@ -50,12 +50,15 @@ public class TablePeliculasViewController extends Controller  implements Initial
     private TableColumn<ProPeliculasDto, Boolean> tbcSelec;
     
     public TextField aux = new TextField();
+    public TextField aux2 = new TextField();
     @FXML
     private AnchorPane root;
     @FXML
     private JFXButton btnatras;
     
     private MantTandasViewController menucontroller;
+    @FXML
+    private TableColumn<ProPeliculasDto, String> tbcID;
 
     /**
      * Initializes the controller class.
@@ -72,11 +75,19 @@ public class TablePeliculasViewController extends Controller  implements Initial
         
        
         root.getChildren().add(aux);
+        aux2.setLayoutX(0);
+        aux2.setLayoutY(0);
+        
+        
+        aux2.setVisible(false);
+        
+       
+        root.getChildren().add(aux2);
         
         menucontroller = (MantTandasViewController) AppContext.getInstance().get("MantTandasViewController");
         
         
-        
+        tbcID.setCellValueFactory(clbck -> clbck.getValue().pelId);
         
         tbcNombre.setCellValueFactory(clbck -> clbck.getValue().pelNombre);
 
@@ -136,12 +147,15 @@ public class TablePeliculasViewController extends Controller  implements Initial
             cellButton.setOnAction((ActionEvent t) -> {
                 ProPeliculasDto emp = (ProPeliculasDto) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
                 String equipos1 = emp.getPelNombre();
+                Long equipos2 = emp.getPelId();
                 
                 aux.setText(equipos1);
+                aux2.setText(String.valueOf(equipos2));
                 
 
                 System.out.println(equipos1 + "     " );
                 menucontroller.txtPeli.setText(aux.getText());
+                menucontroller.txtID.setText(aux2.getText());
                 //FlowController.getInstance().goView("MantTandasTableView");
                 
                 tbvResultados.refresh();
