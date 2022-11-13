@@ -210,6 +210,11 @@
     -fx-text-fill: #f9812a;
 }
 
+#imgAsiento{
+    -fx-max-width:50px;
+    -fx-max-height:50px;
+}
+
 /******************************* BOTONES GENERAL ******************************************/
 
 

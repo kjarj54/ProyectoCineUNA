@@ -3,6 +3,7 @@ package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import cr.ac.una.cineuna.util.Mensaje;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,6 +13,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,6 +28,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -53,9 +56,11 @@ public class MantSalasViewController extends Controller implements Initializable
     /**
      * Initializes the controller class.
      */
+    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
     }    
 
     @Override
@@ -76,7 +81,11 @@ public class MantSalasViewController extends Controller implements Initializable
         FileChooser fileChooser = new FileChooser();
         List<File> selectedFiles = fileChooser.showOpenMultipleDialog(null);
         Image img = new Image(new FileInputStream(selectedFiles.get(0)));
+        if (img.getWidth()>100){
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Revisar Dimensiones", (Stage) btnAsientoSelect.getScene().getWindow(), "Las dimensiones de la imagen son muy grandes");
+        } else {
         imgAsiento.setImage(img);
+        }
             }
 
 
@@ -96,13 +105,14 @@ public class MantSalasViewController extends Controller implements Initializable
 
     @FXML
     private void onDragDetectedImgView(MouseEvent event) {
-        Dragboard db = imgAsiento.startDragAndDrop(TransferMode.COPY);
+        Dragboard db = imgAsiento.startDragAndDrop(TransferMode.ANY);
         ClipboardContent cp = new ClipboardContent() ;
         cp.putImage(imgAsiento.getImage());
         db.setContent(cp);
         event.consume();
     }
 
+    @FXML
     private void onDragOverPane(DragEvent event) {
         if(event.getDragboard().hasImage()){
         event.acceptTransferModes(TransferMode.ANY);
