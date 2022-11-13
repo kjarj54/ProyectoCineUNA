@@ -103,4 +103,23 @@ public class ProPeliculasController {
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error eliminando pelicula").build();
         }
     }
+    
+    @GET
+    @Secure
+    @Path("/getPeliculas/")
+    public Response getPeliculasSinParametros() {
+        try {
+            Respuesta res = proPeliculasService.getPeliculasSinParametros();
+            if (!res.getEstado()) {
+                return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
+            }
+            return Response.ok(new GenericEntity<List<ProPeliculasDto>>((List<ProPeliculasDto>) res.getResultado("ProPeliculas")) {
+            }).build();
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesController.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error obteniendo Peli").build();
+        }
+    }
+    
+    
 }

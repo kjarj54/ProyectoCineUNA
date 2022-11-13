@@ -70,4 +70,23 @@ public class ProPeliculasService {
             return new Respuesta(false, "Error consultando las peliculas.", "getPelicualas" + ex.getMessage());
         }
     }
+    
+     public Respuesta getPeliculasSinParametros() {
+        try {
+            
+            Request request = new Request("ProPeliculasController/getPeliculas");
+            request.get();
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+
+            List<ProPeliculasDto> proClientesDto = (List<ProPeliculasDto>) request.readEntity(new GenericType<List<ProPeliculasDto>>() {
+            });
+            return new Respuesta(true, "", "", "ProPeliculas", proClientesDto);
+
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Error consultando el peli.", ex);
+            return new Respuesta(false, "Error consultando el peli.", "getPeliculas " + ex.getMessage());
+        }
+    }
 }

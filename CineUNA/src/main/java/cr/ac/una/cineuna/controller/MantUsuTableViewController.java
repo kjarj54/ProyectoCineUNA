@@ -210,7 +210,9 @@ public class MantUsuTableViewController extends Controller implements Initializa
         ButtonCell() {
             cellButton.setPrefWidth(500);
             cellButton.getStyleClass().add("jfx-btnimg-tbveliminar");
-
+            cellButton.setText("Editar");
+            cellButton.setStyle("-fx-background-color: #00FFA6");
+            
             cellButton.setOnAction((ActionEvent t) -> {
                 ProClientesDto emp = (ProClientesDto) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
                 AppContext.getInstance().set("EditarUsuario", emp.getCliId());

@@ -4,6 +4,8 @@
  */
 package cr.ac.una.wscineuna.service;
 
+import cr.ac.una.wscineuna.model.ProClientes;
+import cr.ac.una.wscineuna.model.ProClientesDto;
 import cr.ac.una.wscineuna.model.ProPeliculas;
 import cr.ac.una.wscineuna.model.ProPeliculasDto;
 import cr.ac.una.wscineuna.util.CodigoRespuesta;
@@ -117,6 +119,27 @@ public class ProPeliculasService {
             }
             LOG.log(Level.SEVERE, "Ocurrio un error al guardar la pelicula.", ex);
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al eliminar la pelicula.", "eliminarPelicula " + ex.getMessage());
+        }
+    }
+    
+    
+    public Respuesta getPeliculasSinParametros() {
+        try {
+            Query qryClientes = em.createNamedQuery("ProPeliculas.findAll", ProPeliculas.class);
+            List<ProPeliculas> clientes = qryClientes.getResultList();
+
+            List<ProPeliculasDto> clientesDto = new ArrayList<>();
+            for (ProPeliculas cliente : clientes) {
+                clientesDto.add(new ProPeliculasDto(cliente));
+            }
+
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProPeliculas", clientesDto);
+
+        } catch (NoResultException ex) {
+            return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen clientes con los criterios ingresados.", "getClientes NoResultException");
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el cliente.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el cliente.", "getCliente " + ex.getMessage());
         }
     }
 }
