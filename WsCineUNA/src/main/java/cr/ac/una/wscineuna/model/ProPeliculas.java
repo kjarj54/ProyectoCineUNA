@@ -75,11 +75,6 @@ public class ProPeliculas implements Serializable {
     @Version
     @Column(name = "PEL_VERSION")
     private Long pelVersion;
-    @JoinTable(name = "PRO_SALASPELICULAS", joinColumns = {
-        @JoinColumn(name = "PEL_ID", referencedColumnName = "PEL_ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "SAL_ID", referencedColumnName = "SAL_ID")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<ProSalas> proSalasList;
     @OneToMany(mappedBy = "pelId", fetch = FetchType.LAZY)
     private List<ProTandas> proTandasList;
 
@@ -180,13 +175,6 @@ public class ProPeliculas implements Serializable {
         this.pelVersion = pelVersion;
     }
 
-    public List<ProSalas> getProSalasList() {
-        return proSalasList;
-    }
-
-    public void setProSalasList(List<ProSalas> proSalasList) {
-        this.proSalasList = proSalasList;
-    }
 
     public List<ProTandas> getProTandasList() {
         return proTandasList;

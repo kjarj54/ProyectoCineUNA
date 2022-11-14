@@ -198,14 +198,8 @@ CREATE TABLE PRO_SALAS(
   sal_estado Varchar2(1 ) DEFAULT 'I' NOT NULL,
   sal_imgfondo Blob NOT NULL,
   sal_version Number DEFAULT 1 NOT NULL,
-  tan_id Number NOT NULL,
   CONSTRAINT PRO_SALAS_CK01 CHECK (sal_estado in ('A','I'))
 )
-;
-
--- Create indexes for table PRO_SALAS
-
-CREATE INDEX PRO_SALASTANDAS_FK01 ON PRO_SALAS (tan_id)
 ;
 
 -- Add keys for table PRO_SALAS
@@ -302,7 +296,8 @@ CREATE TABLE PRO_TANDAS(
   tan_precio Number NOT NULL,
   tan_version Number DEFAULT ON NULL 1 NOT NULL,
   pel_id Number,
-  res_id Number
+  res_id Number,
+  sal_id Number
 )
 ;
 
@@ -312,6 +307,9 @@ CREATE INDEX PRO_RESERVACIONTANDAS_FK01 ON PRO_TANDAS (res_id)
 ;
 
 CREATE INDEX PRO_PELICULASTANDAS_FK01 ON PRO_TANDAS (pel_id)
+;
+
+CREATE INDEX IX_PRO_SALASTANDAS_FK01 ON PRO_TANDAS (sal_id)
 ;
 
 -- Add keys for table PRO_TANDAS
@@ -541,6 +539,9 @@ END;
 /
 
 
+
+
+
 -- Create foreign keys (relationships) section ------------------------------------------------- 
 
 ALTER TABLE PRO_TANDAS ADD CONSTRAINT PRO_PELICULASTANDAS_FK01 FOREIGN KEY (pel_id) REFERENCES PRO_PELICULAS (pel_id)
@@ -579,7 +580,7 @@ ALTER TABLE PRO_RESERVACION ADD CONSTRAINT PRO_CLIENTESRESERVACION_FK01 FOREIGN 
 ;
 
 
-ALTER TABLE PRO_SALAS ADD CONSTRAINT PRO_SALASTANDAS_FK01 FOREIGN KEY (tan_id) REFERENCES PRO_TANDAS (tan_id)
+ALTER TABLE PRO_TANDAS ADD CONSTRAINT PRO_SALASTANDAS_FK01 FOREIGN KEY (sal_id) REFERENCES PRO_SALAS (sal_id)
 ;
 
 
