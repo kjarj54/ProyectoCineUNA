@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import cr.ac.una.cineuna.App;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.service.ProPeliculasService;
 import cr.ac.una.cineuna.util.BindingUtils;
@@ -15,10 +16,15 @@ import cr.ac.una.cineuna.util.Respuesta;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import static java.lang.System.in;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -37,6 +43,15 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import org.apache.commons.compress.utils.IOUtils;
 
 /**
@@ -76,11 +91,7 @@ public class MantPeliculasViewController extends Controller implements Initializ
     ProPeliculasDto proPeliculasDto;
     @FXML
     private JFXButton btnAtras;
-
-    String sqlpeli = "SELECT    T.TAN_FECHA, P.PEL_NOMBRE, C.CLI_CORREO, C.CLI_PAPELLIDO, C.CLI_USUARIO, C.CLI_ID, C.CLI_NOMBRE \n" +
-                        "FROM PRO_CLIENTES C, PRO_PELICULAS P, PRO_TANDAS T \n" +
-                        "WHERE PRO_PELICULAS.PEL_ESTADO = 'S' \n" +
-                        "ORDER BY PRO_CLIENTES.CLI_ID DESC, PRO_PELICULAS.PEL_ID DESC";
+    
     
     /**
      * Initializes the controller class.
@@ -199,6 +210,30 @@ public class MantPeliculasViewController extends Controller implements Initializ
         }
 
     }
+    
+    @FXML
+    private void onActionGenerarReporte(ActionEvent event){
+    try{
+        InputStream instream = new FileInputStream(new File(App.class.getResource("/cr/ac/una/canchauna/resources/Reportes.jrxml").toString()));
+        JasperDesign design = JRXmlLoader.load(in);
+        String sqlpeli = "SELECT    T.TAN_FECHA, P.PEL_NOMBRE, C.CLI_CORREO, C.CLI_PAPELLIDO, C.CLI_USUARIO, C.CLI_ID, C.CLI_NOMBRE \n" +
+                        "FROM PRO_CLIENTES C, PRO_PELICULAS P, PRO_TANDAS T \n" +
+                        "WHERE PRO_PELICULAS.PEL_ESTADO = 'S' \n" +
+                        "ORDER BY PRO_CLIENTES.CLI_ID DESC, PRO_PELICULAS.PEL_ID DESC";
+        JRDesignQuery nQ = new JRDesignQuery();
+        nQ.setText(sqlpeli);
+        design.setQuery(nQ);
+        JasperReport report = JasperCompileManager.compileReport(design);
+        HashMap hash = new HashMap();
+        JasperPrint print = JasperFillManager.fillReport(report, hash);
+        JasperViewer.viewReport(in, false);
+        OutputStream os = new FileOutputStream(new File("reporte.pdf"));
+        JasperExportManager.exportReportToPdfStream(print, os);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    
+    }
 
     @FXML
     private void onActionGuardar(ActionEvent event) {
@@ -236,10 +271,6 @@ public class MantPeliculasViewController extends Controller implements Initializ
     @Override
     public void initialize() {
 
-    }
-
-    private Object toString(byte[] imageInBytes) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @FXML
