@@ -1,6 +1,6 @@
 /*
 Created: 19/9/2022
-Modified: 14/11/2022
+Modified: 9/11/2022
 Model: ProyectoCinesUna
 Database: Oracle 18c
 */
@@ -225,7 +225,7 @@ COMMENT ON COLUMN PRO_SALAS.sal_version IS 'Version del registro de las salas'
 CREATE TABLE PRO_ASIENTOS(
   asi_id Number NOT NULL,
   asi_img Blob NOT NULL,
-  asi_nombre Varchar2(80 ) NOT NULL,
+  asi_nombre Varchar2(80) NOT NULL,
   asi_cantidad Number NOT NULL,
   asi_version Number DEFAULT 1 NOT NULL,
   sal_id Number
@@ -296,8 +296,7 @@ CREATE TABLE PRO_TANDAS(
   tan_precio Number NOT NULL,
   tan_version Number DEFAULT 1 NOT NULL,
   pel_id Number,
-  res_id Number,
-  sal_id Number
+  res_id Number
 )
 ;
 
@@ -307,9 +306,6 @@ CREATE INDEX PRO_RESERVACIONTANDAS_FK01 ON PRO_TANDAS (res_id)
 ;
 
 CREATE INDEX PRO_PELICULASTANDAS_FK01 ON PRO_TANDAS (pel_id)
-;
-
-CREATE INDEX IX_PRO_SALASTANDAS_FK01 ON PRO_TANDAS (sal_id)
 ;
 
 -- Add keys for table PRO_TANDAS
@@ -332,6 +328,19 @@ COMMENT ON COLUMN PRO_TANDAS.tan_fecha IS 'Fecha de la tanda'
 COMMENT ON COLUMN PRO_TANDAS.tan_precio IS 'Precio de la tanda'
 ;
 COMMENT ON COLUMN PRO_TANDAS.tan_version IS 'Version de la tabla'
+;
+
+-- Table PRO_SALASPELICULAS
+
+CREATE TABLE PRO_SALASPELICULAS(
+  pel_id Number NOT NULL,
+  sal_id Number NOT NULL
+)
+;
+
+-- Add keys for table PRO_SALASPELICULAS
+
+ALTER TABLE PRO_SALASPELICULAS ADD CONSTRAINT PRO_SALASPELICULAS_PK PRIMARY KEY (pel_id,sal_id)
 ;
 
 -- Table PRO_TANDASASIENTOS
@@ -541,8 +550,15 @@ END;
 
 
 
-
 -- Create foreign keys (relationships) section ------------------------------------------------- 
+
+ALTER TABLE PRO_SALASPELICULAS ADD CONSTRAINT PRO_SALASPELICULAS_FK01 FOREIGN KEY (pel_id) REFERENCES PRO_PELICULAS (pel_id)
+;
+
+
+ALTER TABLE PRO_SALASPELICULAS ADD CONSTRAINT PRO_SALASPELICULAS_FK02 FOREIGN KEY (sal_id) REFERENCES PRO_SALAS (sal_id)
+;
+
 
 ALTER TABLE PRO_TANDAS ADD CONSTRAINT PRO_PELICULASTANDAS_FK01 FOREIGN KEY (pel_id) REFERENCES PRO_PELICULAS (pel_id)
 ;
@@ -577,10 +593,6 @@ ALTER TABLE PRO_TANDAS ADD CONSTRAINT PRO_RESERVACIONTANDAS_FK01 FOREIGN KEY (re
 
 
 ALTER TABLE PRO_RESERVACION ADD CONSTRAINT PRO_CLIENTESRESERVACION_FK01 FOREIGN KEY (cli_id) REFERENCES PRO_CLIENTES (cli_id)
-;
-
-
-ALTER TABLE PRO_TANDAS ADD CONSTRAINT PRO_SALASTANDAS_FK01 FOREIGN KEY (sal_id) REFERENCES PRO_SALAS (sal_id)
 ;
 
 
