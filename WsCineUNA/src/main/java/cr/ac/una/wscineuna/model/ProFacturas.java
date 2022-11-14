@@ -56,7 +56,7 @@ public class ProFacturas implements Serializable {
     @Version
     @Column(name = "FAC_VERSION")
     private Long facVersion;
-    @JoinTable(name = "PRO_FATURASCOMIDAS", joinColumns = {
+    @JoinTable(name = "PRO_FACTURASCOMIDAS", joinColumns = {
         @JoinColumn(name = "FAC_ID", referencedColumnName = "FAC_ID")}, inverseJoinColumns = {
         @JoinColumn(name = "COM_ID", referencedColumnName = "COM_ID")})
     @ManyToMany(fetch = FetchType.LAZY)
