@@ -76,13 +76,6 @@ public class MantPeliculasViewController extends Controller implements Initializ
     ProPeliculasDto proPeliculasDto;
     @FXML
     private JFXButton btnAtras;
-    
-    String sqlpeli = "SELECT    T.TAN_FECHA, P.PEL_NOMBRE, C.CLI_CORREO, C.CLI_PAPELLIDO, C.CLI_USUARIO, C.CLI_ID, C.CLI_NOMBRE \n" +
-                        "FROM PRO_CLIENTES C, PRO_PELICULAS P, PRO_TANDAS T \n" +
-                        "WHERE PRO_PELICULAS.PEL_ESTADO = 'S' \n" +
-                        "ORDER BY PRO_CLIENTES.CLI_ID DESC, PRO_PELICULAS.PEL_ID DESC";
-    
-    
 
     /**
      * Initializes the controller class.
