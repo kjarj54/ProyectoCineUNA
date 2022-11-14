@@ -19,8 +19,8 @@ public class ProTandasDto {
 
     private Long tanId;
     private String tanNombre;
-    private LocalTime tanHorainico;
-    private LocalTime tanHorafinal;
+    private String tanHorainico;
+    private String tanHorafinal;
     private LocalDate tanFecha;
     private Long tanPrecio;
     private Boolean modificado;
@@ -65,19 +65,19 @@ public class ProTandasDto {
         this.tanNombre = tanNombre;
     }
 
-    public LocalTime getTanHorainico() {
+    public String getTanHorainico() {
         return tanHorainico;
     }
 
-    public void setTanHorainico(LocalTime tanHorainico) {
+    public void setTanHorainico(String tanHorainico) {
         this.tanHorainico = tanHorainico;
     }
 
-    public LocalTime getTanHorafinal() {
+    public String getTanHorafinal() {
         return tanHorafinal;
     }
 
-    public void setTanHorafinal(LocalTime tanHorafinal) {
+    public void setTanHorafinal(String tanHorafinal) {
         this.tanHorafinal = tanHorafinal;
     }
 

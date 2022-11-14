@@ -66,7 +66,7 @@ public class MantTandasViewController extends Controller implements Initializabl
     List<Node> requeridos = new ArrayList<>();
     
     
-
+    TextField aux = new TextField();
     
     private TablePeliculasViewController menucontroller;
     @FXML
@@ -120,6 +120,7 @@ public class MantTandasViewController extends Controller implements Initializabl
             ProPeliculasDto pelicula = new ProPeliculasDto();
             pelicula = (ProPeliculasDto)respuesta1.getResultado("ProPelicula");
             peli.setPelId(pelicula);
+            
             String invalidos = validarRequeridos();
             if (!invalidos.isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar tanda", getStage(), invalidos);
@@ -132,6 +133,7 @@ public class MantTandasViewController extends Controller implements Initializabl
                 } else {
                     unbindPeliculas();
                     peli = (ProTandasDto) respuesta.getResultado("Tanda");
+                    
                     bindPeliculas(false);
                     new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar tanda", getStage(), "TANDA actualizado correctamente.");
                 }
@@ -203,13 +205,13 @@ public class MantTandasViewController extends Controller implements Initializabl
     
     public void bindPeliculas(Boolean nuevo) {
         txtNombreTanda.textProperty().bindBidirectional(peli.tanNombre);
-        
+        txtPrecio.textProperty().bindBidirectional(peli.tanPrecio);
         dpFecha.valueProperty().bindBidirectional(peli.tanFecha);
     }
 
     public void unbindPeliculas() {
         txtNombreTanda.textProperty().unbindBidirectional(peli.tanNombre);
-       
+        txtPrecio.textProperty().unbindBidirectional(peli.tanPrecio);
         dpFecha.valueProperty().unbindBidirectional(peli.tanFecha);
     }
     

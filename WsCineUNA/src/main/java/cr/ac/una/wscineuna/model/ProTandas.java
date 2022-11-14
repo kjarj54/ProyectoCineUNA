@@ -54,10 +54,10 @@ public class ProTandas implements Serializable {
     private String tanNombre;
     @Basic(optional = false)
     @Column(name = "TAN_HORAINICIO")
-    private LocalTime tanHorainicio;
+    private String tanHorainicio;
     @Basic(optional = false)
     @Column(name = "TAN_HORAFINAL")
-    private LocalTime tanHorafinal;
+    private String tanHorafinal;
     @Basic(optional = false)
     @Column(name = "TAN_FECHA")
     private LocalDate tanFecha;
@@ -84,7 +84,7 @@ public class ProTandas implements Serializable {
         this.tanId = tanId;
     }
 
-    public ProTandas(Long tanId, String tanNombre, LocalTime tanHorainicio, LocalTime tanHorafinal, LocalDate tanFecha, Long tanPrecio, ProPeliculasDto peli) {
+    public ProTandas(Long tanId, String tanNombre, String tanHorainicio, String tanHorafinal, LocalDate tanFecha, Long tanPrecio, ProPeliculasDto peli) {
         this.tanId = tanId;
         this.tanNombre = tanNombre;
         this.tanHorainicio = tanHorainicio;
@@ -126,19 +126,19 @@ public class ProTandas implements Serializable {
         this.tanNombre = tanNombre;
     }
 
-    public LocalTime getTanHorainicio() {
+    public String getTanHorainicio() {
         return tanHorainicio;
     }
 
-    public void setTanHorainicio(LocalTime tanHorainicio) {
+    public void setTanHorainicio(String tanHorainicio) {
         this.tanHorainicio = tanHorainicio;
     }
 
-    public LocalTime getTanHorafinal() {
+    public String getTanHorafinal() {
         return tanHorafinal;
     }
 
-    public void setTanHorafinal(LocalTime tanHorafinal) {
+    public void setTanHorafinal(String tanHorafinal) {
         this.tanHorafinal = tanHorafinal;
     }
 

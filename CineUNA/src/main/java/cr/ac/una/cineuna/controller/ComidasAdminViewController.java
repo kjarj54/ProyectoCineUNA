@@ -67,6 +67,8 @@ public class ComidasAdminViewController extends Controller implements Initializa
 
     List<Node> requeridos = new ArrayList<>();
     ProComidasDto proComidasDto;
+    @FXML
+    private JFXButton btnLimpar;
 
     /**
      * Initializes the controller class.
@@ -182,6 +184,10 @@ public class ComidasAdminViewController extends Controller implements Initializa
     public void initialize() {
 
     }
+    
+    public void limpiar(){
+        
+    }
 
     @FXML
     private void onActionBtinAceptar(ActionEvent event) {
@@ -201,6 +207,7 @@ public class ComidasAdminViewController extends Controller implements Initializa
                     bindComidas();
 
                     tbvComidas.refresh();
+                    
                     new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar comida", getStage(), "Comida actualizado correctamente.");
                 }
                 
@@ -220,6 +227,14 @@ public class ComidasAdminViewController extends Controller implements Initializa
     @FXML
     private void onActionBtnAtras(ActionEvent event) {
 
+    }
+
+    @FXML
+    private void OnActionbtnLimpiar(ActionEvent event) {
+        if (new Mensaje().showConfirmation("Limpiar usuario", getStage(), "¿Esta seguro que desea limpiar el registro?")) {
+            nuevaComida();
+            
+        }
     }
 
     private class ButtonCell extends TableCell<ProComidasDto, Boolean> {
