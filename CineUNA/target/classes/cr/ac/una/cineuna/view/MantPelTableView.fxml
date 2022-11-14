@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="479.0" prefWidth="852.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="cr.ac.una.cineuna.controller.MantPelTableViewController">
+<AnchorPane id="AnchorPane" prefHeight="479.0" prefWidth="852.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="cr.ac.una.cineuna.controller.MantPelTableViewController">
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>

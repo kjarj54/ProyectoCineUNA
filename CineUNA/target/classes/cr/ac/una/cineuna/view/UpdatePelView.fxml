@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.UpdatePelViewController">
+<AnchorPane id="AnchorPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.UpdatePelViewController">
    <children>
       <VBox alignment="CENTER" fillWidth="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

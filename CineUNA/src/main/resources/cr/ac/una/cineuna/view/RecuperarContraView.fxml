@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="PantallaRecuperar" minHeight="200.0" minWidth="400.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.RecuperarContraViewController">
+<AnchorPane fx:id="PantallaRecuperar" minHeight="200.0" minWidth="400.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.RecuperarContraViewController">
    <children>
       <VBox fx:id="VBoxContainer" alignment="CENTER" spacing="40.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
