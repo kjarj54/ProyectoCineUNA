@@ -19,7 +19,7 @@ public class ProTandasDto {
 
     private Long tanId;
     private String tanNombre;
-    private String tanHorainico;
+    private String tanHorainicio;
     private String tanHorafinal;
     private LocalDate tanFecha;
     private Long tanPrecio;
@@ -42,7 +42,7 @@ public class ProTandasDto {
         this.tanNombre = proTandas.getTanNombre();
         this.tanFecha = proTandas.getTanFecha();
         this.tanHorafinal = proTandas.getTanHorafinal();
-        this.tanHorainico = proTandas.getTanHorainicio();
+        this.tanHorainicio = proTandas.getTanHorainicio();
         this.tanPrecio = proTandas.getTanPrecio();
         
         
@@ -65,12 +65,12 @@ public class ProTandasDto {
         this.tanNombre = tanNombre;
     }
 
-    public String getTanHorainico() {
-        return tanHorainico;
+    public String getTanHorainicio() {
+        return tanHorainicio;
     }
 
-    public void setTanHorainico(String tanHorainico) {
-        this.tanHorainico = tanHorainico;
+    public void setTanHorainicio(String tanHorainicio) {
+        this.tanHorainicio = tanHorainicio;
     }
 
     public String getTanHorafinal() {
@@ -123,7 +123,7 @@ public class ProTandasDto {
     public void setAsientos(List<ProAsientosDto> asientos) {
         this.asientos = asientos;
     }
-
+    
     public List<ProAsientosDto> getAsientosEliminados() {
         return asientosEliminados;
     }

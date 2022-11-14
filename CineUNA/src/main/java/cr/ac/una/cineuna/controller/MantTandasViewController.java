@@ -36,6 +36,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -66,7 +67,8 @@ public class MantTandasViewController extends Controller implements Initializabl
     List<Node> requeridos = new ArrayList<>();
     
     
-    TextField aux = new TextField();
+    JFXTextField aux = new JFXTextField();
+    JFXTextField aux2 = new JFXTextField();
     
     private TablePeliculasViewController menucontroller;
     @FXML
@@ -74,12 +76,19 @@ public class MantTandasViewController extends Controller implements Initializabl
     
     
     ProTandasDto peli;
+    @FXML
+    private AnchorPane root;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        aux.setLayoutX(0);aux.setLayoutY(0);
+        root.getChildren().add(aux);
+        aux2.setLayoutX(300);aux2.setLayoutY(0);
+        root.getChildren().add(aux2);
+        aux.setVisible(false);aux2.setVisible(false);
         
         
         AppContext.getInstance().set("MantTandasViewController", this);
@@ -99,6 +108,7 @@ public class MantTandasViewController extends Controller implements Initializabl
 
     @FXML
     private void onActionSalir(ActionEvent event) {
+        aux2.setText(String.valueOf(HoraFinal.getValue()));
     }
     
     public void nuevaTnda() {
@@ -113,6 +123,8 @@ public class MantTandasViewController extends Controller implements Initializabl
         
         //peli.setPelId(Long.valueOf(txtID.getText()));
         String sss = txtID.getText();
+        aux.setText(String.valueOf(HoraInicio.getValue()));
+        aux2.setText(String.valueOf(HoraFinal.getValue()));
         
         try {
             ProPeliculasService service1 = new ProPeliculasService();
@@ -207,12 +219,16 @@ public class MantTandasViewController extends Controller implements Initializabl
         txtNombreTanda.textProperty().bindBidirectional(peli.tanNombre);
         txtPrecio.textProperty().bindBidirectional(peli.tanPrecio);
         dpFecha.valueProperty().bindBidirectional(peli.tanFecha);
+        aux.textProperty().bindBidirectional(peli.tanHorainicio);
+        aux2.textProperty().bindBidirectional(peli.tanHorafinal);
     }
 
     public void unbindPeliculas() {
         txtNombreTanda.textProperty().unbindBidirectional(peli.tanNombre);
         txtPrecio.textProperty().unbindBidirectional(peli.tanPrecio);
         dpFecha.valueProperty().unbindBidirectional(peli.tanFecha);
+        aux.textProperty().unbindBidirectional(peli.tanHorainicio);
+        aux2.textProperty().bindBidirectional(peli.tanHorafinal);
     }
     
 }

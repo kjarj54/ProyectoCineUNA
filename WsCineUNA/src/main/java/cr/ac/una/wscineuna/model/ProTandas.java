@@ -6,7 +6,6 @@ package cr.ac.una.wscineuna.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -103,7 +102,7 @@ public class ProTandas implements Serializable {
     public void actualizarTanda(ProTandasDto proTandasDto){
         this.tanFecha = proTandasDto.getTanFecha();
         this.tanHorafinal  = proTandasDto.getTanHorafinal();
-        this.tanHorainicio = proTandasDto.getTanHorainico();
+        this.tanHorainicio = proTandasDto.getTanHorainicio();
         this.tanNombre = proTandasDto.getTanNombre();
         this.tanPrecio = proTandasDto.getTanPrecio();
         this.pelId = new ProPeliculas(proTandasDto.getPelId());

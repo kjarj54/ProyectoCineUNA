@@ -19,8 +19,8 @@ public class ProTandasDto {
     public SimpleStringProperty tanId;
     public SimpleStringProperty tanNombre;
     public SimpleStringProperty tanPrecio;
-    public SimpleStringProperty tanHoraInicio;
-    public SimpleStringProperty tanHoraFinal;
+    public SimpleStringProperty tanHorainicio;
+    public SimpleStringProperty tanHorafinal;
     public ObjectProperty<LocalDate> tanFecha;
     private Boolean modificado;
     
@@ -31,8 +31,8 @@ public class ProTandasDto {
         this.tanId = new SimpleStringProperty();
         this.tanNombre = new SimpleStringProperty();
         this.tanPrecio = new SimpleStringProperty();
-        this.tanHoraInicio = new SimpleStringProperty();
-        this.tanHoraFinal = new SimpleStringProperty();
+        this.tanHorainicio = new SimpleStringProperty();
+        this.tanHorafinal = new SimpleStringProperty();
         this.tanFecha = new SimpleObjectProperty();
         this.pelId = new ProPeliculasDto();
         
@@ -69,20 +69,21 @@ public class ProTandasDto {
         this.tanPrecio.set(tanPrecio.toString());
     }
 
-    public String getTanHoraInicio() {
-        return tanHoraInicio.get();
+    public String getTanHorainicio() {
+        return tanHorainicio.get();
     }
 
-    public void setTanHoraInicio(String tanHoraInicio) {
-        this.tanHoraInicio.set(tanHoraInicio);
+    public void setTanHorainicio(String tanHorainicio) {
+        this.tanHorainicio.set(tanHorainicio);
     }
 
-    public String getTanHoraFinal() {
-        return tanHoraFinal.get();
+   
+    public String getTanHorafinal() {
+        return tanHorafinal.get();
     }
 
-    public void setTanHoraFinal(String tanHoraFinal) {
-        this.tanHoraFinal.set(tanHoraFinal);
+    public void setTanHorafinal(String tanHorafinal) {
+        this.tanHorafinal.set(tanHorafinal);
     }
 
     public LocalDate getTanFecha() {
