@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,6 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -75,6 +77,8 @@ public class ProTandas implements Serializable {
     @JoinColumn(name = "RES_ID", referencedColumnName = "RES_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private ProReservacion resId;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private ProSalas salId;
 
     public ProTandas() {
     }
@@ -188,6 +192,18 @@ public class ProTandas implements Serializable {
     public void setResId(ProReservacion resId) {
         this.resId = resId;
     }
+
+    public ProSalas getSalId() {
+        return salId;
+    }
+
+    public void setSalId(ProSalas salId) {
+        this.salId = salId;
+    }
+
+    
+    
+    
 
     @Override
     public int hashCode() {

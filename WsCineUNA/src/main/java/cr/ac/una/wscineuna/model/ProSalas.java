@@ -7,14 +7,17 @@ package cr.ac.una.wscineuna.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -60,7 +63,12 @@ public class ProSalas implements Serializable {
     private List<ProPeliculas> proPeliculasList;
     @OneToMany(mappedBy = "salId", fetch = FetchType.LAZY)
     private List<ProAsientos> proAsientosList;
+    @JoinColumn(name = "TAN_ID", referencedColumnName = "TAN_ID")
+    
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tanId", fetch = FetchType.LAZY)
+    private List<ProTandas> proTandasList;
+    
     public ProSalas() {
     }
 
@@ -140,6 +148,14 @@ public class ProSalas implements Serializable {
 
     public void setProAsientosList(List<ProAsientos> proAsientosList) {
         this.proAsientosList = proAsientosList;
+    }
+
+    public List<ProTandas> getProTandasList() {
+        return proTandasList;
+    }
+
+    public void setProTandasList(List<ProTandas> proTandasList) {
+        this.proTandasList = proTandasList;
     }
 
     @Override

@@ -63,18 +63,6 @@ public class ProSalasService {
                     return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encrontró la sala a modificar.", "guardarSala NoResultException");
                 }
                 proSalas.actualizarSala(proSalasDto);
-                for (ProPeliculasDto pel : proSalasDto.getPeliculasEliminados()) {
-                    proSalas.getProPeliculasList().remove(new ProPeliculas(pel.getPelId()));
-                }
-                if (!proSalasDto.getPeliculas().isEmpty()) {
-                    for (ProPeliculasDto pel : proSalasDto.getPeliculas()) {
-                        if (pel.getModificado()) {
-                            ProPeliculas pelicula = em.find(ProPeliculas.class, pel.getPelId());
-                            pelicula.getProSalasList().add(proSalas);
-                            proSalas.getProPeliculasList().add(pelicula);
-                        }
-                    }
-                }
                 proSalas = em.merge(proSalas);
             } else {
                 proSalas = new ProSalas(proSalasDto);
