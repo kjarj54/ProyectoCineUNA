@@ -86,6 +86,7 @@ public class LoginViewController extends Controller implements Initializable {
                 Respuesta respuesta = proClientesService.getCliente(txtUsuarios.getText(), txtClave.getText());
                 if (respuesta.getEstado()) {
                     ProClientesDto proClientesDto = (ProClientesDto) respuesta.getResultado("ProCliente");
+                    AppContext.getInstance().set("UsuarioId", proClientesDto.getCliId());
                     AppContext.getInstance().set("Usuario", proClientesDto);
                     AppContext.getInstance().set("Token", proClientesDto.getToken());
                     if (getStage().getOwner() == null) {

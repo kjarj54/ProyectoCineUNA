@@ -49,7 +49,7 @@ public class PrincipalUsuariosViewController extends Controller implements Initi
 
     @FXML
     private void OnActionbtnUsuario(ActionEvent event) {
-        FlowController.getInstance().goView("");
+        FlowController.getInstance().goView("MantUsuClientesView");
     }
 
     @FXML
