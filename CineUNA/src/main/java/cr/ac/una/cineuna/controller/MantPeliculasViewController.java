@@ -277,6 +277,7 @@ public class MantPeliculasViewController extends Controller implements Initializ
     private void onActionBtnAtras(ActionEvent event) {
         FlowController.getInstance().goView("MantPelTableView");
         FlowController.getInstance().limpiarLoader("MantPeliculasView");
+        FlowController.getInstance().limpiarLoader("MantPelTableView");
     }
 
 }

@@ -77,7 +77,8 @@ public class ProTandas implements Serializable {
     @JoinColumn(name = "RES_ID", referencedColumnName = "RES_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private ProReservacion resId;
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "SAL_ID", referencedColumnName = "SAL_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
     private ProSalas salId;
 
     public ProTandas() {

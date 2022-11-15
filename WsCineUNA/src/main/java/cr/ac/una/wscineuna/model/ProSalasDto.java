@@ -20,13 +20,11 @@ public class ProSalasDto {
     private String salEstado;
     private Byte[] salImgFondo;
     private Boolean modificado;
-    List<ProPeliculasDto> peliculas;
-    List<ProPeliculasDto> peliculasEliminados;
+    
 
     public ProSalasDto() {
         this.modificado = false;
-        peliculas = new ArrayList<>();
-        peliculasEliminados = new ArrayList<>();
+       
     }
 
     public ProSalasDto(ProSalas proSalas) {
@@ -76,22 +74,7 @@ public class ProSalasDto {
         this.modificado = modificado;
     }
 
-    public List<ProPeliculasDto> getPeliculas() {
-        return peliculas;
-    }
-
-    public void setPeliculas(List<ProPeliculasDto> peliculas) {
-        this.peliculas = peliculas;
-    }
-
-    public List<ProPeliculasDto> getPeliculasEliminados() {
-        return peliculasEliminados;
-    }
-
-    public void setPeliculasEliminados(List<ProPeliculasDto> peliculasEliminados) {
-        this.peliculasEliminados = peliculasEliminados;
-    }
     
-    
+
 
 }

@@ -168,7 +168,8 @@ public class MantPelTableViewController extends Controller implements Initializa
         ButtonCell() {
             cellButton.setPrefWidth(500);
             cellButton.getStyleClass().add("");
-
+            cellButton.setText("Editar");
+            cellButton.setStyle("-fx-background-color: #00FFA6");
             cellButton.setOnAction((ActionEvent t) -> {
                 ProPeliculasDto emp = (ProPeliculasDto) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
                 AppContext.getInstance().set("EditarPelicula", emp.getPelId());

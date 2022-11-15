@@ -4,7 +4,6 @@
  */
 package cr.ac.una.wscineuna.model;
 
-import java.net.URL;
 import java.time.LocalDate;
 
 /**

@@ -59,13 +59,11 @@ public class ProSalas implements Serializable {
     @Basic(optional = false)
     @Column(name = "SAL_VERSION")
     private Long salVersion;
-    @ManyToMany(mappedBy = "proSalasList", fetch = FetchType.LAZY)
-    private List<ProPeliculas> proPeliculasList;
     @OneToMany(mappedBy = "salId", fetch = FetchType.LAZY)
     private List<ProAsientos> proAsientosList;
-    @JoinColumn(name = "TAN_ID", referencedColumnName = "TAN_ID")
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tanId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "salId", fetch = FetchType.LAZY)
     private List<ProTandas> proTandasList;
+
     
     public ProSalas() {
     }
@@ -132,13 +130,6 @@ public class ProSalas implements Serializable {
         this.salVersion = salVersion;
     }
 
-    public List<ProPeliculas> getProPeliculasList() {
-        return proPeliculasList;
-    }
-
-    public void setProPeliculasList(List<ProPeliculas> proPeliculasList) {
-        this.proPeliculasList = proPeliculasList;
-    }
 
     public List<ProAsientos> getProAsientosList() {
         return proAsientosList;
