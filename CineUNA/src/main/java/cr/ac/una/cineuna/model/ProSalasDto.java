@@ -4,10 +4,7 @@
  */
 package cr.ac.una.cineuna.model;
 
-import java.security.Timestamp;
-import java.time.LocalDate;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 

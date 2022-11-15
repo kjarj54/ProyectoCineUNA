@@ -132,6 +132,7 @@ public class TablePeliculasViewController extends Controller  implements Initial
         //FlowController.getInstance().limpiarLoader("MantTandasView");
         FlowController.getInstance().goView("MantTandasView");
         
+        
     }
     
     private class ButtonCell extends TableCell<ProPeliculasDto, Boolean> {

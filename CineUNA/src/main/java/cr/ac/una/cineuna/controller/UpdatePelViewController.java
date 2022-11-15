@@ -75,6 +75,8 @@ public class UpdatePelViewController extends Controller implements Initializable
     List<Node> requeridos = new ArrayList<>();
 
     ProPeliculasDto proPeliculasDto;
+    
+    
 
     @FXML
     private JFXButton btnAtras;
@@ -92,6 +94,8 @@ public class UpdatePelViewController extends Controller implements Initializable
         txtAreaSinopsis.setTextFormatter(Formato.getInstance().maxLengthFormat(500));
         txtUrl.setTextFormatter(Formato.getInstance().maxLengthFormat(255));
         proPeliculasDto = new ProPeliculasDto();
+        
+        
 
         Long id = (Long) AppContext.getInstance().get("EditarPelicula");
         ProPeliculasService service = new ProPeliculasService();
@@ -249,8 +253,13 @@ public class UpdatePelViewController extends Controller implements Initializable
     @FXML
     private void onActionAtras(ActionEvent event) {
         
+       
       FlowController.getInstance().goView("MantPelTableView");
       FlowController.getInstance().limpiarLoader("UpdatePelView");
+      FlowController.getInstance().limpiarLoader("MantPelTableView");
+      
+      
+      
         
     }
 

@@ -46,13 +46,13 @@ public class MantPelTableViewController extends Controller implements Initializa
     @FXML
     private JFXTextField txtId;
     @FXML
-    private JFXTextField txtNombre;
+    public JFXTextField txtNombre;
     @FXML
     private JFXButton btnFiltrar;
     @FXML
     private Label lblTitulo;
     @FXML
-    private TableView<ProPeliculasDto> tbvResultados;
+    public TableView<ProPeliculasDto> tbvResultados;
     @FXML
     private TableColumn<ProPeliculasDto, Boolean> tbcEditar;
     @FXML
@@ -78,11 +78,15 @@ public class MantPelTableViewController extends Controller implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        AppContext.getInstance().set("MantPelTableViewController", this);
+        
+        tbvResultados.refresh();
         keyEnter = (KeyEvent event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 btnFiltrar.fire();
             }
         };
+        
 
         txtId.setTextFormatter(Formato.getInstance().integerFormat());
         txtNombre.setTextFormatter(Formato.getInstance().maxLengthFormat(30));

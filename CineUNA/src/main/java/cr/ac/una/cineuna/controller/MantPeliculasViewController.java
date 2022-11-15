@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXTextField;
 import cr.ac.una.cineuna.App;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.service.ProPeliculasService;
+import cr.ac.una.cineuna.util.AppContext;
 import cr.ac.una.cineuna.util.BindingUtils;
 import cr.ac.una.cineuna.util.FlowController;
 import cr.ac.una.cineuna.util.Formato;
@@ -91,14 +92,18 @@ public class MantPeliculasViewController extends Controller implements Initializ
     ProPeliculasDto proPeliculasDto;
     @FXML
     private JFXButton btnAtras;
-    
-    
+
+    private MantPelTableViewController pel;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        pel = (MantPelTableViewController) AppContext.getInstance().get("MantPelTableViewController");
+        pel.tbvResultados.refresh();
         rdbInactivo.setUserData("I");
         rdbProximamente.setUserData("P");
         rdbSala.setUserData("S");
@@ -107,6 +112,7 @@ public class MantPeliculasViewController extends Controller implements Initializ
         txtUrl.setTextFormatter(Formato.getInstance().maxLengthFormat(255));
         proPeliculasDto = new ProPeliculasDto();
         nuevaPelicula();
+
         indicarRequeridos();
     }
 
@@ -210,29 +216,29 @@ public class MantPeliculasViewController extends Controller implements Initializ
         }
 
     }
-    
+
     @FXML
-    private void onActionGenerarReporte(ActionEvent event){
-    try{
-        InputStream instream = new FileInputStream(new File(App.class.getResource("/cr/ac/una/canchauna/resources/Reportes.jrxml").toString()));
-        JasperDesign design = JRXmlLoader.load(in);
-        String sqlpeli = "SELECT    T.TAN_FECHA, P.PEL_NOMBRE, C.CLI_CORREO, C.CLI_PAPELLIDO, C.CLI_USUARIO, C.CLI_ID, C.CLI_NOMBRE \n" +
-                        "FROM PRO_CLIENTES C, PRO_PELICULAS P, PRO_TANDAS T \n" +
-                        "WHERE PRO_PELICULAS.PEL_ESTADO = 'S' \n" +
-                        "ORDER BY PRO_CLIENTES.CLI_ID DESC, PRO_PELICULAS.PEL_ID DESC";
-        JRDesignQuery nQ = new JRDesignQuery();
-        nQ.setText(sqlpeli);
-        design.setQuery(nQ);
-        JasperReport report = JasperCompileManager.compileReport(design);
-        HashMap hash = new HashMap();
-        JasperPrint print = JasperFillManager.fillReport(report, hash);
-        JasperViewer.viewReport(in, false);
-        OutputStream os = new FileOutputStream(new File("reporte.pdf"));
-        JasperExportManager.exportReportToPdfStream(print, os);
-        }catch(Exception e){
+    private void onActionGenerarReporte(ActionEvent event) {
+        try {
+            InputStream instream = new FileInputStream(new File(App.class.getResource("/cr/ac/una/canchauna/resources/Reportes.jrxml").toString()));
+            JasperDesign design = JRXmlLoader.load(in);
+            String sqlpeli = "SELECT    T.TAN_FECHA, P.PEL_NOMBRE, C.CLI_CORREO, C.CLI_PAPELLIDO, C.CLI_USUARIO, C.CLI_ID, C.CLI_NOMBRE \n"
+                    + "FROM PRO_CLIENTES C, PRO_PELICULAS P, PRO_TANDAS T \n"
+                    + "WHERE PRO_PELICULAS.PEL_ESTADO = 'S' \n"
+                    + "ORDER BY PRO_CLIENTES.CLI_ID DESC, PRO_PELICULAS.PEL_ID DESC";
+            JRDesignQuery nQ = new JRDesignQuery();
+            nQ.setText(sqlpeli);
+            design.setQuery(nQ);
+            JasperReport report = JasperCompileManager.compileReport(design);
+            HashMap hash = new HashMap();
+            JasperPrint print = JasperFillManager.fillReport(report, hash);
+            JasperViewer.viewReport(in, false);
+            OutputStream os = new FileOutputStream(new File("reporte.pdf"));
+            JasperExportManager.exportReportToPdfStream(print, os);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    
+
     }
 
     @FXML
@@ -275,9 +281,13 @@ public class MantPeliculasViewController extends Controller implements Initializ
 
     @FXML
     private void onActionBtnAtras(ActionEvent event) {
-        FlowController.getInstance().goView("MantPelTableView");
-        FlowController.getInstance().limpiarLoader("MantPeliculasView");
+        pel.tbvResultados.refresh();
         FlowController.getInstance().limpiarLoader("MantPelTableView");
+        FlowController.getInstance().goView("MantPelTableView");
+        FlowController.getInstance().limpiarLoader("UpdatePelView");
+        FlowController.getInstance().limpiarLoader("MantPelTableView");
+        pel.tbvResultados.refresh();
+        pel.tbvResultados.getItems();
     }
 
 }
