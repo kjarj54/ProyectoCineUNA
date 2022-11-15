@@ -89,7 +89,7 @@ public class ProPeliculasController {
     }
     
     @GET
-    //@Secure
+    @Secure
     @Path("/getPeliculasEstado/{estado}")
     public Response getPeliculasEstado(@PathParam("estado") String estado) {
         try {
