@@ -107,7 +107,7 @@ public class MantPelTableViewController extends Controller implements Initializa
 
         tbcEditar.setCellValueFactory((TableColumn.CellDataFeatures<ProPeliculasDto, Boolean> p) -> new SimpleBooleanProperty(p.getValue() != null));
         tbcEditar.setCellFactory((TableColumn<ProPeliculasDto, Boolean> p) -> new ButtonCell());
-
+        tbvResultados.refresh();
     }
 
     @FXML
