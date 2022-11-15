@@ -8,7 +8,9 @@ import cr.ac.una.cineuna.model.ProSalasDto;
 import cr.ac.una.cineuna.util.Request;
 import cr.ac.una.cineuna.util.Respuesta;
 import jakarta.ws.rs.core.GenericType;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -52,6 +54,23 @@ public class ProSalasService {
         } catch (Exception ex) {
             Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Error consultando el sala.", ex);
             return new Respuesta(false, "Error consultando el sala.", "getSalasSinParametros " + ex.getMessage());
+        }
+    }
+    
+    public Respuesta getSalas(Long id) {
+        try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("id", id);
+            Request request = new Request("ProSalasController/sala", "/{id}", parametros);
+            request.get();
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+            ProSalasDto proClienteDto = (ProSalasDto) request.readEntity(ProSalasDto.class);
+            return new Respuesta(true, "", "", "ProSalas", proClienteDto);
+        } catch (Exception ex) {
+            Logger.getLogger(ProSalasService.class.getName()).log(Level.SEVERE, "Ocurrio un error al consultar la sala.", ex);
+            return new Respuesta(false, "Ocurrio un error al al consultar la sala.", "getSalas " + ex.getMessage());
         }
     }
     

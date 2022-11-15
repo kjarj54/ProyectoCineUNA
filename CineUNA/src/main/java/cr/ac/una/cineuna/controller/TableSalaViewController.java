@@ -14,6 +14,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import cr.ac.una.cineuna.service.ProSalasService;
+import cr.ac.una.cineuna.util.AppContext;
+import cr.ac.una.cineuna.util.FlowController;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
 import java.util.List;
@@ -46,11 +48,13 @@ public class TableSalaViewController extends Controller implements Initializable
     /**
      * Initializes the controller class.
      */
+    
+    private MantTandasViewController menucontroller;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-        
+        menucontroller = (MantTandasViewController) AppContext.getInstance().get("MantTandasViewController");
         tbcID.setCellValueFactory(clbck -> clbck.getValue().salId);
         
         tbcNombre.setCellValueFactory(clbck -> clbck.getValue().salNombre);
@@ -94,13 +98,16 @@ public class TableSalaViewController extends Controller implements Initializable
             
             cellButton.setOnAction((ActionEvent t) -> {
                 ProSalasDto emp = (ProSalasDto) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
-                //String equipos1 = emp.getPelNombre();
-                //Long equipos2 = emp.getPelId();
+                String equipos1 = emp.getSalNombre();
+                Long equipos2 = emp.getSalId();
                 
                 
+                menucontroller.txtSala.setText(equipos1);
+                menucontroller.txtIDSala.setText(String.valueOf(equipos2));
                 //FlowController.getInstance().goView("MantTandasTableView");
                 
                 tbvResultados.refresh();
+                FlowController.getInstance().goView("MantTandasView");
                 
             });
         }

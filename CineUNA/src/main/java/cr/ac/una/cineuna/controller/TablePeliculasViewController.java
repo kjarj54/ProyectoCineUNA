@@ -160,6 +160,7 @@ public class TablePeliculasViewController extends Controller  implements Initial
                 //FlowController.getInstance().goView("MantTandasTableView");
                 
                 tbvResultados.refresh();
+                FlowController.getInstance().goView("MantTandasView");
                 
             });
         }

@@ -28,12 +28,14 @@ public class ProTandasDto {
     List<ProAsientosDto> asientosEliminados;
     
     public ProPeliculasDto pelId;
+    public ProSalasDto salId;
 
     public ProTandasDto() {
         this.modificado = false;
         asientos = new ArrayList<>();
         asientosEliminados = new ArrayList<>();
         this.pelId = new ProPeliculasDto();
+        this.salId = new ProSalasDto();
     }
 
     public ProTandasDto(ProTandas proTandas) {
@@ -104,6 +106,16 @@ public class ProTandasDto {
     public void setPelId(ProPeliculasDto pelId) {
         this.pelId = pelId;
     }
+
+    public ProSalasDto getSalId() {
+        return salId;
+    }
+
+    public void setSalId(ProSalasDto salId) {
+        this.salId = salId;
+    }
+    
+    
     
     
 

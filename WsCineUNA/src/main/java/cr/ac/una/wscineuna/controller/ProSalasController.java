@@ -61,7 +61,7 @@ public class ProSalasController {
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }
-            ProSalasDto proPeliculaDto = (ProSalasDto) res.getResultado("ProSala");
+            ProSalasDto proPeliculaDto = (ProSalasDto) res.getResultado("ProSalas");
 
             return Response.ok(proPeliculaDto).build();
 

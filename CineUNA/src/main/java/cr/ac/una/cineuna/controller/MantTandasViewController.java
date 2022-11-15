@@ -12,9 +12,11 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import cr.ac.una.cineuna.model.ProClientesDto;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
+import cr.ac.una.cineuna.model.ProSalasDto;
 import cr.ac.una.cineuna.model.ProTandasDto;
 import cr.ac.una.cineuna.service.ProClientesService;
 import cr.ac.una.cineuna.service.ProPeliculasService;
+import cr.ac.una.cineuna.service.ProSalasService;
 import cr.ac.una.cineuna.service.ProTandasService;
 import cr.ac.una.cineuna.util.AppContext;
 import cr.ac.una.cineuna.util.BindingUtils;
@@ -76,14 +78,15 @@ public class MantTandasViewController extends Controller implements Initializabl
     
     
     ProTandasDto peli;
+    ProSalasDto salas;
     @FXML
     private AnchorPane root;
     @FXML
     private Button btnSala;
     @FXML
-    private TextField txtIDSala;
+    public TextField txtIDSala;
     @FXML
-    private JFXTextField txtSala;
+    public JFXTextField txtSala;
     /**
      * Initializes the controller class.
      */
@@ -98,7 +101,9 @@ public class MantTandasViewController extends Controller implements Initializabl
         
         
         AppContext.getInstance().set("MantTandasViewController", this);
+        
         peli = new ProTandasDto();
+        salas = new ProSalasDto();
         
         indicarRequeridos();
         nuevaTnda();
@@ -120,6 +125,7 @@ public class MantTandasViewController extends Controller implements Initializabl
     public void nuevaTnda() {
         unbindPeliculas();
         peli = new ProTandasDto();
+        
         bindPeliculas(true);
         
     }
@@ -129,6 +135,7 @@ public class MantTandasViewController extends Controller implements Initializabl
         
         //peli.setPelId(Long.valueOf(txtID.getText()));
         String sss = txtID.getText();
+        String ssss = txtIDSala.getText();
         aux.setText(String.valueOf(HoraInicio.getValue()));
         aux2.setText(String.valueOf(HoraFinal.getValue()));
         
@@ -138,6 +145,14 @@ public class MantTandasViewController extends Controller implements Initializabl
             ProPeliculasDto pelicula = new ProPeliculasDto();
             pelicula = (ProPeliculasDto)respuesta1.getResultado("ProPelicula");
             peli.setPelId(pelicula);
+            
+            
+            ProSalasService service2 = new ProSalasService();
+            Respuesta respuesta2 = service2.getSalas(Long.parseLong(ssss)); 
+            ProSalasDto sala1 = new ProSalasDto();
+            sala1 = (ProSalasDto)respuesta2.getResultado("ProSalas");
+            peli.setSalId(sala1);
+            
             
             String invalidos = validarRequeridos();
             if (!invalidos.isEmpty()) {
@@ -227,6 +242,7 @@ public class MantTandasViewController extends Controller implements Initializabl
         dpFecha.valueProperty().bindBidirectional(peli.tanFecha);
         aux.textProperty().bindBidirectional(peli.tanHorainicio);
         aux2.textProperty().bindBidirectional(peli.tanHorafinal);
+        
     }
 
     public void unbindPeliculas() {

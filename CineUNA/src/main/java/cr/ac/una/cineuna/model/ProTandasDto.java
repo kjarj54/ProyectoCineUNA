@@ -25,6 +25,7 @@ public class ProTandasDto {
     private Boolean modificado;
     
     public ProPeliculasDto pelId;
+    public ProSalasDto salId;
 
     public ProTandasDto() {
         this.modificado = false;
@@ -35,6 +36,7 @@ public class ProTandasDto {
         this.tanHorafinal = new SimpleStringProperty();
         this.tanFecha = new SimpleObjectProperty();
         this.pelId = new ProPeliculasDto();
+        this.salId = new ProSalasDto();
         
     }
 
@@ -110,6 +112,16 @@ public class ProTandasDto {
     public void setPelId(ProPeliculasDto pelId) {
         this.pelId = pelId;
     }
+
+    public ProSalasDto getSalId() {
+        return salId;
+    }
+
+    public void setSalId(ProSalasDto salId) {
+        this.salId = salId;
+    }
+    
+    
 
     
 
