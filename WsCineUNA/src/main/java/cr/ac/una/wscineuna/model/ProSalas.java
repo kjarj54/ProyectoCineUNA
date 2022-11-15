@@ -64,8 +64,6 @@ public class ProSalas implements Serializable {
     @OneToMany(mappedBy = "salId", fetch = FetchType.LAZY)
     private List<ProAsientos> proAsientosList;
     @JoinColumn(name = "TAN_ID", referencedColumnName = "TAN_ID")
-    
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tanId", fetch = FetchType.LAZY)
     private List<ProTandas> proTandasList;
     
