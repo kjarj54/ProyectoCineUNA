@@ -19,15 +19,15 @@ public class ProSalasDto {
 
     public SimpleStringProperty salId;
     public SimpleStringProperty salNombre;
-    public SimpleBooleanProperty salEstado;
-    public ObjectProperty<Byte[]> salImgFondo;
+    public ObjectProperty<String>  salEstado;
+    public ObjectProperty<byte[]> salImgFondo;
     private Boolean modificado;
 
     public ProSalasDto() {
         this.modificado = false;
         this.salId = new SimpleStringProperty();
         this.salNombre = new SimpleStringProperty();
-        this.salEstado = new SimpleBooleanProperty(false);
+        this.salEstado = new SimpleObjectProperty("A");
         this.salImgFondo = new SimpleObjectProperty();
     }
 
@@ -52,18 +52,18 @@ public class ProSalasDto {
     }
 
     public String getSalEstado() {
-        return salEstado.getValue() ? "A" : "I";
+        return salEstado.get();
     }
 
-    public void setSalEstado(String salEstado) {
-        this.salEstado.setValue(salEstado.equalsIgnoreCase("A"));
+    public void setPelEstado(String salEstado) {
+        this.salEstado.set(salEstado);
     }
 
-    public Byte[] getSalImgFondo() {
+    public byte[] getSalImgFondo() {
         return salImgFondo.get();
     }
 
-    public void setSalImgFondo(Byte[] salImgFondo) {
+    public void setSalImgFondo(byte[] salImgFondo) {
         this.salImgFondo.set(salImgFondo);
     }
 

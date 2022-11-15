@@ -23,6 +23,7 @@ cr\ac\una\cineuna\util\DragResizer.class
 cr\ac\una\cineuna\controller\RecuperarContraViewController.class
 cr\ac\una\cineuna\controller\TablePeliculasViewController$ButtonCell.class
 cr\ac\una\cineuna\service\ProClientesService$1.class
+cr\ac\una\cineuna\controller\MantUsuClientesViewController.class
 cr\ac\una\cineuna\controller\ReservarViewController.class
 cr\ac\una\cineuna\service\ProTandasService.class
 module-info.class

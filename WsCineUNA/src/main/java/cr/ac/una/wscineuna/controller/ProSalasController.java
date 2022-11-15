@@ -46,7 +46,7 @@ public class ProSalasController {
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }
-            return Response.ok((ProSalasDto) res.getResultado("Pelicula")).build();
+            return Response.ok((ProSalasDto) res.getResultado("Sala")).build();
         } catch (Exception ex) {
             Logger.getLogger(ProSalasController.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error guardando la sala").build();

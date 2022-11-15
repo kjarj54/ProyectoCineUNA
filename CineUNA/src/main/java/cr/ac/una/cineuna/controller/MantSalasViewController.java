@@ -2,19 +2,37 @@
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import cr.ac.una.cineuna.model.ProPeliculasDto;
+import cr.ac.una.cineuna.model.ProSalasDto;
+import cr.ac.una.cineuna.service.ProPeliculasService;
+import cr.ac.una.cineuna.service.ProSalasService;
+import cr.ac.una.cineuna.util.BindingUtils;
 import cr.ac.una.cineuna.util.Mensaje;
+import cr.ac.una.cineuna.util.Respuesta;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
@@ -29,6 +47,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.commons.compress.utils.IOUtils;
 /**
  * FXML Controller class
  *
@@ -39,10 +58,6 @@ public class MantSalasViewController extends Controller implements Initializable
     @FXML
     public ImageView imgAsiento;
     @FXML
-    private MenuButton menuPelicula;
-    @FXML
-    private MenuButton menuTanda;
-    @FXML
     private JFXButton btnSalir;
     @FXML
     private JFXButton btnGuardar;
@@ -52,14 +67,33 @@ public class MantSalasViewController extends Controller implements Initializable
     private JFXButton btnAsientoSelect;
     @FXML
     private GridPane gridPaneAsientos;
+    @FXML
+    private JFXButton btnFondo;
+    @FXML
+    private ImageView imgFondo;
 
     /**
      * Initializes the controller class.
      */
+    List<Node> requeridos = new ArrayList<>();
+    
+    ProSalasDto proSalasdto;
+    @FXML
+    private RadioButton rdbInactiva;
+    @FXML
+    private ToggleGroup tggEstado;
+    @FXML
+    private RadioButton rdbActiva;
     
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        rdbInactiva.setUserData("I");
+        rdbActiva.setUserData("A");
+        proSalasdto = new ProSalasDto();
+        nuevaSala();
+        indicarRequeridos();
         
     }    
 
@@ -70,10 +104,41 @@ public class MantSalasViewController extends Controller implements Initializable
 
     @FXML
     private void onActionSalir(ActionEvent event) {
+        if (new Mensaje().showConfirmation("Limpiar usuario", getStage(), "¿Esta seguro que desea limpiar el registro?")) {
+            nuevaSala();
+            imgFondo.setImage(null);
+        }
     }
 
     @FXML
     private void onActionBtnGuardar(ActionEvent event) {
+        
+        try {
+            String invalidos = validarRequeridos();
+            if (!invalidos.isEmpty()) {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar sala", getStage(), invalidos);
+            } else {
+                ProSalasService service = new ProSalasService();
+                Respuesta respuesta = service.guardarSala(proSalasdto);
+                if (!respuesta.getEstado()) {
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar sala", getStage(), respuesta.getMensaje());
+                } else {
+                    unbindSalas();
+                    proSalasdto = (ProSalasDto) respuesta.getResultado("Sala");
+                    bindSalas(false);
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar sala", getStage(), "Sala actualizada correctamente.");
+                }
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(MantPeliculasViewController.class.getName()).log(Level.SEVERE, "Error guardando la sala.", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar sala", getStage(), "Ocurrio un error guardando la sala.");
+        }
+        
+    }
+    
+    private Image ConvertToImage(byte[] data) {
+        return new Image(new ByteArrayInputStream(data));
     }
 
     @FXML
@@ -118,11 +183,106 @@ public class MantSalasViewController extends Controller implements Initializable
         event.acceptTransferModes(TransferMode.ANY);
         }
     }
+    
+    
+    public void bindSalas(Boolean nuevo) {
+        txtNombreSala.textProperty().bindBidirectional(proSalasdto.salNombre);
+        BindingUtils.bindToggleGroupToProperty(tggEstado, proSalasdto.salEstado);
+        
+    }
+
+    public void unbindSalas() {
+        txtNombreSala.textProperty().unbindBidirectional(proSalasdto.salNombre);
+        BindingUtils.unbindToggleGroupToProperty(tggEstado, proSalasdto.salEstado);
+    }
+
+    public void nuevaSala() {
+        unbindSalas();
+        proSalasdto = new ProSalasDto();
+        bindSalas(true);
+    }
+    
+    
+    
+    
+    public void indicarRequeridos() {
+        requeridos.clear();
+        requeridos.addAll(Arrays.asList(txtNombreSala));
+    }
+
+    public String validarRequeridos() {
+        Boolean validos = true;
+        String invalidos = "";
+        for (Node node : requeridos) {
+            if (node instanceof JFXTextField && !((JFXTextField) node).validate()) {
+                if (validos) {
+                    invalidos += ((JFXTextField) node).getPromptText();
+                } else {
+                    invalidos += "," + ((JFXTextField) node).getPromptText();
+                }
+                validos = false;
+            } else if (node instanceof JFXPasswordField && !((JFXPasswordField) node).validate()) {
+                if (validos) {
+                    invalidos += ((JFXPasswordField) node).getPromptText();
+                } else {
+                    invalidos += "," + ((JFXPasswordField) node).getPromptText();
+                }
+                validos = false;
+            } else if (node instanceof JFXDatePicker && ((JFXDatePicker) node).getValue() == null) {
+                if (validos) {
+                    invalidos += ((JFXDatePicker) node).getAccessibleText();
+                } else {
+                    invalidos += "," + ((JFXDatePicker) node).getAccessibleText();
+                }
+                validos = false;
+            } else if (node instanceof JFXComboBox && ((JFXComboBox) node).getSelectionModel().getSelectedIndex() < 0) {
+                if (validos) {
+                    invalidos += ((JFXComboBox) node).getPromptText();
+                } else {
+                    invalidos += "," + ((JFXComboBox) node).getPromptText();
+                }
+                validos = false;
+            }
+        }
+        if (validos) {
+            return "";
+        } else {
+            return "Campos requeridos o con problemas de formato [" + invalidos + "].";
+        }
+    }
 
     @FXML
     private void onDragDroppedPane(DragEvent event) {
         event.getDragboard().getImage();
         gridPaneAsientos.getChildren().addAll(new ImageView(imgAsiento.getImage()));
+    }
+    
+    private byte[] SaveImage(File file) throws IOException {
+        FileInputStream fiStream = new FileInputStream(file.getAbsolutePath());
+        byte[] imageInBytes = IOUtils.toByteArray(fiStream);
+        return imageInBytes;
+    }
+
+    @FXML
+    private void OnActionbtnFondo(ActionEvent event) throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Busqueda Imagen");
+
+        //Facilita la busqueda escogiendo que aparescan jpg, pgn
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.*"), new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
+
+        //toma la imagen
+        File imagFile = fileChooser.showOpenDialog(null);
+
+        //comprueba y luego muestra la imagen
+        if (imagFile != null) {
+
+            proSalasdto.setSalImgFondo(SaveImage(imagFile));
+
+            Image image = new Image(new ByteArrayInputStream(SaveImage(imagFile)));
+            imgFondo.setImage(image);
+
+        }
     }
     
 }

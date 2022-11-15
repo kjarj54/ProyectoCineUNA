@@ -5,8 +5,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -25,22 +25,20 @@
                <children>
                   <VBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label styleClass="h3-contraste" text="%selecPel" />
-                        <MenuButton fx:id="menuPelicula" mnemonicParsing="false" styleClass="h3" text="%menuBtnPel">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </MenuButton>
-                        <Label styleClass="h3-contraste" text="%selecTanda" />
-                        <MenuButton fx:id="menuTanda" mnemonicParsing="false" styleClass="h3" text="%menuBtnTan">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Action 1" />
-                              <MenuItem mnemonicParsing="false" text="Action 2" />
-                           </items>
-                        </MenuButton>
                         <Label styleClass="h3-contraste" text="%NombreSala" />
                         <JFXTextField fx:id="txtNombreSala" labelFloat="true" promptText="%NombreSala" />
+                        <JFXButton fx:id="btnFondo" onAction="#OnActionbtnFondo" text="Imagen Fondo Sala" />
+                        <ImageView fx:id="imgFondo" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <HBox alignment="CENTER" prefHeight="18.0" prefWidth="59.0" spacing="10.0">
+                           <children>
+                              <RadioButton fx:id="rdbInactiva" mnemonicParsing="false" styleClass="jfx-radio-button" text="Inactiva" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="tggEstado" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="rdbActiva" mnemonicParsing="false" selected="true" styleClass="jfx-radio-button" text="Activa" textFill="WHITE" toggleGroup="$tggEstado" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
                      </children>
                      <HBox.margin>
                         <Insets bottom="10.0" />

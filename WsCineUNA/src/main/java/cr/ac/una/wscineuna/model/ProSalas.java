@@ -23,6 +23,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  *
@@ -57,6 +58,7 @@ public class ProSalas implements Serializable {
     @Column(name = "SAL_IMGFONDO")
     private Serializable salImgfondo;
     @Basic(optional = false)
+    @Version
     @Column(name = "SAL_VERSION")
     private Long salVersion;
     @OneToMany(mappedBy = "salId", fetch = FetchType.LAZY)
