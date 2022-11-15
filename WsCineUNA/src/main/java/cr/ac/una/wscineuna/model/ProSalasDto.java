@@ -31,7 +31,7 @@ public class ProSalasDto {
         this();
         this.salId = proSalas.getSalId();
         this.salNombre = proSalas.getSalNombre();
-        this.salEstado = proSalas.getSalEstado();
+        this.salEstado = proSalas.getsalEstado();
         this.salImgFondo = (Byte[]) proSalas.getSalImgfondo();
     }
     public Long getSalId() {
@@ -50,11 +50,11 @@ public class ProSalasDto {
         this.salNombre = salNombre;
     }
 
-    public String getSalEstado() {
+    public String getsalEstado() {
         return salEstado;
     }
 
-    public void setSalEstado(String salEstado) {
+    public void setsalEstado(String salEstado) {
         this.salEstado = salEstado;
     }
 

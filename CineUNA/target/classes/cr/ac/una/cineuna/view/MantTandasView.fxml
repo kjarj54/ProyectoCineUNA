@@ -55,9 +55,18 @@
                <children>
                   <Label styleClass="h3-contraste" text="%selecPel" />
                   <Separator maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="50.0" prefWidth="100.0" visible="false" HBox.hgrow="ALWAYS" />
-                  <TextField fx:id="txtID" prefHeight="26.0" prefWidth="50.0" />
                   <Button fx:id="btnPeli" mnemonicParsing="false" onAction="#OnActionbtnPeli" text="Ver Peliculas" />
-                  <JFXTextField fx:id="txtPeli" />
+                  <TextField fx:id="txtID" prefHeight="26.0" prefWidth="50.0" />
+                  <JFXTextField fx:id="txtPeli" promptText="%selecPel" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label styleClass="h3-contraste" text="Sala" />
+                  <Separator maxWidth="1.7976931348623157E308" orientation="VERTICAL" visible="false" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="btnSala" mnemonicParsing="false" onAction="#OnActionbtnSala" prefHeight="26.0" prefWidth="83.0" text="Ver Salas" />
+                  <TextField fx:id="txtIDSala" prefHeight="26.0" prefWidth="50.0" />
+                  <JFXTextField fx:id="txtSala" focusColor="WHITE" labelFloat="true" promptText="Sala" />
                </children>
             </HBox>
             <HBox alignment="CENTER" spacing="60.0">

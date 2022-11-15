@@ -122,4 +122,24 @@ public class ProSalasService {
         }
     }
     
+    public Respuesta getSalasSinParametros() {
+        try {
+            Query qryClientes = em.createNamedQuery("ProSalas.findAll", ProSalas.class);
+            List<ProSalas> clientes = qryClientes.getResultList();
+
+            List<ProSalasDto> clientesDto = new ArrayList<>();
+            for (ProSalas cliente : clientes) {
+                clientesDto.add(new ProSalasDto(cliente));
+            }
+
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProSalas", clientesDto);
+
+        } catch (NoResultException ex) {
+            return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen clientes con los criterios ingresados.", "getSalasSinParametros NoResultException");
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el cliente.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el cliente.", "getSalasSinParametros " + ex.getMessage());
+        }
+    }
+    
 }

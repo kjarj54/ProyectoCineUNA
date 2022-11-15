@@ -48,11 +48,11 @@ public class ProSalasDto {
         this.salNombre.set(salNombre);
     }
 
-    public String getSalEstado() {
+    public String getsalEstado() {
         return salEstado.get();
     }
 
-    public void setPelEstado(String salEstado) {
+    public void setsalEstado(String salEstado) {
         this.salEstado.set(salEstado);
     }
 

@@ -28,6 +28,7 @@ cr\ac\una\cineuna\controller\ReservarViewController.class
 cr\ac\una\cineuna\service\ProTandasService.class
 module-info.class
 cr\ac\una\cineuna\service\ProClientesService$2.class
+cr\ac\una\cineuna\controller\TableSalaViewController.class
 cr\ac\una\cineuna\util\Formato.class
 cr\ac\una\cineuna\controller\PelisActualesViewController.class
 cr\ac\una\cineuna\util\FlowController.class
@@ -49,6 +50,7 @@ cr\ac\una\cineuna\service\ProPeliculasService$1.class
 cr\ac\una\cineuna\model\ProTandasDto.class
 cr\ac\una\cineuna\util\DragResizer$2.class
 cr\ac\una\cineuna\model\ProFacturasDto.class
+cr\ac\una\cineuna\service\ProSalasService$1.class
 cr\ac\una\cineuna\util\DragResizer$5.class
 cr\ac\una\cineuna\controller\PrincipalUsuariosViewController.class
 cr\ac\una\cineuna\service\ProFacturasService.class
@@ -56,6 +58,7 @@ cr\ac\una\cineuna\controller\MantUsuariosViewController.class
 cr\ac\una\cineuna\controller\PrincipalViewController.class
 cr\ac\una\cineuna\controller\ComidasAdminViewController$ButtonCell.class
 cr\ac\una\cineuna\controller\MantPelTableViewController.class
+cr\ac\una\cineuna\controller\TableSalaViewController$ButtonCell.class
 cr\ac\una\cineuna\controller\CarteleraViewController.class
 cr\ac\una\cineuna\controller\LoginViewController.class
 cr\ac\una\cineuna\controller\MantUsuTableViewController$ButtonCell.class

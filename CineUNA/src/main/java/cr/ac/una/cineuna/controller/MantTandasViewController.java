@@ -78,6 +78,12 @@ public class MantTandasViewController extends Controller implements Initializabl
     ProTandasDto peli;
     @FXML
     private AnchorPane root;
+    @FXML
+    private Button btnSala;
+    @FXML
+    private TextField txtIDSala;
+    @FXML
+    private JFXTextField txtSala;
     /**
      * Initializes the controller class.
      */
@@ -229,6 +235,11 @@ public class MantTandasViewController extends Controller implements Initializabl
         dpFecha.valueProperty().unbindBidirectional(peli.tanFecha);
         aux.textProperty().unbindBidirectional(peli.tanHorainicio);
         aux2.textProperty().bindBidirectional(peli.tanHorafinal);
+    }
+
+    @FXML
+    private void OnActionbtnSala(ActionEvent event) {
+        FlowController.getInstance().goView("TableSalaView");
     }
     
 }

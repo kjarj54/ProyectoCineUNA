@@ -103,4 +103,21 @@ public class ProSalasController {
         }
     }
     
+    @GET
+    @Secure
+    @Path("/getSalas/")
+    public Response getSalasSinParametros() {
+        try {
+            Respuesta res = proSalasService.getSalasSinParametros();
+            if (!res.getEstado()) {
+                return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
+            }
+            return Response.ok(new GenericEntity<List<ProSalasDto>>((List<ProSalasDto>) res.getResultado("ProSalas")) {
+            }).build();
+        } catch (Exception ex) {
+            Logger.getLogger(ProSalasController.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error obteniendo Sala").build();
+        }
+    }
+    
 }

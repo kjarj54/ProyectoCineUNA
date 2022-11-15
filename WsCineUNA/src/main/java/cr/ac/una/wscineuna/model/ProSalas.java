@@ -88,7 +88,7 @@ public class ProSalas implements Serializable {
     }
     
     public void actualizarSala(ProSalasDto proSalasDto){
-        this.salEstado = proSalasDto.getSalEstado();
+        this.salEstado = proSalasDto.getsalEstado();
         this.salImgfondo= proSalasDto.getSalImgFondo();
         this.salNombre = proSalasDto.getSalNombre();
     }
@@ -109,11 +109,11 @@ public class ProSalas implements Serializable {
         this.salNombre = salNombre;
     }
 
-    public String getSalEstado() {
+    public String getsalEstado() {
         return salEstado;
     }
 
-    public void setSalEstado(String salEstado) {
+    public void setsalEstado(String salEstado) {
         this.salEstado = salEstado;
     }
 
