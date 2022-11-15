@@ -95,7 +95,7 @@ public class ProPeliculasService {
                 peliculasDto.add(new ProPeliculasDto(pelicula));
             }
 
-            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProPeliculas", peliculasDto);
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProPeliculasParam", peliculasDto);
         } catch (NoResultException ex) {
             return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen peliculas con los criterios ingresados.", "getPeliculas NoResultException");
         } catch (Exception ex) {

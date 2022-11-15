@@ -129,7 +129,7 @@ public class MantPelTableViewController extends Controller implements Initializa
         Respuesta respuesta = proPeliculasService.getPeliculas(id,nombre);
         
         if (respuesta.getEstado()) {
-            ObservableList<ProPeliculasDto> proPeliculasDtos = FXCollections.observableList((List<ProPeliculasDto>) respuesta.getResultado("ProPeliculas"));
+            ObservableList<ProPeliculasDto> proPeliculasDtos = FXCollections.observableList((List<ProPeliculasDto>) respuesta.getResultado("ProPeliculasParam"));
             tbvResultados.setItems(proPeliculasDtos);
             tbvResultados.refresh();
         } else {

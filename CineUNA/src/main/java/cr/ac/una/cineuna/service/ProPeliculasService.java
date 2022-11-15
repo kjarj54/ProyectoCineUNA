@@ -84,7 +84,7 @@ public class ProPeliculasService {
 
             List<ProPeliculasDto> proComidasDto = (List<ProPeliculasDto>) request.readEntity(new GenericType<List<ProPeliculasDto>>() {
             });
-            return new Respuesta(true, "", "", "ProPeliculasParametros", proComidasDto);
+            return new Respuesta(true, "", "", "ProPeliculasParam", proComidasDto);
 
         } catch (Exception ex) {
             Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Error consultando las peliculas.", ex);

@@ -80,7 +80,7 @@ public class ProPeliculasController {
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }
-            return Response.ok(new GenericEntity<List<ProPeliculasDto>>((List<ProPeliculasDto>) res.getResultado("ProClientes")) {
+            return Response.ok(new GenericEntity<List<ProPeliculasDto>>((List<ProPeliculasDto>) res.getResultado("ProPeliculasParam")) {
             }).build();
         } catch (Exception ex) {
             Logger.getLogger(ProPeliculasController.class.getName()).log(Level.SEVERE, null, ex);

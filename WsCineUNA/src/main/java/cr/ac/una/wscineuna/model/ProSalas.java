@@ -64,6 +64,7 @@ public class ProSalas implements Serializable {
     @OneToMany(mappedBy = "salId", fetch = FetchType.LAZY)
     private List<ProTandas> proTandasList;
 
+
     
     public ProSalas() {
     }
