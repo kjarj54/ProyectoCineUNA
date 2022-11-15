@@ -12,6 +12,7 @@ import cr.ac.una.wscineuna.util.CodigoRespuesta;
 import cr.ac.una.wscineuna.util.Respuesta;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -96,6 +97,33 @@ public class ProPeliculasService {
             }
 
             return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProPeliculasParam", peliculasDto);
+        } catch (NoResultException ex) {
+            return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen peliculas con los criterios ingresados.", "getPeliculas NoResultException");
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar la pelicula.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar la pelicula.", "getPeliculas " + ex.getMessage());
+        }
+    }
+
+    public Respuesta getPeliculasEstado(String estado) {
+        try {
+
+            Query qryPeliculas = em.createNamedQuery("ProPeliculas.findAll", ProPeliculas.class);
+            List<ProPeliculas> peliculas = qryPeliculas.getResultList();
+            if (!estado.equals("%")) {
+                peliculas = peliculas.stream().filter((p) -> p.getPelEstado().contains(estado.toLowerCase()) || p.getPelEstado().contains(estado.toUpperCase())).collect(Collectors.toList());
+            }
+
+            if (estado.equals("P")) {
+                peliculas = peliculas.stream().sorted(Comparator.comparing(ProPeliculas:: getPelFechaestreno)).collect(Collectors.toList());
+            }
+            
+            List<ProPeliculasDto> peliculasDto = new ArrayList<>();
+            for (ProPeliculas pelicula : peliculas) {
+                peliculasDto.add(new ProPeliculasDto(pelicula));
+            }
+
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProPeliculasEstado", peliculasDto);
         } catch (NoResultException ex) {
             return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen peliculas con los criterios ingresados.", "getPeliculas NoResultException");
         } catch (Exception ex) {
