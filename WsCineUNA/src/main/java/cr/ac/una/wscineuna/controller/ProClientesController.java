@@ -94,7 +94,6 @@ public class ProClientesController {
     }
 
     @GET
-    @Secure
     @Path("/recuperarClave/{correo}")
     public Response recuperarClave(@PathParam("correo") String correo) {
         try {

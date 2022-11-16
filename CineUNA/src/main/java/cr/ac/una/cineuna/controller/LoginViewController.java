@@ -90,15 +90,22 @@ public class LoginViewController extends Controller implements Initializable {
                     AppContext.getInstance().set("Usuario", proClientesDto);
                     AppContext.getInstance().set("Token", proClientesDto.getToken());
                     if (getStage().getOwner() == null) {
-                        if ("S".equals(proClientesDto.getCliAdmin()) && "A".equals(proClientesDto.getCliEstado())) {//compruba que el usuario este activo
-                            FlowController.getInstance().goMain();
-                            getStage().close();
-                        } else if ("N".equals(proClientesDto.getCliAdmin()) && "A".equals(proClientesDto.getCliEstado())) {//compruba que el usuario este activo
-                            FlowController.getInstance().goMainCliente();
-                            getStage().close();
 
+                        if (proClientesDto.getCliClave().equals(proClientesDto.getCliClaverestaurada())) {
+                            new Mensaje().showModal(Alert.AlertType.WARNING, "Validación de usuario", (Stage) btnIngresar.getScene().getWindow(), "Es necesario cambiar la clave para ingresar al sistema.");
+                            FlowController.getInstance().goViewInWindowModal("CambioClaveView", getStage(), true);
+                            
                         } else {
-                            new Mensaje().showModal(Alert.AlertType.ERROR, "Validación de usuario", (Stage) btnIngresar.getScene().getWindow(), "Es necesario que su cuenta este activada.");
+                            if ("S".equals(proClientesDto.getCliAdmin()) && "A".equals(proClientesDto.getCliEstado())) {//compruba que el usuario este activo
+                                FlowController.getInstance().goMain();
+                                getStage().close();
+                            } else if ("N".equals(proClientesDto.getCliAdmin()) && "A".equals(proClientesDto.getCliEstado())) {//compruba que el usuario este activo
+                                FlowController.getInstance().goMainCliente();
+                                getStage().close();
+
+                            } else {
+                                new Mensaje().showModal(Alert.AlertType.ERROR, "Validación de usuario", (Stage) btnIngresar.getScene().getWindow(), "Es necesario que su cuenta este activada.");
+                            }
                         }
 
                     }
