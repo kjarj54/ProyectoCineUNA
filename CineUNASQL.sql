@@ -226,9 +226,10 @@ CREATE TABLE PRO_ASIENTOS(
   asi_id Number NOT NULL,
   asi_img Blob NOT NULL,
   asi_nombre Varchar2(80 ) NOT NULL,
-  asi_cantidad Number NOT NULL,
+  asi_estado Varchar2(1 ) NOT NULL,
   asi_version Number DEFAULT 1 NOT NULL,
   sal_id Number
+  CONSTRAINT PRO_ASIENTOS_CK01 CHECK (asi_estado in ('O','L'))
 )
 ;
 
@@ -250,7 +251,7 @@ COMMENT ON COLUMN PRO_ASIENTOS.asi_img IS 'Imagen del asiento'
 ;
 COMMENT ON COLUMN PRO_ASIENTOS.asi_nombre IS 'nombre asientos (e.g. A1, B5, C10)'
 ;
-COMMENT ON COLUMN PRO_ASIENTOS.asi_cantidad IS 'cantidad de asientos'
+COMMENT ON COLUMN PRO_ASIENTOS.asi_estado IS 'estado del asiento (O:ocupado, L:libre)'
 ;
 COMMENT ON COLUMN PRO_ASIENTOS.asi_version IS 'Version del registro de asientos'
 ;
