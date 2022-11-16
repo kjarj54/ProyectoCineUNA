@@ -92,11 +92,14 @@ public class PelisActualesViewController extends Controller implements Initializ
         Celda() {
             hbox.getChildren().addAll(imgView ,nomPel,cellButton);// Se agregan los componentes al hbox para poder mostrarlos
             hbox.setSpacing(50);
+            
+            //button
             cellButton.setPrefWidth(50);
             cellButton.setText("Info");
             cellButton.setOnAction((ActionEvent t) -> {
                 ProPeliculasDto emp = (ProPeliculasDto) Celda.this.getListView().getItems().get(Celda.this.getIndex());
                 AppContext.getInstance().set("InfoPelicula", emp.getPelId());;
+                FlowController.getInstance().goView("InformacionView");
 
             });
         }
@@ -105,9 +108,12 @@ public class PelisActualesViewController extends Controller implements Initializ
         protected void updateItem(ProPeliculasDto t, boolean empty) {
             super.updateItem(t, empty);
             if (!empty) {
+                //Image View
                 imgView.setImage(ConvertToImage(t.getPelImagen()));//convierte la imagen de los datos que tiene la clase pelicula
                 imgView.setFitHeight(80);
                 imgView.setFitWidth(100);
+                
+                //Label
                 nomPel.setText(t.getPelNombre());
                 setGraphic(hbox);//se muestra el contenedor de componentes
             }

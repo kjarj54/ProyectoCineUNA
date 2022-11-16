@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.service.ProPeliculasService;
 import cr.ac.una.cineuna.util.AppContext;
+import cr.ac.una.cineuna.util.FlowController;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
 import java.io.ByteArrayInputStream;
@@ -98,6 +99,7 @@ public class EstrenosViewController extends Controller implements Initializable 
             cellButton.setOnAction((ActionEvent t) -> {
                 ProPeliculasDto emp = (ProPeliculasDto) Celda.this.getListView().getItems().get(Celda.this.getIndex());
                 AppContext.getInstance().set("InfoPelicula", emp.getPelId());;
+                FlowController.getInstance().goView("InformacionView");
                 
             });
         }
