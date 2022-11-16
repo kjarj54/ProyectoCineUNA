@@ -73,7 +73,7 @@ public class InfoPeliculasViewController extends Controller implements Initializ
             
             System.out.println(LinkCambiado);
 
-            webView.getEngine().load(linkPel);
+            webView.getEngine().load(LinkCambiado);
             
             txtNombrePel.setText(proPeliculasDto.getPelNombre());
 
