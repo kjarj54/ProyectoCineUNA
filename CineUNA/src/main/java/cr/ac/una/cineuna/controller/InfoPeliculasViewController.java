@@ -6,6 +6,7 @@ package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.service.ProPeliculasService;
 import cr.ac.una.cineuna.util.AppContext;
@@ -24,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebView;
 
 /**
@@ -40,7 +42,7 @@ public class InfoPeliculasViewController extends Controller implements Initializ
     @FXML
     private ImageView imgPel;
     @FXML
-    private Label txtNombrePel;
+    private JFXTextField txtNombrePel;
     @FXML
     private Hyperlink txtUrl;
     @FXML
@@ -49,6 +51,8 @@ public class InfoPeliculasViewController extends Controller implements Initializ
     private TextArea txtAreaSinopsis;
     
     ProPeliculasDto proPeliculasDto;
+    @FXML
+    private AnchorPane PantallaIncio;
 
     /**
      * Initializes the controller class.
@@ -76,6 +80,8 @@ public class InfoPeliculasViewController extends Controller implements Initializ
             webView.getEngine().load(LinkCambiado);
             
             txtNombrePel.setText(proPeliculasDto.getPelNombre());
+            
+            txtNombrePel.setEditable(false);
 
             dpFecha.setValue(proPeliculasDto.getPelFechaestreno());
             dpFecha.setEditable(false);
@@ -115,7 +121,7 @@ public class InfoPeliculasViewController extends Controller implements Initializ
     private void onActionBtnAtras(ActionEvent event) {
         FlowController.getInstance().limpiarLoader("CarteleraView");
         FlowController.getInstance().goView("CarteleraView");
-        FlowController.getInstance().limpiarLoader("InformacionView");
+        FlowController.getInstance().limpiarLoader("InfoPeliculasView");
         webView.getEngine().reload();
         webView.getEngine().load("");
     }

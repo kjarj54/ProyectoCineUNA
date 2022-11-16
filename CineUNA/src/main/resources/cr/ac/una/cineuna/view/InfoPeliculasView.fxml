@@ -2,8 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +12,7 @@
 <?import javafx.scene.web.WebView?>
 
 
-<AnchorPane id="Fondo" fx:id="PantallaIncio" prefHeight="572.0" prefWidth="774.0" stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="cr.ac.una.cineuna.controller.InfoPeliculasViewController">
+<AnchorPane fx:id="PantallaIncio" prefHeight="572.0" prefWidth="774.0" stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="cr.ac.una.cineuna.controller.InfoPeliculasViewController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -22,7 +22,7 @@
                   <ImageView fx:id="imgPel" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS" />
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="txtNombrePel" text="Label" VBox.vgrow="ALWAYS" />
+                        <JFXTextField fx:id="txtNombrePel" />
                         <Hyperlink fx:id="txtUrl" onAction="#onActionTxtUrl" text="Hyperlink" VBox.vgrow="ALWAYS" />
                         <JFXDatePicker fx:id="dpFecha" VBox.vgrow="ALWAYS" />
                         <TextArea fx:id="txtAreaSinopsis" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />

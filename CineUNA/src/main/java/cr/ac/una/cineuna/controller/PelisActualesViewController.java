@@ -84,13 +84,14 @@ public class PelisActualesViewController extends Controller implements Initializ
         
         //Creacion de las cosas que se necesitan
         final JFXButton cellButton = new JFXButton();
+        final JFXButton cellButtonComprar = new JFXButton();
         private Label nomPel = new Label();
         private ImageView imgView = new ImageView();
         HBox hbox = new HBox();
         
         
         Celda() {
-            hbox.getChildren().addAll(imgView ,nomPel,cellButton);// Se agregan los componentes al hbox para poder mostrarlos
+            hbox.getChildren().addAll(imgView ,nomPel,cellButton,cellButtonComprar);// Se agregan los componentes al hbox para poder mostrarlos
             hbox.setSpacing(50);
             
             //button
@@ -102,6 +103,17 @@ public class PelisActualesViewController extends Controller implements Initializ
                 FlowController.getInstance().goView("InfoPeliculasView");
 
             });
+            
+            //button
+            cellButtonComprar.setPrefWidth(50);
+            cellButtonComprar.setText("Camprar Boleto");
+            cellButtonComprar.setOnAction((ActionEvent t) -> {
+                ProPeliculasDto emp = (ProPeliculasDto) Celda.this.getListView().getItems().get(Celda.this.getIndex());
+                AppContext.getInstance().set("ComparaBoleto", emp.getPelId());;
+                FlowController.getInstance().goView("ReservarView");
+
+            });
+            
         }
 
         @Override
