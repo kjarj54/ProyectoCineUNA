@@ -118,7 +118,6 @@ public class InfoPeliculasViewController extends Controller implements Initializ
         FlowController.getInstance().limpiarLoader("InformacionView");
         webView.getEngine().reload();
         webView.getEngine().load("");
-        getStage().close();
     }
     
 }
