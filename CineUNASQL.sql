@@ -228,7 +228,7 @@ CREATE TABLE PRO_ASIENTOS(
   asi_nombre Varchar2(80 ) NOT NULL,
   asi_estado Varchar2(1 ) NOT NULL,
   asi_version Number DEFAULT 1 NOT NULL,
-  sal_id Number
+  sal_id Number,
   CONSTRAINT PRO_ASIENTOS_CK01 CHECK (asi_estado in ('O','L'))
 )
 ;
