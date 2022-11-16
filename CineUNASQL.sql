@@ -226,7 +226,7 @@ CREATE TABLE PRO_ASIENTOS(
   asi_id Number NOT NULL,
   asi_img Blob NOT NULL,
   asi_nombre Varchar2(80 ) NOT NULL,
-  asi_estado Varchar2(1 ) NOT NULL,
+  asi_estado Varchar2(1 ) DEFAULT 'L' NOT NULL,
   asi_version Number DEFAULT 1 NOT NULL,
   sal_id Number,
   CONSTRAINT PRO_ASIENTOS_CK01 CHECK (asi_estado in ('O','L'))
