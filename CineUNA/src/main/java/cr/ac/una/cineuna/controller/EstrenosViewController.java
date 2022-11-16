@@ -99,7 +99,7 @@ public class EstrenosViewController extends Controller implements Initializable 
             cellButton.setOnAction((ActionEvent t) -> {
                 ProPeliculasDto emp = (ProPeliculasDto) Celda.this.getListView().getItems().get(Celda.this.getIndex());
                 AppContext.getInstance().set("InfoPelicula", emp.getPelId());;
-                FlowController.getInstance().goView("InformacionView");
+                FlowController.getInstance().goView("InfoPeliculasView");
                 
             });
         }

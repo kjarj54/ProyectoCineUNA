@@ -13,7 +13,6 @@ D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUN
 D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\AppContext.java
 D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Request.java
 D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Respuesta.java
-D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\InformacionViewController.java
 D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\EscogerAsientosViewController.java
 D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\MantSalasViewController.java
 D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\ReservarViewController.java
@@ -26,6 +25,7 @@ D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUN
 D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\service\ProFacturasService.java
 D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\PrincipalViewController.java
 D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\service\ProTandasService.java
+D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\InfoPeliculasViewController.java
 D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\util\Formato.java
 D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\MantUsuariosViewController.java
 D:\carpetaU\Segundo semestre 2022\Programacion 3\Proyecto\ProyectoCineUNA\CineUNA\src\main\java\cr\ac\una\cineuna\controller\TableSalaViewController.java

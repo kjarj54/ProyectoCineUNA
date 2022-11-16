@@ -9,7 +9,6 @@ import com.jfoenix.controls.JFXDatePicker;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.service.ProPeliculasService;
 import cr.ac.una.cineuna.util.AppContext;
-import cr.ac.una.cineuna.util.BindingUtils;
 import cr.ac.una.cineuna.util.FlowController;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
@@ -22,9 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.web.WebView;
@@ -34,12 +31,14 @@ import javafx.scene.web.WebView;
  *
  * @author kevin
  */
-public class InformacionViewController extends Controller implements Initializable {
+public class InfoPeliculasViewController extends Controller implements Initializable {
 
     @FXML
-    private ImageView imgPel;
+    private JFXButton btnAtras;
     @FXML
     private WebView webView;
+    @FXML
+    private ImageView imgPel;
     @FXML
     private Label txtNombrePel;
     @FXML
@@ -48,9 +47,7 @@ public class InformacionViewController extends Controller implements Initializab
     private JFXDatePicker dpFecha;
     @FXML
     private TextArea txtAreaSinopsis;
-    @FXML
-    private JFXButton btnAtras;
-
+    
     ProPeliculasDto proPeliculasDto;
 
     /**
@@ -59,7 +56,6 @@ public class InformacionViewController extends Controller implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
         proPeliculasDto = new ProPeliculasDto();
 
         Long id = (Long) AppContext.getInstance().get("InfoPelicula");
@@ -73,9 +69,9 @@ public class InformacionViewController extends Controller implements Initializab
 
             txtUrl.setText(linkPel);
 
-            String cambio = "embed/";
-
-            linkPel = linkPel.replace("watch?=", cambio);
+            String LinkCambiado = linkPel.replaceAll("watch\\?v=", "embed/");
+            
+            System.out.println(LinkCambiado);
 
             webView.getEngine().load(linkPel);
             
@@ -99,14 +95,20 @@ public class InformacionViewController extends Controller implements Initializab
             new Mensaje().showModal(Alert.AlertType.ERROR, "Cargar pelicula", getStage(), respuesta.getMensaje());
         }
 
-    }
+    }    
 
     private Image ConvertToImage(byte[] data) {
         return new Image(new ByteArrayInputStream(data));
     }
-
+    
     @Override
     public void initialize() {
+        
+    }
+
+    @FXML
+    private void onActionTxtUrl(ActionEvent event) {
+        
     }
 
     @FXML
@@ -114,6 +116,9 @@ public class InformacionViewController extends Controller implements Initializab
         FlowController.getInstance().limpiarLoader("CarteleraView");
         FlowController.getInstance().goView("CarteleraView");
         FlowController.getInstance().limpiarLoader("InformacionView");
+        webView.getEngine().reload();
+        webView.getEngine().load("");
+        getStage().close();
     }
-
+    
 }

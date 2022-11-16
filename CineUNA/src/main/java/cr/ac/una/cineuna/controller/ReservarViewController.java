@@ -21,10 +21,10 @@ public class ReservarViewController extends Controller implements Initializable 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @Override
     public void initialize() {
     }
-    
+
 }
