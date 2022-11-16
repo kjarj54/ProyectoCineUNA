@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.model.ProSalasDto;
+import cr.ac.una.cineuna.service.AsientoService;
 import cr.ac.una.cineuna.service.ProPeliculasService;
 import cr.ac.una.cineuna.service.ProSalasService;
 import cr.ac.una.cineuna.util.BindingUtils;
@@ -76,6 +77,7 @@ public class MantSalasViewController extends Controller implements Initializable
      * Initializes the controller class.
      */
     List<Node> requeridos = new ArrayList<>();
+    List<AsientoService> asientos = new ArrayList<>();
     
     ProSalasDto proSalasdto;
     @FXML
@@ -88,13 +90,11 @@ public class MantSalasViewController extends Controller implements Initializable
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         rdbInactiva.setUserData("I");
         rdbActiva.setUserData("A");
         proSalasdto = new ProSalasDto();
         nuevaSala();
         indicarRequeridos();
-        
     }    
 
     @Override
@@ -184,7 +184,6 @@ public class MantSalasViewController extends Controller implements Initializable
         }
     }
     
-    
     public void bindSalas(Boolean nuevo) {
         txtNombreSala.textProperty().bindBidirectional(proSalasdto.salNombre);
         BindingUtils.bindToggleGroupToProperty(tggEstado, proSalasdto.salEstado);
@@ -201,9 +200,6 @@ public class MantSalasViewController extends Controller implements Initializable
         proSalasdto = new ProSalasDto();
         bindSalas(true);
     }
-    
-    
-    
     
     public void indicarRequeridos() {
         requeridos.clear();
