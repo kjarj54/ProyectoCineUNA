@@ -13,7 +13,7 @@ public class ProAsientosDto {
     private Long asiId;
     private byte[] asiImg;
     private String asiNombre;
-    private Long asiCantidad;
+    private String asiEstado;
     private Boolean asiModificado;
     private ProSalas salId;
 
@@ -27,7 +27,7 @@ public class ProAsientosDto {
         this.asiId = proAsientos.getAsiId();
         this.asiImg = (byte[]) proAsientos.getAsiImg();
         this.asiNombre = proAsientos.getAsiNombre();
-        this.asiCantidad = proAsientos.getAsiCantidad();
+        this.asiEstado = proAsientos.getAsiEstado();
         this.salId = proAsientos.getSalId();
     }
     
@@ -55,12 +55,12 @@ public class ProAsientosDto {
         this.asiNombre = asiNombre;
     }
 
-    public Long getAsiCantidad() {
-        return asiCantidad;
+    public String getAsiEstado() {
+        return asiEstado;
     }
 
-    public void setAsiCantidad(Long asiCantidad) {
-        this.asiCantidad = asiCantidad;
+    public void setAsiEstado(String asiCantidad) {
+        this.asiEstado = asiCantidad;
     }
 
     public Boolean getAsiModificado() {

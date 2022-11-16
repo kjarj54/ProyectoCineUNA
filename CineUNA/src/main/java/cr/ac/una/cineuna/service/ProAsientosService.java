@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class ProAsientosService {
     
-    public Respuesta guardarCliente(ProAsientosDto proAsientosDto) {
+    public Respuesta guardarAsiento(ProAsientosDto proAsientosDto) {
         try {
             //TODO
             Request request = new Request("ProAsientosController/guardarAsiento");

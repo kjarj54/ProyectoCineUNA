@@ -6,9 +6,11 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import cr.ac.una.cineuna.model.ProAsientosDto;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.model.ProSalasDto;
 import cr.ac.una.cineuna.service.AsientoService;
+import cr.ac.una.cineuna.service.ProAsientosService;
 import cr.ac.una.cineuna.service.ProPeliculasService;
 import cr.ac.una.cineuna.service.ProSalasService;
 import cr.ac.una.cineuna.util.BindingUtils;
@@ -87,9 +89,13 @@ public class MantSalasViewController extends Controller implements Initializable
     @FXML
     private RadioButton rdbActiva;
     
+    ProAsientosDto asientodto;
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        asientodto = new ProAsientosDto();
         rdbInactiva.setUserData("I");
         rdbActiva.setUserData("A");
         proSalasdto = new ProSalasDto();
@@ -114,17 +120,38 @@ public class MantSalasViewController extends Controller implements Initializable
     private void onActionBtnGuardar(ActionEvent event) {
         
         try {
+            
+            /*ProAsientosService service1 = new ProAsientosService();
+            Respuesta respuesta1 = service1.guardarAsiento(asientodto); 
+            ProAsientosDto asiento = new ProAsientosDto();
+            asiento = (ProAsientosDto)respuesta1.getResultado("Asiento");
+            asientodto.setAsiNombre("Hola");*/
+            
+            
+            asientodto.setAsiNombre("hola123");
+            ProAsientosService service1 = new ProAsientosService();
+            Respuesta respuesta1 = service1.guardarAsiento(asientodto);
+            
+            
+            
+            
+            
+            
+            
+            
             String invalidos = validarRequeridos();
             if (!invalidos.isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar sala", getStage(), invalidos);
             } else {
                 ProSalasService service = new ProSalasService();
                 Respuesta respuesta = service.guardarSala(proSalasdto);
+                
                 if (!respuesta.getEstado()) {
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar sala", getStage(), respuesta.getMensaje());
                 } else {
                     unbindSalas();
                     proSalasdto = (ProSalasDto) respuesta.getResultado("Sala");
+                    //asientodto = (ProAsientosDto) respuesta.getResultado("Asiento");
                     bindSalas(false);
                     new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar sala", getStage(), "Sala actualizada correctamente.");
                 }
@@ -142,15 +169,37 @@ public class MantSalasViewController extends Controller implements Initializable
     }
 
     @FXML
-    private void onActionBtnAsientoSelect(ActionEvent event) throws FileNotFoundException {
-        FileChooser fileChooser = new FileChooser();
+    private void onActionBtnAsientoSelect(ActionEvent event) throws FileNotFoundException, IOException {
+        /*FileChooser fileChooser = new FileChooser();
         List<File> selectedFiles = fileChooser.showOpenMultipleDialog(null);
         Image img = new Image(new FileInputStream(selectedFiles.get(0)));
         if (img.getWidth()>100){
             new Mensaje().showModal(Alert.AlertType.ERROR, "Revisar Dimensiones", (Stage) btnAsientoSelect.getScene().getWindow(), "Las dimensiones de la imagen son muy grandes");
         } else {
         imgAsiento.setImage(img);
+        }*/
+        
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Busqueda Imagen");
+
+        //Facilita la busqueda escogiendo que aparescan jpg, pgn
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.*"), new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
+
+        //toma la imagen
+        File imagFile = fileChooser.showOpenDialog(null);
+
+        //comprueba y luego muestra la imagen
+        if (imagFile != null) {
+
+            asientodto.setAsiImg(SaveImage(imagFile));
+
+            Image image = new Image(new ByteArrayInputStream(SaveImage(imagFile)));
+            imgAsiento.setImage(image);
+
         }
+        
+        
+        
             }
 
 
@@ -187,12 +236,14 @@ public class MantSalasViewController extends Controller implements Initializable
     public void bindSalas(Boolean nuevo) {
         txtNombreSala.textProperty().bindBidirectional(proSalasdto.salNombre);
         BindingUtils.bindToggleGroupToProperty(tggEstado, proSalasdto.salEstado);
+        txtNombreSala.textProperty().bindBidirectional(asientodto.asiNombre);
         
     }
 
     public void unbindSalas() {
         txtNombreSala.textProperty().unbindBidirectional(proSalasdto.salNombre);
         BindingUtils.unbindToggleGroupToProperty(tggEstado, proSalasdto.salEstado);
+        txtNombreSala.textProperty().bindBidirectional(asientodto.asiNombre);
     }
 
     public void nuevaSala() {

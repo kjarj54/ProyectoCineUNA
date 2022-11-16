@@ -17,7 +17,7 @@ public class ProAsientosDto {
     public SimpleStringProperty asiId;
     public ObjectProperty<byte[]> asiImg;
     public SimpleStringProperty asiNombre;
-    public SimpleStringProperty asiCantidad;
+    public SimpleStringProperty asiEstado;
     private Boolean asiModificado;
 
     public ProAsientosDto() {
@@ -25,7 +25,7 @@ public class ProAsientosDto {
         this.asiId = new SimpleStringProperty();
         this.asiImg = new SimpleObjectProperty();
         this.asiNombre = new SimpleStringProperty();
-        this.asiCantidad = new SimpleStringProperty();
+        this.asiEstado = new SimpleStringProperty("L");
 
     }
 
@@ -57,12 +57,12 @@ public class ProAsientosDto {
         this.asiNombre.set(asiNombre);
     }
 
-    public String getAsiCantidad() {
-        return asiCantidad.get();
+    public String getAsiEstado() {
+        return asiEstado.get();
     }
 
-    public void setAsiCantidad(Long asiCantidad) {
-        this.asiCantidad.set(asiCantidad.toString());
+    public void setAsiEstado(String asiEstado) {
+        this.asiEstado.set(asiEstado);
     }
 
     public Boolean getAsiModificado() {

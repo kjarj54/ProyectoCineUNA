@@ -34,7 +34,7 @@ import javax.persistence.Version;
     @NamedQuery(name = "ProAsientos.findAll", query = "SELECT p FROM ProAsientos p"),
     @NamedQuery(name = "ProAsientos.findByAsiId", query = "SELECT p FROM ProAsientos p WHERE p.asiId = :asiId"),
     @NamedQuery(name = "ProAsientos.findByAsiNombre", query = "SELECT p FROM ProAsientos p WHERE p.asiNombre = :asiNombre"),
-    @NamedQuery(name = "ProAsientos.findByAsiCantidad", query = "SELECT p FROM ProAsientos p WHERE p.asiCantidad = :asiCantidad"),
+    @NamedQuery(name = "ProAsientos.findByAsiEstado", query = "SELECT p FROM ProAsientos p WHERE p.asiEstado = :asiEstado"),
     @NamedQuery(name = "ProAsientos.findByAsiVersion", query = "SELECT p FROM ProAsientos p WHERE p.asiVersion = :asiVersion")})
 public class ProAsientos implements Serializable {
 
@@ -54,8 +54,8 @@ public class ProAsientos implements Serializable {
     @Column(name = "ASI_NOMBRE")
     private String asiNombre;
     @Basic(optional = false)
-    @Column(name = "ASI_CANTIDAD")
-    private Long asiCantidad;
+    @Column(name = "ASI_ESTADO")
+    private String asiEstado;
     @Basic(optional = false)
     @Version
     @Column(name = "ASI_VERSION")
@@ -76,11 +76,11 @@ public class ProAsientos implements Serializable {
         this.asiId = asiId;
     }
 
-    public ProAsientos(Long asiId, Serializable asiImg, String asiNombre, Long asiCantidad) {
+    public ProAsientos(Long asiId, Serializable asiImg, String asiNombre, String asiEstado) {
         this.asiId = asiId;
         this.asiImg = asiImg;
         this.asiNombre = asiNombre;
-        this.asiCantidad = asiCantidad;
+        this.asiEstado = asiEstado;
     }
     
     public ProAsientos(ProAsientosDto proAsientosDto){
@@ -89,7 +89,7 @@ public class ProAsientos implements Serializable {
     }
     
     public void actualizarAsiento(ProAsientosDto proAsientosDto){
-        this.asiCantidad = proAsientosDto.getAsiCantidad();
+        this.asiEstado = proAsientosDto.getAsiEstado();
         this.asiImg = proAsientosDto.getAsiImg();
         this.asiNombre = proAsientosDto.getAsiNombre();
     }
@@ -118,12 +118,12 @@ public class ProAsientos implements Serializable {
         this.asiNombre = asiNombre;
     }
 
-    public Long getAsiCantidad() {
-        return asiCantidad;
+    public String getAsiEstado() {
+        return asiEstado;
     }
 
-    public void setAsiCantidad(Long asiCantidad) {
-        this.asiCantidad = asiCantidad;
+    public void setAsiEstado(String asiEstado) {
+        this.asiEstado = asiEstado;
     }
 
     public Long getAsiVersion() {

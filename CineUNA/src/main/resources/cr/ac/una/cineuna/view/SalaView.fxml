@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="cr.ac.una.cineuna.controller.SalaViewController">
+   <children>
+      <VBox layoutX="7.0" layoutY="86.0" prefHeight="200.0" prefWidth="300.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                  <Button fx:id="btnA1" mnemonicParsing="false" onAction="#OnActionbtnA1" prefHeight="90.0" prefWidth="90.0" text="A1">
+                     <graphic>
+                        <ImageView fx:id="img1" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnA2" mnemonicParsing="false" onAction="#OnActionbtnA2" prefHeight="90.0" prefWidth="90.0" text="A2">
+                     <graphic>
+                        <ImageView fx:id="img2" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnA3" mnemonicParsing="false" onAction="#OnActionbtnA3" prefHeight="90.0" prefWidth="90.0" text="A3">
+                     <graphic>
+                        <ImageView fx:id="img3" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                  <Button fx:id="btnC1" mnemonicParsing="false" onAction="#OnActionbtnC1" prefHeight="90.0" prefWidth="90.0" text="C1">
+                     <graphic>
+                        <ImageView fx:id="img7" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnC2" mnemonicParsing="false" onAction="#OnActionbtnC2" prefHeight="90.0" prefWidth="90.0" text="C2">
+                     <graphic>
+                        <ImageView fx:id="img8" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnC3" mnemonicParsing="false" onAction="#OnActionbtnC3" prefHeight="90.0" prefWidth="90.0" text="C3">
+                     <graphic>
+                        <ImageView fx:id="img9" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="294.0" layoutY="86.0" prefHeight="200.0" prefWidth="300.0">
+         <children>
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                  <Button fx:id="btnB1" mnemonicParsing="false" onAction="#OnActionbtnB1" prefHeight="90.0" prefWidth="90.0" text="B1">
+                     <graphic>
+                        <ImageView fx:id="img4" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnB2" mnemonicParsing="false" onAction="#OnActionbtnB2" prefHeight="90.0" prefWidth="90.0" text="B2">
+                     <graphic>
+                        <ImageView fx:id="img5" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnB3" mnemonicParsing="false" onAction="#OnActionbtnB3" prefHeight="90.0" prefWidth="90.0" text="B3">
+                     <graphic>
+                        <ImageView fx:id="img6" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                  <Button fx:id="btnD1" mnemonicParsing="false" onAction="#OnActionbtnD1" prefHeight="90.0" prefWidth="90.0" text="D1">
+                     <graphic>
+                        <ImageView fx:id="img10" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnD2" mnemonicParsing="false" onAction="#OnActionbtnD2" prefHeight="90.0" prefWidth="90.0" text="D2">
+                     <graphic>
+                        <ImageView fx:id="img11" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnD3" mnemonicParsing="false" onAction="#OnActionbtnD3" prefHeight="90.0" prefWidth="90.0" text="D3">
+                     <graphic>
+                        <ImageView fx:id="img12" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="194.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <JFXButton fx:id="btnImagenAsiento" layoutX="194.0" layoutY="314.0" onAction="#OnActionbtnImagenAsiento" prefWidth="224.0" text="Imagen Asiento" />
+   </children>
+</AnchorPane>
