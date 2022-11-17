@@ -11,6 +11,7 @@ import cr.ac.una.wscineuna.model.ProFacturasDto;
 import cr.ac.una.wscineuna.util.CodigoRespuesta;
 import cr.ac.una.wscineuna.util.Respuesta;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,18 +31,19 @@ import javax.persistence.Query;
 @Stateless
 @LocalBean
 public class ProFacturasService {
+
     private static final Logger LOG = Logger.getLogger(ProFacturasService.class.getName());
-    
+
     @PersistenceContext(unitName = "WsCineUNAPU")
     private EntityManager em;
-    
+
     public Respuesta getFactura(Long id) {
         try {
             Query qryActividad = em.createNamedQuery("ProFacturas.findByFacId", ProFacturas.class);
             qryActividad.setParameter("facId", id);
 
             return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProFacturas", new ProFacturasDto((ProFacturas) qryActividad.getSingleResult()));
-           
+
         } catch (NoResultException ex) {
             return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existe una factura con las credenciales ingresadas.", "validarFactura NoResultException");
         } catch (NonUniqueResultException ex) {
@@ -55,7 +57,7 @@ public class ProFacturasService {
 
     public Respuesta guardarFactura(ProFacturasDto proFacturasDto) {
         try {
-            
+            proFacturasDto.setFacFecha(LocalDate.now());
             ProFacturas proFacturas;
             if (proFacturasDto.getFacId() != null && proFacturasDto.getFacId() > 0) {
                 proFacturas = em.find(ProFacturas.class, proFacturasDto.getFacId());
@@ -91,10 +93,9 @@ public class ProFacturasService {
 
     public Respuesta getFacturas() {
         try {
-            
+
             Query qryFacturas = em.createNamedQuery("ProFacturas.findAll", ProFacturas.class);
             List<ProFacturas> facturas = qryFacturas.getResultList();
-
 
             List<ProFacturasDto> FacturasDto = new ArrayList<>();
             for (ProFacturas comida : facturas) {
@@ -112,7 +113,7 @@ public class ProFacturasService {
 
     public Respuesta eliminarFactura(Long id) {
         try {
-            
+
             ProFacturas facturas;
             if (id != null && id > 0) {
                 facturas = em.find(ProFacturas.class, id);
@@ -133,5 +134,5 @@ public class ProFacturasService {
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al eliminar la factura.", "eliminarFactura " + ex.getMessage());
         }
     }
-    
+
 }

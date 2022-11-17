@@ -8,12 +8,16 @@ import com.jfoenix.controls.JFXButton;
 import cr.ac.una.cineuna.model.ProComidasDto;
 import cr.ac.una.cineuna.model.ProFacturasDto;
 import cr.ac.una.cineuna.service.ProComidasService;
+import cr.ac.una.cineuna.service.ProFacturasService;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,6 +65,10 @@ public class ComidasClienteViewController extends Controller implements Initiali
     @FXML
     private JFXButton btnSalir;
 
+    ProFacturasDto proFacturasDto;
+
+    ProComidasDto proComidasDto;
+
     /**
      * Initializes the controller class.
      */
@@ -89,6 +97,8 @@ public class ComidasClienteViewController extends Controller implements Initiali
         actualizarTbv();
 
         tbvComidas.refresh();
+        
+        proFacturasDto = new ProFacturasDto();
     }
 
     @Override
@@ -98,6 +108,27 @@ public class ComidasClienteViewController extends Controller implements Initiali
 
     @FXML
     private void OnActionBtnPagar(ActionEvent event) {
+        try {
+            ProFacturasService service = new ProFacturasService();
+            String totalString  = txtTotal.getText();
+            
+            totalString = totalString.replaceAll("\\,00", "");
+            System.out.println(totalString);
+            Long total = Long.parseLong(totalString);
+            proFacturasDto.setFacTotal(total);
+            
+            Respuesta respuesta = service.guardarFactura(proFacturasDto);
+            if (!respuesta.getEstado()) {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Generar la factura", getStage(), respuesta.getMensaje());
+            } else {
+                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Generar la factura", getStage(), "Factura generada correctamente.");
+                tbvFactura.getItems().clear();
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(ComidasClienteViewController.class.getName()).log(Level.SEVERE, "Error generando la factura.");
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Generar la factura", getStage(), "Ocurrio un error generando la factura.");
+        }
 
     }
 
@@ -126,9 +157,11 @@ public class ComidasClienteViewController extends Controller implements Initiali
             cellButton.setStyle("-fx-background-color: #FFAD5B");
             cellButton.setOnAction((ActionEvent t) -> {
                 ProComidasDto com = (ProComidasDto) ButtonCellComida.this.getTableView().getItems().get(ButtonCellComida.this.getIndex());
+                com.setModificado(true);
                 tbvFactura.getItems().add(com);
                 tbvComidas.refresh();
                 tbvFactura.refresh();
+                proFacturasDto.getComidas().add(com);
                 Suma();
 
             });
@@ -168,10 +201,11 @@ public class ComidasClienteViewController extends Controller implements Initiali
             cellButton.setStyle("-fx-background-color: #8EF680");
             cellButton.setOnAction((ActionEvent t) -> {
                 ProComidasDto fac = (ProComidasDto) ButtonCellFactura.this.getTableView().getItems().get(ButtonCellFactura.this.getIndex());
+                proFacturasDto.getComidasEliminadas().add(fac);
                 tbvFactura.getItems().remove(fac);
                 tbvFactura.refresh();
                 Suma();
-                if(tbvFactura.getItems().isEmpty()){
+                if (tbvFactura.getItems().isEmpty()) {
                     txtTotal.setText("0");
                 }
             });

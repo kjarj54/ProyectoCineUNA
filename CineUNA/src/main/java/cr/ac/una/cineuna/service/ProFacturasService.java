@@ -23,7 +23,7 @@ public class ProFacturasService {
         try {
             Map<String, Object> parametros = new HashMap<>();
             parametros.put("id", id);
-            Request request = new Request("ProComidasController/eliminarFactura", "/{id}", parametros);
+            Request request = new Request("ProFacturasController/eliminarFactura", "/{id}", parametros);
             request.delete();
             if (request.isError()) {
                 return new Respuesta(false, request.getError(), "");
@@ -38,7 +38,7 @@ public class ProFacturasService {
     public Respuesta guardarFactura(ProFacturasDto proFacturasDto) {
         try {
             //TODO
-            Request request = new Request("ProComidasController/guardarFactura");
+            Request request = new Request("ProFacturasController/guardarFactura");
             request.post(proFacturasDto);
             if (request.isError()) {
                 return new Respuesta(false, request.getError(), "");
@@ -54,7 +54,7 @@ public class ProFacturasService {
     public Respuesta getFactrura() {
         try {
 
-            Request request = new Request("ProComidasController/facturas");
+            Request request = new Request("ProFacturasController/facturas");
             request.get();
             if (request.isError()) {
                 return new Respuesta(false, request.getError(), "");

@@ -46,6 +46,10 @@ public class ProFacturasCrontroller {
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }
+            ProFacturasDto proFacturasDto1 = (ProFacturasDto) res.getResultado("Factura");
+            proFacturasDto1.setComidas(proFacturasDto.getComidas());
+            res = proFacturasServices.guardarFactura(proFacturasDto1);
+            
             return Response.ok((ProFacturasDto) res.getResultado("Factura")).build();
         } catch (Exception ex) {
             Logger.getLogger(ProSalasController.class.getName()).log(Level.SEVERE, null, ex);
