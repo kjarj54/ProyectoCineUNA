@@ -12,6 +12,8 @@ import javafx.beans.property.SimpleStringProperty;
  *
  * @author kevin
  */
+
+
 public class ProAsientosDto {
 
     public SimpleStringProperty asiId;
@@ -19,6 +21,9 @@ public class ProAsientosDto {
     public SimpleStringProperty asiNombre;
     public SimpleStringProperty asiEstado;
     private Boolean asiModificado;
+    
+    public ProTandasDto tanId;
+    
 
     public ProAsientosDto() {
         this.asiModificado = false;
@@ -26,6 +31,7 @@ public class ProAsientosDto {
         this.asiImg = new SimpleObjectProperty();
         this.asiNombre = new SimpleStringProperty();
         this.asiEstado = new SimpleStringProperty("L");
+        this.tanId = new ProTandasDto();
 
     }
 
@@ -72,5 +78,15 @@ public class ProAsientosDto {
     public void setAsiModificado(Boolean asiModificado) {
         this.asiModificado = asiModificado;
     }
+
+    public ProTandasDto getTanId() {
+        return tanId;
+    }
+
+    public void setTanId(ProTandasDto tanId) {
+        this.tanId = tanId;
+    }
+    
+    
 
 }

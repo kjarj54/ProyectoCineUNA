@@ -184,7 +184,7 @@ public class MantTandasViewController extends Controller implements Initializabl
     @FXML
     private void OnActionbtnPeli(ActionEvent event) {
         FlowController.getInstance().goView("TablePeliculasView");
-        //FlowController.getInstance().limpiarLoader("TablePeliculasView");
+        FlowController.getInstance().limpiarLoader("TablePeliculasView");
         
     }
     

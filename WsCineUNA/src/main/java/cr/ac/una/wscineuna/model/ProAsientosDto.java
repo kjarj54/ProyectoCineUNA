@@ -16,9 +16,11 @@ public class ProAsientosDto {
     private String asiEstado;
     private Boolean asiModificado;
     private ProSalas salId;
+    public ProTandasDto tanId;
 
     public ProAsientosDto() {
         this.asiModificado = false;
+        this.tanId = new ProTandasDto();
     }
 
     
@@ -29,6 +31,7 @@ public class ProAsientosDto {
         this.asiNombre = proAsientos.getAsiNombre();
         this.asiEstado = proAsientos.getAsiEstado();
         this.salId = proAsientos.getSalId();
+        this.tanId = new ProTandasDto(proAsientos.getTanId());
     }
     
     public Long getAsiId() {
@@ -70,5 +73,15 @@ public class ProAsientosDto {
     public void setAsiModificado(Boolean asiModificado) {
         this.asiModificado = asiModificado;
     }
+
+    public ProTandasDto getTanId() {
+        return tanId;
+    }
+
+    public void setTanId(ProTandasDto tanId) {
+        this.tanId = tanId;
+    }
+    
+    
 
 }

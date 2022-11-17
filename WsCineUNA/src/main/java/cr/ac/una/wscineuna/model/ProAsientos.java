@@ -76,11 +76,12 @@ public class ProAsientos implements Serializable {
         this.asiId = asiId;
     }
 
-    public ProAsientos(Long asiId, Serializable asiImg, String asiNombre, String asiEstado) {
+    public ProAsientos(Long asiId, Serializable asiImg, String asiNombre, String asiEstado, ProTandasDto protandasDto) {
         this.asiId = asiId;
         this.asiImg = asiImg;
         this.asiNombre = asiNombre;
         this.asiEstado = asiEstado;
+        this.tanId = new ProTandas();
     }
     
     public ProAsientos(ProAsientosDto proAsientosDto){
@@ -92,6 +93,7 @@ public class ProAsientos implements Serializable {
         this.asiEstado = proAsientosDto.getAsiEstado();
         this.asiImg = proAsientosDto.getAsiImg();
         this.asiNombre = proAsientosDto.getAsiNombre();
+        this.tanId = new ProTandas(proAsientosDto.getTanId());
     }
 
     public Long getAsiId() {
@@ -141,8 +143,8 @@ public class ProAsientos implements Serializable {
     public void setTanId(ProTandas tanId) {
         this.tanId = tanId;
     }
-
     
+
 
     public ProSalas getSalId() {
         return salId;
