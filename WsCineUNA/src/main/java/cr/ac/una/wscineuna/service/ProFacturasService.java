@@ -41,8 +41,15 @@ public class ProFacturasService {
         try {
             Query qryActividad = em.createNamedQuery("ProFacturas.findByFacId", ProFacturas.class);
             qryActividad.setParameter("facId", id);
-
-            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProFacturas", new ProFacturasDto((ProFacturas) qryActividad.getSingleResult()));
+            
+            ProFacturas proFacturas = (ProFacturas) qryActividad.getSingleResult();
+            ProFacturasDto proFacturasDto = new ProFacturasDto(proFacturas);
+            
+            for(ProComidas com : proFacturas.getProComidasList()){
+                proFacturasDto.getComidas().add(new ProComidasDto(com));
+            }
+            
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProFactura",proFacturasDto);
 
         } catch (NoResultException ex) {
             return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existe una factura con las credenciales ingresadas.", "validarFactura NoResultException");
