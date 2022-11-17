@@ -5,10 +5,13 @@
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
+import cr.ac.una.cineuna.model.ProClientesDto;
 import cr.ac.una.cineuna.model.ProComidasDto;
 import cr.ac.una.cineuna.model.ProFacturasDto;
+import cr.ac.una.cineuna.service.ProClientesService;
 import cr.ac.una.cineuna.service.ProComidasService;
 import cr.ac.una.cineuna.service.ProFacturasService;
+import cr.ac.una.cineuna.util.AppContext;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
 import java.net.URL;
@@ -68,6 +71,8 @@ public class ComidasClienteViewController extends Controller implements Initiali
     ProFacturasDto proFacturasDto;
 
     ProComidasDto proComidasDto;
+    
+    ProClientesDto proClienteDto;
 
     /**
      * Initializes the controller class.
@@ -99,6 +104,8 @@ public class ComidasClienteViewController extends Controller implements Initiali
         tbvComidas.refresh();
         
         proFacturasDto = new ProFacturasDto();
+        
+        proClienteDto = new ProClientesDto();
     }
 
     @Override
@@ -110,14 +117,25 @@ public class ComidasClienteViewController extends Controller implements Initiali
     private void OnActionBtnPagar(ActionEvent event) {
         try {
             ProFacturasService service = new ProFacturasService();
+            ProClientesService serviceCli = new ProClientesService();
+            
+            Long cli = (Long) AppContext.getInstance().get("UsuarioId");
+            
+            Respuesta respuesta2 = serviceCli.getCliente(cli);
+            proClienteDto = (ProClientesDto) respuesta2.getResultado("ProCliente");
+            
             String totalString  = txtTotal.getText();
             
             totalString = totalString.replaceAll("\\,00", "");
-            System.out.println(totalString);
+
             Long total = Long.parseLong(totalString);
+            
+            
             proFacturasDto.setFacTotal(total);
+            proFacturasDto.setCliId(proClienteDto);
             
             Respuesta respuesta = service.guardarFactura(proFacturasDto);
+            
             if (!respuesta.getEstado()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Generar la factura", getStage(), respuesta.getMensaje());
             } else {

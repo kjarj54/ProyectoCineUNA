@@ -24,6 +24,7 @@ public class ProFacturasDto {
     private Boolean modificado;
     List<ProComidasDto> comidas;
     List<ProComidasDto> comidasEliminadas;
+    ProClientesDto cliId;
 
     public ProFacturasDto() {
         this.modificado = false;
@@ -32,6 +33,7 @@ public class ProFacturasDto {
         this.facTotal = new SimpleStringProperty();
         comidas = FXCollections.observableArrayList();
         comidasEliminadas = new ArrayList<>();
+        this.cliId = new ProClientesDto();
     }
 
     public Long getFacId() {
@@ -88,6 +90,14 @@ public class ProFacturasDto {
 
     public void setComidasEliminadas(List<ProComidasDto> comidasEliminadas) {
         this.comidasEliminadas = comidasEliminadas;
+    }
+
+    public ProClientesDto getCliId() {
+        return cliId;
+    }
+
+    public void setCliId(ProClientesDto cliId) {
+        this.cliId = cliId;
     }
 
 }

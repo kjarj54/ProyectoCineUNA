@@ -72,10 +72,11 @@ public class ProFacturas implements Serializable {
         this.facId = facId;
     }
 
-    public ProFacturas(Long facId, Long facTotal, LocalDate facFecha) {
+    public ProFacturas(Long facId, Long facTotal, LocalDate facFecha,ProClientesDto proClientesDto) {
         this.facId = facId;
         this.facTotal = facTotal;
         this.facFecha = facFecha;
+        this.cliId = new ProClientes();
     }
 
     public ProFacturas(ProFacturasDto proFacturasDto) {
@@ -86,7 +87,8 @@ public class ProFacturas implements Serializable {
     public void actualizarFatura(ProFacturasDto proFacturasDto) {
         this.facFecha = proFacturasDto.getFacFecha();
         this.facTotal = proFacturasDto.getFacTotal();
-
+        this.cliId = new ProClientes(proFacturasDto.cliId);
+        
     }
 
     public Long getFacId() {

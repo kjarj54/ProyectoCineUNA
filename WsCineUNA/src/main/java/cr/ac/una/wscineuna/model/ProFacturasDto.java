@@ -26,7 +26,7 @@ public class ProFacturasDto {
         this.modificado = false;
         comidas = new ArrayList<>();
         comidasEliminadas = new ArrayList<>();
-        //this.cliId = new ProClientesDto();
+        this.cliId = new ProClientesDto();
     }
 
     public ProFacturasDto(ProFacturas proFacturas){

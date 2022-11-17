@@ -48,6 +48,7 @@ public class ProFacturasCrontroller {
             }
             ProFacturasDto proFacturasDto1 = (ProFacturasDto) res.getResultado("Factura");
             proFacturasDto1.setComidas(proFacturasDto.getComidas());
+            proFacturasDto1.setCliId(proFacturasDto.getCliId());
             res = proFacturasServices.guardarFactura(proFacturasDto1);
             
             return Response.ok((ProFacturasDto) res.getResultado("Factura")).build();
