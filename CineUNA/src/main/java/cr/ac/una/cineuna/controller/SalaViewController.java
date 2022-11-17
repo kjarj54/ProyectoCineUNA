@@ -5,6 +5,8 @@
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
+import cr.ac.una.cineuna.model.ProAsientosDto;
+import cr.ac.una.cineuna.service.ProAsientosService;
 import cr.ac.una.cineuna.util.Mensaje;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -81,13 +83,22 @@ public class SalaViewController extends Controller implements Initializable {
     private ImageView img12;
     @FXML
     private JFXButton btnImagenAsiento;
+    
+    
 
     /**
      * Initializes the controller class.
      */
+    
+    ProAsientosDto asientodto;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        asientodto = new ProAsientosDto();
+        btnA1.setUserData("O");
+        
+        
+        
     }    
 
     @Override
@@ -97,8 +108,22 @@ public class SalaViewController extends Controller implements Initializable {
 
     @FXML
     private void OnActionbtnA1(ActionEvent event) {
+        
+        btnA1.setUserData("1");
+        
+        
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
+            
             btnA1.setStyle("-fx-background-color: #00FFA6");
+            btnA1.setOnAction((ActionEvent e)->{
+        
+        }); 
+            System.out.println(btnA1.getUserData().toString());
+            
+            /*
+            asientodto.setAsiEstado("O");
+            ProAsientosService service1 = new ProAsientosService();
+            service1.guardarAsiento(asientodto);*/
         }
     }
 

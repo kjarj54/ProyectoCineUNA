@@ -64,7 +64,7 @@ public class PrincipalUsuariosViewController extends Controller implements Initi
 
     @FXML
     private void OnActionbtnReservar(ActionEvent event) {
-        FlowController.getInstance().goView("ReservarView");
+        FlowController.getInstance().goView("SalaView");
     }
 
     @FXML
