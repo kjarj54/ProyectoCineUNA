@@ -20,6 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -60,14 +61,13 @@ public class ProAsientos implements Serializable {
     @Version
     @Column(name = "ASI_VERSION")
     private Long asiVersion;
-    @JoinTable(name = "PRO_TANDASASIENTOS", joinColumns = {
-        @JoinColumn(name = "ASI_ID", referencedColumnName = "ASI_ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "TAN_ID", referencedColumnName = "TAN_ID")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<ProTandas> proTandasList;
     @JoinColumn(name = "SAL_ID", referencedColumnName = "SAL_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private ProSalas salId;
+    @JoinColumn(name = "TAN_ID", referencedColumnName = "TAN_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ProTandas tanId;
+    
 
     public ProAsientos() {
     }
@@ -134,13 +134,15 @@ public class ProAsientos implements Serializable {
         this.asiVersion = asiVersion;
     }
 
-    public List<ProTandas> getProTandasList() {
-        return proTandasList;
+    public ProTandas getTanId() {
+        return tanId;
     }
 
-    public void setProTandasList(List<ProTandas> proTandasList) {
-        this.proTandasList = proTandasList;
+    public void setTanId(ProTandas tanId) {
+        this.tanId = tanId;
     }
+
+    
 
     public ProSalas getSalId() {
         return salId;

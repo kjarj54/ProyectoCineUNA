@@ -255,6 +255,7 @@ public class MantTandasViewController extends Controller implements Initializabl
 
     @FXML
     private void OnActionbtnSala(ActionEvent event) {
+        FlowController.getInstance().limpiarLoader("TableSalaView");
         FlowController.getInstance().goView("TableSalaView");
     }
     
