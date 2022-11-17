@@ -141,5 +141,25 @@ public class ProTandasService {
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al eliminar la tanda.", "eliminarTanda " + ex.getMessage());
         }
     }
+    
+    public Respuesta getTandasSinParametros() {
+        try {
+            Query qryClientes = em.createNamedQuery("ProTandas.findAll", ProTandas.class);
+            List<ProTandas> clientes = qryClientes.getResultList();
+
+            List<ProTandasDto> clientesDto = new ArrayList<>();
+            for (ProTandas cliente : clientes) {
+                clientesDto.add(new ProTandasDto(cliente));
+            }
+
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProTandas", clientesDto);
+
+        } catch (NoResultException ex) {
+            return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen tandas con los criterios ingresados.", "getTandasSinParametros NoResultException");
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el tanda.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el tanda.", "getTandasSinParametros " + ex.getMessage());
+        }
+    }
 
 }

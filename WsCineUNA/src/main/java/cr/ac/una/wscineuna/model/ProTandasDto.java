@@ -46,7 +46,8 @@ public class ProTandasDto {
         this.tanHorafinal = proTandas.getTanHorafinal();
         this.tanHorainicio = proTandas.getTanHorainicio();
         this.tanPrecio = proTandas.getTanPrecio();
-        
+        this.salId = new ProSalasDto(proTandas.getSalId());
+        this.pelId = new ProPeliculasDto(proTandas.getPelId());
         
         
     }

@@ -35,6 +35,8 @@ public class ProSalasDto {
             return null;
         }
     }
+    
+    
 
     public void setSalId(Long salId) {
         this.salId.set(salId.toString());

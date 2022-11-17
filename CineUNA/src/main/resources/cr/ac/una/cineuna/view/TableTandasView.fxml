@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="450.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="cr.ac.una.cineuna.controller.TableTandasViewController">
+   <children>
+      <TableView fx:id="tbvResultados" layoutX="16.0" layoutY="22.0" onMousePressed="#OnMousePressedTbvResultados" prefHeight="410.0" prefWidth="716.0">
+         <columns>
+            <TableColumn fx:id="tbcID" minWidth="-Infinity" prefWidth="50.0" text="ID" />
+            <TableColumn fx:id="tbcHoraInicio" minWidth="-Infinity" prefWidth="50.0" text="HORA INICIO" />
+            <TableColumn fx:id="tbcHoraFinal" minWidth="-Infinity" prefWidth="40.0" text="HORA FINAL" />
+            <TableColumn fx:id="tbcFecha" minWidth="-Infinity" text="FECHA" />
+            <TableColumn fx:id="tbcPrecio" minWidth="-Infinity" text="PRECIO" />
+            <TableColumn fx:id="tbcPelicula" minWidth="-Infinity" text="PELICULA" />
+            <TableColumn fx:id="tbcSala" minWidth="-Infinity" text="SALA" />
+            <TableColumn fx:id="tbcSelec" minWidth="-Infinity" text="SELECCIONAR" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

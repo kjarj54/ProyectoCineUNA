@@ -26,7 +26,7 @@ import javax.ws.rs.core.Response;
  * @author kevin
  */
 @Path("/ProAsientosController")
-@Secure
+//@Secure
 public class ProAsientosController {
 
     @EJB

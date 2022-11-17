@@ -27,7 +27,7 @@ import javax.ws.rs.core.Response;
  */
 
 @Path("/ProComidasController")
-@Secure
+//@Secure
 public class ProComidasController {
     @EJB
     ProComidasService proComidasService;

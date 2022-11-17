@@ -26,7 +26,7 @@ import javax.ws.rs.core.Response;
  * @author kevin
  */
 @Path("/ProTandasController")
-@Secure
+//@Secure
 public class ProTandasController {
 
     @EJB
@@ -101,6 +101,23 @@ public class ProTandasController {
         } catch (Exception ex) {
             Logger.getLogger(ProSalasController.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error eliminando tanda").build();
+        }
+    }
+    
+    @GET
+    //@Secure
+    @Path("/getTandas/")
+    public Response getTandasSinParametros() {
+        try {
+            Respuesta res = proTandasService.getTandasSinParametros();
+            if (!res.getEstado()) {
+                return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
+            }
+            return Response.ok(new GenericEntity<List<ProTandasDto>>((List<ProTandasDto>) res.getResultado("ProTandas")) {
+            }).build();
+        } catch (Exception ex) {
+            Logger.getLogger(ProSalasController.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error obteniendo Tanda").build();
         }
     }
 }

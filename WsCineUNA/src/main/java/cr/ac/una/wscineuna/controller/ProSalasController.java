@@ -26,7 +26,7 @@ import javax.ws.rs.core.Response;
  * @author kevin
  */
 @Path("/ProSalasController")
-@Secure
+//@Secure
 public class ProSalasController {
     @EJB
     ProSalasService proSalasService;

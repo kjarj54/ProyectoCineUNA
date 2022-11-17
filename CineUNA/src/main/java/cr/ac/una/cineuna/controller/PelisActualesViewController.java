@@ -110,7 +110,7 @@ public class PelisActualesViewController extends Controller implements Initializ
             cellButtonComprar.setOnAction((ActionEvent t) -> {
                 ProPeliculasDto emp = (ProPeliculasDto) Celda.this.getListView().getItems().get(Celda.this.getIndex());
                 AppContext.getInstance().set("ComparaBoleto", emp.getPelId());;
-                FlowController.getInstance().goView("ReservarView");
+                FlowController.getInstance().goView("TableTandasView");
 
             });
             
