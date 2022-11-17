@@ -123,23 +123,6 @@ public class MantSalasViewController extends Controller implements Initializable
         
         try {
             
-            /*ProAsientosService service1 = new ProAsientosService();
-            Respuesta respuesta1 = service1.guardarAsiento(asientodto); 
-            ProAsientosDto asiento = new ProAsientosDto();
-            asiento = (ProAsientosDto)respuesta1.getResultado("Asiento");
-            asientodto.setAsiNombre("Hola");*/
-            
-            
-            asientodto.setTanId((ProTandasDto)AppContext.getInstance().get("IDTANDAS"));
-            
-            asientodto.setAsiNombre("hola123");
-            ProAsientosService service1 = new ProAsientosService();
-            Respuesta respuesta1 = service1.guardarAsiento(asientodto);
-            
-            
-            
-            
-            
             
             
             String invalidos = validarRequeridos();
