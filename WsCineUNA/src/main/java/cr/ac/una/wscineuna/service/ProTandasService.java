@@ -67,18 +67,8 @@ public class ProTandasService {
                     return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encrontró la tanda a modificar.", "guardarTanda NoResultException");
                 }
                 proTandas.actualizarTanda(proTandasDto);
-                for (ProAsientosDto asi : proTandasDto.getAsientosEliminados()) {
-                    proTandas.getProAsientosList().remove(new ProAsientos(asi.getAsiId()));
-                }
-                if (!proTandasDto.getAsientos().isEmpty()) {
-                    for (ProAsientosDto asi : proTandasDto.getAsientos()) {
-                        if (asi.getAsiModificado()) {
-                            ProAsientos pelicula1 = em.find(ProAsientos.class, asi.getAsiId());
-                            pelicula.getProTandasList().add(proTandas);
-                            proTandas.getProAsientosList().add(pelicula1);
-                        }
-                    }
-                }
+                
+                
 
                 
                 pelicula.getProTandasList().add(proTandas);

@@ -69,8 +69,7 @@ public class ProTandas implements Serializable {
     @Version
     @Column(name = "TAN_VERSION")
     private Long tanVersion;
-    @ManyToMany(mappedBy = "proTandasList", fetch = FetchType.LAZY)
-    private List<ProAsientos> proAsientosList;
+    
     @JoinColumn(name = "PEL_ID", referencedColumnName = "PEL_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private ProPeliculas pelId;
@@ -80,6 +79,8 @@ public class ProTandas implements Serializable {
     @JoinColumn(name = "SAL_ID", referencedColumnName = "SAL_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private ProSalas salId;
+    @OneToMany(mappedBy = "tanId", fetch = FetchType.LAZY)
+    private List<ProAsientos> proListAsientos;
 
     public ProTandas() {
     }
@@ -172,13 +173,15 @@ public class ProTandas implements Serializable {
         this.tanVersion = tanVersion;
     }
 
-    public List<ProAsientos> getProAsientosList() {
-        return proAsientosList;
+    public List<ProAsientos> getProListAsientos() {
+        return proListAsientos;
     }
 
-    public void setProAsientosList(List<ProAsientos> proAsientosList) {
-        this.proAsientosList = proAsientosList;
+    public void setProListAsientos(List<ProAsientos> proListAsientos) {
+        this.proListAsientos = proListAsientos;
     }
+
+    
 
     public ProPeliculas getPelId() {
         return pelId;
