@@ -9,10 +9,12 @@ import com.jfoenix.controls.JFXTextField;
 import cr.ac.una.cineuna.model.ProAsientosDto;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.model.ProSalasDto;
+import cr.ac.una.cineuna.model.ProTandasDto;
 import cr.ac.una.cineuna.service.AsientoService;
 import cr.ac.una.cineuna.service.ProAsientosService;
 import cr.ac.una.cineuna.service.ProPeliculasService;
 import cr.ac.una.cineuna.service.ProSalasService;
+import cr.ac.una.cineuna.util.AppContext;
 import cr.ac.una.cineuna.util.BindingUtils;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
@@ -128,10 +130,11 @@ public class MantSalasViewController extends Controller implements Initializable
             asientodto.setAsiNombre("Hola");*/
             
             
+            asientodto.setTanId((ProTandasDto)AppContext.getInstance().get("IDTANDAS"));
+            
             asientodto.setAsiNombre("hola123");
             ProAsientosService service1 = new ProAsientosService();
             Respuesta respuesta1 = service1.guardarAsiento(asientodto);
-            
             
             
             

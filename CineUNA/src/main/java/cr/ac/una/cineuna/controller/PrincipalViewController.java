@@ -2,7 +2,12 @@
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
+import cr.ac.una.cineuna.model.ProAsientosDto;
+import cr.ac.una.cineuna.model.ProTandasDto;
+import cr.ac.una.cineuna.service.ProAsientosService;
+import cr.ac.una.cineuna.util.AppContext;
 import cr.ac.una.cineuna.util.FlowController;
+import cr.ac.una.cineuna.util.Respuesta;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,6 +22,8 @@ import javafx.stage.Stage;
  *
  * @author Emanuel
  */
+
+
 public class PrincipalViewController extends Controller implements Initializable {
 
     @FXML
@@ -37,6 +44,7 @@ public class PrincipalViewController extends Controller implements Initializable
     /**
      * Initializes the controller class.
      */
+    ProAsientosDto asientodto;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -72,6 +80,7 @@ public class PrincipalViewController extends Controller implements Initializable
 
     @FXML
     private void OnActionBtnComidas(ActionEvent event) {
+        
         FlowController.getInstance().goView("ComidasAdminView");
     }
 

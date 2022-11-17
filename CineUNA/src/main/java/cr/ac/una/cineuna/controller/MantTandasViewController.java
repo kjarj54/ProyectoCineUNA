@@ -10,10 +10,12 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
+import cr.ac.una.cineuna.model.ProAsientosDto;
 import cr.ac.una.cineuna.model.ProClientesDto;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.model.ProSalasDto;
 import cr.ac.una.cineuna.model.ProTandasDto;
+import cr.ac.una.cineuna.service.ProAsientosService;
 import cr.ac.una.cineuna.service.ProClientesService;
 import cr.ac.una.cineuna.service.ProPeliculasService;
 import cr.ac.una.cineuna.service.ProSalasService;
@@ -30,6 +32,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,6 +42,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -65,18 +70,16 @@ public class MantTandasViewController extends Controller implements Initializabl
     private Button btnPeli;
     @FXML
     public JFXTextField txtPeli;
-    
+
     List<Node> requeridos = new ArrayList<>();
-    
-    
+
     JFXTextField aux = new JFXTextField();
     JFXTextField aux2 = new JFXTextField();
-    
+
     private TablePeliculasViewController menucontroller;
     @FXML
     public TextField txtID;
-    
-    
+
     ProTandasDto peli;
     ProSalasDto salas;
     @FXML
@@ -90,75 +93,79 @@ public class MantTandasViewController extends Controller implements Initializabl
     /**
      * Initializes the controller class.
      */
+
+    ProAsientosDto asientodto;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        aux.setLayoutX(0);aux.setLayoutY(0);
+        aux.setLayoutX(0);
+        aux.setLayoutY(0);
         root.getChildren().add(aux);
-        aux2.setLayoutX(300);aux2.setLayoutY(0);
+        aux2.setLayoutX(300);
+        aux2.setLayoutY(0);
         root.getChildren().add(aux2);
-        aux.setVisible(false);aux2.setVisible(false);
-        
-        
+        aux.setVisible(false);
+        aux2.setVisible(false);
+
         AppContext.getInstance().set("MantTandasViewController", this);
-        
+
         peli = new ProTandasDto();
         salas = new ProSalasDto();
-        
+        asientodto = new ProAsientosDto();
+
         indicarRequeridos();
         nuevaTnda();
-        
-        
+
         //txtPeli.setEditable(true);
-    }    
+    }
 
     @Override
     public void initialize() {
-        
+
     }
 
     @FXML
     private void onActionSalir(ActionEvent event) {
-        aux2.setText(String.valueOf(HoraFinal.getValue()));
+        //aux2.setText(String.valueOf(HoraFinal.getValue()));
+        FlowController.getInstance().limpiarLoader("MantTandasView");
+
     }
-    
+
     public void nuevaTnda() {
         unbindPeliculas();
         peli = new ProTandasDto();
-        
+
         bindPeliculas(true);
-        
+
     }
 
     @FXML
     private void onActionBtnGuardar(ActionEvent event) {
-        
+
         //peli.setPelId(Long.valueOf(txtID.getText()));
         String sss = txtID.getText();
         String ssss = txtIDSala.getText();
         aux.setText(String.valueOf(HoraInicio.getValue()));
         aux2.setText(String.valueOf(HoraFinal.getValue()));
-        
+
         try {
             ProPeliculasService service1 = new ProPeliculasService();
-            Respuesta respuesta1 = service1.getPelicula(Long.parseLong(sss)); 
+            Respuesta respuesta1 = service1.getPelicula(Long.parseLong(sss));
             ProPeliculasDto pelicula = new ProPeliculasDto();
-            pelicula = (ProPeliculasDto)respuesta1.getResultado("ProPelicula");
+            pelicula = (ProPeliculasDto) respuesta1.getResultado("ProPelicula");
             peli.setPelId(pelicula);
-            
-            
+
             ProSalasService service2 = new ProSalasService();
-            Respuesta respuesta2 = service2.getSalas(Long.parseLong(ssss)); 
+            Respuesta respuesta2 = service2.getSalas(Long.parseLong(ssss));
             ProSalasDto sala1 = new ProSalasDto();
-            sala1 = (ProSalasDto)respuesta2.getResultado("ProSalas");
+            sala1 = (ProSalasDto) respuesta2.getResultado("ProSalas");
             peli.setSalId(sala1);
-            
-            
+
             String invalidos = validarRequeridos();
             if (!invalidos.isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar tanda", getStage(), invalidos);
-            } 
-            else {
+            } else {
                 ProTandasService service = new ProTandasService();
                 Respuesta respuesta = service.guardarPelicula(peli);
                 if (!respuesta.getEstado()) {
@@ -166,7 +173,7 @@ public class MantTandasViewController extends Controller implements Initializabl
                 } else {
                     unbindPeliculas();
                     peli = (ProTandasDto) respuesta.getResultado("Tanda");
-                    
+                    AppContext.getInstance().set("IDTANDAS", peli);
                     bindPeliculas(false);
                     new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar tanda", getStage(), "TANDA actualizado correctamente.");
                 }
@@ -177,18 +184,20 @@ public class MantTandasViewController extends Controller implements Initializabl
             new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar tanda", getStage(), "Ocurrio un error guardando el tanda.");
         }
 
-       
-        
+        asientodto.setTanId((ProTandasDto) AppContext.getInstance().get("IDTANDAS"));
+        asientodto.setAsiNombre("hola123");
+        ProAsientosService service3 = new ProAsientosService();
+        Respuesta respuesta3 = service3.guardarAsiento(asientodto);
+
     }
 
     @FXML
     private void OnActionbtnPeli(ActionEvent event) {
         FlowController.getInstance().goView("TablePeliculasView");
         FlowController.getInstance().limpiarLoader("TablePeliculasView");
-        
+
     }
-    
-    
+
     public void indicarRequeridos() {
         requeridos.clear();
         requeridos.addAll(Arrays.asList(txtNombreTanda));
@@ -234,15 +243,14 @@ public class MantTandasViewController extends Controller implements Initializabl
             return "Campos requeridos o con problemas de formato [" + invalidos + "].";
         }
     }
-    
-    
+
     public void bindPeliculas(Boolean nuevo) {
         txtNombreTanda.textProperty().bindBidirectional(peli.tanNombre);
         txtPrecio.textProperty().bindBidirectional(peli.tanPrecio);
         dpFecha.valueProperty().bindBidirectional(peli.tanFecha);
         aux.textProperty().bindBidirectional(peli.tanHorainicio);
         aux2.textProperty().bindBidirectional(peli.tanHorafinal);
-        
+
     }
 
     public void unbindPeliculas() {
@@ -258,5 +266,19 @@ public class MantTandasViewController extends Controller implements Initializabl
         FlowController.getInstance().limpiarLoader("TableSalaView");
         FlowController.getInstance().goView("TableSalaView");
     }
-    
+
+    public void Tiempo() {
+        Timeline contador = new Timeline(new KeyFrame(
+                Duration.seconds(2),
+                acción -> {
+
+                    asientodto.setTanId((ProTandasDto) AppContext.getInstance().get("IDTANDAS"));
+                    asientodto.setAsiNombre("hola123");
+                    ProAsientosService service3 = new ProAsientosService();
+                    Respuesta respuesta3 = service3.guardarAsiento(asientodto);
+
+                }));
+        contador.play();
+    }
+
 }
