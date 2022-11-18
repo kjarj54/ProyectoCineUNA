@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -86,6 +87,30 @@ public class ProAsientosService {
             for (ProAsientos asiento : asientos) {
                 asientosDto.add(new ProAsientosDto(asiento));
             }
+
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProAsientos", asientosDto);
+        } catch (NoResultException ex) {
+            return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen asientos con los criterios ingresados.", "getAsientos NoResultException");
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el asiento.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el asiento.", "getAsientos " + ex.getMessage());
+        }
+    }
+    
+     public Respuesta getAsientosTanId(Long tanId, String nombre) {
+        try {
+            
+            Query qryAsientos = em.createNamedQuery("ProClientes.findAll", ProAsientos.class);
+            List<ProAsientos> asientos = qryAsientos.getResultList();
+
+            asientos = asientos.stream().filter(a-> a.getTanId().getTanId().equals(tanId) && a.getAsiNombre().equals(nombre)).collect(Collectors.toList());
+                     
+            List<ProAsientosDto> asientosDto = new ArrayList<>();
+            
+            for (ProAsientos asiento : asientos) {
+                asientosDto.add(new ProAsientosDto(asiento));
+            }
+            
 
             return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProAsientos", asientosDto);
         } catch (NoResultException ex) {

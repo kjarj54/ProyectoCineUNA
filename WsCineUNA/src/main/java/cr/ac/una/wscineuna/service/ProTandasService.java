@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -132,10 +133,12 @@ public class ProTandasService {
         }
     }
     
-    public Respuesta getTandasSinParametros() {
+    public Respuesta getTandasSinParametros(Long id) {
         try {
             Query qryClientes = em.createNamedQuery("ProTandas.findAll", ProTandas.class);
             List<ProTandas> clientes = qryClientes.getResultList();
+            
+            clientes = clientes.stream().filter(a-> a.getPelId().getPelId().equals(id)).collect(Collectors.toList());
 
             List<ProTandasDto> clientesDto = new ArrayList<>();
             for (ProTandas cliente : clientes) {
