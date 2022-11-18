@@ -85,8 +85,6 @@ public class SalaViewController extends Controller implements Initializable {
     private Button btnD3;
     @FXML
     private ImageView img12;
-    @FXML
-    private JFXButton btnImagenAsiento;
     
     
 
@@ -119,7 +117,10 @@ public class SalaViewController extends Controller implements Initializable {
         img11.setImage(ConvertToImage(asientodto.getAsiImg()));
         img12.setImage(ConvertToImage(asientodto.getAsiImg()));
         
+        Respuesta respuesta20 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "1");
         
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        asientos = new ProAsientosService();
         if(asientodto.getAsiEstado().equals("O")){
             btnA1.setStyle("-fx-background-color: #FF0000");
             btnA1.setDisable(true);
@@ -128,84 +129,104 @@ public class SalaViewController extends Controller implements Initializable {
         asientos = new ProAsientosService();
         Respuesta respuesta1 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "2");
         
-        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        asientodto = (ProAsientosDto)respuesta1.getResultado("ProAsientos");
         
         if(asientodto.getAsiEstado().equals("O")){
             btnA2.setStyle("-fx-background-color: #FF0000");
             btnA2.setDisable(true);
             
         }
-        asientos = new ProAsientosService();
+        
         Respuesta respuesta2 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "3");
         
-        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
-        
+        asientodto = (ProAsientosDto)respuesta2.getResultado("ProAsientos");
+        asientos = new ProAsientosService();
         if(asientodto.getAsiEstado().equals("O")){
             btnA3.setStyle("-fx-background-color: #FF0000");
             btnA3.setDisable(true);
             
         }
-        asientos = new ProAsientosService();
         Respuesta respuesta3 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "4");
         
-        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
-        
+        asientodto = (ProAsientosDto)respuesta3.getResultado("ProAsientos");
+        asientos = new ProAsientosService();
         if(asientodto.getAsiEstado().equals("O")){
             btnB1.setStyle("-fx-background-color: #FF0000");
             btnB1.setDisable(true);
             
         }
-        asientos = new ProAsientosService();
         Respuesta respuesta4 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "5");
         
-        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
-        
+        asientodto = (ProAsientosDto)respuesta4.getResultado("ProAsientos");
+        asientos = new ProAsientosService();
         if(asientodto.getAsiEstado().equals("O")){
             btnB2.setStyle("-fx-background-color: #FF0000");
             btnB2.setDisable(true);
             
         }
-        asientos = new ProAsientosService();
         Respuesta respuesta5 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "6");
         
-        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
-        
+        asientodto = (ProAsientosDto)respuesta5.getResultado("ProAsientos");
+        asientos = new ProAsientosService();
         if(asientodto.getAsiEstado().equals("O")){
             btnB3.setStyle("-fx-background-color: #FF0000");
             btnB3.setDisable(true);
             
         }
-        asientos = new ProAsientosService();
         Respuesta respuesta6 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "7");
         
-        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
-        
+        asientodto = (ProAsientosDto)respuesta6.getResultado("ProAsientos");
+        asientos = new ProAsientosService();
         if(asientodto.getAsiEstado().equals("O")){
             btnC1.setStyle("-fx-background-color: #FF0000");
             btnC1.setDisable(true);
             
         }
-        asientos = new ProAsientosService();
         Respuesta respuesta7 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "8");
         
-        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
-        
+        asientodto = (ProAsientosDto)respuesta7.getResultado("ProAsientos");
+        asientos = new ProAsientosService();
         if(asientodto.getAsiEstado().equals("O")){
             btnC2.setStyle("-fx-background-color: #FF0000");
             btnC2.setDisable(true);
             
         }
-        asientos = new ProAsientosService();
         Respuesta respuesta8 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "9");
         
-        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
-        
+        asientodto = (ProAsientosDto)respuesta8.getResultado("ProAsientos");
+        asientos = new ProAsientosService();
         if(asientodto.getAsiEstado().equals("O")){
             btnC3.setStyle("-fx-background-color: #FF0000");
             btnC3.setDisable(true);
             
         }
+        Respuesta respuesta9 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "10");
         
+        asientodto = (ProAsientosDto)respuesta9.getResultado("ProAsientos");
+        asientos = new ProAsientosService();
+        if(asientodto.getAsiEstado().equals("O")){
+            btnD1.setStyle("-fx-background-color: #FF0000");
+            btnD1.setDisable(true);
+            
+        }
+        Respuesta respuesta10 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "11");
+        
+        asientodto = (ProAsientosDto)respuesta10.getResultado("ProAsientos");
+        asientos = new ProAsientosService();
+        if(asientodto.getAsiEstado().equals("O")){
+            btnD2.setStyle("-fx-background-color: #FF0000");
+            btnD2.setDisable(true);
+            
+        }
+        Respuesta respuesta101 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "12");
+        
+        asientodto = (ProAsientosDto)respuesta101.getResultado("ProAsientos");
+        asientos = new ProAsientosService();
+        if(asientodto.getAsiEstado().equals("O")){
+            btnD3.setStyle("-fx-background-color: #FF0000");
+            btnD3.setDisable(true);
+            
+        }
         
         
     }    
@@ -235,7 +256,7 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnA1.setStyle("-fx-background-color: #FF0000");
-            FlowController.getInstance().limpiarLoader("SalaView");
+            
             
             //System.out.println(btnA1.getUserData().toString());
             
@@ -261,7 +282,7 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnA2.setStyle("-fx-background-color: #FF0000");
-            FlowController.getInstance().limpiarLoader("SalaView");
+            
             //System.out.println(btnA1.getUserData().toString());
             
             /*
@@ -286,7 +307,7 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnA3.setStyle("-fx-background-color: #FF0000");
-            FlowController.getInstance().limpiarLoader("SalaView");
+            
             //System.out.println(btnA1.getUserData().toString());
             
             /*
@@ -527,7 +548,6 @@ public class SalaViewController extends Controller implements Initializable {
         return imageInBytes;
     }
 
-    @FXML
     private void OnActionbtnImagenAsiento(ActionEvent event) throws IOException {
         
         FileChooser fileChooser = new FileChooser();

@@ -1,7 +1,6 @@
 cr\ac\una\cineuna\util\Request.class
 cr\ac\una\cineuna\service\ProComidasService.class
 cr\ac\una\cineuna\service\ProPeliculasService.class
-cr\ac\una\cineuna\controller\TableTandasViewController$ButtonCell.class
 cr\ac\una\cineuna\controller\ComidasClienteViewController$ButtonCellFactura.class
 cr\ac\una\cineuna\service\ProComidasService$1.class
 cr\ac\una\cineuna\util\BindingUtils.class
@@ -76,6 +75,7 @@ cr\ac\una\cineuna\controller\MantUsuTableViewController$ButtonCell.class
 cr\ac\una\cineuna\util\Request$1.class
 cr\ac\una\cineuna\controller\MantTandasViewController.class
 cr\ac\una\cineuna\controller\MantPelTableViewController$ButtonCell.class
+cr\ac\una\cineuna\controller\TableTandasViewController$ButtonCell2.class
 cr\ac\una\cineuna\model\ProClientesDto.class
 cr\ac\una\cineuna\model\ProAsientosDto.class
 cr\ac\una\cineuna\util\Mensaje.class
