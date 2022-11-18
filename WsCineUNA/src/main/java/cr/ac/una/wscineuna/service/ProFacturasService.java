@@ -11,6 +11,7 @@ import cr.ac.una.wscineuna.model.ProFacturasDto;
 import cr.ac.una.wscineuna.util.CodigoRespuesta;
 import cr.ac.una.wscineuna.util.Respuesta;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,7 @@ public class ProFacturasService {
 
     public Respuesta guardarFactura(ProFacturasDto proFacturasDto) {
         try {
-            proFacturasDto.setFacFecha(LocalDateTime.now());
+            proFacturasDto.setFacFecha(LocalDate.now());
             ProFacturas proFacturas;
             if (proFacturasDto.getFacId() != null && proFacturasDto.getFacId() > 0) {
                 proFacturas = em.find(ProFacturas.class, proFacturasDto.getFacId());

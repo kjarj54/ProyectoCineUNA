@@ -1,4 +1,3 @@
-
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
@@ -88,7 +87,7 @@ public class ComidasClienteViewController extends Controller implements Initiali
     ProFacturasDto proFacturasDto;
 
     ProComidasDto proComidasDto;
-    
+
     ProClientesDto proClienteDto;
 
     /**
@@ -119,77 +118,77 @@ public class ComidasClienteViewController extends Controller implements Initiali
         actualizarTbv();
 
         tbvComidas.refresh();
-        
+
         proFacturasDto = new ProFacturasDto();
-        
+
         proClienteDto = new ProClientesDto();
     }
 
     @Override
     public void initialize() {
 
-    }  
-    
+    }
+
     @FXML
     private void OnActionBtnPagar(ActionEvent event) throws JRException, FileNotFoundException {
-        
+
         //InputStream is = getClass().getClassLoader().getResourceAsStream("facturas.jrxml");
         //InputStream in = new FileInputStream(new File(App.class.getResourceAsStream("/cr/ac/una/cineuna/resources/factura.jrxml")));
         //solo ocupo leer el archivo
-        JasperDesign jd = JRXmlLoader.load(in);
+        /*JasperDesign jd = JRXmlLoader.load(in);
+
+        String sql = "SELECT PRO_FACTURAS.FAC_FECHA, \n"
+                + "PRO_FACTURAS.FAC_TOTAL, \n"
+                + "PRO_CLIENTES.CLI_CORREO, \n"
+                + "PRO_CLIENTES.CLI_PAPELLIDO, \n"
+                + "PRO_CLIENTES.CLI_NOMBRE \n"
+                + "FROM PRO_CLIENTES, \n"
+                + "PRO_FACTURAS \n"
+                + "WHERE PRO_CLIENTES.CLI_ADMIN = 'N' ";
+        JRDesignQuery newQuery = new JRDesignQuery();
+        newQuery.setText(sql);
+        jd.setQuery(newQuery);
+        JasperReport report = JasperCompileManager.compileReport(jd);
+        HashMap hash = new HashMap();
+        JasperPrint print = JasperFillManager.fillReport(report, hash);
+        JasperViewer.viewReport(print, true);
+        OutputStream os = new FileOutputStream(new File("reporte.pdf"));
+        JasperExportManager.exportReportToPdfStream(print, os);*/
+
+        try {
+            ProFacturasService service = new ProFacturasService();
+            ProClientesService serviceCli = new ProClientesService();
+
+            Long cli = (Long) AppContext.getInstance().get("UsuarioId");
+
+            Respuesta respuesta2 = serviceCli.getCliente(cli);
+            proClienteDto = (ProClientesDto) respuesta2.getResultado("ProCliente");
+
+            String totalString = txtTotal.getText();
+
+            totalString = totalString.replaceAll("\\,00", "");
+
+            Long total = Long.parseLong(totalString);
+
+            proFacturasDto.setFacTotal(total);
+            proFacturasDto.setCliId(proClienteDto);
+
+            Respuesta respuesta = service.guardarFactura(proFacturasDto);
+
+            if (!respuesta.getEstado()) {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Generar la factura", getStage(), respuesta.getMensaje());
+            } else {
+                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Generar la factura", getStage(), "Factura generada correctamente.");
+                tbvFactura.getItems().clear();
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(ComidasClienteViewController.class.getName()).log(Level.SEVERE, "Error generando la factura.");
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Generar la factura", getStage(), "Ocurrio un error generando la factura.");
+        }
         
-                String sql = "SELECT PRO_FACTURAS.FAC_FECHA, \n"
-                        + "PRO_FACTURAS.FAC_TOTAL, \n"
-                        + "PRO_CLIENTES.CLI_CORREO, \n"
-                        + "PRO_CLIENTES.CLI_PAPELLIDO, \n"
-                        + "PRO_CLIENTES.CLI_NOMBRE \n"
-                        + "FROM PRO_CLIENTES, \n" 
-                        + "PRO_FACTURAS \n" 
-                        + "WHERE PRO_CLIENTES.CLI_ADMIN = 'N' ";
-            JRDesignQuery newQuery = new JRDesignQuery();
-            newQuery.setText(sql);
-            jd.setQuery(newQuery);
-            JasperReport report = JasperCompileManager.compileReport(jd);
-            HashMap hash = new HashMap();
-            JasperPrint print = JasperFillManager.fillReport(report, hash);
-            JasperViewer.viewReport(print, true);
-            OutputStream os = new FileOutputStream(new File("reporte.pdf"));
-            JasperExportManager.exportReportToPdfStream(print, os);
-            
-//        try {
-//            ProFacturasService service = new ProFacturasService();
-//            ProClientesService serviceCli = new ProClientesService();
-//            
-//            Long cli = (Long) AppContext.getInstance().get("UsuarioId");
-//            
-//            Respuesta respuesta2 = serviceCli.getCliente(cli);
-//            proClienteDto = (ProClientesDto) respuesta2.getResultado("ProCliente");
-//            
-//            String totalString  = txtTotal.getText();
-//            
-//            totalString = totalString.replaceAll("\\,00", "");
-//
-//            Long total = Long.parseLong(totalString);
-//            
-//            
-//            proFacturasDto.setFacTotal(total);
-//            proFacturasDto.setCliId(proClienteDto);
-//            
-//            Respuesta respuesta = service.guardarFactura(proFacturasDto);
-//            
-//            if (!respuesta.getEstado()) {
-//                new Mensaje().showModal(Alert.AlertType.ERROR, "Generar la factura", getStage(), respuesta.getMensaje());
-//            } else {
-//                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Generar la factura", getStage(), "Factura generada correctamente.");
-//                tbvFactura.getItems().clear();
-//            }
-//
-//        } catch (Exception ex) {
-//            Logger.getLogger(ComidasClienteViewController.class.getName()).log(Level.SEVERE, "Error generando la factura.");
-//            new Mensaje().showModal(Alert.AlertType.ERROR, "Generar la factura", getStage(), "Ocurrio un error generando la factura.");
-//        }
-        
-        
+        txtTotal.setText("0");
+
     }
 
     public void Suma() {

@@ -9,6 +9,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="root" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.SalaViewController">
    <children>
+      <ImageView fx:id="imgFondo" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <VBox layoutX="7.0" layoutY="86.0" prefHeight="200.0" prefWidth="300.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
@@ -94,6 +95,5 @@
          </children>
       </VBox>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="194.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <ImageView fx:id="imgFondo" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

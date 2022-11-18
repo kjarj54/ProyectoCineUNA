@@ -131,6 +131,7 @@ public class TableTandasViewController extends Controller implements Initializab
             cellButton.setOnAction((ActionEvent t) -> {
                 ProTandasDto emp = (ProTandasDto) ButtonCell2.this.getTableView().getItems().get(ButtonCell2.this.getIndex());
                 AppContext.getInstance().set("IDTANDAPARAASIENTO", emp.getTanId());
+                AppContext.getInstance().set("IMAGENSALA", emp.salId.getSalId());
                 tbvResultados.refresh();
                 FlowController.getInstance().limpiarLoader("SalaView");
                 FlowController.getInstance().goView("SalaView");

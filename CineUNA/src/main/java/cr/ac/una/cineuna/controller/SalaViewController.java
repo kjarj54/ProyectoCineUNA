@@ -6,7 +6,9 @@ package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
 import cr.ac.una.cineuna.model.ProAsientosDto;
+import cr.ac.una.cineuna.model.ProSalasDto;
 import cr.ac.una.cineuna.service.ProAsientosService;
+import cr.ac.una.cineuna.service.ProSalasService;
 import cr.ac.una.cineuna.util.AppContext;
 import cr.ac.una.cineuna.util.FlowController;
 import cr.ac.una.cineuna.util.Mensaje;
@@ -122,6 +124,11 @@ public class SalaViewController extends Controller implements Initializable {
         img10.setImage(ConvertToImage(asientodto.getAsiImg()));
         img11.setImage(ConvertToImage(asientodto.getAsiImg()));
         img12.setImage(ConvertToImage(asientodto.getAsiImg()));
+        ProSalasService servicesala = new ProSalasService();
+        Respuesta respuestasala= servicesala.getSalas((Long)AppContext.getInstance().get("IMAGENSALA"));
+        ProSalasDto salasdto = new ProSalasDto();
+        salasdto = (ProSalasDto)respuestasala.getResultado("ProSalas");
+        imgFondo.setImage(ConvertToImage(salasdto.getSalImgFondo()));
         
         Respuesta respuesta20 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "1");
         

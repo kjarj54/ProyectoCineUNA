@@ -5,6 +5,7 @@
 package cr.ac.una.wscineuna.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.Basic;
@@ -51,7 +52,7 @@ public class ProFacturas implements Serializable {
     private Long facTotal;
     @Basic(optional = false)
     @Column(name = "FAC_FECHA")
-    private LocalDateTime facFecha;
+    private LocalDate facFecha;
     @Basic(optional = false)
     @Version
     @Column(name = "FAC_VERSION")
@@ -72,7 +73,7 @@ public class ProFacturas implements Serializable {
         this.facId = facId;
     }
 
-    public ProFacturas(Long facId, Long facTotal, LocalDateTime facFecha,ProClientesDto proClientesDto) {
+    public ProFacturas(Long facId, Long facTotal, LocalDate facFecha,ProClientesDto proClientesDto) {
         this.facId = facId;
         this.facTotal = facTotal;
         this.facFecha = facFecha;
@@ -115,11 +116,11 @@ public class ProFacturas implements Serializable {
         this.facVersion = facVersion;
     }
 
-    public LocalDateTime getFacFecha() {
+    public LocalDate getFacFecha() {
         return facFecha;
     }
 
-    public void setFacFecha(LocalDateTime facFecha) {
+    public void setFacFecha(LocalDate facFecha) {
         this.facFecha = facFecha;
     }
 
