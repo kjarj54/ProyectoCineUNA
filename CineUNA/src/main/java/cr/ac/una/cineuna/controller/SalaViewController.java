@@ -269,7 +269,8 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnA1.setStyle("-fx-background-color: #FF0000");
-            
+            ProAsientosService service50 = new ProAsientosService();
+            Respuesta respuesta10 = service50.compraAsiento(Long.valueOf("1"), (Long)AppContext.getInstance().get("UsuarioId"));
             
             //System.out.println(btnA1.getUserData().toString());
             

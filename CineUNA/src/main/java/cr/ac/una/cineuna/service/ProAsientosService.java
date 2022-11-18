@@ -52,6 +52,7 @@ public class ProAsientosService {
         }
     }
     
+    
     public Respuesta getAsientosTanId(Long id, String nombre) {
         try {
             Map<String, Object> parametros = new HashMap<>();
@@ -67,6 +68,23 @@ public class ProAsientosService {
         } catch (Exception ex) {
             Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Ocurrio un error al eliminar el asiento.", ex);
             return new Respuesta(false, "Ocurrio un error al eliminar el asiento.", "getAsientosTanId " + ex.getMessage());
+        }
+    }
+    
+    public Respuesta compraAsiento(Long asiId, Long cliId) {
+        try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("asiId", asiId);
+            parametros.put("cliId", cliId);
+            Request request = new Request("ProAsientosController/compraAsiento", "/{asiId}/{cliId}", parametros);
+            request.get();
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+            return new Respuesta(true, "", "");
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Ocurrio un error al enviar el asiento.", ex);
+            return new Respuesta(false, "Ocurrio un error al enviar el asiento.", "compraAsiento " + ex.getMessage());
         }
     }
     
