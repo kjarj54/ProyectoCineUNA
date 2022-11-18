@@ -5,6 +5,7 @@
 package cr.ac.una.wscineuna.controller;
 
 import cr.ac.una.wscineuna.model.ProAsientosDto;
+import cr.ac.una.wscineuna.model.ProClientesDto;
 import cr.ac.una.wscineuna.service.ProAsientosService;
 import cr.ac.una.wscineuna.util.CodigoRespuesta;
 import cr.ac.una.wscineuna.util.Respuesta;
@@ -48,6 +49,21 @@ public class ProAsientosController {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }
             return Response.ok((ProAsientosDto) res.getResultado("Asiento")).build();
+        } catch (Exception ex) {
+            Logger.getLogger(ProAsientosController.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error guardando el asiento").build();
+        }
+    }
+    
+    @GET
+    @Path("/compraAsiento/{asiId}/{cliId}")
+    public Response compraAsiento(@PathParam("asiId")Long asiId, @PathParam("cliId")Long cliId) {
+        try {
+            Respuesta res = proAsientosService.comprarAsiento(asiId,cliId);
+            if (!res.getEstado()) {
+                return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
+            }
+            return Response.ok().build();
         } catch (Exception ex) {
             Logger.getLogger(ProAsientosController.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error guardando el asiento").build();
