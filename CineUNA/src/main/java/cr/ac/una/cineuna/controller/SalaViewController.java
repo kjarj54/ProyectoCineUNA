@@ -6,7 +6,6 @@ package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
 import cr.ac.una.cineuna.model.ProAsientosDto;
-import cr.ac.una.cineuna.service.ProAsientosService;
 import cr.ac.una.cineuna.util.Mensaje;
 import java.io.ByteArrayInputStream;
 import java.io.File;

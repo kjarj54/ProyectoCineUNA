@@ -9,7 +9,6 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import cr.ac.una.cineuna.model.ProClientesDto;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.service.ProPeliculasService;
 import cr.ac.una.cineuna.util.AppContext;

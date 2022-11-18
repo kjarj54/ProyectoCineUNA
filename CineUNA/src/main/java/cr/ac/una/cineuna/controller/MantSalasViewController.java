@@ -7,14 +7,8 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import cr.ac.una.cineuna.model.ProAsientosDto;
-import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.model.ProSalasDto;
-import cr.ac.una.cineuna.model.ProTandasDto;
-import cr.ac.una.cineuna.service.AsientoService;
-import cr.ac.una.cineuna.service.ProAsientosService;
-import cr.ac.una.cineuna.service.ProPeliculasService;
 import cr.ac.una.cineuna.service.ProSalasService;
-import cr.ac.una.cineuna.util.AppContext;
 import cr.ac.una.cineuna.util.BindingUtils;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
@@ -35,23 +29,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import org.apache.commons.compress.utils.IOUtils;
 /**
  * FXML Controller class
@@ -81,7 +69,6 @@ public class MantSalasViewController extends Controller implements Initializable
      * Initializes the controller class.
      */
     List<Node> requeridos = new ArrayList<>();
-    List<AsientoService> asientos = new ArrayList<>();
     
     ProSalasDto proSalasdto;
     @FXML

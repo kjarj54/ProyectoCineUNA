@@ -5,7 +5,6 @@
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
-import cr.ac.una.cineuna.model.ProClientesDto;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.service.ProPeliculasService;
 import cr.ac.una.cineuna.util.AppContext;

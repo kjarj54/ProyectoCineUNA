@@ -4,8 +4,6 @@
  */
 package cr.ac.una.cineuna.controller;
 
-import cr.ac.una.cineuna.model.ProPeliculasDto;
-import cr.ac.una.cineuna.model.ProSalasDto;
 import cr.ac.una.cineuna.model.ProTandasDto;
 import cr.ac.una.cineuna.service.ProTandasService;
 import cr.ac.una.cineuna.util.AppContext;
@@ -16,9 +14,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
