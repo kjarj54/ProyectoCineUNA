@@ -8,7 +8,9 @@ import cr.ac.una.cineuna.model.ProTandasDto;
 import cr.ac.una.cineuna.util.Request;
 import cr.ac.una.cineuna.util.Respuesta;
 import jakarta.ws.rs.core.GenericType;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,10 +38,11 @@ public class ProTandasService {
         }
     }
     
-    public Respuesta getTandasSinParametros() {
+    public Respuesta getTandasSinParametros(Long id) {
         try {
-
-            Request request = new Request("ProTandasController/getTandas");
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("id", id);
+            Request request = new Request("ProTandasController/getTandas", "/{id}",parametros);
             request.get();
             if (request.isError()) {
                 return new Respuesta(false, request.getError(), "");

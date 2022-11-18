@@ -8,6 +8,7 @@ import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.model.ProSalasDto;
 import cr.ac.una.cineuna.model.ProTandasDto;
 import cr.ac.una.cineuna.service.ProTandasService;
+import cr.ac.una.cineuna.util.AppContext;
 import cr.ac.una.cineuna.util.FlowController;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
@@ -94,7 +95,8 @@ public class TableTandasViewController extends Controller implements Initializab
         tbcPrecio.setCellValueFactory(clbck -> clbck.getValue().tanPrecio);
         
         ProTandasService proPeliService = new ProTandasService();
-        Respuesta respuesta = proPeliService.getTandasSinParametros();
+        Long id = (Long) AppContext.getInstance().get("ComparaBoleto");
+        Respuesta respuesta = proPeliService.getTandasSinParametros(id);
 
             if (respuesta.getEstado()) {
                 ObservableList<ProTandasDto> proClientesDtos = FXCollections.observableList((List<ProTandasDto>) respuesta.getResultado("ProTandas"));

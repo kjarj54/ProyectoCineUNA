@@ -106,10 +106,10 @@ public class ProTandasController {
     
     @GET
     //@Secure
-    @Path("/getTandas/")
-    public Response getTandasSinParametros() {
+    @Path("/getTandas/{id}")
+    public Response getTandasSinParametros(@PathParam("id") Long id) {
         try {
-            Respuesta res = proTandasService.getTandasSinParametros();
+            Respuesta res = proTandasService.getTandasSinParametros(id);
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }
