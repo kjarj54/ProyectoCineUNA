@@ -4,13 +4,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="cr.ac.una.cineuna.controller.TableSalaViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.TableSalaViewController">
    <children>
       <TableView fx:id="tbvResultados" layoutX="17.0" layoutY="22.0" onMousePressed="#OnMousePressedTbvResultados" prefHeight="356.0" prefWidth="566.0">
          <columns>
             <TableColumn fx:id="tbcID" minWidth="-Infinity" prefWidth="50.0" text="ID" />
-            <TableColumn fx:id="tbcNombre" minWidth="-Infinity" prefWidth="50.0" text="NOMBRE" />
+            <TableColumn fx:id="tbcNombre" minWidth="-Infinity" prefWidth="50.0" text="%nombre" />
             <TableColumn fx:id="tbcEstado" minWidth="-Infinity" prefWidth="40.0" text="ESTADO" />
             <TableColumn fx:id="tbcSelec" minWidth="-Infinity" text="SELECCIONAR" />
          </columns>

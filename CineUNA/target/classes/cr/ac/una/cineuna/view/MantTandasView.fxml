@@ -31,21 +31,21 @@
                <children>
                   <Label prefHeight="27.0" prefWidth="142.0" styleClass="h3-contraste" text="%NombreFecha" />
                   <Separator maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="38.0" prefWidth="168.0" visible="false" HBox.hgrow="ALWAYS" />
-                  <JFXDatePicker fx:id="dpFecha" prefHeight="38.0" prefWidth="300.0" promptText="Fecha" />
+                  <JFXDatePicker fx:id="dpFecha" prefHeight="38.0" prefWidth="300.0" promptText="%fecha" />
                </children>
             </HBox>
             <HBox alignment="CENTER">
                <children>
                   <Label prefHeight="27.0" prefWidth="142.0" styleClass="h3-contraste" text="%NombreHoraI" />
                   <Separator maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="38.0" prefWidth="168.0" visible="false" HBox.hgrow="ALWAYS" />
-                  <JFXTimePicker fx:id="HoraInicio" prefWidth="300.0" promptText="Hora Inicio" />
+                  <JFXTimePicker fx:id="HoraInicio" prefWidth="300.0" promptText="%HoraInicio" />
                </children>
             </HBox>
             <HBox alignment="CENTER">
                <children>
                   <Label prefHeight="27.0" prefWidth="142.0" styleClass="h3-contraste" text="%NombreHoraF" />
                   <Separator maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="38.0" prefWidth="168.0" visible="false" HBox.hgrow="ALWAYS" />
-                  <JFXTimePicker fx:id="HoraFinal" prefWidth="300.0" promptText="Hora Final" />
+                  <JFXTimePicker fx:id="HoraFinal" prefWidth="300.0" promptText="%HoraFinal" />
                </children>
             </HBox>
             <HBox alignment="CENTER">
@@ -66,11 +66,11 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Label styleClass="h3-contraste" text="Sala" />
+                  <Label styleClass="h3-contraste" text="%NombreSala" />
                   <Separator maxWidth="1.7976931348623157E308" orientation="VERTICAL" visible="false" HBox.hgrow="ALWAYS" />
                   <Button fx:id="btnSala" mnemonicParsing="false" onAction="#OnActionbtnSala" prefHeight="26.0" prefWidth="83.0" text="Ver Salas" />
                   <TextField fx:id="txtIDSala" prefHeight="26.0" prefWidth="50.0" />
-                  <JFXTextField fx:id="txtSala" focusColor="WHITE" labelFloat="true" promptText="Sala" />
+                  <JFXTextField fx:id="txtSala" focusColor="WHITE" labelFloat="true" promptText="%salanombre" />
                </children>
             </HBox>
             <HBox alignment="CENTER">

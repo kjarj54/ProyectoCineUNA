@@ -106,7 +106,7 @@ public class PelisActualesViewController extends Controller implements Initializ
             
             //button
             cellButtonComprar.setPrefWidth(50);
-            cellButtonComprar.setText("Camprar Boleto");
+            cellButtonComprar.setText("Comprar Boleto");
             cellButtonComprar.setOnAction((ActionEvent t) -> {
                 ProPeliculasDto emp = (ProPeliculasDto) Celda.this.getListView().getItems().get(Celda.this.getIndex());
                 AppContext.getInstance().set("ComparaBoleto", emp.getPelId());

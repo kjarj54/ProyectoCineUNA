@@ -19,8 +19,8 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
-                  <JFXButton fx:id="btnEstrenos" buttonType="RAISED" onAction="#OnActionbtnEstrenos" prefHeight="200.0" prefWidth="245.0" text="Estrenos" />
-                  <JFXButton fx:id="btnCartelera" buttonType="RAISED" onAction="#OnActionbtnCartelera" prefHeight="200.0" prefWidth="245.0" text="Cartelera" />
+                  <JFXButton fx:id="btnEstrenos" buttonType="RAISED" onAction="#OnActionbtnEstrenos" prefHeight="200.0" prefWidth="245.0" text="%estrenos" />
+                  <JFXButton fx:id="btnCartelera" buttonType="RAISED" onAction="#OnActionbtnCartelera" prefHeight="200.0" prefWidth="245.0" text="%cartelera" />
                </children>
             </HBox>
          </children>
