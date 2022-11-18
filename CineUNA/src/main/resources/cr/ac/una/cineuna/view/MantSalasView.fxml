@@ -61,7 +61,7 @@
                      <children>
                         <Label styleClass="h3-contraste" text="%NombreSala" />
                         <Separator maxWidth="1.7976931348623157E308" visible="false" HBox.hgrow="ALWAYS" />
-                        <JFXTextField fx:id="txtNombreSala" labelFloat="true" promptText="%NombreSala" />
+                        <JFXTextField fx:id="txtNombreSala" focusColor="WHITE" labelFloat="true" prefWidth="350.0" promptText="%NombreSala" styleClass="h3" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="18.0" prefWidth="59.0" spacing="10.0">

@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
+import cr.ac.una.cineuna.App;
 import cr.ac.una.cineuna.model.ProClientesDto;
 import cr.ac.una.cineuna.model.ProComidasDto;
 import cr.ac.una.cineuna.model.ProFacturasDto;
@@ -14,9 +12,17 @@ import cr.ac.una.cineuna.service.ProFacturasService;
 import cr.ac.una.cineuna.util.AppContext;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import static java.lang.System.in;
 import java.net.URL;
+import java.nio.file.Files;
 import java.text.DecimalFormat;
-import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -33,6 +39,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  * FXML Controller class
@@ -111,45 +128,66 @@ public class ComidasClienteViewController extends Controller implements Initiali
     @Override
     public void initialize() {
 
-    }
-
+    }  
+    
     @FXML
-    private void OnActionBtnPagar(ActionEvent event) {
-        try {
-            ProFacturasService service = new ProFacturasService();
-            ProClientesService serviceCli = new ProClientesService();
-            
-            Long cli = (Long) AppContext.getInstance().get("UsuarioId");
-            
-            Respuesta respuesta2 = serviceCli.getCliente(cli);
-            proClienteDto = (ProClientesDto) respuesta2.getResultado("ProCliente");
-            
-            String totalString  = txtTotal.getText();
-            
-            totalString = totalString.replaceAll("\\,00", "");
-
-            Long total = Long.parseLong(totalString);
-            
-            
-            proFacturasDto.setFacTotal(total);
-            proFacturasDto.setCliId(proClienteDto);
-            
-            Respuesta respuesta = service.guardarFactura(proFacturasDto);
-            
-            if (!respuesta.getEstado()) {
-                new Mensaje().showModal(Alert.AlertType.ERROR, "Generar la factura", getStage(), respuesta.getMensaje());
-            } else {
-                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Generar la factura", getStage(), "Factura generada correctamente.");
-                tbvFactura.getItems().clear();
-            }
-
-        } catch (Exception ex) {
-            Logger.getLogger(ComidasClienteViewController.class.getName()).log(Level.SEVERE, "Error generando la factura.");
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Generar la factura", getStage(), "Ocurrio un error generando la factura.");
-        }
-
+    private void OnActionBtnPagar(ActionEvent event) throws JRException, FileNotFoundException {
         
+        //InputStream is = getClass().getClassLoader().getResourceAsStream("facturas.jrxml");
+        //InputStream in = new FileInputStream(new File(App.class.getResourceAsStream("/cr/ac/una/cineuna/resources/factura.jrxml")));
+        //solo ocupo leer el archivo
+        JasperDesign jd = JRXmlLoader.load(in);
         
+                String sql = "SELECT PRO_FACTURAS.FAC_FECHA, \n"
+                        + "PRO_FACTURAS.FAC_TOTAL, \n"
+                        + "PRO_CLIENTES.CLI_CORREO, \n"
+                        + "PRO_CLIENTES.CLI_PAPELLIDO, \n"
+                        + "PRO_CLIENTES.CLI_NOMBRE \n"
+                        + "FROM PRO_CLIENTES, \n" 
+                        + "PRO_FACTURAS \n" 
+                        + "WHERE PRO_CLIENTES.CLI_ADMIN = 'N' ";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            jd.setQuery(newQuery);
+            JasperReport report = JasperCompileManager.compileReport(jd);
+            HashMap hash = new HashMap();
+            JasperPrint print = JasperFillManager.fillReport(report, hash);
+            JasperViewer.viewReport(print, true);
+            OutputStream os = new FileOutputStream(new File("reporte.pdf"));
+            JasperExportManager.exportReportToPdfStream(print, os);
+            
+//        try {
+//            ProFacturasService service = new ProFacturasService();
+//            ProClientesService serviceCli = new ProClientesService();
+//            
+//            Long cli = (Long) AppContext.getInstance().get("UsuarioId");
+//            
+//            Respuesta respuesta2 = serviceCli.getCliente(cli);
+//            proClienteDto = (ProClientesDto) respuesta2.getResultado("ProCliente");
+//            
+//            String totalString  = txtTotal.getText();
+//            
+//            totalString = totalString.replaceAll("\\,00", "");
+//
+//            Long total = Long.parseLong(totalString);
+//            
+//            
+//            proFacturasDto.setFacTotal(total);
+//            proFacturasDto.setCliId(proClienteDto);
+//            
+//            Respuesta respuesta = service.guardarFactura(proFacturasDto);
+//            
+//            if (!respuesta.getEstado()) {
+//                new Mensaje().showModal(Alert.AlertType.ERROR, "Generar la factura", getStage(), respuesta.getMensaje());
+//            } else {
+//                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Generar la factura", getStage(), "Factura generada correctamente.");
+//                tbvFactura.getItems().clear();
+//            }
+//
+//        } catch (Exception ex) {
+//            Logger.getLogger(ComidasClienteViewController.class.getName()).log(Level.SEVERE, "Error generando la factura.");
+//            new Mensaje().showModal(Alert.AlertType.ERROR, "Generar la factura", getStage(), "Ocurrio un error generando la factura.");
+//        }
         
         
     }

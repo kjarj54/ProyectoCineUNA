@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" language="javascript" pageWidth="600" pageHeight="500" columnWidth="560" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="85314186-64b7-4583-95ad-782fb81f512b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="cineuna Schema"/>
+	<parameter name="_ScheduledTime" class="java.util.Date" isForPrompting="false"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT "PRO_FACTURAS"."FAC_FECHA",
+	"PRO_FACTURAS"."FAC_TOTAL",
+	"PRO_CLIENTES"."CLI_CORREO",
+	"PRO_CLIENTES"."CLI_PAPELLIDO",
+	"PRO_CLIENTES"."CLI_NOMBRE"
+FROM "PRO_CLIENTES",
+	"PRO_FACTURAS"
+WHERE "PRO_CLIENTES"."CLI_ADMIN" = 'N']]>
+	</queryString>
+	<field name="FAC_FECHA" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="FAC_FECHA"/>
+		<property name="com.jaspersoft.studio.field.label" value="FAC_FECHA"/>
+	</field>
+	<field name="FAC_TOTAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="FAC_TOTAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="FAC_TOTAL"/>
+	</field>
+	<field name="CLI_CORREO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CLI_CORREO"/>
+		<property name="com.jaspersoft.studio.field.label" value="CLI_CORREO"/>
+	</field>
+	<field name="CLI_PAPELLIDO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CLI_PAPELLIDO"/>
+		<property name="com.jaspersoft.studio.field.label" value="CLI_PAPELLIDO"/>
+	</field>
+	<field name="CLI_NOMBRE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CLI_NOMBRE"/>
+		<property name="com.jaspersoft.studio.field.label" value="CLI_NOMBRE"/>
+	</field>
+	<background>
+		<band>
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+		</band>
+	</background>
+	<title>
+		<band height="94">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="600" height="114" backcolor="#006699" uuid="90206b1f-35a6-4f84-92f8-4d324b037528"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="491956bd-276b-4a66-afc1-e207a1286139"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CineUNA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="400" y="20" width="180" height="20" forecolor="#FFFFFF" uuid="7e235b53-23f8-4317-a9a0-9a051c48cb55"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Factura de compras]]></text>
+				</staticText>
+				<textField textAdjust="StretchHeight">
+					<reportElement x="469" y="40" width="111" height="20" uuid="5d68e1c1-e0f1-4de8-987a-12782ea8cdb4">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c8676bcb-1555-4a91-8633-4894b3cac15e"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CLI_NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement x="469" y="60" width="111" height="20" uuid="9143f441-6a56-4b72-98e4-20d10c85162c">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bb9db57a-7b15-4394-a134-0a956423eaf1"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CLI_PAPELLIDO}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement x="469" y="80" width="111" height="20" uuid="84bafee2-3705-48fe-92b6-c678b9b945b5">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ee4b019c-b1e9-40e9-8ebd-6d99f88b1026"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CLI_CORREO}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="e0297cb8-4447-4485-92cf-0e33c9dd9751"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c479fdca-fa91-4941-b490-0e36f52f4d38">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="324a60c5-3b5b-4feb-a6de-761e6d84327f"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha compra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="450" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7993a1ee-cc2d-49bd-af92-bca82b2bcfe8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0ca39a45-b8d8-4ed3-96b5-9648129822cb"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FAC_TOTAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="c9706208-6fa7-451a-9d96-20727e07d8c1"/>
+			</line>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="0" y="0" width="111" height="20" uuid="34c2e623-da9e-460b-8b4b-49192fc40c85">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="324a60c5-3b5b-4feb-a6de-761e6d84327f"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_FECHA}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="449" y="0" width="111" height="20" uuid="25bb415d-869a-4c86-90aa-6b5720353d64">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0ca39a45-b8d8-4ed3-96b5-9648129822cb"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_TOTAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="56">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="32a348eb-5f3a-4535-a3b2-bd424e8a8116"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="d83f1374-1464-4444-be3d-4ef3ee8629e5"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="32" y="30" width="490" height="26" uuid="587f344d-a0d7-4b10-bfb9-2c428c7563d1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Centaur" size="20"/>
+				</textElement>
+				<text><![CDATA[GRACIAS POR CONSUMIR NUESTROS PRODUCTOS]]></text>
+			</staticText>
+			<textField pattern="HH:mm">
+				<reportElement x="100" y="4" width="80" height="15" uuid="c699dc42-b7cf-454e-9eec-da309a228bf7"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="3" y="3" width="100" height="30" uuid="a067a9e0-6bc9-4a34-b470-9ddf0f74ce25"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

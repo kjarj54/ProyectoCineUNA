@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.CarteleraViewController">
    <children>
-      <HBox alignment="CENTER" layoutX="107.0" layoutY="14.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="350.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" spacing="20.0" styleClass="VBoxContainer" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Label text="%CarteleraCine">
+            <Label styleClass="h2-contraste" text="%CarteleraCine">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                  <JFXButton fx:id="btnEstrenos" buttonType="RAISED" onAction="#OnActionbtnEstrenos" prefHeight="200.0" prefWidth="245.0" text="Estrenos" />
+                  <JFXButton fx:id="btnCartelera" buttonType="RAISED" onAction="#OnActionbtnCartelera" prefHeight="200.0" prefWidth="245.0" text="Cartelera" />
+               </children>
+            </HBox>
          </children>
-      </HBox>
-      <HBox alignment="CENTER" layoutX="200.0" layoutY="171.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-         <children>
-            <JFXButton fx:id="btnEstrenos" onAction="#OnActionbtnEstrenos" prefHeight="200.0" prefWidth="245.0" text="Estrenos" />
-            <Separator orientation="VERTICAL" style="-fx-background-color: orange;" visible="false" HBox.hgrow="ALWAYS" />
-            <JFXButton fx:id="btnCartelera" onAction="#OnActionbtnCartelera" prefHeight="200.0" prefWidth="245.0" text="Cartelera" />
-         </children>
-      </HBox>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
    </children>
 </AnchorPane>
