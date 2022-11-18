@@ -13,6 +13,11 @@
     -fx-background-size:cover;
 }
 
+#root{
+    -fx-background-position:100% 100%;
+    -fx-background-size:cover;
+}
+
 #Fondo{
     -fx-background-image: url("../resources/fondito.jpg");
     -fx-background-position:100% 100%;

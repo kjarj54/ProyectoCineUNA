@@ -112,29 +112,36 @@ public class TableTandasViewController extends Controller implements Initializab
         
         tbcSelec.setCellValueFactory((TableColumn.CellDataFeatures<ProTandasDto, Boolean> p) -> new SimpleBooleanProperty(p.getValue() != null));
         //Anyade el checkbox a la columna
-        tbcSelec.setCellFactory((TableColumn<ProTandasDto, Boolean> p) -> new TableTandasViewController.ButtonCell());
+        tbcSelec.setCellFactory((TableColumn<ProTandasDto, Boolean> p) -> new TableTandasViewController.ButtonCell2());
     }    
     
     
     
-    private class ButtonCell extends TableCell<ProTandasDto, Boolean> {
+     private class ButtonCell2 extends TableCell<ProTandasDto, Boolean> {
 
         final Button cellButton = new Button();
 
-        ButtonCell() {
+        ButtonCell2() {
             cellButton.setPrefWidth(500);
             cellButton.getStyleClass().add("jfx-btnimg-tbveliminar");
-            cellButton.setText("Aceptar");
-            cellButton.setStyle("-fx-background-color: #00FFA6");
+            cellButton.setText("Elegir");
+            cellButton.setStyle("-fx-background-color: #DAFD29");
             
             cellButton.setOnAction((ActionEvent t) -> {
-                ProTandasDto emp = (ProTandasDto) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
-                
+                ProTandasDto emp = (ProTandasDto) ButtonCell2.this.getTableView().getItems().get(ButtonCell2.this.getIndex());
                 
                 tbvResultados.refresh();
-                //FlowController.getInstance().goView("MantTandasView");
+                FlowController.getInstance().goView("SalaView");
                 
             });
+        }
+
+        @Override
+        protected void updateItem(Boolean t, boolean empty) {
+            super.updateItem(t, empty);
+            if (!empty) {
+                setGraphic(cellButton);
+            }
         }
     }
 

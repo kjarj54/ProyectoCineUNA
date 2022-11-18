@@ -30,8 +30,6 @@ public class PrincipalUsuariosViewController extends Controller implements Initi
     @FXML
     private JFXButton btnPeliculas;
     @FXML
-    private JFXButton btnReservar;
-    @FXML
     private JFXButton btnCerrar;
 
     /**
@@ -62,10 +60,7 @@ public class PrincipalUsuariosViewController extends Controller implements Initi
         FlowController.getInstance().goView("CarteleraView");
     }
 
-    @FXML
-    private void OnActionbtnReservar(ActionEvent event) {
-        FlowController.getInstance().goView("SalaView");
-    }
+    
 
     @FXML
     private void OnActionbtnCerrar(ActionEvent event) {

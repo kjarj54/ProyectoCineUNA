@@ -4,8 +4,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="450.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="cr.ac.una.cineuna.controller.TableTandasViewController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="450.0" prefWidth="750.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.cineuna.controller.TableTandasViewController">
    <children>
       <TableView fx:id="tbvResultados" layoutX="16.0" layoutY="22.0" onMousePressed="#OnMousePressedTbvResultados" prefHeight="410.0" prefWidth="716.0">
          <columns>
