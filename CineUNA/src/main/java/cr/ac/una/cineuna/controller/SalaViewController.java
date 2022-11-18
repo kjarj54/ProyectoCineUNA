@@ -93,11 +93,17 @@ public class SalaViewController extends Controller implements Initializable {
      */
     
     ProAsientosDto asientodto;
+    @FXML
+    private ImageView imgFondo;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         asientodto = new ProAsientosDto();
         btnA1.setUserData("I");
+        
+        
+        
+        
         ProAsientosService asientos = new ProAsientosService();
         
         Respuesta respuesta = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "1");

@@ -53,8 +53,6 @@ public class TablePeliculasViewController extends Controller  implements Initial
     public TextField aux2 = new TextField();
     @FXML
     private AnchorPane root;
-    @FXML
-    private JFXButton btnatras;
     
     private MantTandasViewController menucontroller;
     @FXML
@@ -127,7 +125,6 @@ public class TablePeliculasViewController extends Controller  implements Initial
           
     }
 
-    @FXML
     private void OnActionbtnatras(ActionEvent event) {
         //FlowController.getInstance().limpiarLoader("MantTandasView");
         FlowController.getInstance().goView("MantTandasView");

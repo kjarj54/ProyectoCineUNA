@@ -250,28 +250,13 @@ public class MantPeliculasViewController extends Controller implements Initializ
 
     @FXML
     private void onActionLimpiar(ActionEvent event) {
-        
-        
-        try {
-            InputStream instream = new FileInputStream(new File(App.class.getResource("../cr/ac/una/cineuna/resources/Reportes.jrxml").toString()));
-            JasperDesign design = JRXmlLoader.load(in);
-            String sqlpeli = "SELECT P.PEL_NOMBRE \n"
-                    + "FROM PRO_CLIENTES C, PRO_PELICULAS P, PRO_TANDAS T \n"
-                    + "WHERE PRO_PELICULAS.PEL_ESTADO = 'S' \n"
-                    + "ORDER BY PRO_CLIENTES.CLI_ID DESC, PRO_PELICULAS.PEL_ID DESC";
-            JRDesignQuery nQ = new JRDesignQuery();
-            nQ.setText(sqlpeli);
-            design.setQuery(nQ);
-            JasperReport report = JasperCompileManager.compileReport(design);
-            HashMap hash = new HashMap();
-            JasperPrint print = JasperFillManager.fillReport(report, hash);
-            JasperViewer.viewReport(in, false);
-            OutputStream os = new FileOutputStream(new File("reporte.pdf"));
-            JasperExportManager.exportReportToPdfStream(print, os);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (new Mensaje().showConfirmation("Limpiar pelicula", getStage(), "¿Esta seguro que desea limpiar el registro?")) {
+            nuevaPelicula();
+            imgPel.setImage(null);
         }
+        
     }
+    
 
     @Override
     public void initialize() {

@@ -60,7 +60,6 @@ import org.apache.commons.compress.utils.IOUtils;
  */
 public class MantSalasViewController extends Controller implements Initializable {
 
-    @FXML
     public ImageView imgAsiento;
     @FXML
     private JFXButton btnSalir;
@@ -68,8 +67,6 @@ public class MantSalasViewController extends Controller implements Initializable
     private JFXButton btnGuardar;
     @FXML
     private JFXTextField txtNombreSala;
-    @FXML
-    private JFXButton btnAsientoSelect;
     @FXML
     private GridPane gridPaneAsientos;
     @FXML
@@ -115,6 +112,7 @@ public class MantSalasViewController extends Controller implements Initializable
         if (new Mensaje().showConfirmation("Limpiar usuario", getStage(), "¿Esta seguro que desea limpiar el registro?")) {
             nuevaSala();
             imgFondo.setImage(null);
+            
         }
     }
 
@@ -154,7 +152,6 @@ public class MantSalasViewController extends Controller implements Initializable
         return new Image(new ByteArrayInputStream(data));
     }
 
-    @FXML
     private void onActionBtnAsientoSelect(ActionEvent event) throws FileNotFoundException, IOException {
         /*FileChooser fileChooser = new FileChooser();
         List<File> selectedFiles = fileChooser.showOpenMultipleDialog(null);
@@ -189,21 +186,18 @@ public class MantSalasViewController extends Controller implements Initializable
             }
 
 
-    @FXML
     private void onDragOverImgView(DragEvent event) {
         if(event.getDragboard().hasFiles()){
         event.acceptTransferModes(TransferMode.ANY);
         }
     }
 
-    @FXML
     private void onDragDroppedImgView(DragEvent event) throws FileNotFoundException {
         List<File> file = event.getDragboard().getFiles();
         Image img = new Image(new FileInputStream(file.get(0)));
         imgAsiento.setImage(img);
     }
 
-    @FXML
     private void onDragDetectedImgView(MouseEvent event) {
         Dragboard db = imgAsiento.startDragAndDrop(TransferMode.ANY);
         ClipboardContent cp = new ClipboardContent() ;

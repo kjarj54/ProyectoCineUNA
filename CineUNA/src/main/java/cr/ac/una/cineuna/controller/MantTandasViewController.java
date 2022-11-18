@@ -142,7 +142,20 @@ public class MantTandasViewController extends Controller implements Initializabl
     @FXML
     private void onActionSalir(ActionEvent event) {
         //aux2.setText(String.valueOf(HoraFinal.getValue()));
-        FlowController.getInstance().limpiarLoader("MantTandasView");
+        //FlowController.getInstance().limpiarLoader("MantTandasView");
+        if (new Mensaje().showConfirmation("Limpiar tanda", getStage(), "¿Esta seguro que desea limpiar el registro?")) {
+            nuevaTnda();
+            txtNombreTanda.clear();
+            txtPeli.clear();
+            HoraInicio.getEditor().clear();
+            HoraFinal.getEditor().clear();
+            txtID.clear();
+            txtIDSala.clear();
+            txtSala.clear();
+            imgAsiento.setImage(null);
+            FlowController.getInstance().limpiarLoader("MantTandasView");
+            
+        }
 
     }
 
