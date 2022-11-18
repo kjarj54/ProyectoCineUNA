@@ -7,7 +7,10 @@ package cr.ac.una.cineuna.controller;
 import com.jfoenix.controls.JFXButton;
 import cr.ac.una.cineuna.model.ProAsientosDto;
 import cr.ac.una.cineuna.service.ProAsientosService;
+import cr.ac.una.cineuna.util.AppContext;
+import cr.ac.una.cineuna.util.FlowController;
 import cr.ac.una.cineuna.util.Mensaje;
+import cr.ac.una.cineuna.util.Respuesta;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,6 +26,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import org.apache.commons.compress.utils.IOUtils;
+
 
 /**
  * FXML Controller class
@@ -95,7 +99,112 @@ public class SalaViewController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         asientodto = new ProAsientosDto();
-        btnA1.setUserData("O");
+        btnA1.setUserData("I");
+        ProAsientosService asientos = new ProAsientosService();
+        
+        Respuesta respuesta = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "1");
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        
+        img1.setImage(ConvertToImage(asientodto.getAsiImg()));
+        img2.setImage(ConvertToImage(asientodto.getAsiImg()));
+        img3.setImage(ConvertToImage(asientodto.getAsiImg()));
+        img4.setImage(ConvertToImage(asientodto.getAsiImg()));
+        img5.setImage(ConvertToImage(asientodto.getAsiImg()));
+        img6.setImage(ConvertToImage(asientodto.getAsiImg()));
+        img7.setImage(ConvertToImage(asientodto.getAsiImg()));
+        img8.setImage(ConvertToImage(asientodto.getAsiImg()));
+        img9.setImage(ConvertToImage(asientodto.getAsiImg()));
+        img10.setImage(ConvertToImage(asientodto.getAsiImg()));
+        img11.setImage(ConvertToImage(asientodto.getAsiImg()));
+        img12.setImage(ConvertToImage(asientodto.getAsiImg()));
+        
+        
+        if(asientodto.getAsiEstado().equals("O")){
+            btnA1.setStyle("-fx-background-color: #FF0000");
+            btnA1.setDisable(true);
+            
+        }
+        asientos = new ProAsientosService();
+        Respuesta respuesta1 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "2");
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        
+        if(asientodto.getAsiEstado().equals("O")){
+            btnA2.setStyle("-fx-background-color: #FF0000");
+            btnA2.setDisable(true);
+            
+        }
+        asientos = new ProAsientosService();
+        Respuesta respuesta2 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "3");
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        
+        if(asientodto.getAsiEstado().equals("O")){
+            btnA3.setStyle("-fx-background-color: #FF0000");
+            btnA3.setDisable(true);
+            
+        }
+        asientos = new ProAsientosService();
+        Respuesta respuesta3 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "4");
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        
+        if(asientodto.getAsiEstado().equals("O")){
+            btnB1.setStyle("-fx-background-color: #FF0000");
+            btnB1.setDisable(true);
+            
+        }
+        asientos = new ProAsientosService();
+        Respuesta respuesta4 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "5");
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        
+        if(asientodto.getAsiEstado().equals("O")){
+            btnB2.setStyle("-fx-background-color: #FF0000");
+            btnB2.setDisable(true);
+            
+        }
+        asientos = new ProAsientosService();
+        Respuesta respuesta5 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "6");
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        
+        if(asientodto.getAsiEstado().equals("O")){
+            btnB3.setStyle("-fx-background-color: #FF0000");
+            btnB3.setDisable(true);
+            
+        }
+        asientos = new ProAsientosService();
+        Respuesta respuesta6 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "7");
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        
+        if(asientodto.getAsiEstado().equals("O")){
+            btnC1.setStyle("-fx-background-color: #FF0000");
+            btnC1.setDisable(true);
+            
+        }
+        asientos = new ProAsientosService();
+        Respuesta respuesta7 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "8");
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        
+        if(asientodto.getAsiEstado().equals("O")){
+            btnC2.setStyle("-fx-background-color: #FF0000");
+            btnC2.setDisable(true);
+            
+        }
+        asientos = new ProAsientosService();
+        Respuesta respuesta8 = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), "9");
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        
+        if(asientodto.getAsiEstado().equals("O")){
+            btnC3.setStyle("-fx-background-color: #FF0000");
+            btnC3.setDisable(true);
+            
+        }
         
         
         
@@ -105,20 +214,30 @@ public class SalaViewController extends Controller implements Initializable {
     public void initialize() {
         
     }
+    
+    private Image ConvertToImage(byte[] data) {
+        return new Image(new ByteArrayInputStream(data));
+    }
 
     @FXML
     private void OnActionbtnA1(ActionEvent event) {
         
-        btnA1.setUserData("1");
+        btnA1.setUserData("1");//nombre de los asientos
+        ProAsientosService asientos = new ProAsientosService();
+        Respuesta respuesta = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), btnA1.getUserData().toString());
+        //System.out.println();
         
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        asientodto.setAsiEstado("O");
+        respuesta = asientos.guardarAsiento(asientodto);
         
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
-            btnA1.setStyle("-fx-background-color: #00FFA6");
-            btnA1.setOnAction((ActionEvent e)->{
-        
-        }); 
-            System.out.println(btnA1.getUserData().toString());
+            btnA1.setStyle("-fx-background-color: #FF0000");
+            FlowController.getInstance().limpiarLoader("SalaView");
+            
+            //System.out.println(btnA1.getUserData().toString());
             
             /*
             asientodto.setAsiEstado("O");
@@ -129,46 +248,277 @@ public class SalaViewController extends Controller implements Initializable {
 
     @FXML
     private void OnActionbtnA2(ActionEvent event) {
+        btnA2.setUserData("2");//nombre de los asientos
+        ProAsientosService asientos = new ProAsientosService();
+        Respuesta respuesta = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), btnA2.getUserData().toString());
+        //System.out.println();
+        
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        asientodto.setAsiEstado("O");
+        respuesta = asientos.guardarAsiento(asientodto);
+        
+        if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
+            
+            btnA2.setStyle("-fx-background-color: #FF0000");
+            FlowController.getInstance().limpiarLoader("SalaView");
+            //System.out.println(btnA1.getUserData().toString());
+            
+            /*
+            asientodto.setAsiEstado("O");
+            ProAsientosService service1 = new ProAsientosService();
+            service1.guardarAsiento(asientodto);*/
+        }
     }
 
     @FXML
     private void OnActionbtnA3(ActionEvent event) {
+        btnA3.setUserData("3");//nombre de los asientos
+        ProAsientosService asientos = new ProAsientosService();
+        Respuesta respuesta = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), btnA3.getUserData().toString());
+        //System.out.println();
+        
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        asientodto.setAsiEstado("O");
+        respuesta = asientos.guardarAsiento(asientodto);
+        
+        if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
+            
+            btnA3.setStyle("-fx-background-color: #FF0000");
+            FlowController.getInstance().limpiarLoader("SalaView");
+            //System.out.println(btnA1.getUserData().toString());
+            
+            /*
+            asientodto.setAsiEstado("O");
+            ProAsientosService service1 = new ProAsientosService();
+            service1.guardarAsiento(asientodto);*/
+        }
     }
 
     @FXML
     private void OnActionbtnC1(ActionEvent event) {
+        btnC1.setUserData("7");//nombre de los asientos
+        ProAsientosService asientos = new ProAsientosService();
+        Respuesta respuesta = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), btnC1.getUserData().toString());
+        //System.out.println();
+        
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        asientodto.setAsiEstado("O");
+        respuesta = asientos.guardarAsiento(asientodto);
+        
+        if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
+            
+            btnC1.setStyle("-fx-background-color: #FF0000");
+            
+            //System.out.println(btnA1.getUserData().toString());
+            
+            /*
+            asientodto.setAsiEstado("O");
+            ProAsientosService service1 = new ProAsientosService();
+            service1.guardarAsiento(asientodto);*/
+        }
     }
 
     @FXML
     private void OnActionbtnC2(ActionEvent event) {
+        btnC2.setUserData("8");//nombre de los asientos
+        ProAsientosService asientos = new ProAsientosService();
+        Respuesta respuesta = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), btnC2.getUserData().toString());
+        //System.out.println();
+        
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        asientodto.setAsiEstado("O");
+        respuesta = asientos.guardarAsiento(asientodto);
+        
+        if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
+            
+            btnC2.setStyle("-fx-background-color: #FF0000");
+            
+            //System.out.println(btnA1.getUserData().toString());
+            
+            /*
+            asientodto.setAsiEstado("O");
+            ProAsientosService service1 = new ProAsientosService();
+            service1.guardarAsiento(asientodto);*/
+        }
     }
 
     @FXML
     private void OnActionbtnC3(ActionEvent event) {
+    btnC3.setUserData("9");//nombre de los asientos
+        ProAsientosService asientos = new ProAsientosService();
+        Respuesta respuesta = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), btnC3.getUserData().toString());
+        //System.out.println();
+        
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        asientodto.setAsiEstado("O");
+        respuesta = asientos.guardarAsiento(asientodto);
+        
+        if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
+            
+            btnC3.setStyle("-fx-background-color: #FF0000");
+            
+            //System.out.println(btnA1.getUserData().toString());
+            
+            /*
+            asientodto.setAsiEstado("O");
+            ProAsientosService service1 = new ProAsientosService();
+            service1.guardarAsiento(asientodto);*/
+        }
     }
 
     @FXML
     private void OnActionbtnB1(ActionEvent event) {
+        btnB1.setUserData("4");//nombre de los asientos
+        ProAsientosService asientos = new ProAsientosService();
+        Respuesta respuesta = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), btnB1.getUserData().toString());
+        //System.out.println();
+        
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        asientodto.setAsiEstado("O");
+        respuesta = asientos.guardarAsiento(asientodto);
+        
+        if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
+            
+            btnB1.setStyle("-fx-background-color: #FF0000");
+            
+            //System.out.println(btnA1.getUserData().toString());
+            
+            /*
+            asientodto.setAsiEstado("O");
+            ProAsientosService service1 = new ProAsientosService();
+            service1.guardarAsiento(asientodto);*/
+        }
     }
 
     @FXML
     private void OnActionbtnB2(ActionEvent event) {
+        btnB2.setUserData("5");//nombre de los asientos
+        ProAsientosService asientos = new ProAsientosService();
+        Respuesta respuesta = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), btnB2.getUserData().toString());
+        //System.out.println();
+        
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        asientodto.setAsiEstado("O");
+        respuesta = asientos.guardarAsiento(asientodto);
+        
+        if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
+            
+            btnB2.setStyle("-fx-background-color: #FF0000");
+            
+            //System.out.println(btnA1.getUserData().toString());
+            
+            /*
+            asientodto.setAsiEstado("O");
+            ProAsientosService service1 = new ProAsientosService();
+            service1.guardarAsiento(asientodto);*/
+        }
     }
 
     @FXML
     private void OnActionbtnB3(ActionEvent event) {
+        btnB3.setUserData("6");//nombre de los asientos
+        ProAsientosService asientos = new ProAsientosService();
+        Respuesta respuesta = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), btnB3.getUserData().toString());
+        //System.out.println();
+        
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        asientodto.setAsiEstado("O");
+        respuesta = asientos.guardarAsiento(asientodto);
+        
+        if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
+            
+            btnB3.setStyle("-fx-background-color: #FF0000");
+            
+            //System.out.println(btnA1.getUserData().toString());
+            
+            /*
+            asientodto.setAsiEstado("O");
+            ProAsientosService service1 = new ProAsientosService();
+            service1.guardarAsiento(asientodto);*/
+        }
     }
 
     @FXML
     private void OnActionbtnD1(ActionEvent event) {
+        btnD1.setUserData("10");//nombre de los asientos
+        ProAsientosService asientos = new ProAsientosService();
+        Respuesta respuesta = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), btnD1.getUserData().toString());
+        //System.out.println();
+        
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        asientodto.setAsiEstado("O");
+        respuesta = asientos.guardarAsiento(asientodto);
+        
+        if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
+            
+            btnD1.setStyle("-fx-background-color: #FF0000");
+            
+            //System.out.println(btnA1.getUserData().toString());
+            
+            /*
+            asientodto.setAsiEstado("O");
+            ProAsientosService service1 = new ProAsientosService();
+            service1.guardarAsiento(asientodto);*/
+        }
     }
 
     @FXML
     private void OnActionbtnD2(ActionEvent event) {
+        btnD2.setUserData("11");//nombre de los asientos
+        ProAsientosService asientos = new ProAsientosService();
+        Respuesta respuesta = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), btnD2.getUserData().toString());
+        //System.out.println();
+        
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        asientodto.setAsiEstado("O");
+        respuesta = asientos.guardarAsiento(asientodto);
+        
+        if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
+            
+            btnD2.setStyle("-fx-background-color: #FF0000");
+            
+            //System.out.println(btnA1.getUserData().toString());
+            
+            /*
+            asientodto.setAsiEstado("O");
+            ProAsientosService service1 = new ProAsientosService();
+            service1.guardarAsiento(asientodto);*/
+        }
     }
 
     @FXML
     private void OnActionbtnD3(ActionEvent event) {
+        btnD3.setUserData("12");//nombre de los asientos
+        ProAsientosService asientos = new ProAsientosService();
+        Respuesta respuesta = asientos.getAsientosTanId((Long)AppContext.getInstance().get("IDTANDAPARAASIENTO"), btnD3.getUserData().toString());
+        //System.out.println();
+        
+        
+        asientodto = (ProAsientosDto)respuesta.getResultado("ProAsientos");
+        asientodto.setAsiEstado("O");
+        respuesta = asientos.guardarAsiento(asientodto);
+        
+        if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
+            
+            btnD3.setStyle("-fx-background-color: #FF0000");
+            
+            //System.out.println(btnA1.getUserData().toString());
+            
+            /*
+            asientodto.setAsiEstado("O");
+            ProAsientosService service1 = new ProAsientosService();
+            service1.guardarAsiento(asientodto);*/
+        }
     }
     
     private byte[] SaveImage(File file) throws IOException {

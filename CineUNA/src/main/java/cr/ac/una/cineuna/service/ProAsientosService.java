@@ -52,4 +52,22 @@ public class ProAsientosService {
         }
     }
     
+    public Respuesta getAsientosTanId(Long id, String nombre) {
+        try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("id", id);
+            parametros.put("nombre", nombre);
+            Request request = new Request("ProAsientosController/getAsientos", "/{id}/{nombre}", parametros);
+            request.get();
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+            ProAsientosDto proAsientos = (ProAsientosDto) request.readEntity(ProAsientosDto.class);
+            return new Respuesta(true, "", "", "ProAsientos", proAsientos);
+        } catch (Exception ex) {
+            Logger.getLogger(ProClientesService.class.getName()).log(Level.SEVERE, "Ocurrio un error al eliminar el asiento.", ex);
+            return new Respuesta(false, "Ocurrio un error al eliminar el asiento.", "getAsientosTanId " + ex.getMessage());
+        }
+    }
+    
 }

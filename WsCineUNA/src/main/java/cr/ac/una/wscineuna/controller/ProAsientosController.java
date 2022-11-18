@@ -92,7 +92,7 @@ public class ProAsientosController {
     
     @GET
     //@Secure
-    @Path("/asientos/{id}/{nombre}")
+    @Path("/getAsientos/{id}/{nombre}")
     public Response getAsientos(@PathParam("id") Long id, @PathParam("nombre") String nombre) {
         try {
             Respuesta res = proAsientosService.getAsientosTanId(id, nombre);

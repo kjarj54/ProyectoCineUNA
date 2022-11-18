@@ -42,7 +42,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class TableTandasViewController extends Controller implements Initializable {
 
-    ProTandasDto ss = new ProTandasDto();
+    ProTandasDto proTandasDto ;
     
     
     @FXML
@@ -74,6 +74,7 @@ public class TableTandasViewController extends Controller implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        proTandasDto = new ProTandasDto();
         
         tbcID.setCellValueFactory(clbck -> clbck.getValue().tanId);
         
@@ -129,8 +130,9 @@ public class TableTandasViewController extends Controller implements Initializab
             
             cellButton.setOnAction((ActionEvent t) -> {
                 ProTandasDto emp = (ProTandasDto) ButtonCell2.this.getTableView().getItems().get(ButtonCell2.this.getIndex());
-                
+                AppContext.getInstance().set("IDTANDAPARAASIENTO", emp.getTanId());
                 tbvResultados.refresh();
+                FlowController.getInstance().limpiarLoader("SalaView");
                 FlowController.getInstance().goView("SalaView");
                 
             });
