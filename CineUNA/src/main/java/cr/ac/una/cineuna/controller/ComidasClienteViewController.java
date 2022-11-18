@@ -131,30 +131,7 @@ public class ComidasClienteViewController extends Controller implements Initiali
 
     @FXML
     private void OnActionBtnPagar(ActionEvent event) throws JRException, FileNotFoundException {
-
-        //InputStream is = getClass().getClassLoader().getResourceAsStream("facturas.jrxml");
-        //InputStream in = new FileInputStream(new File(App.class.getResourceAsStream("/cr/ac/una/cineuna/resources/factura.jrxml")));
-        //solo ocupo leer el archivo
-        /*JasperDesign jd = JRXmlLoader.load(in);
-
-        String sql = "SELECT PRO_FACTURAS.FAC_FECHA, \n"
-                + "PRO_FACTURAS.FAC_TOTAL, \n"
-                + "PRO_CLIENTES.CLI_CORREO, \n"
-                + "PRO_CLIENTES.CLI_PAPELLIDO, \n"
-                + "PRO_CLIENTES.CLI_NOMBRE \n"
-                + "FROM PRO_CLIENTES, \n"
-                + "PRO_FACTURAS \n"
-                + "WHERE PRO_CLIENTES.CLI_ADMIN = 'N' ";
-        JRDesignQuery newQuery = new JRDesignQuery();
-        newQuery.setText(sql);
-        jd.setQuery(newQuery);
-        JasperReport report = JasperCompileManager.compileReport(jd);
-        HashMap hash = new HashMap();
-        JasperPrint print = JasperFillManager.fillReport(report, hash);
-        JasperViewer.viewReport(print, true);
-        OutputStream os = new FileOutputStream(new File("reporte.pdf"));
-        JasperExportManager.exportReportToPdfStream(print, os);*/
-
+        
         try {
             ProFacturasService service = new ProFacturasService();
             ProClientesService serviceCli = new ProClientesService();
@@ -177,9 +154,68 @@ public class ComidasClienteViewController extends Controller implements Initiali
 
             if (!respuesta.getEstado()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Generar la factura", getStage(), respuesta.getMensaje());
+               
+        
             } else {
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Generar la factura", getStage(), "Factura generada correctamente.");
                 tbvFactura.getItems().clear();
+                try{
+            InputStream is = getClass().getClassLoader().getResourceAsStream("/cr/ac/una/cineuna/resources/factura.jrxml");
+            JasperDesign jd = JRXmlLoader.load(is);
+            
+            String sql = "SELECT PRO_FACTURAS.FAC_FECHA, \n"
+                    + "PRO_FACTURAS.FAC_TOTAL, \n"
+                    + "PRO_CLIENTES.CLI_CORREO, \n"
+                    + "PRO_CLIENTES.CLI_PAPELLIDO, \n"
+                    + "PRO_CLIENTES.CLI_NOMBRE \n"
+                    + "FROM PRO_CLIENTES, \n"
+                    + "PRO_FACTURAS \n"
+                    + "WHERE PRO_CLIENTES.CLI_ADMIN = 'N' ";
+            
+            JRDesignQuery query = new JRDesignQuery();
+            query.setText(sql);
+            
+            jd.setQuery(query);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            HashMap<String, Object> hm = new HashMap<String, Object>();
+            
+            JasperPrint jp = JasperFillManager.fillReport(jr, hm);
+            JasperViewer.viewReport(jp);
+            OutputStream os = new FileOutputStream(new File("C:\\factura.pdf"));
+            JasperExportManager.exportReportToPdfFile(os.toString());
+        }catch(Exception e){}
+//                try {
+//                    String fileNameJrxml = "C:\\Users\\BiblioPZ UNA\\Desktop\\progra\\gitCineUNA\\CineUNA\\src\\main\\resources\\cr\\ac\\una\\cineuna\\resources\\factura.jrxml";
+//                    String fileNamePdf = "C:\\Users\\BiblioPZ UNA\\Desktop\\progra\\gitCineUNA\\CineUNA\\src\\main\\resources\\cr\\ac\\una\\cineuna\\resources\\factura.pdf";
+//                    JasperDesign jd = JRXmlLoader.load(fileNameJrxml);
+//                    JasperReport jr = JasperCompileManager.compileReport(jd);
+//                    HashMap<String, Object> hm = new HashMap<String, Object>();
+//                    JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jr, hm, new JREmptyDataSource());
+//                    JasperExportManager.exportReportToPdfFile(jp, fileNamePdf);
+//                    
+////                    InputStream instream = new FileInputStream(new File(App.class.getResource("/cr/ac/una/cineuna/resources/factura.jrxml").toString()));
+////                JasperDesign design = JRXmlLoader.load(instream);
+//                String sql = "SELECT PRO_FACTURAS.FAC_FECHA, \n"
+//                    + "PRO_FACTURAS.FAC_TOTAL, \n"
+//                    + "PRO_CLIENTES.CLI_CORREO, \n"
+//                    + "PRO_CLIENTES.CLI_PAPELLIDO, \n"
+//                    + "PRO_CLIENTES.CLI_NOMBRE \n"
+//                    + "FROM PRO_CLIENTES, \n"
+//                    + "PRO_FACTURAS \n"
+//                    + "WHERE PRO_CLIENTES.CLI_ADMIN = 'N' ";
+////                JRDesignQuery nQ = new JRDesignQuery();
+////                nQ.setText(sql);
+////                design.setQuery(nQ);
+////                JasperReport report = JasperCompileManager.compileReport(design);
+////                HashMap hash = new HashMap();
+////                JasperPrint print = JasperFillManager.fillReport(report, hash);
+////                JasperViewer.viewReport(in, true);
+////                JasperViewer.viewReport(instream, false);
+////                OutputStream os = new FileOutputStream(new File("factura.pdf"));
+////                JasperExportManager.exportReportToPdfStream(print, os);
+//                }catch(Exception e){
+//                }
+                
             }
 
         } catch (Exception ex) {

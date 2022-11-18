@@ -217,11 +217,6 @@ public class MantPeliculasViewController extends Controller implements Initializ
 
     }
 
-    @FXML
-    private void onActionGenerarReporte(ActionEvent event) {
-        
-
-    }
 
     @FXML
     private void onActionGuardar(ActionEvent event) {

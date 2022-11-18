@@ -5,7 +5,6 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.ImageView?>
@@ -53,7 +52,7 @@
             <HBox alignment="CENTER" fillHeight="false" spacing="20.0" VBox.vgrow="ALWAYS">
                <children>
                   <JFXButton fx:id="btnGuardar" buttonType="RAISED" onAction="#onActionGuardar" text="%guardar" HBox.hgrow="ALWAYS" />
-                  <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" visible="false" HBox.hgrow="ALWAYS" />
+                  <JFXButton fx:id="btnReporte" onAction="#onActionBtnGenerarReporte" text="Reporte" />
                   <JFXButton fx:id="btnAtras" buttonType="RAISED" layoutX="10.0" layoutY="10.0" onAction="#onActionAtras" text="%atras" />
                </children>
             </HBox>

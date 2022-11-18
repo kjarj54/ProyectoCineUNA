@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import cr.ac.una.cineuna.App;
 import cr.ac.una.cineuna.model.ProClientesDto;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.service.ProPeliculasService;
@@ -21,10 +22,16 @@ import cr.ac.una.cineuna.util.Respuesta;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -40,6 +47,17 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import org.apache.commons.compress.utils.IOUtils;
 
 /**
@@ -80,6 +98,8 @@ public class UpdatePelViewController extends Controller implements Initializable
 
     @FXML
     private JFXButton btnAtras;
+    @FXML
+    private JFXButton btnReporte;
 
     /**
      * Initializes the controller class.
@@ -252,15 +272,69 @@ public class UpdatePelViewController extends Controller implements Initializable
 
     @FXML
     private void onActionAtras(ActionEvent event) {
-        
-       
+
       FlowController.getInstance().goView("MantPelTableView");
       FlowController.getInstance().limpiarLoader("UpdatePelView");
       FlowController.getInstance().limpiarLoader("MantPelTableView");
-      
-      
-      
-        
+
     }
 
+    @FXML
+    private void onActionBtnGenerarReporte(ActionEvent event) {
+    
+        try{
+            InputStream is = getClass().getClassLoader().getResourceAsStream("/cr/ac/una/cineuna/resources/Invoice.jrxml");
+            JasperDesign jd = JRXmlLoader.load(is);
+            
+            String sql =    "select c.rep_id, c.rep_espaciosvacios, c.rep_espaciosocupados, c.rep_monto, u.usu_id, u.usu_usuario, u.usu_nombre, u.usu_correo, u.usu_telefono \n" +
+                                  "from tar_reporteganancias c \n" +
+                                  "left join tar_usuario u \n" +
+                                  "on c.rep_id=u.usu_id";
+            
+            JRDesignQuery query = new JRDesignQuery();
+            query.setText(sql);
+            
+            jd.setQuery(query);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            HashMap<String, Object> hm = new HashMap<String, Object>();
+            
+            JasperPrint jp = JasperFillManager.fillReport(jr, hm);
+            JasperViewer.viewReport(jp);
+            OutputStream os = new FileOutputStream(new File("C:\\Invoice.pdf"));
+            JasperExportManager.exportReportToPdfFile(os.toString());
+        }catch(Exception e){}
+
+    }
+        
+//        
+//        try{
+//            Class.forName("oracle.jdbc.driver.OracleDriver");
+//            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "cineuna", "cineuna");
+//            
+//            InputStream in = new FileInputStream(new File("C:\\Users\\BiblioPZ UNA\\Desktop\\progra\\gitCineUNA\\CineUNA\\src\\main\\resources\\cr\\ac\\una\\cineuna\\resources\\Invoice.jrxml"));
+//            JasperDesign jd = JRXmlLoader.load(in);
+//            
+//            JRDesignQuery newQuery = new JRDesignQuery();
+//            newQuery.setText(sql);
+//            
+//            jd.setQuery(newQuery);
+//            JasperReport jr = JasperCompileManager.compileReport(jd);
+//            
+//            HashMap para = new HashMap();
+//            JasperPrint jp = JasperFillManager.fillReport(jr, para);
+//            JasperViewer.viewReport(jp,true);
+//            OutputStream os = new FileOutputStream(new File("C:\\reporte"));
+//            JasperExportManager.exportReportToPdfStream(jp, os);
+//            
+////            String reportPath = "C:\\Users\\BiblioPZ UNA\\Desktop\\progra\\gitCineUNA\\CineUNA\\src\\main\\resources\\cr\\ac\\una\\cineuna\\resources\\Invoice.jrxml";
+////            
+////            JasperReport jr = JasperCompileManager.compileReport(reportPath);
+////            JRDataSource jrData = new JREmptyDataSource();
+////            JasperPrint jp = JasperFillManager.fillReport(jr, null, jrData);
+////            JasperExportManager.exportReportToPdfFile(jp, "C:\\reporte.pdf");
+////            conn.close();
+//
+//        }
+//        catch(Exception e){}
+//    }
 }
