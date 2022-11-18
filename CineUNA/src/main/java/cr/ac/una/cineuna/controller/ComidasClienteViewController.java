@@ -159,11 +159,19 @@ public class ComidasClienteViewController extends Controller implements Initiali
             } else {
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Generar la factura", getStage(), "Factura generada correctamente.");
                 tbvFactura.getItems().clear();
+<<<<<<< Updated upstream
                 try{
             InputStream is = getClass().getClassLoader().getResourceAsStream("/cr/ac/una/cineuna/resources/factura.jrxml");
             JasperDesign jd = JRXmlLoader.load(is);
             
             String sql = "SELECT PRO_FACTURAS.FAC_FECHA, \n"
+=======
+                
+                try {
+                    InputStream instream = new FileInputStream(new File(App.class.getResource("/cr/ac/una/cineuna/resources/factura.jrxml").toString()));
+                JasperDesign design = JRXmlLoader.load(instream);
+                String sql = "SELECT PRO_FACTURAS.FAC_FECHA, \n"
+>>>>>>> Stashed changes
                     + "PRO_FACTURAS.FAC_TOTAL, \n"
                     + "PRO_CLIENTES.CLI_CORREO, \n"
                     + "PRO_CLIENTES.CLI_PAPELLIDO, \n"
@@ -171,6 +179,7 @@ public class ComidasClienteViewController extends Controller implements Initiali
                     + "FROM PRO_CLIENTES, \n"
                     + "PRO_FACTURAS \n"
                     + "WHERE PRO_CLIENTES.CLI_ADMIN = 'N' ";
+<<<<<<< Updated upstream
             
             JRDesignQuery query = new JRDesignQuery();
             query.setText(sql);
@@ -215,6 +224,20 @@ public class ComidasClienteViewController extends Controller implements Initiali
 ////                JasperExportManager.exportReportToPdfStream(print, os);
 //                }catch(Exception e){
 //                }
+=======
+                JRDesignQuery nQ = new JRDesignQuery();
+                nQ.setText(sql);
+                design.setQuery(nQ);
+                JasperReport report = JasperCompileManager.compileReport(design);
+                HashMap hash = new HashMap();
+                JasperPrint print = JasperFillManager.fillReport(report, hash);
+                JasperViewer.viewReport(in, true);
+                JasperViewer.viewReport(instream, false);
+                OutputStream os = new FileOutputStream(new File("factura.pdf"));
+                JasperExportManager.exportReportToPdfStream(print, os);
+                }catch(Exception e){
+                }
+>>>>>>> Stashed changes
                 
             }
 

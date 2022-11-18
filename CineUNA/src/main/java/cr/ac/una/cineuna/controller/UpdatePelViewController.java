@@ -281,6 +281,7 @@ public class UpdatePelViewController extends Controller implements Initializable
 
     @FXML
     private void onActionBtnGenerarReporte(ActionEvent event) {
+<<<<<<< Updated upstream
     
         try{
             InputStream is = getClass().getClassLoader().getResourceAsStream("/cr/ac/una/cineuna/resources/Invoice.jrxml");
@@ -338,3 +339,43 @@ public class UpdatePelViewController extends Controller implements Initializable
 //        catch(Exception e){}
 //    }
 }
+=======
+        String sql =    "select c.rep_id, c.rep_espaciosvacios, c.rep_espaciosocupados, c.rep_monto, u.usu_id, u.usu_usuario, u.usu_nombre, u.usu_correo, u.usu_telefono \n" +
+                                  "from tar_reporteganancias c \n" +
+                                  "left join tar_usuario u \n" +
+                                  "on c.rep_id=u.usu_id";
+        
+        try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "cineuna", "cineuna");
+            
+            InputStream in = new FileInputStream(new File("C:\\Users\\BiblioPZ UNA\\Desktop\\progra\\gitCineUNA\\CineUNA\\src\\main\\resources\\cr\\ac\\una\\cineuna\\resources\\Invoice.jrxml"));
+            JasperDesign jd = JRXmlLoader.load(in);
+            
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sql);
+            
+            jd.setQuery(newQuery);
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            
+            HashMap para = new HashMap();
+            JasperPrint jp = JasperFillManager.fillReport(jr, para);
+            JasperViewer.viewReport(jp,true);
+            OutputStream os = new FileOutputStream(new File("C:\\reporte"));
+            JasperExportManager.exportReportToPdfStream(jp, os);
+            
+//            String reportPath = "C:\\Users\\BiblioPZ UNA\\Desktop\\progra\\gitCineUNA\\CineUNA\\src\\main\\resources\\cr\\ac\\una\\cineuna\\resources\\Invoice.jrxml";
+//            
+//            JasperReport jr = JasperCompileManager.compileReport(reportPath);
+//            JRDataSource jrData = new JREmptyDataSource();
+//            JasperPrint jp = JasperFillManager.fillReport(jr, null, jrData);
+//            JasperExportManager.exportReportToPdfFile(jp, "C:\\reporte.pdf");
+//            conn.close();
+
+        }
+        catch(Exception e){}
+    }
+            
+    }    
+        
+>>>>>>> Stashed changes
