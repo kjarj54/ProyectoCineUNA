@@ -4,6 +4,7 @@
  */
 package cr.ac.una.cineuna.controller;
 
+import cr.ac.una.cineuna.model.ProPeliculasDto;
 import cr.ac.una.cineuna.model.ProSalasDto;
 import java.net.URL;
 import java.util.ResourceBundle;

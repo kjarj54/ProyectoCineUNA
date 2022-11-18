@@ -3,13 +3,18 @@ package cr.ac.una.cineuna.controller;
 
 import com.jfoenix.controls.JFXButton;
 import cr.ac.una.cineuna.model.ProAsientosDto;
+import cr.ac.una.cineuna.model.ProTandasDto;
+import cr.ac.una.cineuna.service.ProAsientosService;
+import cr.ac.una.cineuna.util.AppContext;
 import cr.ac.una.cineuna.util.FlowController;
+import cr.ac.una.cineuna.util.Respuesta;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**

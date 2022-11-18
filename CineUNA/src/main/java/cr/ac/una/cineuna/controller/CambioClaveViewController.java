@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXTextField;
 import cr.ac.una.cineuna.model.ProClientesDto;
 import cr.ac.una.cineuna.service.ProClientesService;
 import cr.ac.una.cineuna.util.AppContext;
+import cr.ac.una.cineuna.util.BindingUtils;
 import cr.ac.una.cineuna.util.Formato;
 import cr.ac.una.cineuna.util.Mensaje;
 import cr.ac.una.cineuna.util.Respuesta;
@@ -27,6 +28,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 
 /**
