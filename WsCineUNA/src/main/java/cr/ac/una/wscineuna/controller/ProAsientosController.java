@@ -89,6 +89,22 @@ public class ProAsientosController {
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error obteniendo asientos").build();
         }
     }
+    
+    @GET
+    //@Secure
+    @Path("/asientos/{id}/{nombre}")
+    public Response getAsientos(@PathParam("id") Long id, @PathParam("nombre") String nombre) {
+        try {
+            Respuesta res = proAsientosService.getAsientosTanId(id, nombre);
+            if (!res.getEstado()) {
+                return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
+            }
+            return Response.ok((ProAsientosDto) res.getResultado("ProAsientos")).build();
+        } catch (Exception ex) {
+            Logger.getLogger(ProAsientosController.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error obteniendo asientos").build();
+        }
+    }
 
     @DELETE
     @Path("/eliminarAsientos/{id}")

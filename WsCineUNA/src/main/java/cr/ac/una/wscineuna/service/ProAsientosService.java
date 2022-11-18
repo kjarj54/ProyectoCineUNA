@@ -79,7 +79,7 @@ public class ProAsientosService {
     public Respuesta getAsientos() {
         try {
             
-            Query qryAsientos = em.createNamedQuery("ProClientes.findAll", ProAsientos.class);
+            Query qryAsientos = em.createNamedQuery("ProAsientos.findAll", ProAsientos.class);
             List<ProAsientos> asientos = qryAsientos.getResultList();
 
 
@@ -100,19 +100,24 @@ public class ProAsientosService {
      public Respuesta getAsientosTanId(Long tanId, String nombre) {
         try {
             
-            Query qryAsientos = em.createNamedQuery("ProClientes.findAll", ProAsientos.class);
+            Query qryAsientos = em.createNamedQuery("ProAsientos.findAll", ProAsientos.class);
             List<ProAsientos> asientos = qryAsientos.getResultList();
 
-            asientos = asientos.stream().filter(a-> a.getTanId().getTanId().equals(tanId) && a.getAsiNombre().equals(nombre)).collect(Collectors.toList());
+            //asientos = asientos.stream().filter(a-> a.getTanId().getTanId().equals(tanId) && a.getAsiNombre().equals(nombre)).collect(Collectors.toList());
                      
             List<ProAsientosDto> asientosDto = new ArrayList<>();
+            
             
             for (ProAsientos asiento : asientos) {
                 asientosDto.add(new ProAsientosDto(asiento));
             }
             
+            asientosDto =asientosDto.stream().filter(a-> a.getTanId().getTanId().equals(tanId) && a.getAsiNombre().equals(nombre)).collect(Collectors.toList());
+            
+            ProAsientosDto asientoDto = asientosDto.get(0);
+            
 
-            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProAsientos", asientosDto);
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "ProAsientos", asientoDto);
         } catch (NoResultException ex) {
             return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen asientos con los criterios ingresados.", "getAsientos NoResultException");
         } catch (Exception ex) {
