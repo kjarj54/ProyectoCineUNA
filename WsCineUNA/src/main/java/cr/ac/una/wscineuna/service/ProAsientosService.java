@@ -18,6 +18,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.mail.Message;
@@ -43,6 +44,9 @@ public class ProAsientosService {
 
     @PersistenceContext(unitName = "WsCineUNAPU")
     private EntityManager em;
+    
+    @EJB
+    ProClientesService proClientesService;
 
     public Respuesta getAsiento(Long id) {
         try {
@@ -159,16 +163,14 @@ public class ProAsientosService {
         }
     }
     
-    public Respuesta comprarAsiento(Long id, Long cliId) {
+    public Respuesta comprarAsiento(Long asiId, Long cliId) {
         try {
             Query qryActividad = em.createNamedQuery("ProAsientos.findByAsiId", ProAsientos.class);
-            qryActividad.setParameter("asiId", id);
+            qryActividad.setParameter("asiId", asiId);
             ProAsientosDto proAsientosDto = new ProAsientosDto((ProAsientos) qryActividad.getSingleResult());
             
-            
-            Query qryCli = em.createNamedQuery("ProClientes.findByCliId", ProClientes.class);
-            qryCli.setParameter("cliId", id);
-            ProClientesDto proClientesDto = new ProClientesDto((ProClientes) qryCli.getSingleResult());
+            Respuesta res = proClientesService.getCliente(cliId);
+            ProClientesDto proClientesDto = (ProClientesDto) res.getResultado("ProCliente");
             
             correoCompra(proClientesDto, proAsientosDto);
 
@@ -540,7 +542,7 @@ public class ProAsientosService {
                 + "                                <p style=\"font-size: 14px; line-height: 180%;\"> </p>\n"
                 + "                                <p style=\"font-size: 14px; line-height: 180%;\"><span\n"
                 + "                                    style=\"font-size: 18px; line-height: 32.4px; color: #000000;\"><span\n"
-                + "                                      style=\"line-height: 32.4px; font-family: Montserrat, sans-serif; font-size: 18px;\">Factura de asiento: "+ proAsientosDto.getAsiNombre() +"Por el monto de:" + proAsientosDto.tanId.getTanPrecio() +"Del usuario:"+ proClientesDto.getCliNombre() + "</span></span>\n"
+                + "                                      style=\"line-height: 32.4px; font-family: Montserrat, sans-serif; font-size: 18px;\">Factura de asiento: "+ proAsientosDto.getAsiNombre() +" <br>Por el monto de: " + proAsientosDto.tanId.getTanPrecio() +"</br><br>Del usuario: "+ proClientesDto.getCliNombre() + "</br></span></span>\n"
                 + "                                </p>\n"
                 + "                                <p style=\"font-size: 14px; line-height: 180%;\"> </p>\n"
                 + "                              </div>\n"
