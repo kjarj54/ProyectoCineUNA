@@ -16,6 +16,7 @@ cr\ac\una\cineuna\service\ProClientesService.class
 cr\ac\una\cineuna\util\DragResizer$OnDragResizeEventListener.class
 cr\ac\una\cineuna\service\ProReservacionService.class
 cr\ac\una\cineuna\util\DragResizer$6.class
+cr\ac\una\cineuna\service\AsientoService.class
 cr\ac\una\cineuna\util\DragResizer$S.class
 cr\ac\una\cineuna\util\Respuesta.class
 cr\ac\una\cineuna\service\ProAsientosService.class
