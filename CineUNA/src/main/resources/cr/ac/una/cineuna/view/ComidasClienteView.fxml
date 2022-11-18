@@ -16,11 +16,11 @@
         <URL value="@style.css" />
     </stylesheets>
    <children>
-      <VBox layoutX="240.0" layoutY="60.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" layoutX="240.0" layoutY="60.0" prefHeight="200.0" prefWidth="100.0" styleClass="VBoxContainer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="46.0" prefWidth="797.0" VBox.vgrow="SOMETIMES">
                <children>
-                  <Label fx:id="txtComidas" text="%comidas" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Label fx:id="txtComidas" styleClass="h2-contraste" text="%comidas" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
@@ -28,7 +28,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView fx:id="tbvComidas" prefHeight="211.0" prefWidth="797.0" HBox.hgrow="ALWAYS">
+                  <TableView fx:id="tbvComidas" prefHeight="211.0" prefWidth="797.0" styleClass="jfx-date-picker" HBox.hgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="tbcNombre" prefWidth="94.0" text="%nombre" />
                       <TableColumn fx:id="tbcDescripcion" minWidth="2.0" prefWidth="407.0" text="%descripcion" />
@@ -49,7 +49,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView fx:id="tbvFactura" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                  <TableView fx:id="tbvFactura" prefHeight="200.0" prefWidth="200.0" styleClass="jfx-date-picker" HBox.hgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="tbcNombreFactura" prefWidth="75.0" text="%nombre" />
                       <TableColumn fx:id="tbcPrecioFactura" prefWidth="75.0" text="%precio" />
@@ -61,11 +61,11 @@
                   </TableView>
                   <VBox alignment="CENTER" prefHeight="155.0" prefWidth="93.0" spacing="30.0" HBox.hgrow="SOMETIMES">
                      <children>
-                        <Label text="%total" VBox.vgrow="ALWAYS">
+                        <Label styleClass="h3-contraste" text="%total" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font></Label>
-                        <Label fx:id="txtTotal" text="0" VBox.vgrow="ALWAYS">
+                        <Label fx:id="txtTotal" styleClass="h3-contraste" text="0" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font></Label>

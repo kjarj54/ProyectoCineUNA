@@ -148,6 +148,10 @@ public class ComidasClienteViewController extends Controller implements Initiali
             new Mensaje().showModal(Alert.AlertType.ERROR, "Generar la factura", getStage(), "Ocurrio un error generando la factura.");
         }
 
+        
+        
+        
+        
     }
 
     public void Suma() {

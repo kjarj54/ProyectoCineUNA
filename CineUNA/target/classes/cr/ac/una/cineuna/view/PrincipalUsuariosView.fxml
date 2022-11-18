@@ -33,7 +33,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="726.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="%labelPrinCine" HBox.hgrow="ALWAYS">
+            <Label styleClass="h1-contraste" text="%labelPrinCine" HBox.hgrow="ALWAYS">
                <font>
                   <Font name="Californian FB" size="24.0" />
                </font>

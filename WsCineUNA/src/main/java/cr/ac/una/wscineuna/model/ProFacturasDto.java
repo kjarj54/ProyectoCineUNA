@@ -4,7 +4,7 @@
  */
 package cr.ac.una.wscineuna.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
 public class ProFacturasDto {
     private Long facId;
     private Long facTotal;
-    private LocalDate facFecha;
+    private LocalDateTime facFecha;
     private Boolean modificado;
     List<ProComidasDto> comidas;
     List<ProComidasDto> comidasEliminadas;
@@ -53,11 +53,11 @@ public class ProFacturasDto {
         this.facTotal = facTotal;
     }
 
-    public LocalDate getFacFecha() {
+    public LocalDateTime getFacFecha() {
         return facFecha;
     }
 
-    public void setFacFecha(LocalDate facFecha) {
+    public void setFacFecha(LocalDateTime facFecha) {
         this.facFecha = facFecha;
     }
 
