@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
+import cr.ac.una.cineuna.App;
 import cr.ac.una.cineuna.model.ProAsientosDto;
 import cr.ac.una.cineuna.model.ProClientesDto;
 import cr.ac.una.cineuna.model.ProPeliculasDto;
@@ -29,6 +30,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -168,7 +170,7 @@ public class MantTandasViewController extends Controller implements Initializabl
     }
 
     @FXML
-    private void onActionBtnGuardar(ActionEvent event) {
+    private void onActionBtnGuardar(ActionEvent event) throws IOException {
 
         //peli.setPelId(Long.valueOf(txtID.getText()));
         String sss = txtID.getText();
@@ -214,7 +216,12 @@ public class MantTandasViewController extends Controller implements Initializabl
         asientodto.setTanId((ProTandasDto) AppContext.getInstance().get("IDTANDAS"));
         asientodto.setAsiNombre("1");
         ProAsientosService service3 = new ProAsientosService();
+        if(asientodto.getAsiImg() == null){
+            asientodto.setAsiImg(SaveImage2(App.class.getResource("/cr/ac/una/cineuna/resources/asiento.png")));
+        }
         Respuesta respuesta3 = service3.guardarAsiento(asientodto);
+        
+        asientodto = new ProAsientosDto();
         
         asientodto.setTanId((ProTandasDto) AppContext.getInstance().get("IDTANDAS"));
         asientodto.setAsiNombre("2");
@@ -371,6 +378,12 @@ public class MantTandasViewController extends Controller implements Initializabl
     
     private byte[] SaveImage(File file) throws IOException {
         FileInputStream fiStream = new FileInputStream(file.getAbsolutePath());
+        byte[] imageInBytes = IOUtils.toByteArray(fiStream);
+        return imageInBytes;
+    }
+    
+    private byte[] SaveImage2(URL url) throws IOException {
+        InputStream fiStream = url.openStream();
         byte[] imageInBytes = IOUtils.toByteArray(fiStream);
         return imageInBytes;
     }
