@@ -282,6 +282,7 @@ public class UpdatePelViewController extends Controller implements Initializable
     @FXML
     private void onActionBtnGenerarReporte(ActionEvent event) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     
         try{
             InputStream is = getClass().getClassLoader().getResourceAsStream("/cr/ac/una/cineuna/resources/Invoice.jrxml");
@@ -340,6 +341,8 @@ public class UpdatePelViewController extends Controller implements Initializable
 //    }
 }
 =======
+=======
+>>>>>>> Stashed changes
         String sql =    "select c.rep_id, c.rep_espaciosvacios, c.rep_espaciosocupados, c.rep_monto, u.usu_id, u.usu_usuario, u.usu_nombre, u.usu_correo, u.usu_telefono \n" +
                                   "from tar_reporteganancias c \n" +
                                   "left join tar_usuario u \n" +
@@ -378,4 +381,7 @@ public class UpdatePelViewController extends Controller implements Initializable
             
     }    
         
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
