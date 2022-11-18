@@ -270,7 +270,7 @@ public class SalaViewController extends Controller implements Initializable {
             
             btnA1.setStyle("-fx-background-color: #FF0000");
             ProAsientosService service50 = new ProAsientosService();
-            Respuesta respuesta10 = service50.compraAsiento(Long.valueOf("1"), (Long)AppContext.getInstance().get("UsuarioId"));
+            Respuesta respuesta10 = service50.compraAsiento(asientodto.getAsiId(), (Long)AppContext.getInstance().get("UsuarioId"));
             
             //System.out.println(btnA1.getUserData().toString());
             
@@ -296,7 +296,8 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnA2.setStyle("-fx-background-color: #FF0000");
-            
+            ProAsientosService service50 = new ProAsientosService();
+            Respuesta respuesta10 = service50.compraAsiento(asientodto.getAsiId(), (Long)AppContext.getInstance().get("UsuarioId"));
             //System.out.println(btnA1.getUserData().toString());
             
             /*
@@ -321,7 +322,8 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnA3.setStyle("-fx-background-color: #FF0000");
-            
+            ProAsientosService service50 = new ProAsientosService();
+            Respuesta respuesta10 = service50.compraAsiento(asientodto.getAsiId(), (Long)AppContext.getInstance().get("UsuarioId"));
             //System.out.println(btnA1.getUserData().toString());
             
             /*
@@ -346,7 +348,8 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnC1.setStyle("-fx-background-color: #FF0000");
-            
+            ProAsientosService service50 = new ProAsientosService();
+            Respuesta respuesta10 = service50.compraAsiento(asientodto.getAsiId(), (Long)AppContext.getInstance().get("UsuarioId"));
             //System.out.println(btnA1.getUserData().toString());
             
             /*
@@ -371,7 +374,8 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnC2.setStyle("-fx-background-color: #FF0000");
-            
+            ProAsientosService service50 = new ProAsientosService();
+            Respuesta respuesta10 = service50.compraAsiento(asientodto.getAsiId(), (Long)AppContext.getInstance().get("UsuarioId"));
             //System.out.println(btnA1.getUserData().toString());
             
             /*
@@ -396,7 +400,8 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnC3.setStyle("-fx-background-color: #FF0000");
-            
+            ProAsientosService service50 = new ProAsientosService();
+            Respuesta respuesta10 = service50.compraAsiento(asientodto.getAsiId(), (Long)AppContext.getInstance().get("UsuarioId"));
             //System.out.println(btnA1.getUserData().toString());
             
             /*
@@ -421,7 +426,8 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnB1.setStyle("-fx-background-color: #FF0000");
-            
+            ProAsientosService service50 = new ProAsientosService();
+            Respuesta respuesta10 = service50.compraAsiento(asientodto.getAsiId(), (Long)AppContext.getInstance().get("UsuarioId"));
             //System.out.println(btnA1.getUserData().toString());
             
             /*
@@ -446,7 +452,8 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnB2.setStyle("-fx-background-color: #FF0000");
-            
+            ProAsientosService service50 = new ProAsientosService();
+            Respuesta respuesta10 = service50.compraAsiento(asientodto.getAsiId(), (Long)AppContext.getInstance().get("UsuarioId"));
             //System.out.println(btnA1.getUserData().toString());
             
             /*
@@ -471,7 +478,8 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnB3.setStyle("-fx-background-color: #FF0000");
-            
+            ProAsientosService service50 = new ProAsientosService();
+            Respuesta respuesta10 = service50.compraAsiento(asientodto.getAsiId(), (Long)AppContext.getInstance().get("UsuarioId"));
             //System.out.println(btnA1.getUserData().toString());
             
             /*
@@ -496,7 +504,8 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnD1.setStyle("-fx-background-color: #FF0000");
-            
+            ProAsientosService service50 = new ProAsientosService();
+            Respuesta respuesta10 = service50.compraAsiento(asientodto.getAsiId(), (Long)AppContext.getInstance().get("UsuarioId"));
             //System.out.println(btnA1.getUserData().toString());
             
             /*
@@ -521,7 +530,8 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnD2.setStyle("-fx-background-color: #FF0000");
-            
+            ProAsientosService service50 = new ProAsientosService();
+            Respuesta respuesta10 = service50.compraAsiento(asientodto.getAsiId(), (Long)AppContext.getInstance().get("UsuarioId"));
             //System.out.println(btnA1.getUserData().toString());
             
             /*
@@ -546,7 +556,8 @@ public class SalaViewController extends Controller implements Initializable {
         if (new Mensaje().showConfirmation("Confirmación", getStage(), "¿Esta seguro que desea guardar el asiento?")) {
             
             btnD3.setStyle("-fx-background-color: #FF0000");
-            
+            ProAsientosService service50 = new ProAsientosService();
+            Respuesta respuesta10 = service50.compraAsiento(asientodto.getAsiId(), (Long)AppContext.getInstance().get("UsuarioId"));
             //System.out.println(btnA1.getUserData().toString());
             
             /*
