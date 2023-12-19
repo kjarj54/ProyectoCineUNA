@@ -86,7 +86,7 @@ The project follows a modular structure with distinct modules for administrators
 ## Installation
 To install and run the application locally, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/CineUNA.git`
+1. Clone the repository: `git clone https://github.com/kjarj54/ProyectoCineUNA`
 2. Open the project in Netbeans.
 3. Build and run the application.
 
