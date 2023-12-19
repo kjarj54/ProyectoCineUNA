@@ -26,7 +26,7 @@ The CineUNA project is aimed at providing cinema owners with a robust tool for m
 
 ## Project Structure
 The project follows a modular structure with distinct modules for administrators and customers. The codebase is organized according to Java best practices and design patterns, ensuring maintainability and scalability.
-
+```
 └── 📁CineUNA
     └── 📁config
         └── properties.ini
@@ -82,7 +82,7 @@ The project follows a modular structure with distinct modules for administrators
             ├── java
     └── 📁target
 
-
+```
 ## Installation
 To install and run the application locally, follow these steps:
 
